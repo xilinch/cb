@@ -19,4 +19,6 @@
     <color name="request_code_color">#7ff64e45</color>
     <color name="c_red_f64e45">#f64e45</color>
     <color name="c_gray_cccccc">#CCCCCC</color>
+    <color name="title_color">#333333</color>
+    <color name="c_gray_f7f7f7">#f7f7f7</color>
 </resources>

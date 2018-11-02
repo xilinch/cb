@@ -9,19 +9,13 @@
         android:text="@string/app_name"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-    <TextSwitcher
-        android:id="@+id/textSwitcher"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_live_trailer"
-        android:inAnimation="@anim/push_bottom_in_300"
-        android:outAnimation="@anim/push_top_out_300" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none" />
+        android:layout_height="match_parent">
 
+    </LinearLayout>
 
 </LinearLayout>

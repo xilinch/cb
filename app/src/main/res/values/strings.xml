@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cb</string>
+    <string name="app_name">时时彩天地计划</string>
 
     <string name="please_login">请登录</string>
 
@@ -8,4 +8,7 @@
     <string name="login_text">登录</string>
     <string name="please_enter_code">请输入验证码</string>
     <string name="network_wrong_please_retry">网络状态不好，请重新尝试</string>
+
+    <string name="bind_text">绑定</string>
+    <string name="unbind_text">解绑</string>
 </resources>
