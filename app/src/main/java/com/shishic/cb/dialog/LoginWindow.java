@@ -36,8 +36,8 @@ public class LoginWindow extends PopupWindow {
     private Activity mContext;
     private View window;
     private ImageView mClose, cleanPhone, loadingImage, mBack;
-    private EditText phone, code;
-    private TextView requestCode, login;
+    private EditText phone, password;
+    private TextView login;
     private String phoneText, codeText;
     private ObjectAnimator mAnimator;
     private float mWidth;  //窗口宽度
@@ -59,8 +59,7 @@ public class LoginWindow extends PopupWindow {
         window = LayoutInflater.from(mContext).inflate(R.layout.popup_window_login, null);
         mClose = window.findViewById(R.id.window_login_close);
         phone = window.findViewById(R.id.window_login_number);
-        code = window.findViewById(R.id.window_login_code);
-        requestCode = window.findViewById(R.id.window_login_request_code);
+        password = window.findViewById(R.id.window_login_pic_code);
         login = window.findViewById(R.id.window_login_login);
         cleanPhone = window.findViewById(R.id.window_clean_phone);
         loadingImage = window.findViewById(R.id.window_login_loading);
@@ -144,13 +143,12 @@ public class LoginWindow extends PopupWindow {
             @Override
             public void afterTextChanged(Editable s) {
                 phoneText = s.toString();
-                isRequestCodeEnable();
                 isLoginEnable();
             }
         });
 
 
-        code.addTextChangedListener(new TextWatcher() {
+        password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -194,7 +192,7 @@ public class LoginWindow extends PopupWindow {
             public void onClick(View v) {
                 mBack.setVisibility(View.GONE);
                 phone.setText("");
-                code.setText("");
+                password.setText("");
                 InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
                 if (imm.isActive()) {
                     imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
@@ -252,19 +250,6 @@ public class LoginWindow extends PopupWindow {
         }
     }
 
-    /**
-     * 改变获取验证码文字状态颜色
-     *
-     * @param flag
-     */
-    private void setRequestCodeState(boolean flag) {
-        requestCode.setEnabled(flag);
-        if (flag) {
-            requestCode.setTextColor(TEXT_COLOR_ABLE);
-        } else {
-            requestCode.setTextColor(TEXT_COLOR_ENABLE);
-        }
-    }
 
     /**
      * 开始加载动画
@@ -284,38 +269,11 @@ public class LoginWindow extends PopupWindow {
         loadingImage.setVisibility(View.GONE);
     }
 
-
-    /**
-     * 判断是否可以点击获取验证码
-     *
-     * @return
-     */
-    private boolean isRequestCodeEnable() {
-        if (!TextUtils.isEmpty(phoneText)) {
-            cleanPhone.setVisibility(View.VISIBLE);
-            if (RegexStringUtils.IsMobileFormat(phoneText)) {
-                //手机合法，图形验证码 4位 获取验证码可以点击
-                setRequestCodeState(true);
-                return true;
-            } else {
-                //不合法
-                setRequestCodeState(false);
-                setLoginState(false);
-                return false;
-            }
-        } else {
-            cleanPhone.setVisibility(View.GONE);
-            setRequestCodeState(false);
-            setLoginState(false);
-            return false;
-        }
-    }
-
     /**
      * 判断是否可以点击登录
      */
     private void isLoginEnable() {
-        if (RegexStringUtils.IsMobileFormat(phoneText) && !TextUtils.isEmpty(codeText) && codeText.length() == 6) {
+        if (RegexStringUtils.IsMobileFormat(phoneText) && !TextUtils.isEmpty(codeText) && codeText.length() >= 6) {
             setLoginState(true);
         } else {
             setLoginState(false);

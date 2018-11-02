@@ -7,7 +7,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shishic.cb.R;
@@ -17,6 +17,8 @@ import com.shishic.cb.view.CircleImageView;
 public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResultListener {
 
     private TextView tv_personal_center_nickname;
+
+    private LinearLayout ll_phone;
 
     private CircleImageView civ_personal_center_avatar;
 
@@ -32,6 +34,7 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
             view = inflater.inflate(R.layout.fragment_personal_center, container, false);
             tv_personal_center_nickname = view.findViewById(R.id.tv_personal_center_nickname);
             civ_personal_center_avatar = view.findViewById(R.id.civ_personal_center_avatar);
+            ll_phone = view.findViewById(R.id.ll_phone);
             initView();
         }
         return view;
@@ -41,7 +44,7 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
      * 设置事件
      */
     private void initView(){
-        tv_personal_center_nickname.setOnClickListener(new View.OnClickListener() {
+        ll_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showLogin();

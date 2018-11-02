@@ -19,6 +19,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/ll_phone"
                 android:paddingTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +58,7 @@
 
             <TextView
                 style="@style/personal_center_title"
-                android:text="南方日报" />
+                android:text="修改密码" />
 
             <ImageView
                 android:id="@+id/iv_south_daily"
@@ -87,7 +88,7 @@
 
             <TextView
                 style="@style/personal_center_title"
-                android:text="南方杂志" />
+                android:text="绑定手机" />
 
             <ImageView
                 android:id="@+id/iv_south_magazie"
@@ -117,7 +118,7 @@
 
             <TextView
                 style="@style/personal_center_title"
-                android:text="南方网" />
+                android:text="签到" />
 
             <ImageView
                 android:id="@+id/iv_south_net"
@@ -136,7 +137,7 @@
 
             <TextView
                 style="@style/personal_center_title"
-                android:text="分享南方+" />
+                android:text="分享应用" />
 
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
@@ -182,7 +183,7 @@
 
             <TextView
                 style="@style/personal_center_title"
-                android:text="新闻报料" />
+                android:text="在线客服" />
 
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
