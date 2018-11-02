@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_divider"
+    android:scrollbarSize="6dp"
+    android:scrollbarThumbVertical="@drawable/shape_scroll_bar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:paddingTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.shishic.cb.view.CircleImageView
+                    android:id="@+id/civ_personal_center_avatar"
+                    android:layout_width="76dp"
+                    android:layout_height="76dp"
+                    android:src="@mipmap/my_avatar_icon_default"
+                    app:border_color="@color/c_gray_dddddd"
+                    app:border_width="1px" />
+
+                <TextView
+                    android:id="@+id/tv_personal_center_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:text="点击登录"
+                    android:textColor="@color/c_gray_333333"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_south_daily"
+            style="@style/personal_center_item"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="南方日报" />
+
+            <ImageView
+                android:id="@+id/iv_south_daily"
+                style="@style/personal_center_arrow" />
+
+            <ImageView
+                style="@style/personal_center_nfTag"
+                android:layout_toLeftOf="@id/iv_south_daily"
+                android:src="@mipmap/my_nfw_icon" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/c_gray_eeeeee" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_south_magazie"
+            style="@style/personal_center_item">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="南方杂志" />
+
+            <ImageView
+                android:id="@+id/iv_south_magazie"
+                style="@style/personal_center_arrow" />
+
+            <ImageView
+                style="@style/personal_center_nfTag"
+                android:layout_toLeftOf="@id/iv_south_magazie"
+                android:src="@mipmap/my_nfzz_icon" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/c_gray_eeeeee" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_south_net"
+            style="@style/personal_center_item">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="南方网" />
+
+            <ImageView
+                android:id="@+id/iv_south_net"
+                style="@style/personal_center_arrow" />
+
+            <ImageView
+                style="@style/personal_center_nfTag"
+                android:layout_toLeftOf="@id/iv_south_net"
+                android:src="@mipmap/my_nfw_icon" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_shear"
+            style="@style/personal_center_item"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="分享南方+" />
+
+            <ImageView style="@style/personal_center_arrow" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/c_gray_eeeeee" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_feedback"
+            style="@style/personal_center_item">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="意见反馈" />
+
+            <ImageView style="@style/personal_center_arrow" />
+        </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/white">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/c_gray_eeeeee" />
+        </FrameLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_personal_center_news_report"
+            style="@style/personal_center_item">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:text="新闻报料" />
+
+            <ImageView style="@style/personal_center_arrow" />
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>
