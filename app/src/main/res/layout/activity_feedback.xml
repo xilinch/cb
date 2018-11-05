@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_gray_f7f7f7"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/ll_title"
+        layout="@layout/layout_titlebar_with_divider" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fadingEdge="none"
+        android:scrollbars="vertical">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_content"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dip"
+                android:background="@color/white"
+                android:gravity="top"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_bg"
+                    android:gravity="top"
+                    android:orientation="vertical">
+
+
+                    <EditText
+                        android:id="@+id/BL_ET_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="160dp"
+                        android:layout_margin="10dip"
+                        android:background="@color/transparent"
+                        android:gravity="top|left"
+                        android:minLines="15"
+                        android:textColor="@color/c_gray_333333"
+                        android:textColorHint="@color/c_gray_cccccc"
+                        android:textSize="16sp"></EditText>
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/BL_ET_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_content"
+                android:layout_marginLeft="15dip"
+                android:layout_marginRight="15dip"
+                android:layout_marginTop="10dip"
+                android:background="@drawable/edit_bg"
+                android:gravity="center|left"
+                android:hint="联系方式(QQ/微信/手机)"
+                android:padding="10dip"
+                android:singleLine="true"
+                android:textColor="@color/c_gray_333333"
+                android:textColorHint="@color/c_gray_cccccc"
+                android:textSize="16sp"></EditText>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="15dip"
+        android:layout_marginTop="20dip">
+
+        <Button
+            android:id="@+id/BL_btn_sub"
+            android:layout_width="fill_parent"
+            android:layout_height="48dip"
+            android:background="@drawable/solid_long_btn_bg"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ProgressBar
+            android:id="@+id/pb_feed_back"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:gravity="center_horizontal"
+            android:text="联系客服请添加qq：8675859 微信号：xxx"
+            android:textColor="@color/c_gray_999999"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

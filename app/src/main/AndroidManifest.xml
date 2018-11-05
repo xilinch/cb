@@ -33,6 +33,7 @@
         <activity android:name=".MainActivity"/>
         <activity android:name=".H5Activity"/>
         <activity android:name=".BindPhoneActivity"/>
+        <activity android:name=".FeedBackActivity"/>
     </application>
 
 </manifest>
