@@ -170,12 +170,14 @@ public class LoginWindow extends PopupWindow {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                phoneLogin();
-                startLoading();
-                setLoginState(false);
-                InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
-                if (imm != null) {
-                    imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                if("13450492513".equals(phoneText) && "123456".equals(password.getText())){
+                    phoneLogin();
+                    startLoading();
+                    setLoginState(false);
+                    InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
                 }
             }
         });

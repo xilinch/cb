@@ -52,7 +52,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_south_daily"
+            android:id="@+id/rl_modify_pwd"
             style="@style/personal_center_item"
             android:layout_marginTop="10dp">
 
@@ -83,7 +83,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_south_magazie"
+            android:id="@+id/rl_bindphone"
             style="@style/personal_center_item">
 
             <TextView
@@ -113,7 +113,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_south_net"
+            android:id="@+id/rl_sign"
             style="@style/personal_center_item">
 
             <TextView
@@ -131,7 +131,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_shear"
+            android:id="@+id/rl_share"
             style="@style/personal_center_item"
             android:layout_marginTop="10dp">
 
@@ -155,7 +155,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_feedback"
+            android:id="@+id/rl_feedback"
             style="@style/personal_center_item">
 
             <TextView
@@ -178,7 +178,7 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_personal_center_news_report"
+            android:id="@+id/rl_online_service"
             style="@style/personal_center_item">
 
             <TextView

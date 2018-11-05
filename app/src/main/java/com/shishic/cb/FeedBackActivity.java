@@ -138,54 +138,16 @@ public class FeedBackActivity extends BaseActivity {
 
         if (submitCheck()) {
             submitBtn.setClickable(false);
-//            Map<String, String> params = new HashMap<>();
-//            params.put("siteID", String.valueOf(ReaderApplication.siteid));
-//            params.put("rootID", "0");
-//            params.put("content", contentStr);
-//            params.put("userID", userId);
-//            params.put("userName", nameStr);
-//            params.put("userOtherID", phoneIMEIStr);
-//            String url = readApp.pubServer + UrlConstants.URL_POST_FEED;
-//            submitBtn.setClickable(false);
-//            contentView.setEnabled(false);
-//            nameView.setEnabled(false);
-//            submitBtn.setText("准备提交...");
-//            RequestUtil.httpPost(ReaderApplication.getInstace(), url, params, new NFHttpResponseListener<String>() {
-//                @Override
-//                public void onErrorResponse(LogError logError) {
-//                    LogUtil.e("my", "logError:" );
-//                    Toast.makeText(mContext, "提交失败", Toast.LENGTH_LONG).show();
-//                    submitBtn.setText("提交反馈");
-//                    submitBtnClickable();
-//                    contentView.setEnabled(true);
-//                    nameView.setEnabled(true);
-//                    progressBar.setVisibility(View.GONE);
-//                }
-//
-//                @Override
-//                public void onResponse(String result) {
-//                    LogUtil.e("my", "submitArticleShareEvent result:" + result);
-//                    progressBar.setVisibility(View.GONE);
-//                    if ("true".equals(result)) {
-//                        Toast.makeText(mContext, R.string.ask_submint_success, Toast.LENGTH_LONG).show();
-//                        submitBtn.setText(R.string.ask_submint_success);
-//                        FeedBackActivity.this.finish();
-//                    } else {
-//                        Toast.makeText(mContext, "提交失败", Toast.LENGTH_LONG).show();
-//                    }
-//                    submitBtnClickable();
-//                    contentView.setEnabled(true);
-//                    nameView.setEnabled(true);
-//                    submitBtn.setText("提交反馈");
-//                }
-//            },TAG);
+            submitBtn.setText("准备提交...");
+//            ToastUtils.toastShow(this, "提交成功");
+            submitBtn.setText("提交反馈");
         }
     }
 
 
     private boolean submitCheck() {
         if (TextUtils.isEmpty(contentStr)) {
-            Toast.makeText(this, "请输入意见内容", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "请输入意见内容", Toast.LENGTH_LONG).show();
             return false;
         }
         return true;
