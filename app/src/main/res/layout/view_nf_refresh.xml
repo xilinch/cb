@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.shishic.cb.loadmore.PtrNFClassicFrameLayout
+        android:id="@+id/ptrRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/c_gray_f7f7f7">
+
+        <com.shishic.cb.loadmore.PlusRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scrollbarThumbVertical="@drawable/shape_scroll_bar"
+            android:scrollbarSize="6dp"
+            android:scrollbars="vertical" />
+
+    </com.shishic.cb.loadmore.PtrNFClassicFrameLayout>
+
+    <include
+        android:id="@+id/dataZeroLayout"
+        layout="@layout/view_data_zero"
+        android:visibility="gone" />
+
+</RelativeLayout>

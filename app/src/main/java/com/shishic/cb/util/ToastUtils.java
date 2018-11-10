@@ -14,7 +14,7 @@ public class ToastUtils {
     private static Handler handler = new Handler(Looper.getMainLooper());
 
     // toast重复显示不消失问题
-    public static void toastShow(Context context, final int arg) {
+    public static void toastShow(final Context context, final int arg) {
         if (handler == null) {
             handler = new Handler(Looper.getMainLooper());
         }
@@ -22,12 +22,12 @@ public class ToastUtils {
             @Override
             public void run() {
                 if (toast == null) {
-                    toast = Toast.makeText(ReaderApplication.getInstace(), arg, Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(context, arg, Toast.LENGTH_SHORT);
                 } else {
                     // toast.cancel(); //取消后只会显示一次
                     toast.setText(arg);
                 }
-                if (toast != null && ReaderApplication.getInstace() != null) {
+                if (toast != null && context != null) {
                     toast.show();
                 }
             }
@@ -35,7 +35,7 @@ public class ToastUtils {
     }
 
     // toast重复显示不消失问题
-    public static void toastShowLong(Context context, final String arg) {
+    public static void toastShowLong(final Context context, final String arg) {
         if (handler == null) {
             handler = new Handler(Looper.getMainLooper());
         }
@@ -43,12 +43,12 @@ public class ToastUtils {
             @Override
             public void run() {
                 if (toast == null) {
-                    toast = Toast.makeText(ReaderApplication.getInstace(), arg, Toast.LENGTH_LONG);
+                    toast = Toast.makeText(context, arg, Toast.LENGTH_LONG);
                 } else {
                     // toast.cancel(); //取消后只会显示一次
                     toast.setText(arg);
                 }
-                if (toast != null && ReaderApplication.getInstace() != null) {
+                if (toast != null && context != null) {
                     toast.show();
                 }
             }
@@ -56,7 +56,7 @@ public class ToastUtils {
     }
 
     // toast重复显示不消失问题
-    public static void toastShowLong(Context context, final int arg) {
+    public static void toastShowLong(final Context context, final int arg) {
         if (handler == null) {
             handler = new Handler(Looper.getMainLooper());
         }
@@ -64,12 +64,12 @@ public class ToastUtils {
             @Override
             public void run() {
                 if (toast == null) {
-                    toast = Toast.makeText(ReaderApplication.getInstace(), arg, Toast.LENGTH_LONG);
+                    toast = Toast.makeText(context, arg, Toast.LENGTH_LONG);
                 } else {
                     // toast.cancel(); //取消后只会显示一次
                     toast.setText(arg);
                 }
-                if (toast != null && ReaderApplication.getInstace() != null) {
+                if (toast != null && context != null) {
                     toast.show();
                 }
             }
@@ -77,7 +77,7 @@ public class ToastUtils {
     }
 
     // toast重复显示不消失问题
-    public static void toastShow(Context context, final String arg) {
+    public static void toastShow(final Context context, final String arg) {
         if (handler == null) {
             handler = new Handler(Looper.getMainLooper());
         }
@@ -85,12 +85,12 @@ public class ToastUtils {
             @Override
             public void run() {
                 if (toast == null) {
-                    toast = Toast.makeText(ReaderApplication.getInstace(), arg, Toast.LENGTH_SHORT);
+                    toast = Toast.makeText(context, arg, Toast.LENGTH_SHORT);
                 } else {
                     // toast.cancel(); //取消后只会显示一次
                     toast.setText(arg);
                 }
-                if (toast != null && ReaderApplication.getInstace() != null) {
+                if (toast != null && context != null) {
                     toast.show();
                 }
             }
@@ -100,15 +100,15 @@ public class ToastUtils {
     /**
      * 调试toast
      */
-    public static void dShortToastShow(Context context, String msg) {
+    public static void dShortToastShow(final Context context, String msg) {
         if (BuildConfig.DEBUG) {
             if (toast == null) {
-                toast = Toast.makeText(ReaderApplication.getInstace(), msg, Toast.LENGTH_SHORT);
+                toast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
             } else {
                 // toast.cancel(); //取消后只会显示一次
                 toast.setText(msg);
             }
-            if (toast != null && ReaderApplication.getInstace() != null) {
+            if (toast != null && context != null) {
                 toast.show();
             }
         } else {

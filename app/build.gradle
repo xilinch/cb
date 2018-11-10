@@ -18,6 +18,11 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
 
 dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
@@ -25,4 +30,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.xl.nfRequest:nfRequest:0.9.1025'
+    compile(name: 'ptr-release', ext: 'aar')
+    compile(name: 'smart-headerfooter-recyclerview-release', ext: 'aar')
 }

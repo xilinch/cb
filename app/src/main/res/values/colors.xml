@@ -25,4 +25,19 @@
     <!-- 左边栏的字体颜色 -->
     <color name="input_biankuang_color">#DDDDDD</color>
     <color name="blue_3e9deb">#3e9deb</color>
+    <color name="c_gray_f2f2f2">#f2f2f2</color>
+    <color name="newlist_more_text_color">#585858</color>
+
+
+
+    <color name="red">#BA1A1D</color>
+    <color name="green">#FF34A350</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="blue">#FF375BF1</color>
+    <integer-array name="google_colors">
+        <item>@color/red</item>
+        <item>@color/blue</item>
+        <item>@color/yellow</item>
+        <item>@color/green</item>
+    </integer-array>
 </resources>

@@ -1,13 +1,17 @@
 package com.shishic.cb.bean;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 import com.shishic.cb.util.SharepreferenceUtil;
+
+import org.json.JSONObject;
+import org.json.JSONStringer;
 
 public class Account extends BaseBean {
 
     private int id;
 
-    private String name;
+    private String userName;
 
     private String icon;
 
@@ -15,6 +19,7 @@ public class Account extends BaseBean {
 
     private String sex;
 
+    private String score;
 
     public int getId() {
         return id;
@@ -22,14 +27,6 @@ public class Account extends BaseBean {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getIcon() {
@@ -56,13 +53,31 @@ public class Account extends BaseBean {
         this.sex = sex;
     }
 
-    public Account(int id, String name, String icon, String phone, String sex) {
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public Account(int id, String userName, String icon, String phone, String sex, String score) {
         this.id = id;
-        this.name = name;
+        this.userName = userName;
+        this.score = score;
         this.icon = icon;
         this.phone = phone;
         this.sex = sex;
     }
+
 
     /**
      * 获取账户
@@ -72,5 +87,26 @@ public class Account extends BaseBean {
         String accountStr = SharepreferenceUtil.getAccount();
         Account account = new Gson().fromJson(accountStr, Account.class);
         return account;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", icon='" + icon + '\'' +
+                ", phone='" + phone + '\'' +
+                ", sex='" + sex + '\'' +
+                ", score='" + score + '\'' +
+                '}';
+    }
+
+    /**
+     * 保存
+     * @param account
+     */
+    public static void saveAccount(Account account){
+        String str = new Gson().toJson(account);
+        SharepreferenceUtil.setAccount(str);
     }
 }

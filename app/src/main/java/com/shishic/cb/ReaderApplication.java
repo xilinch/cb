@@ -4,6 +4,8 @@ import android.annotation.TargetApi;
 import android.app.Application;
 import android.os.Build;
 
+import com.android.network.NFRequestUtil;
+import com.android.nfRequest.NFLog;
 import com.bumptech.glide.Glide;
 
 public class ReaderApplication extends Application {
@@ -17,6 +19,13 @@ public class ReaderApplication extends Application {
         return applicationContext;
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        applicationContext = (ReaderApplication)getApplicationContext();
+        NFRequestUtil.getInstance().init(this);
+        NFLog.DEBUG = true;
+    }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override

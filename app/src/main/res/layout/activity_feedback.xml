@@ -53,6 +53,7 @@
             </LinearLayout>
 
             <EditText
+                android:visibility="gone"
                 android:id="@+id/BL_ET_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -83,17 +84,10 @@
             android:id="@+id/BL_btn_sub"
             android:layout_width="fill_parent"
             android:layout_height="48dip"
+            android:text="提交反馈"
             android:background="@drawable/solid_long_btn_bg"
             android:textColor="@color/white"
             android:textSize="18sp" />
-
-        <ProgressBar
-            android:id="@+id/pb_feed_back"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:visibility="gone" />
 
     </FrameLayout>
 

@@ -1,7 +1,10 @@
 package com.shishic.cb.fragment;
 
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,18 +15,16 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.shishic.cb.BindPhoneActivity;
 import com.shishic.cb.FeedBackActivity;
+import com.shishic.cb.LoginActivity;
 import com.shishic.cb.R;
-import com.shishic.cb.ReaderApplication;
-import com.shishic.cb.dialog.LoginWindow;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.view.CircleImageView;
 
-public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResultListener {
+public class MyFragment extends BaseFragment{
 
     private TextView tv_personal_center_nickname;
 
@@ -33,13 +34,20 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
 
     private View view;
 
-    private LoginWindow loginWindow;
     private Dialog signDialog;
     private RelativeLayout rl_modify_pwd;
     private RelativeLayout rl_bindphone;
     private RelativeLayout rl_sign;
     private RelativeLayout rl_share;
     private RelativeLayout rl_feedback;
+    public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
+
+    private BroadcastReceiver loginBroadCast = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateUser();
+        }
+    };
 
 
     @Nullable
@@ -56,6 +64,8 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
             rl_feedback = view.findViewById(R.id.rl_feedback);
             ll_phone = view.findViewById(R.id.ll_phone);
             initView();
+            IntentFilter filter = new IntentFilter(ACTION_LOGIN);
+            getActivity().registerReceiver(loginBroadCast, filter);
         }
         return view;
     }
@@ -96,6 +106,7 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
                             @Override
                             public void run() {
                                 dismissSign();
+                                ToastUtils.toastShow(getActivity(),"签到成功");
                             }
                         });
 
@@ -119,27 +130,20 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
 
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(loginBroadCast != null){
+            getActivity().unregisterReceiver(loginBroadCast);
+        }
+    }
 
     /**
      * 显示登录
      */
     private void showLogin(){
-        if(loginWindow == null){
-            loginWindow = new LoginWindow(getActivity());
-            loginWindow.setOnLoginResultListener(this);
-        }
-        loginWindow.showAtLocation(getActivity().getWindow().getDecorView(), Gravity.CENTER_HORIZONTAL, 0, 0);
-    }
-
-    @Override
-    public void onLoginSuccess() {
-        civ_personal_center_avatar.setImageResource(R.mipmap.icon_login_wechat);
-        tv_personal_center_nickname.setText("无所不能");
-    }
-
-    @Override
-    public void onLoginFailed() {
-
+       Intent intent = new Intent(getContext(), LoginActivity.class);
+       startActivity(intent);
     }
 
     private void showSign(){
@@ -153,6 +157,10 @@ public class MyFragment extends BaseFragment implements LoginWindow.OnLoginResul
             signDialog.setContentView(view,params);
         }
         signDialog.show();
+    }
+
+    private void updateUser(){
+
     }
 
     private void dismissSign(){
