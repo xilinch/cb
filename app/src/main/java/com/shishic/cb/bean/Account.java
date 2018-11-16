@@ -19,7 +19,7 @@ public class Account extends BaseBean {
 
     private String sex;
 
-    private String score;
+    private int score;
 
     public int getId() {
         return id;
@@ -61,15 +61,15 @@ public class Account extends BaseBean {
         this.userName = userName;
     }
 
-    public String getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
-    public Account(int id, String userName, String icon, String phone, String sex, String score) {
+    public Account(int id, String userName, String icon, String phone, String sex, int score) {
         this.id = id;
         this.userName = userName;
         this.score = score;

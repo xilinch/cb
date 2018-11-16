@@ -138,11 +138,15 @@ public class FeedBackActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
+                LogUtil.e("my","URL_FEEDBACK response " + response) ;
                 try {
                     JSONObject jsonObject = new JSONObject(response);
                     String msg = jsonObject.optString("msg");
+                    boolean success = jsonObject.optBoolean("success");
+                    if(success){
+                        finish();
+                    }
                     ToastUtils.toastShow(FeedBackActivity.this, msg);
-                    finish();
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

@@ -128,7 +128,7 @@
             android:layout_height="48dp"
             android:layout_below="@+id/password_repeat"
             android:layout_marginTop="25dp"
-            android:background="@drawable/bg_login_text_enable"
+            android:background="@color/c_red_f64e45"
             android:gravity="center"
             android:text="@string/login_text"
             android:textColor="@color/white"

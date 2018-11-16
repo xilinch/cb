@@ -150,10 +150,10 @@ public class MyFragment extends BaseFragment{
     }
 
     private boolean needLogin(){
-        boolean result = false;
+        boolean result = true;
         Account account = Account.getAccount();
         if(account != null){
-            result = true;
+            result = false;
         }
         return result;
     }
