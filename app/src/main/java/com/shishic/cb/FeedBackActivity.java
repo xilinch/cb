@@ -127,7 +127,7 @@ public class FeedBackActivity extends BaseActivity {
     private void request(){
         String contentStr = contentView.getText().toString().trim();
         HashMap<String,String> params = new HashMap<>();
-        params.put("contentStr",contentStr);
+        params.put("content",contentStr);
         params.put("userId",String.valueOf(Account.getAccount().getId()));
         params.put("userName",Account.getAccount().getUserName());
         RequestUtil.httpGet(this, Constant.URL_FEEDBACK, params, new NFHttpResponseListener<String>() {
