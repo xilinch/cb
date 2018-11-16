@@ -5,13 +5,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
 
 import com.shishic.cb.fragment.MainFragment;
+import com.shishic.cb.fragment.MainFragment1;
 import com.shishic.cb.fragment.MyFragment;
 
 public class MainActivity extends BaseActivity {
 
     private RadioGroup rg;
 
-    private MainFragment mainFragment;
+    private MainFragment1 mainFragment;
 
     private MyFragment myFragment;
 
@@ -52,7 +53,7 @@ public class MainActivity extends BaseActivity {
             if(mainFragment != null){
                 fragmentTransaction.show(mainFragment);
             } else if(mainFragment == null){
-                mainFragment = new MainFragment();
+                mainFragment = new MainFragment1();
                 fragmentTransaction.add(R.id.ll_content,mainFragment);
             }
 

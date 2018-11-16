@@ -16,4 +16,7 @@ public class Constant {
 
     //意见反馈
     public static final String URL_FEEDBACK = "http://112.74.97.238/public/suggestion/save";
+
+    //签到
+    public static final String URL_SCORE = "http://112.74.97.238/public/score/save?type=1";
 }

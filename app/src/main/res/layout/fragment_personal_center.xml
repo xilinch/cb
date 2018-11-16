@@ -52,6 +52,7 @@
         </FrameLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_modify_pwd"
             style="@style/personal_center_item"
             android:layout_marginTop="10dp">
@@ -71,6 +72,7 @@
         </RelativeLayout>
 
         <FrameLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/white">
@@ -83,6 +85,7 @@
         </FrameLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_bindphone"
             style="@style/personal_center_item">
 

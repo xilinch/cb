@@ -15,6 +15,7 @@ import com.google.gson.Gson;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.fragment.MyFragment;
 import com.shishic.cb.util.Constant;
+import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.RegexStringUtils;
 import com.shishic.cb.util.ToastUtils;
 import org.json.JSONObject;
@@ -121,17 +122,19 @@ public class RegisterActivity extends BaseActivity {
 
             @Override
             public void onResponse(String response) {
-                ToastUtils.toastShow(RegisterActivity.this, R.string.network_error);
                 try {
+                    LogUtil.e("my","URL_REGISTER response:" + response);
                     JSONObject jsonObject = new JSONObject(response);
                     String msg = jsonObject.optString("msg");
                     ToastUtils.toastShow(RegisterActivity.this, msg);
-                    Account account = new Gson().fromJson(jsonObject.optString("data"), Account.class);
-                    Account.saveAccount(account);
-                    Intent intent = new Intent();
-                    intent.setAction(MyFragment.ACTION_LOGIN);
-                    sendBroadcast(intent);
-                    finish();
+
+                    boolean success = jsonObject.optBoolean("success");
+                    if(success){
+                        Intent intent = new Intent();
+                        intent.setAction(MyFragment.ACTION_LOGIN);
+                        sendBroadcast(intent);
+                        finish();
+                    }
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

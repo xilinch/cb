@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,13 +17,23 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
 import com.shishic.cb.BindPhoneActivity;
 import com.shishic.cb.FeedBackActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.R;
+import com.shishic.cb.bean.Account;
+import com.shishic.cb.dialog.ServiceIntroduceDialog;
 import com.shishic.cb.util.DensityUtils;
+import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.view.CircleImageView;
+
+import java.util.HashMap;
+
+import static com.shishic.cb.util.Constant.URL_SCORE;
 
 public class MyFragment extends BaseFragment{
 
@@ -40,7 +51,9 @@ public class MyFragment extends BaseFragment{
     private RelativeLayout rl_sign;
     private RelativeLayout rl_share;
     private RelativeLayout rl_feedback;
+    private RelativeLayout rl_online_service;
     public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
+    private ServiceIntroduceDialog dialog;
 
     private BroadcastReceiver loginBroadCast = new BroadcastReceiver() {
         @Override
@@ -62,10 +75,12 @@ public class MyFragment extends BaseFragment{
             rl_sign = view.findViewById(R.id.rl_sign);
             rl_share = view.findViewById(R.id.rl_share);
             rl_feedback = view.findViewById(R.id.rl_feedback);
+            rl_online_service = view.findViewById(R.id.rl_online_service);
             ll_phone = view.findViewById(R.id.ll_phone);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
+            updateUser();
         }
         return view;
     }
@@ -97,37 +112,50 @@ public class MyFragment extends BaseFragment{
         rl_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showSign();
-                rl_sign.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
+                if(needLogin()){
+                    Intent intent =new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    showSign();
+                }
 
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                dismissSign();
-                                ToastUtils.toastShow(getActivity(),"签到成功");
-                            }
-                        });
-
-                    }
-                },1000);
             }
         });
         rl_share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                 //
             }
         });
         rl_feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), FeedBackActivity.class);
-                startActivity(intent);
+                if(needLogin()){
+                    Intent intent =new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(getContext(), FeedBackActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
+        rl_online_service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+               showDialog();
+            }
+        });
+    }
 
+    private boolean needLogin(){
+        boolean result = false;
+        Account account = Account.getAccount();
+        if(account != null){
+            result = true;
+        }
+        return result;
     }
 
     @Override
@@ -136,6 +164,7 @@ public class MyFragment extends BaseFragment{
         if(loginBroadCast != null){
             getActivity().unregisterReceiver(loginBroadCast);
         }
+        dismissDialog();
     }
 
     /**
@@ -157,10 +186,45 @@ public class MyFragment extends BaseFragment{
             signDialog.setContentView(view,params);
         }
         signDialog.show();
+        HashMap<String,String> params = new HashMap<String, String>();
+        params.put("userId",String.valueOf(Account.getAccount().getId()));
+        RequestUtil.httpGet(getActivity(), URL_SCORE, params , new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError error) {
+                dismissSign();
+                ToastUtils.toastShow(getActivity(),R.string.network_error);
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.e("my","URL_SCORE response:" + response);
+                dismissSign();
+                ToastUtils.toastShow(getActivity(),"签到成功");
+            }
+        });
+
+    }
+
+    private void showDialog(){
+        if(dialog == null){
+            dialog = new ServiceIntroduceDialog(getContext());
+        }
+        dialog.show();
+    }
+
+    private void dismissDialog(){
+        if(dialog != null){
+            dialog.dismiss();
+        }
     }
 
     private void updateUser(){
-
+        Account account = Account.getAccount();
+        if(account != null && civ_personal_center_avatar != null && tv_personal_center_nickname!= null){
+            String name = account.getUserName();
+            civ_personal_center_avatar.setImageResource(R.mipmap.icon_login_wechat);
+            tv_personal_center_nickname.setText(name);
+        }
     }
 
     private void dismissSign(){
@@ -168,4 +232,7 @@ public class MyFragment extends BaseFragment{
             signDialog.dismiss();
         }
     }
+
+
+
 }
