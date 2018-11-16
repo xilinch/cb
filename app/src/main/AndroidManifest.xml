@@ -36,6 +36,12 @@
         <activity android:name=".FeedBackActivity"/>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".LoginActivity"/>
+        <activity android:name=".ChatActivity"/>
+        <activity android:name=".FreePlanActivity"/>
+        <activity android:name=".HistoryActivity"/>
+        <activity android:name=".LostAnalyActivity"/>
+        <activity android:name=".SpecialActivity"/>
+        <activity android:name=".TrendNumberActivity"/>
     </application>
 
 </manifest>

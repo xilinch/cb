@@ -19,4 +19,18 @@ public class Constant {
 
     //签到
     public static final String URL_SCORE = "http://112.74.97.238/public/score/save?type=1";
+
+
+    //聊天历史
+    public static final String URL_CHAT_HISTORY = "http://112.74.97.238/public/talk/getHistory";
+
+    public static final String URL_CHAT_RECORD = "http://112.74.97.238/public/talk/getRecords";
+
+    //发表评论
+    public static final String URL_CHAT_SAVE = "http://112.74.97.238/public/talk/save";
+
+    //历史开奖
+    public static final String URL_HISTORY = "http://wd.apiplus.net/newly.do?token=t3ead500967664f1bk&code=cqssc&format=json";
+
+
 }

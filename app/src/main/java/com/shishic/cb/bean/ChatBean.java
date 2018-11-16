@@ -4,6 +4,8 @@ public class ChatBean extends BaseBean{
 
     private int id;
 
+    private int userId;
+
     private String userName;
 
     private String userIcon;
@@ -43,5 +45,11 @@ public class ChatBean extends BaseBean{
         this.content = content;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 }

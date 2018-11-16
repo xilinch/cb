@@ -1,68 +1,64 @@
 package com.shishic.cb.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.shishic.cb.H5Activity;
 import com.shishic.cb.R;
 import com.shishic.cb.bean.ChatBean;
-import com.shishic.cb.bean.FunBean;
+import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.loadmore.PlusRecyclerAdapter;
 import com.shishic.cb.view.CustomRoundImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class ChatAdapter extends PlusRecyclerAdapter<ChatBean> {
+public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
 
     private Context context;
 
-    public ChatAdapter(List<ChatBean> list, Context context){
+    public HistoryAdapter(List<HistoryBean> list, Context context){
         super(list);
         this.context = context;
     }
 
+    public void changeList(){
+
+    }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_chat,parent,false));
+        RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_history,parent,false));
         return ViewHolder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ChatBean funBean = getList().get(position);
+        HistoryBean funBean = getList().get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
-             funViewHolder.tv_name.setText(funBean.getUserName());
-             funViewHolder.tv_content.setText(funBean.getContent());
-             String url = funBean.getUserIcon();
-             Glide.with(context).load(url).placeholder(R.mipmap.icon_default).centerCrop().into(funViewHolder.iv_icon);
-
-
+             funViewHolder.tv_opencode.setText("开奖号码：" + funBean.getOpencode());
+             funViewHolder.tv_expect.setText("开奖期数：" + funBean.getExpect());
+             funViewHolder.tv_opentime.setText("开奖时间：" + funBean.getOpentime());
          }
     }
 
 
     static class FunViewHolder extends RecyclerView.ViewHolder{
-        public TextView tv_name;
-        public TextView tv_content;
-        public CustomRoundImageView iv_icon;
+        public TextView tv_opencode;
+        public TextView tv_expect;
+        public TextView tv_opentime;
 
         public FunViewHolder(View view){
             super(view);
-            tv_name = view.findViewById(R.id.tv_name);
-            tv_content = view.findViewById(R.id.tv_content);
-            iv_icon = view.findViewById(R.id.iv_icon);
+            tv_opencode = view.findViewById(R.id.tv_opencode);
+            tv_expect = view.findViewById(R.id.tv_expect);
+            tv_opentime = view.findViewById(R.id.tv_opentime);
         }
     }
 }

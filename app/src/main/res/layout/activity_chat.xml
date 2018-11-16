@@ -6,12 +6,26 @@
 
     <include layout="@layout/include_view_title" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_marginTop="15dp"
-        android:paddingLeft="15dp"
-        android:id="@+id/recyclerView"
+    <com.shishic.cb.loadmore.ListRefreshLayout
+        android:id="@+id/listRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
         android:scrollbars="none" />
-
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <EditText
+            android:background="@drawable/dd_shape_ffffffff_stroke_ffffffff_content_5"
+            android:layout_weight="1.0"
+            android:id="@+id/et_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_submit"
+            android:text="提交"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+    </LinearLayout>
 </LinearLayout>

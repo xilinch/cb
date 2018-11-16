@@ -64,11 +64,11 @@ public class MainFragment extends BaseFragment {
             "免费计划",
             "用户聊天室",
             "走势图",
-            "历史开奖",
-            "留言板",
-            "工具",
-            "活动中心",
-            "公告栏"
+            "历史开奖"
+//            "留言板",
+//            "工具",
+//            "活动中心",
+//            "公告栏"
     };
 
     String[] url = new String[]{
@@ -78,10 +78,10 @@ public class MainFragment extends BaseFragment {
             "https://chart.cp.360.cn/kaijiang/ssccq?sb_spm=1e56179efbfea18a6419fc17d3fadef1",
             "http://trend.caipiao.163.com/cqssc/",
             "http://caipiao.163.com/award/cqssc/",
-            "",
-            "",
-            "",
-            "",
+//            "",
+//            "",
+//            "",
+//            "",
 
     };
 
@@ -145,10 +145,10 @@ public class MainFragment extends BaseFragment {
         list.add(new FunBean(title[3], url[3],icon[3]));
         list.add(new FunBean(title[4], url[4],icon[4]));
         list.add(new FunBean(title[5], url[5],icon[5]));
-        list.add(new FunBean(title[6], url[6],icon[6]));
-        list.add(new FunBean(title[7],url[7],icon[7]));
-        list.add(new FunBean(title[8],url[8],icon[8]));
-        list.add(new FunBean(title[9],url[9],icon[9]));
+//        list.add(new FunBean(title[6], url[6],icon[6]));
+//        list.add(new FunBean(title[7],url[7],icon[7]));
+//        list.add(new FunBean(title[8],url[8],icon[8]));
+//        list.add(new FunBean(title[9],url[9],icon[9]));
         funAdapter = new FunAdapter(list,getActivity());
         recyclerView.setAdapter(funAdapter);
     }
