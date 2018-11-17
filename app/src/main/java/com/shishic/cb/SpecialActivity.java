@@ -2,6 +2,7 @@ package com.shishic.cb;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -66,7 +67,7 @@ public class SpecialActivity extends BaseActivity {
         adapter = new SpecailAdapter(list,this);
         recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
         recyclerView.setRecyclerAdapter(adapter);
-        recyclerView.addItemDecoration(new HorizontalItemDecoration(1));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerView.setHandler(new IRefreshHandler() {
             @Override
             public boolean canRefresh() {

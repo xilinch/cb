@@ -69,7 +69,7 @@ public class HistoryActivity extends BaseActivity {
         recyclerView.setHandler(new IRefreshHandler() {
             @Override
             public boolean canRefresh() {
-                return false;
+                return true;
             }
 
             @Override
@@ -79,7 +79,10 @@ public class HistoryActivity extends BaseActivity {
 
             @Override
             public void refresh(int requestPage) {
-
+                if(recyclerView != null ){
+                    recyclerView.currentPage = 1;
+                    requestData();
+                }
             }
 
             @Override
@@ -92,33 +95,37 @@ public class HistoryActivity extends BaseActivity {
 
     private void requestData(){
         HashMap<String,String> params = new HashMap<>();
-        RequestUtil.httpGet(this, Constant.URL_CHAT_HISTORY, params, new NFHttpResponseListener<String>() {
+        params.put("pageNum",String.valueOf(recyclerView.currentPage));
+        params.put("pageSize","20");
+        RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
-                LogUtil.e("","URL_HISTORY logError");
+                LogUtil.e("my","URL_HISTORY logError");
             }
 
             @Override
             public void onResponse(String response) {
-                LogUtil.e("","URL_HISTORY response:" + response);
+                LogUtil.e("my","URL_HISTORY response:" + response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray data = jsonObject.optJSONArray("data");
-                    if(data != null && data.length() > 0){
-                        List<HistoryBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
-                        if(recyclerView != null){
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray listData = data.optJSONArray("list");
+                    int pages = data.optInt("pages");
+                    if(listData != null && listData.length() > 0){
+                        List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        if(recyclerView != null && recyclerView.currentPage == 1){
                             recyclerView.updateClearAndAdd(list);
+                        } else if(recyclerView != null && recyclerView.currentPage > 1){
+                            recyclerView.updateAdd(list);
                         }
-                        recyclerView.setTotalPage(1000);
-                        recyclerView.completeRefresh(true);
                     }
+                    recyclerView.setTotalPage(pages);
+                    recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
+                    recyclerView.completeRefresh(false);
                 }
-
             }
         });
     }
-
-
 }

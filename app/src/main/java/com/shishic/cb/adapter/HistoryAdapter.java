@@ -42,9 +42,10 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
         HistoryBean funBean = getList().get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
-             funViewHolder.tv_opencode.setText("开奖号码：" + funBean.getOpencode());
-             funViewHolder.tv_expect.setText("开奖期数：" + funBean.getExpect());
-             funViewHolder.tv_opentime.setText("开奖时间：" + funBean.getOpentime());
+             String code = funBean.getN5() + "," + funBean.getN4() + "," + funBean.getN3() + "," + funBean.getN2() + "," + funBean.getN1();
+             funViewHolder.tv_opencode.setText("开奖号码：" + code);
+             funViewHolder.tv_expect.setText("开奖期数：" + funBean.getJournal());
+//             funViewHolder.tv_opentime.setText("开奖时间：" + funBean.getOpentime());
          }
     }
 
