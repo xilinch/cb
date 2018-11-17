@@ -32,5 +32,8 @@ public class Constant {
     //历史开奖
     public static final String URL_HISTORY = "http://wd.apiplus.net/newly.do?token=t3ead500967664f1bk&code=cqssc&format=json";
 
+    //专家列表
+    public static final String URL_EXPORT = "http://112.74.97.238/public/expert/list";
+
 
 }

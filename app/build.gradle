@@ -32,4 +32,6 @@ dependencies {
     compile 'com.xl.nfRequest:nfRequest:0.9.1025'
     compile(name: 'ptr-release', ext: 'aar')
     compile(name: 'smart-headerfooter-recyclerview-release', ext: 'aar')
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
 }

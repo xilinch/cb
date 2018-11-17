@@ -42,6 +42,7 @@
         <activity android:name=".LostAnalyActivity"/>
         <activity android:name=".SpecialActivity"/>
         <activity android:name=".TrendNumberActivity"/>
+        <activity android:name=".IntroduceActivity"/>
     </application>
 
 </manifest>
