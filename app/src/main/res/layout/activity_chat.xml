@@ -1,31 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/include_view_title" />
+    <include
+        android:id="@+id/include_title"
+        layout="@layout/include_view_title" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_comment"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="3dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_image_comment"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:background="@mipmap/comment_grey_icon"
+                android:clickable="false"
+                android:scaleType="centerInside" />
+
+            <EditText
+                android:background="@color/transparent"
+                android:hint="我来说两句"
+                android:id="@+id/et_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"/>
+        </LinearLayout>
+
+        <TextView
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:id="@+id/tv_submit"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:text="提交" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_above="@id/ll_comment"
+        android:background="@color/c_gray_dddddd" />
+
 
     <com.shishic.cb.loadmore.ListRefreshLayout
         android:id="@+id/listRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/divider"
         android:scrollbars="none" />
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-        <EditText
-            android:background="@drawable/dd_shape_ffffffff_stroke_ffffffff_content_5"
-            android:layout_weight="1.0"
-            android:id="@+id/et_content"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
-        <TextView
-            android:id="@+id/tv_submit"
-            android:text="提交"
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
-    </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

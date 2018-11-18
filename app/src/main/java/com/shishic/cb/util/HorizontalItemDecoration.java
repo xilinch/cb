@@ -35,11 +35,13 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration{
 
         // last position
         if (isLastPosition(view, parent)) {
-            outRect.right = lastPaddingHor;
+            outRect.right = paddingHor;
+            outRect.left = paddingHor;
         }else if( isFirstPosition(view, parent) ){
-            outRect.left = firstPaddingHor;
+            outRect.left = paddingHor;
             outRect.right = paddingHor;
         }else{
+            outRect.left = paddingHor;
             outRect.right = paddingHor;
         }
     }

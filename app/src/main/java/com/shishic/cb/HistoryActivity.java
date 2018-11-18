@@ -111,6 +111,7 @@ public class HistoryActivity extends BaseActivity {
                     JSONObject data = jsonObject.optJSONObject("data");
                     JSONArray listData = data.optJSONArray("list");
                     int pages = data.optInt("pages");
+                    recyclerView.setTotalPage(pages);
                     if(listData != null && listData.length() > 0){
                         List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
                         if(recyclerView != null && recyclerView.currentPage == 1){
@@ -119,7 +120,6 @@ public class HistoryActivity extends BaseActivity {
                             recyclerView.updateAdd(list);
                         }
                     }
-                    recyclerView.setTotalPage(pages);
                     recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();

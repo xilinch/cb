@@ -191,6 +191,7 @@ public class ChatActivity extends BaseActivity {
                     String msg = jsonObject.optString("msg");
 //                    ToastUtils.toastShow(ChatActivity.this, msg);
                     boolean success = jsonObject.optBoolean("success");
+                    recyclerView.setTotalPage(10000);
                     if(success){
                         JSONArray data = jsonObject.optJSONArray("data");
                         if(data != null && data.length() > 0){
@@ -198,10 +199,8 @@ public class ChatActivity extends BaseActivity {
                             if(recyclerView != null){
                                 recyclerView.updateAdd(list);
                             }
-
                         }
                     }
-                    recyclerView.setTotalPage(10000);
                     recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
