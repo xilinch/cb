@@ -1,5 +1,8 @@
 package com.shishic.cb.bean;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class HistoryBean extends BaseBean {
 
 
@@ -26,6 +29,15 @@ public class HistoryBean extends BaseBean {
     private int valid;
     private long createTime;
     private long updateTime;
+    //连出
+    private int[][] lc = {{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+            {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}};
+    //本地类型，-1标识头部
+    private int type ;
+
 
     public int getId() {
         return id;
@@ -105,5 +117,49 @@ public class HistoryBean extends BaseBean {
 
     public void setUpdateTime(long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public int[][] getLc() {
+        return lc;
+    }
+
+    public void setLc(int[][] lc) {
+        this.lc = lc;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "HistoryBean{" +
+                ", journal=" + journal +
+                ", n1=" + n1 +
+                ", n2=" + n2 +
+                ", n3=" + n3 +
+                ", n4=" + n4 +
+                ", n5=" + n5 +
+                ", lc=" + erWeiInt2String(lc) +
+                '}';
+    }
+
+    private String erWeiInt2String(int[][] numbs){
+        String string = "";
+        if(numbs != null){
+            int size  = numbs.length;
+            for(int i =0; i < size;i++){
+                string = string + "{" + i + "{";
+                int length = numbs[i].length;
+                for(int j = 0; j < length; j++){
+                    string = string + numbs[i][j] + ",";
+                }
+            }
+        }
+        return string;
     }
 }

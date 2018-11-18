@@ -2,9 +2,12 @@ package com.shishic.cb;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.android.network.NFHttpResponseListener;
@@ -12,17 +15,14 @@ import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.shishic.cb.adapter.ChatAdapter;
-import com.shishic.cb.bean.ChatBean;
+import com.shishic.cb.adapter.TrendNumberAdapter;
+import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.loadmore.IRefreshHandler;
 import com.shishic.cb.loadmore.ListRefreshLayout;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
-import com.shishic.cb.util.ToastUtils;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,12 +35,15 @@ public class TrendNumberActivity extends BaseActivity {
     private TextView tv_title;
     private LinearLayout ll_back;
     private ListRefreshLayout recyclerView;
-    private ChatAdapter adapter;
+    private TrendNumberAdapter adapter;
+    private RadioGroup rg_tab;
+    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5;
+    private int type = 0;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_special);
+        setContentView(R.layout.activity_trendnumber);
         initView();
         initListener();
         requestData();
@@ -48,18 +51,25 @@ public class TrendNumberActivity extends BaseActivity {
     private void initView(){
         tv_title = findViewById(R.id.tv_title);
         ll_back = findViewById(R.id.ll_back);
+        rg_tab = findViewById(R.id.rg_tab);
+        rb_1 = findViewById(R.id.rb_1);
+        rb_2 = findViewById(R.id.rb_2);
+        rb_3 = findViewById(R.id.rb_3);
+        rb_4 = findViewById(R.id.rb_4);
+        rb_5 = findViewById(R.id.rb_5);
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        tv_title.setText("专家计划");
+        tv_title.setText("走势图");
         recyclerView = findViewById(R.id.listRefreshLayout);
         recyclerView.setShowLastTips(false);
         recyclerView.setRecyclerLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         List list = new ArrayList();
-        adapter = new ChatAdapter(list,this);
+        adapter = new TrendNumberAdapter(list,this);
         recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
         recyclerView.setRecyclerAdapter(adapter);
         recyclerView.setHandler(new IRefreshHandler() {
@@ -70,7 +80,7 @@ public class TrendNumberActivity extends BaseActivity {
 
             @Override
             public boolean canLoad() {
-                return true;
+                return false;
             }
 
             @Override
@@ -84,10 +94,33 @@ public class TrendNumberActivity extends BaseActivity {
 
             @Override
             public void load(int requestPage) {
-                requestData();
+//                requestData();
             }
         });
+        rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.rb_1:
+                        type = 0;
+                        break;
+                    case R.id.rb_2:
+                        type = 1;
+                        break;
+                    case R.id.rb_3:
+                        type = 2;
+                        break;
+                    case R.id.rb_4:
+                        type = 3;
+                        break;
+                    case R.id.rb_5:
+                        type = 4;
+                        break;
+                }
 
+                adapter.setType(type);
+            }
+        });
     }
 
     private void initListener(){
@@ -104,42 +137,39 @@ public class TrendNumberActivity extends BaseActivity {
      */
     private void requestData(){
         HashMap<String,String> params = new HashMap<>();
-        String lastId = "0";
-        if(adapter != null && adapter.getList() != null && adapter.getList().size() > 0){
-            lastId =  String.valueOf(adapter.getList().get(adapter.getList().size()-1).getId());
-        }
-        params.put("lastId",lastId);
-        params.put("length","20");
-        RequestUtil.httpGet(this, Constant.URL_CHAT_RECORD, params, new NFHttpResponseListener<String>() {
+        params.put("pageNum",String.valueOf(recyclerView.currentPage));
+        params.put("pageSize","20");
+        RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
-            public void onErrorResponse(LogError error) {
-                ToastUtils.toastShow(TrendNumberActivity.this, R.string.network_error);
+            public void onErrorResponse(LogError logError) {
+                LogUtil.e("my","URL_HISTORY logError");
             }
 
             @Override
             public void onResponse(String response) {
-                try {
-                    LogUtil.e("my","URL_CHAT_RECORD response:" + response);
+                LogUtil.e("my","URL_HISTORY response:" + response);
+                try{
                     JSONObject jsonObject = new JSONObject(response);
-                    String msg = jsonObject.optString("msg");
-    //                    ToastUtils.toastShow(ChatActivity.this, msg);
-                    boolean success = jsonObject.optBoolean("success");
-                    if(success){
-                        JSONArray data = jsonObject.optJSONArray("data");
-                        if(data != null && data.length() > 0){
-                            List<ChatBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<ChatBean>>(){}.getType());
-                            if(recyclerView != null){
-                                recyclerView.updateAdd(list);
-                            }
-
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray listData = data.optJSONArray("list");
+                    int pages = data.optInt("pages");
+                    recyclerView.setTotalPage(pages);
+                    if(listData != null && listData.length() > 0){
+                        List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        if(recyclerView != null && recyclerView.currentPage == 1){
+                            HistoryBean historyBean = new HistoryBean();
+                            historyBean.setType(-1);
+                            list.add(0,historyBean);
+                            recyclerView.updateClearAndAdd(list);
+                            adapter.setType(type);
+                        } else if(recyclerView != null && recyclerView.currentPage > 1){
+                            recyclerView.updateAdd(list);
                         }
                     }
-                    recyclerView.setTotalPage(10000);
                     recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
-                } finally {
-
+                    recyclerView.completeRefresh(false);
                 }
             }
         });

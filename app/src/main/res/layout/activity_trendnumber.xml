@@ -6,6 +6,40 @@
 
     <include layout="@layout/include_view_title" />
 
+    <RadioGroup
+        android:id="@+id/rg_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:checked="true"
+            style="@style/bottom_btn_style"
+            android:id="@+id/rb_5"
+            android:text="万位走势" />
+
+        <RadioButton
+            android:id="@+id/rb_4"
+            style="@style/bottom_btn_style"
+            android:text="千位走势" />
+
+        <RadioButton
+            style="@style/bottom_btn_style"
+            android:id="@+id/rb_3"
+            android:text="百位走势" />
+
+        <RadioButton
+            style="@style/bottom_btn_style"
+            android:id="@+id/rb_2"
+            android:text="十位走势" />
+
+        <RadioButton
+            style="@style/bottom_btn_style"
+            android:id="@+id/rb_1"
+            android:text="个位走势" />
+
+    </RadioGroup>
+
     <com.shishic.cb.loadmore.ListRefreshLayout
         android:id="@+id/listRefreshLayout"
         android:layout_width="match_parent"
