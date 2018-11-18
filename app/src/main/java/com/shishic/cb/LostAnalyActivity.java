@@ -181,12 +181,12 @@ public class LostAnalyActivity extends BaseActivity {
                         lostList.set(j,hotList.get(j) + 1);
                     }
                 }
-                LogUtil.e("my","lostList:" + lostList.toString());
-                LogUtil.e("my","hotList:" + hotList.toString());
+//                LogUtil.e("my","lostList:" + lostList.toString());
+//                LogUtil.e("my","hotList:" + hotList.toString());
             }
         }
-        LogUtil.e("my","lostList:" + lostList.toString());
-        LogUtil.e("my","hotList:" + hotList.toString());
+//        LogUtil.e("my","lostList:" + lostList.toString());
+//        LogUtil.e("my","hotList:" + hotList.toString());
     }
 
 

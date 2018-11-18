@@ -8,10 +8,21 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
 import com.astuetz.PagerSlidingTabStrip;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.shishic.cb.bean.FreePlanTabBean;
 import com.shishic.cb.fragment.FreePlanFragment;
-
+import com.shishic.cb.util.Constant;
+import com.shishic.cb.util.LogUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * 免费计划
@@ -22,8 +33,9 @@ public class FreePlanActivity extends BaseActivity {
     private LinearLayout ll_back;
     private ViewPager pager;
     private PagerSlidingTabStrip tabs;
+    private List<FreePlanTabBean> list;
     private ArrayList<Fragment> fragments = new ArrayList<>();
-    private String[] titles = new String[]{"免费计划1", "免费计划2", "免费计划3", "免费计划4"};
+    private String[] titles ;
 
 
     @Override
@@ -32,6 +44,7 @@ public class FreePlanActivity extends BaseActivity {
         setContentView(R.layout.activity_freeplan);
         initView();
         initListener();
+        requestData();
     }
     private void initView(){
         tv_title = findViewById(R.id.tv_title);
@@ -46,32 +59,9 @@ public class FreePlanActivity extends BaseActivity {
         });
         tv_title.setText("免费计划");
         pager = findViewById(R.id.pager);
-        fragments.add(new FreePlanFragment());
-        fragments.add(new FreePlanFragment());
-        fragments.add(new FreePlanFragment());
-        fragments.add(new FreePlanFragment());
-        pager.setAdapter(new TestAdapter(titles, fragments));
-
         // Bind the tabs to the ViewPager
         tabs = findViewById(R.id.tabs);
-        pager.setCurrentItem(0);
-        tabs.setViewPager(pager);
-        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
 
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
     }
 
     private void initListener(){
@@ -111,6 +101,66 @@ public class FreePlanActivity extends BaseActivity {
         public CharSequence getPageTitle(int position) {
             return titles[position];
         }
+    }
+
+    private void requestData(){
+        HashMap<String,String> params = new HashMap<>();
+        RequestUtil.httpGet(this, Constant.URL_SCHEME_LIST, params, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError logError) {
+                LogUtil.e("my","URL_SCHEME_LIST logError");
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.e("my","URL_SCHEME_LIST response:" + response);
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.optBoolean("success");
+                    JSONArray data = jsonObject.optJSONArray("data");
+                    if(success && data != null && data.length() > 0){
+                        list = new Gson().fromJson(data.toString(), new TypeToken<List<FreePlanTabBean>>(){}.getType());
+                        initTabs();
+                    }
+                } catch (Exception exception){
+                    exception.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void initTabs(){
+        if(list != null){
+            titles = new String[list.size()];
+            for(int i = 0; i < list.size(); i++){
+                FreePlanFragment freePlanFragment = new FreePlanFragment();
+                Bundle bundle = new Bundle();
+                bundle.putInt("id", list.get(i).getId());
+                freePlanFragment.setArguments(bundle);
+                fragments.add(freePlanFragment);
+                titles[i] = list.get(i).getName();
+            }
+            pager.setAdapter(new TestAdapter(titles, fragments));
+            pager.setCurrentItem(0);
+            tabs.setViewPager(pager);
+            tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int i, float v, int i1) {
+
+                }
+
+                @Override
+                public void onPageSelected(int i) {
+
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int i) {
+
+                }
+            });
+        }
+
     }
 
 }

@@ -36,5 +36,9 @@ public class Constant {
     //专家列表
     public static final String URL_EXPORT = "http://112.74.97.238/public/expert/list";
 
+    //方案计划列表
+    public static final String URL_SCHEME_LIST = "http://112.74.97.238/public/scheme/list";
 
+    //方案详情
+    public static final String URL_SCHEME_CONFIG = "http://112.74.97.238/public/scheme/recommends";
 }
