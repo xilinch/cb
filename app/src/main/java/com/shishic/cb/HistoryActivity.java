@@ -108,6 +108,7 @@ public class HistoryActivity extends BaseActivity {
                 LogUtil.e("my","URL_HISTORY response:" + response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.optBoolean("success");
                     JSONObject data = jsonObject.optJSONObject("data");
                     JSONArray listData = data.optJSONArray("list");
                     int pages = data.optInt("pages");

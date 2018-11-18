@@ -17,6 +17,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.R;
 
 import java.util.ArrayList;
@@ -40,8 +41,12 @@ public class HotAnalyFragment extends BaseFragment {
             mLineChart.setDrawBorders(true);
             //设置数据
             entries  = new ArrayList<>();
-            for (int i = 0; i < 10; i++) {
-                entries.add(new Entry(i, (float) (Math.random()) * 7));
+            if(getActivity() instanceof LostAnalyActivity){
+                LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
+                List<Integer> list = lostAnalyActivity.getHotList();
+                for (int i = 0; i < 10; i++) {
+                    entries.add(new Entry(i, list.get(i)));
+                }
             }
             //一个LineDataSet就是一条线
             LineDataSet lineDataSet = new LineDataSet(entries, "热度分析");
@@ -78,10 +83,10 @@ public class HotAnalyFragment extends BaseFragment {
             YAxis leftYAxis = mLineChart.getAxisLeft();
             YAxis rightYAxis = mLineChart.getAxisRight();
             leftYAxis.setAxisMinimum(0f);
-            leftYAxis.setAxisMaximum(10f);
+            leftYAxis.setAxisMaximum(20f);
 
             rightYAxis.setAxisMinimum(0f);
-            rightYAxis.setAxisMaximum(10f);
+            rightYAxis.setAxisMaximum(20f);
 
             leftYAxis.setValueFormatter(new IAxisValueFormatter() {
                 @Override
