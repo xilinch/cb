@@ -2,7 +2,7 @@ package com.shishic.cb.bean;
 
 import java.util.List;
 
-public class FreePlan1 extends BaseBean {
+public class FreePlan extends BaseBean {
 
 
     /**

@@ -2,7 +2,6 @@ package com.shishic.cb.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +15,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.R;
 import com.shishic.cb.adapter.FreePlanAdapter;
-import com.shishic.cb.bean.FreePlan1;
-import com.shishic.cb.bean.FreePlanBean;
-import com.shishic.cb.bean.FreePlanTabBean;
+import com.shishic.cb.bean.FreePlan;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
 import org.json.JSONArray;
@@ -38,7 +35,7 @@ public class FreePlanFragment extends BaseFragment {
 
     private int id;
 
-    private List<FreePlan1> list;
+    private List<FreePlan> list;
     private List<Object> showList;
 
     @Nullable
@@ -89,7 +86,7 @@ public class FreePlanFragment extends BaseFragment {
                     boolean success = jsonObject.optBoolean("success");
                     JSONArray listData = jsonObject.optJSONArray("data");
                     if(success && listData != null && listData.length() > 0){
-                        list = new Gson().fromJson(listData.toString(), new TypeToken<List<FreePlan1>>(){}.getType());
+                        list = new Gson().fromJson(listData.toString(), new TypeToken<List<FreePlan>>(){}.getType());
                         initDatas();
                     }
                     adapter.changeData(showList);
@@ -109,7 +106,7 @@ public class FreePlanFragment extends BaseFragment {
         showList = new ArrayList<>();
         if(list != null){
             for(int i = 0; i < list.size() ; i++){
-                List<FreePlan1.ListBean> childList = list.get(i).getList();
+                List<FreePlan.ListBean> childList = list.get(i).getList();
                 showList.add(list.get(i));
                 if(childList != null){
                     showList.addAll(childList);

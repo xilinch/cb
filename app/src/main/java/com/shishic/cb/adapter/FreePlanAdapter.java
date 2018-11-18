@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.shishic.cb.R;
-import com.shishic.cb.bean.FreePlan1;
-import com.shishic.cb.bean.FreePlanBean;
+import com.shishic.cb.bean.FreePlan;
 import com.shishic.cb.util.LogUtil;
 
 import java.util.List;
@@ -40,9 +39,9 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         LogUtil.e("my","onCreateViewHolder: i:" + i);
         RecyclerView.ViewHolder holder;
         Object object = list.get(i);
-        if(object instanceof FreePlan1){
+        if(object instanceof FreePlan){
             holder = new PlanTitleViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan_title,viewGroup,false));
-        } else if(object instanceof FreePlan1.ListBean){
+        } else if(object instanceof FreePlan.ListBean){
             holder = new PlanViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan,viewGroup,false));
         } else {
             holder = new PlanViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan,viewGroup,false));
@@ -56,9 +55,9 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         LogUtil.e("my","onBindViewHolder: i:" + i);
         LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
         LogUtil.e("my","object i:" + object.getClass().getSimpleName());
-        if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan1.ListBean){
+        if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
             PlanViewHolder holder = (PlanViewHolder) viewHolder;
-            FreePlan1.ListBean freePlan1 = (FreePlan1.ListBean) object;
+            FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;
             //推荐号码【04568】 第068期 出46836(6) 中
             String end = "";
             if(freePlan1.getRecommendStatus() == 0){
@@ -73,10 +72,10 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
                     "期出：" + freePlan1.getLuckyNumbers() + "  "+ end;
             holder.tv_content.setText(showContent);
             holder.tv_jounal.setText(freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal());
-        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan1){
-            FreePlan1 freePlan1 = (FreePlan1)object;
+        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
+            FreePlan freePlan = (FreePlan)object;
             PlanTitleViewHolder holder = (PlanTitleViewHolder) viewHolder;
-            holder.tv_content.setText(freePlan1.getPlanName());
+            holder.tv_content.setText(freePlan.getPlanName());
         }
     }
 
