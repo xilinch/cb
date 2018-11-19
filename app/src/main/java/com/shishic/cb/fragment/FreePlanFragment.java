@@ -77,6 +77,7 @@ public class FreePlanFragment extends BaseFragment {
             @Override
             public void onErrorResponse(LogError logError) {
                 LogUtil.e("my","URL_SCHEME_CONFIG logError");
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -95,6 +96,8 @@ public class FreePlanFragment extends BaseFragment {
 //                    swipeRefreshLayout.setRefreshing(false);
                 } catch (Exception exception){
                     exception.printStackTrace();
+                }  finally {
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
         });

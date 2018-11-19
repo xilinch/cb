@@ -16,12 +16,15 @@ import com.shishic.cb.ChatActivity;
 import com.shishic.cb.FreePlanActivity;
 import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
+import com.shishic.cb.LoginActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.SpecialActivity;
 import com.shishic.cb.TrendNumberActivity;
 import com.shishic.cb.bean.ADTextBean;
+import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.FunBean;
+import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.view.CustomRoundImageView;
 
 import java.util.ArrayList;
@@ -63,35 +66,44 @@ public class FunAdapter extends RecyclerView.Adapter {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent();
-                        if(funBean.getText().equals("用户聊天室")){
-                            //用户聊天室
-                            intent.setClass(context, ChatActivity.class);
+                        Account account = Account.getAccount();
+                        if(account == null){
+                            //引导登录
+                            ToastUtils.toastShow(context, "请先登录");
+                            intent.setClass(context, LoginActivity.class);
                             context.startActivity(intent);
-                        } else if(funBean.getText().equals("专家计划")){
-                            //专家计划
-                            intent.setClass(context, SpecialActivity.class);
-                            context.startActivity(intent);
-                        } else if(funBean.getText().equals("历史开奖")){
-                            //历史开奖
-                            intent.setClass(context, HistoryActivity.class);
-                            context.startActivity(intent);
-                        } else if(funBean.getText().equals("遗漏统计")){
-                            //遗漏统计
-                            intent.setClass(context, LostAnalyActivity.class);
-                            context.startActivity(intent);
-                        } else if(funBean.getText().equals("免费计划")){
-                            //免费计划
-                            intent.setClass(context, FreePlanActivity.class);
-                            context.startActivity(intent);
-                        } else if(funBean.getText().equals("走势图")){
-                            //走势图
-                            intent.setClass(context, TrendNumberActivity.class);
-                            context.startActivity(intent);
-                        } else{
-                            intent.setClass(context, H5Activity.class);
-                            intent.putExtra("url", link);
-                            context.startActivity(intent);
+                        } else {
+                            if(funBean.getText().equals("用户聊天室")){
+                                //用户聊天室
+                                intent.setClass(context, ChatActivity.class);
+                                context.startActivity(intent);
+                            } else if(funBean.getText().equals("专家计划")){
+                                //专家计划
+                                intent.setClass(context, SpecialActivity.class);
+                                context.startActivity(intent);
+                            } else if(funBean.getText().equals("历史开奖")){
+                                //历史开奖
+                                intent.setClass(context, HistoryActivity.class);
+                                context.startActivity(intent);
+                            } else if(funBean.getText().equals("遗漏统计")){
+                                //遗漏统计
+                                intent.setClass(context, LostAnalyActivity.class);
+                                context.startActivity(intent);
+                            } else if(funBean.getText().equals("免费计划")){
+                                //免费计划
+                                intent.setClass(context, FreePlanActivity.class);
+                                context.startActivity(intent);
+                            } else if(funBean.getText().equals("走势图")){
+                                //走势图
+                                intent.setClass(context, TrendNumberActivity.class);
+                                context.startActivity(intent);
+                            } else{
+                                intent.setClass(context, H5Activity.class);
+                                intent.putExtra("url", link);
+                                context.startActivity(intent);
+                            }
                         }
+
 
                     }
                 });
