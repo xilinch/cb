@@ -1,14 +1,17 @@
 package com.shishic.cb;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
@@ -17,9 +20,6 @@ import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.adapter.ChatAdapter;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.ChatBean;
-import com.shishic.cb.fragment.MyFragment;
-import com.shishic.cb.loadmore.IRefreshHandler;
-import com.shishic.cb.loadmore.ListRefreshLayout;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
@@ -40,8 +40,10 @@ public class ChatActivity extends BaseActivity {
 
     private TextView tv_submit;
 
+    //刷新
+    private SwipeRefreshLayout swipeRefreshLayout;
 
-    private ListRefreshLayout recyclerView;
+    private RecyclerView recyclerView;
 
     private ChatAdapter adapter;
 
@@ -54,6 +56,8 @@ public class ChatActivity extends BaseActivity {
         requestData();
     }
 
+    private boolean isLoading;
+
     private void initView(){
         tv_title = findViewById(R.id.tv_title);
         ll_back = findViewById(R.id.ll_back);
@@ -65,35 +69,53 @@ public class ChatActivity extends BaseActivity {
         });
         et_content = findViewById(R.id.et_content);
         tv_submit = findViewById(R.id.tv_submit);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
         tv_title.setText("用户聊天室");
-        recyclerView = findViewById(R.id.listRefreshLayout);
-        recyclerView.setShowLastTips(false);
-        recyclerView.setRecyclerLayoutManager(new LinearLayoutManager(this));
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List list = new ArrayList();
         adapter = new ChatAdapter(list,this);
-        recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
-        recyclerView.setRecyclerAdapter(adapter);
-        recyclerView.setHandler(new IRefreshHandler() {
+        recyclerView.setAdapter(adapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public boolean canRefresh() {
-                return true;
-            }
-
-            @Override
-            public boolean canLoad() {
-                return true;
-            }
-
-            @Override
-            public void refresh(int requestPage) {
+            public void onRefresh() {
                 requestHistoryData();
             }
+        });
 
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void load(int requestPage) {
-                requestData();
+            //当RecyclerView的滑动状态改变时触发
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            /**
+             * 当RecyclerView滑动时触发
+             * 类似点击事件的MotionEvent.ACTION_MOVE
+             */
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                //获取可见item个数
+                int lastVisibleItemPosition = ((LinearLayoutManager)recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+                if (lastVisibleItemPosition + 1 == adapter.getItemCount()) {
+                    //加载
+                    boolean isRefreshing = swipeRefreshLayout.isRefreshing();
+                    if (isRefreshing) {
+                        return;
+                    }
+                    if (!isLoading) {
+                        requestData();
+                    }
+                }
+
             }
         });
+
+
 
         tv_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +124,7 @@ public class ChatActivity extends BaseActivity {
                 requestComment();
             }
         });
+        requestData();
     }
 
     private void initListener(){
@@ -132,6 +155,7 @@ public class ChatActivity extends BaseActivity {
             @Override
             public void onErrorResponse(LogError error) {
                 ToastUtils.toastShow(ChatActivity.this, R.string.network_error);
+                swipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
@@ -148,16 +172,14 @@ public class ChatActivity extends BaseActivity {
                             List<ChatBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<ChatBean>>(){}.getType());
                             if(adapter != null && recyclerView != null){
                                 adapter.getList().addAll(0,list);
+                                adapter.notifyDataSetChanged();
                             }
-                            recyclerView.completeRefresh(true);
                         }
                     }
-                    recyclerView.setTotalPage(10000);
-                    recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {
-
+                    swipeRefreshLayout.setRefreshing(false);
                 }
             }
         });
@@ -168,6 +190,7 @@ public class ChatActivity extends BaseActivity {
      * 请求新数据
      */
     private void requestData(){
+        isLoading = true;
         HashMap<String,String> params = new HashMap<>();
         String lastId = "0";
         if(adapter != null && adapter.getList() != null && adapter.getList().size() > 0){
@@ -181,6 +204,7 @@ public class ChatActivity extends BaseActivity {
             @Override
             public void onErrorResponse(LogError error) {
                 ToastUtils.toastShow(ChatActivity.this, R.string.network_error);
+                isLoading = false;
             }
 
             @Override
@@ -191,21 +215,19 @@ public class ChatActivity extends BaseActivity {
                     String msg = jsonObject.optString("msg");
 //                    ToastUtils.toastShow(ChatActivity.this, msg);
                     boolean success = jsonObject.optBoolean("success");
-                    recyclerView.setTotalPage(10000);
                     if(success){
                         JSONArray data = jsonObject.optJSONArray("data");
                         if(data != null && data.length() > 0){
                             List<ChatBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<ChatBean>>(){}.getType());
-                            if(recyclerView != null){
-                                recyclerView.updateAdd(list);
+                            if(adapter != null){
+                                adapter.addList(list);
                             }
                         }
                     }
-                    recyclerView.completeRefresh(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {
-
+                    isLoading = false;
                 }
             }
         });

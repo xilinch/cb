@@ -21,15 +21,42 @@ import com.shishic.cb.view.CustomRoundImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChatAdapter extends PlusRecyclerAdapter<ChatBean> {
+public class ChatAdapter extends RecyclerView.Adapter {
 
     private Context context;
+    private List<ChatBean> list;
 
     public ChatAdapter(List<ChatBean> list, Context context){
-        super(list);
+        this.list = list;
         this.context = context;
     }
 
+    public List<ChatBean> getList() {
+        return list;
+    }
+
+    public void addList(List<ChatBean> list){
+        if(this.list != null){
+            this.list.addAll(list);
+        } else {
+            this.list = list;
+        }
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemCount() {
+        if(list != null){
+            return list.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+
+        return super.getItemViewType(position);
+    }
 
     @NonNull
     @Override
@@ -40,7 +67,7 @@ public class ChatAdapter extends PlusRecyclerAdapter<ChatBean> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ChatBean funBean = getList().get(position);
+        ChatBean funBean = list.get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
              funViewHolder.tv_name.setText(funBean.getUserName());

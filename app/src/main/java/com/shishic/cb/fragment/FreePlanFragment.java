@@ -2,6 +2,7 @@ package com.shishic.cb.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,7 +28,7 @@ import java.util.List;
 public class FreePlanFragment extends BaseFragment {
     private View view;
     //刷新
-//    private SwipeRefreshLayout swipeRefreshLayout;
+    private SwipeRefreshLayout swipeRefreshLayout;
     //
     private RecyclerView recyclerView;
 
@@ -43,7 +44,7 @@ public class FreePlanFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (view == null) {
             view = inflater.inflate(R.layout.fragment_freeplan, container, false);
-//            swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+            swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
             recyclerView = view.findViewById(R.id.recyclerView);
             initListener();
             id = getArguments().getInt("id");
@@ -58,12 +59,12 @@ public class FreePlanFragment extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-//            @Override
-//            public void onRefresh() {
-//                requestData();
-//            }
-//        });
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestData();
+            }
+        });
     }
 
     /**

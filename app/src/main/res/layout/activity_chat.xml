@@ -13,16 +13,16 @@
         android:id="@+id/ll_comment"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="2dp"
         android:layout_marginBottom="3dp"
-        android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_weight="1.0"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1.0"
             android:background="@drawable/bg_image_comment"
             android:orientation="horizontal">
 
@@ -37,20 +37,20 @@
                 android:scaleType="centerInside" />
 
             <EditText
-                android:background="@color/transparent"
-                android:hint="我来说两句"
                 android:id="@+id/et_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.0"/>
+                android:layout_weight="1.0"
+                android:background="@color/transparent"
+                android:hint="我来说两句" />
         </LinearLayout>
 
         <TextView
-            android:gravity="center"
-            android:layout_gravity="center"
             android:id="@+id/tv_submit"
             android:layout_width="50dp"
             android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:text="提交" />
     </LinearLayout>
 
@@ -61,13 +61,18 @@
         android:layout_above="@id/ll_comment"
         android:background="@color/c_gray_dddddd" />
 
-
-    <com.shishic.cb.loadmore.ListRefreshLayout
-        android:layout_below="@+id/include_title"
-        android:id="@+id/listRefreshLayout"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/divider"
-        android:scrollbars="none" />
+        android:layout_below="@+id/include_title">
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:scrollbars="none" />
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

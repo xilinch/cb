@@ -2,6 +2,7 @@ package com.shishic.cb.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +37,10 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        LogUtil.e("my","onCreateViewHolder: i:" + i);
+//        LogUtil.e("my","onCreateViewHolder: i:" + i);
         RecyclerView.ViewHolder holder;
-        Object object = list.get(i);
-        if(object instanceof FreePlan){
+        if(i == R.layout.adapter_free_plan_title){
             holder = new PlanTitleViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan_title,viewGroup,false));
-        } else if(object instanceof FreePlan.ListBean){
-            holder = new PlanViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan,viewGroup,false));
         } else {
             holder = new PlanViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_free_plan,viewGroup,false));
         }
@@ -52,9 +50,9 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         Object object = list.get(i);
-        LogUtil.e("my","onBindViewHolder: i:" + i);
-        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
-        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
+//        LogUtil.e("my","onBindViewHolder: i:" + i);
+//        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
+//        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
         if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
             PlanViewHolder holder = (PlanViewHolder) viewHolder;
             FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;
@@ -68,8 +66,12 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             } else if(freePlan1.getRecommendStatus() == -1){
                 end = "錯";
             }
+            String luckNum = freePlan1.getLuckyNumbers();
+            if(TextUtils.isEmpty(luckNum)){
+                luckNum = "     ";
+            }
             String showContent = "推荐号码【" + freePlan1.getRecommendNumbers() + "】 第" + freePlan1.getCurrenJounal() +
-                    "期出：" + freePlan1.getLuckyNumbers() + "  "+ end;
+                    "期出：" + luckNum + "  "+ end;
             holder.tv_content.setText(showContent);
             holder.tv_jounal.setText(freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal());
         } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
@@ -85,6 +87,16 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             return list.size();
         }
         return 0;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        Object object = list.get(position);
+        if(object instanceof FreePlan.ListBean){
+            return R.layout.adapter_free_plan;
+        } else {
+            return R.layout.adapter_free_plan_title;
+        }
     }
 
     static class PlanViewHolder extends RecyclerView.ViewHolder{

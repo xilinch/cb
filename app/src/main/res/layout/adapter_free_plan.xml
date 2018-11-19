@@ -11,7 +11,9 @@
     <TextView
         android:id="@+id/tv_content"
         android:text="推荐号码【04568】 第068期 出46836(6) 中"
-        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
