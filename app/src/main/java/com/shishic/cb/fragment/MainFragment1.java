@@ -1,27 +1,21 @@
 package com.shishic.cb.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-
 import com.shishic.cb.H5Activity;
 import com.shishic.cb.R;
 import com.shishic.cb.adapter.FunAdapter;
@@ -30,7 +24,6 @@ import com.shishic.cb.bean.FunBean;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.HorizontalItemDecoration;
 import com.shishic.cb.util.VerticaltemDecoration;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,8 +87,8 @@ public class MainFragment1 extends BaseFragment {
             "http://imgsrc.baidu.com/imgad/pic/item/0b46f21fbe096b63fad55b9906338744eaf8ac2e.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541765215&di=66098792ec261280988824cfd56f1bd6&imgtype=jpg&er=1&src=http%3A%2F%2Fimg2.xitongzhijia.net%2Fallimg%2F150604%2F48-150604100I10-L.jpg",
             "http://5b0988e595225.cdn.sohucs.com/q_mini,c_zoom,w_640/images/20170806/cf2754f0334e4ae398b58f83fc79a7d3.jpeg",
-            "http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=1ab85f376a59252db71a15475cf2694e/d52a2834349b033b98f441f71fce36d3d539bd9b.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/962bd40735fae6cd9fa66ba905b30f2443a70fec.jpg",
+            "http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=1ab85f376a59252db71a15475cf2694e/d52a2834349b033b98f441f71fce36d3d539bd9b.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/5fdf8db1cb1349540bb849925c4e9258d0094aa5.jpg",
             "http://img.zcool.cn/community/0140f956f23cfe32f875a94465d100.jpg@1280w_1l_2o_100sh.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/e7cd7b899e510fb3657e30b3d333c895d1430caa.jpg",
