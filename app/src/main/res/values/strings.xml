@@ -5,6 +5,7 @@
     <string name="please_register">注册</string>
 
     <string name="please_enter_phone_number">请输入手机号</string>
+    <string name="please_enter_name">请输入用户名</string>
     <string name="request_code">获取验证码</string>
     <string name="login_text">登录</string>
     <string name="please_enter_code">请输入验证码</string>

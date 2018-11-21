@@ -224,6 +224,9 @@ public class MyFragment extends BaseFragment{
             String name = account.getUserName();
             civ_personal_center_avatar.setImageResource(R.mipmap.icon_login_wechat);
             tv_personal_center_nickname.setText(name);
+        } else {
+            civ_personal_center_avatar.setImageResource(R.mipmap.my_avatar_icon_default);
+            tv_personal_center_nickname.setText("");
         }
     }
 

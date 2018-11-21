@@ -21,15 +21,31 @@ import com.shishic.cb.view.CustomRoundImageView;
 
 import java.util.List;
 
-public class SpecailAdapter extends PlusRecyclerAdapter<SpecialBean> {
+public class SpecailAdapter extends RecyclerView.Adapter {
 
     private Context context;
 
+    private List<SpecialBean> list;
+
     public SpecailAdapter(List<SpecialBean> list, Context context){
-        super(list);
+        this.list = list;
         this.context = context;
     }
 
+
+    public void updateData(List<SpecialBean> list){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+
+    @Override
+    public int getItemCount() {
+        if(list != null){
+            return list.size();
+        }
+        return 0;
+    }
 
     @NonNull
     @Override
@@ -40,15 +56,19 @@ public class SpecailAdapter extends PlusRecyclerAdapter<SpecialBean> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        final SpecialBean funBean = getList().get(position);
+        final SpecialBean funBean = list.get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
              String contact = funBean.getContact();
              if(TextUtils.isEmpty(contact) && !funBean.isPayed()){
                  //没有内容
                  contact = "支付后可见联系方式";
+                 funViewHolder.tv_contact.setVisibility(View.GONE);
+                 funViewHolder.tv_contact.setText(contact);
+             } else {
+                 funViewHolder.tv_contact.setVisibility(View.VISIBLE);
+                 funViewHolder.tv_contact.setText(contact);
              }
-             funViewHolder.tv_contact.setText(contact);
              funViewHolder.tv_content.setText(funBean.getContent());
              funViewHolder.ll_root.setOnClickListener(new View.OnClickListener() {
                  @Override

@@ -134,6 +134,7 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_share"
             style="@style/personal_center_item"
             android:layout_marginTop="10dp">
@@ -181,6 +182,7 @@
         </FrameLayout>
 
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_online_service"
             style="@style/personal_center_item">
 

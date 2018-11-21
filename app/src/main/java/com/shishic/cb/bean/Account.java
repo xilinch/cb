@@ -106,7 +106,13 @@ public class Account extends BaseBean {
      * @param account
      */
     public static void saveAccount(Account account){
-        String str = new Gson().toJson(account);
+        String str ;
+        if(account == null){
+            str = "";
+        } else {
+            str = new Gson().toJson(account);
+        }
         SharepreferenceUtil.setAccount(str);
+
     }
 }

@@ -25,6 +25,9 @@ public class SplashActivity extends BaseActivity {
             boolean isShow = sp.getBoolean(S_SHOW_HELP,false);
             if(isShow){
                 intent = new Intent(SplashActivity.this, MainActivity.class);
+                SharedPreferences.Editor editor = sp.edit();
+                editor.putBoolean(S_SHOW_HELP,true);
+                editor.commit();
             } else {
                 intent = new Intent(SplashActivity.this, HelpActivity.class);
             }

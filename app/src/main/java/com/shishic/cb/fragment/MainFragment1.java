@@ -85,7 +85,7 @@ public class MainFragment1 extends BaseFragment {
 
     String[] icon = new String[]{
             "http://imgsrc.baidu.com/imgad/pic/item/0b46f21fbe096b63fad55b9906338744eaf8ac2e.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1541765215&di=66098792ec261280988824cfd56f1bd6&imgtype=jpg&er=1&src=http%3A%2F%2Fimg2.xitongzhijia.net%2Fallimg%2F150604%2F48-150604100I10-L.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542797339588&di=df2df12e4220fc40ff82507b24210acc&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F7c1ed21b0ef41bd56e88dacf5ada81cb39db3d35.jpg",
             "http://5b0988e595225.cdn.sohucs.com/q_mini,c_zoom,w_640/images/20170806/cf2754f0334e4ae398b58f83fc79a7d3.jpeg",
             "http://imgsrc.baidu.com/imgad/pic/item/962bd40735fae6cd9fa66ba905b30f2443a70fec.jpg",
             "http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=1ab85f376a59252db71a15475cf2694e/d52a2834349b033b98f441f71fce36d3d539bd9b.jpg",
@@ -155,7 +155,7 @@ public class MainFragment1 extends BaseFragment {
     }
 
     private void initSwitcher(){
-        adTextBeans.add(new ADTextBean("推荐专家计划1，中奖率80%","https://chart.cp.360.cn/kaijiang/ssccq/"));
+        adTextBeans.add(new ADTextBean("主要介绍一些玩法和规则，本软件不涉及在线购买",""));
 //        adTextBeans.add(new ADTextBean("推荐专家计划2，百分百中奖","http://www.sina.com"));
 //        adTextBeans.add(new ADTextBean("推荐专家计划3，中奖率达到80%","http://www.sohu.com"));
 //        adTextBeans.add(new ADTextBean("推荐专家计划4，跟投必中","http://new.163.com"));
@@ -191,10 +191,11 @@ public class MainFragment1 extends BaseFragment {
                     textView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(getContext(), H5Activity.class);
-                            int length = adTextBeans.size();
-                            intent.putExtra(ADTextBean.class.getSimpleName(),adTextBeans.get(index % length));
-                            startActivity(intent);
+                            //TODO 屏蔽掉打开应用
+//                            Intent intent = new Intent(getContext(), H5Activity.class);
+//                            int length = adTextBeans.size();
+//                            intent.putExtra(ADTextBean.class.getSimpleName(),adTextBeans.get(index % length));
+//                            startActivity(intent);
                         }
                     });
                     return textView;

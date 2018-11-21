@@ -34,6 +34,8 @@ public class RegisterActivity extends BaseActivity {
     private EditText et_pwd_again;
     //登录
     private TextView tv_login;
+    //用户名
+    private EditText et_name;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class RegisterActivity extends BaseActivity {
         window_login_pic_code = findViewById(R.id.window_login_pic_code);
         et_pwd_again = findViewById(R.id.et_pwd_again);
         tv_login = findViewById(R.id.tv_login);
+        et_name = findViewById(R.id.et_name);
     }
 
     private void initListener(){
@@ -77,13 +80,17 @@ public class RegisterActivity extends BaseActivity {
      */
     private boolean isValide(){
         boolean isValid = false;
-        String userName = window_login_number.getText().toString().trim();
+        String phone = window_login_number.getText().toString().trim();
+        String userName = et_name.getText().toString().trim();
         String pwd = window_login_pic_code.getText().toString().trim();
         String pwd_again = et_pwd_again.getText().toString().trim();
         if(TextUtils.isEmpty(userName)){
+            ToastUtils.toastShow(this, "请输入用户名");
+            return isValid;
+        } else if(TextUtils.isEmpty(phone)){
             ToastUtils.toastShow(this, "请输入手机号码");
             return isValid;
-        } else if(!RegexStringUtils.IsMobileFormat(userName)){
+        } else if(!RegexStringUtils.IsMobileFormat(phone)){
             ToastUtils.toastShow(this, "请输入正确的手机号码");
             return isValid;
         }
@@ -107,11 +114,12 @@ public class RegisterActivity extends BaseActivity {
      * 请求数据
      */
     private void requestData(){
-        String userName = window_login_number.getText().toString().trim();
+        String phone = window_login_number.getText().toString().trim();
+        String userName = et_name.getText().toString().trim();
         String pwd = window_login_pic_code.getText().toString().trim();
         String pwd_again = et_pwd_again.getText().toString().trim();
         HashMap<String,String> params = new HashMap<>();
-        params.put("loginCode",userName);
+        params.put("loginCode",phone);
         params.put("password",pwd);
         params.put("userName",userName);
         RequestUtil.httpGet(this, Constant.URL_REGISTER, params, new NFHttpResponseListener<String>() {
@@ -130,10 +138,13 @@ public class RegisterActivity extends BaseActivity {
 
                     boolean success = jsonObject.optBoolean("success");
                     if(success){
+                        Account account = new Gson().fromJson(jsonObject.optString("data"), Account.class);
+                        Account.saveAccount(account);
                         Intent intent = new Intent();
                         intent.setAction(MyFragment.ACTION_LOGIN);
                         sendBroadcast(intent);
                         finish();
+                    } else {
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();

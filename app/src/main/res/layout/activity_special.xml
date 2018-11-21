@@ -6,7 +6,7 @@
 
     <include layout="@layout/include_view_title" />
 
-    <com.shishic.cb.loadmore.ListRefreshLayout
+    <android.support.v7.widget.RecyclerView
         android:id="@+id/listRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

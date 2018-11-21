@@ -33,17 +33,25 @@ public class HorizontalItemDecoration extends RecyclerView.ItemDecoration{
             return;
         }
 
-        // last position
-        if (isLastPosition(view, parent)) {
-            outRect.right = paddingHor;
+
+        int positon =  parent.getChildAdapterPosition(view);
+        if(positon % 2 == 0){
+            outRect.right = paddingHor /2;
             outRect.left = paddingHor;
-        }else if( isFirstPosition(view, parent) ){
-            outRect.left = paddingHor;
-            outRect.right = paddingHor;
-        }else{
-            outRect.left = paddingHor;
+        } else {
+            outRect.left = paddingHor / 2;
             outRect.right = paddingHor;
         }
+        // last position
+//        if (isLastPosition(view, parent)) {
+//            outRect.right = paddingHor;
+//            outRect.left = paddingHor;
+//        }else if( isFirstPosition(view, parent) ){
+//            outRect.left = paddingHor;
+//            outRect.right = paddingHor;
+//        }else{
+//            outRect.right = paddingHor;
+//        }
     }
 
     private boolean isFirstPosition(View view, RecyclerView parent) {

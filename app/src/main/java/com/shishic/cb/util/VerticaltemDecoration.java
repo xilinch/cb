@@ -28,11 +28,11 @@ public class VerticaltemDecoration extends RecyclerView.ItemDecoration{
             return;
         }
 
-        outRect.bottom = paddingHor;
+        int positon =  parent.getChildAdapterPosition(view);
         outRect.top = paddingHor;
         // last position
-//        if (isLastPosition(view, parent)) {
-//            outRect.bottom = paddingHor;
+//        if (positon == 0 || positon == 1) {
+//            outRect.top = paddingHor;
 //        }else if( isFirstPosition(view, parent) ){
 //            outRect.top = firstPaddingHor;
 //            outRect.bottom = paddingHor;

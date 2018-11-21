@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,18 +14,12 @@ import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.shishic.cb.adapter.ChatAdapter;
 import com.shishic.cb.adapter.SpecailAdapter;
 import com.shishic.cb.bean.Account;
-import com.shishic.cb.bean.ChatBean;
 import com.shishic.cb.bean.SpecialBean;
-import com.shishic.cb.loadmore.IRefreshHandler;
-import com.shishic.cb.loadmore.ListRefreshLayout;
 import com.shishic.cb.util.Constant;
-import com.shishic.cb.util.HorizontalItemDecoration;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
-import com.shishic.cb.util.VerticaltemDecoration;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,7 +34,7 @@ import java.util.List;
 public class SpecialActivity extends BaseActivity {
     private TextView tv_title;
     private LinearLayout ll_back;
-    private ListRefreshLayout recyclerView;
+    private RecyclerView recyclerView;
     private SpecailAdapter adapter;
 
     @Override
@@ -61,39 +56,11 @@ public class SpecialActivity extends BaseActivity {
         });
         tv_title.setText("专家计划");
         recyclerView = findViewById(R.id.listRefreshLayout);
-        recyclerView.setShowLastTips(false);
-        recyclerView.setRecyclerLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List list = new ArrayList();
         adapter = new SpecailAdapter(list,this);
-        recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
-        recyclerView.setRecyclerAdapter(adapter);
+        recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        recyclerView.setHandler(new IRefreshHandler() {
-            @Override
-            public boolean canRefresh() {
-                return false;
-            }
-
-            @Override
-            public boolean canLoad() {
-                return false;
-            }
-
-            @Override
-            public void refresh(int requestPage) {
-                if(recyclerView != null){
-                    recyclerView.currentPage = 1;
-                    requestData();
-                }
-
-            }
-
-            @Override
-            public void load(int requestPage) {
-                requestData();
-            }
-        });
-
     }
 
     private void initListener(){
@@ -129,15 +96,10 @@ public class SpecialActivity extends BaseActivity {
                         JSONArray data = jsonObject.optJSONArray("data");
                         if(data != null && data.length() > 0){
                             List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>(){}.getType());
-                            if(recyclerView != null && recyclerView.currentPage == 1){
-                                recyclerView.updateClearAndAdd(list);
-                            } else if(recyclerView != null && recyclerView.currentPage > 1){
-                                recyclerView.updateAdd(list);
-                            }
+                            adapter.updateData(list);
                         }
                     }
-                    recyclerView.setTotalPage(10000);
-                    recyclerView.completeRefresh(true);
+
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

@@ -54,6 +54,12 @@ public class LoginActivity extends BaseActivity {
         window_login_pic_code = findViewById(R.id.window_login_pic_code);
         tv_login = findViewById(R.id.tv_login);
         tv_register = findViewById(R.id.tv_register);
+        Account account = Account.getAccount();
+        if(account == null){
+            tv_register.setText("注册");
+        } else {
+            tv_register.setText("退出");
+        }
         tv_title.setText("登录");
     }
 
@@ -76,9 +82,19 @@ public class LoginActivity extends BaseActivity {
         tv_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-                finish();
+                Account account = Account.getAccount();
+                if(account == null){
+                    Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Account.saveAccount(null);
+                    Intent intent = new Intent();
+                    intent.setAction(MyFragment.ACTION_LOGIN);
+                    sendBroadcast(intent);
+                    finish();
+                }
+
             }
         });
     }
