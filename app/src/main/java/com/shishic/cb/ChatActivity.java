@@ -124,7 +124,6 @@ public class ChatActivity extends BaseActivity {
                 requestComment();
             }
         });
-        requestData();
     }
 
     private void initListener(){
