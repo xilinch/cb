@@ -148,7 +148,7 @@ public class PtrNFDefaultHeader extends LinearLayout implements PtrUIHandler{
         this.mProgressBar.setVisibility(GONE);
         this.mTitleTextView.setVisibility(VISIBLE);
         //不显示更新完成字样
-//        this.mTitleTextView.setText(this.getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_refresh_complete));
+//        this.mTitleTextView.setDescription(this.getResources().getString(in.srain.cube.views.ptr.R.string.cube_ptr_refresh_complete));
         SharedPreferences sharedPreferences = this.getContext().getSharedPreferences(KEY_SharedPreferences, 0);
         if(!TextUtils.isEmpty(this.mLastUpdateTimeKey)) {
             this.mLastUpdateTime = (new Date()).getTime();

@@ -6,14 +6,14 @@ public class ADTextBean extends BaseBean {
     private int id;
 
 
-    private String text;
+    private String title;
 
 
     private String url;
 
 
-    public ADTextBean(String text, String url) {
-        this.text = text;
+    public ADTextBean(String title, String url) {
+        this.title = title;
         this.url = url;
     }
 
@@ -25,12 +25,12 @@ public class ADTextBean extends BaseBean {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getUrl() {
@@ -45,7 +45,7 @@ public class ADTextBean extends BaseBean {
     public String toString() {
         return "ADTextBean{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
                 '}';
     }

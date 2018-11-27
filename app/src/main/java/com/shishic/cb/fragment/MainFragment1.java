@@ -1,6 +1,5 @@
 package com.shishic.cb.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,15 +15,29 @@ import android.widget.FrameLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-import com.shishic.cb.H5Activity;
+
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.R;
 import com.shishic.cb.adapter.FunAdapter;
 import com.shishic.cb.bean.ADTextBean;
 import com.shishic.cb.bean.FunBean;
+import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.HorizontalItemDecoration;
+import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.VerticaltemDecoration;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class MainFragment1 extends BaseFragment {
@@ -62,11 +75,12 @@ public class MainFragment1 extends BaseFragment {
             "免费计划",
             "用户聊天室",
             "走势图",
-            "历史开奖"
+            "历史开奖",
 //            "留言板",
 //            "工具",
 //            "活动中心",
 //            "公告栏"
+            "出彩说明"
     };
 
     String[] url = new String[]{
@@ -105,7 +119,7 @@ public class MainFragment1 extends BaseFragment {
                 case MSG_SHOW:
                     int length = adTextBeans.size();
                     if (textSwitcher != null && adTextBeans != null && length > 0) {
-                        textSwitcher.setText(adTextBeans.get(index % length).getText());
+                        textSwitcher.setText(adTextBeans.get(index % length).getTitle());
                         index++;
                     }
                     handler.sendEmptyMessageDelayed(MSG_SHOW, 4000);
@@ -129,6 +143,7 @@ public class MainFragment1 extends BaseFragment {
         textSwitcher = view.findViewById(R.id.textSwitcher);
         initRecycleView();
         initSwitcher();
+        requestNotice();
         return view;
     }
 
@@ -139,28 +154,55 @@ public class MainFragment1 extends BaseFragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.addItemDecoration(new HorizontalItemDecoration(DensityUtils.dipTopx(getContext(),15)));
         recyclerView.addItemDecoration(new VerticaltemDecoration(DensityUtils.dipTopx(getContext(),15)));
-        List<FunBean> list = new ArrayList<>();
-        list.add(new FunBean(title[0], url[0],icon[0]));
-        list.add(new FunBean(title[1],url[1],icon[1]));
-        list.add(new FunBean(title[2], url[2],icon[2]));
-        list.add(new FunBean(title[3], url[3],icon[3]));
-        list.add(new FunBean(title[4], url[4],icon[4]));
-        list.add(new FunBean(title[5], url[5],icon[5]));
+        String funList = SharepreferenceUtil.getFun();
+        try {
+            JSONArray jsonArray = new JSONArray(funList);
+            List<FunBean> list = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<FunBean>>(){}.getType());
+            Iterator<FunBean> iterator =  list.iterator();
+            boolean isTest = false;
+            while (iterator.hasNext()) {
+                FunBean funBean = iterator.next();
+                int functionCode = funBean.getFunctionCode();
+                if(functionCode < 9000 && funBean.getValid() == 1 && functionCode < icon.length){
+                    //功能列表
+                    funBean.setIcon(icon[functionCode]);
+                } else if(functionCode == 9999){
+                    isTest = true;
+                    iterator.remove();
+                }
+            }
+            if(isTest){
+                //审核中加入本地应用
+                list.add(new FunBean("出彩说明", "https://baike.baidu.com/item/%E7%A8%BB%E8%B0%B7/2073705?fr=aladdin","https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4d6c0bc22f1f95cab2f89ae4a87e145b/b999a9014c086e06c7f331f708087bf40ad1cb37.jpg"));
+                list.add(new FunBean("稻谷也能出彩", "http://finance.ifeng.com/a/20161013/14935334_0.shtml","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3954302348,2457306993&fm=26&gp=0.jpg"));
+                list.add(new FunBean("成就出彩", "http://www.zjjyb.cn/html/2018-07/04/content_13094.htm","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543338588707&di=d018930b6d7a5757b659ed795ffe2845&imgtype=0&src=http%3A%2F%2Fpic25.photophoto.cn%2F20121022%2F0034034563273819_b.jpg"));
+
+            }
+            funAdapter = new FunAdapter(list,getActivity());
+            recyclerView.setAdapter(funAdapter);
+
+        } catch (Exception exception){
+            exception.printStackTrace();
+        } finally {
+
+        }
+
+//        List<FunBean> list = new ArrayList<>();
+//        list.add(new FunBean(title[0], url[0],icon[0]));
+//        list.add(new FunBean(title[1],url[1],icon[1]));
+//        list.add(new FunBean(title[2], url[2],icon[2]));
+//        list.add(new FunBean(title[3], url[3],icon[3]));
+//        list.add(new FunBean(title[4], url[4],icon[4]));
+//        list.add(new FunBean(title[5], url[5],icon[5]));
 //        list.add(new FunBean(title[6], url[6],icon[6]));
 //        list.add(new FunBean(title[7],url[7],icon[7]));
 //        list.add(new FunBean(title[8],url[8],icon[8]));
 //        list.add(new FunBean(title[9],url[9],icon[9]));
-        funAdapter = new FunAdapter(list,getActivity());
-        recyclerView.setAdapter(funAdapter);
+
     }
 
     private void initSwitcher(){
-        adTextBeans.add(new ADTextBean("主要介绍一些玩法和规则，本软件不涉及在线购买",""));
-//        adTextBeans.add(new ADTextBean("推荐专家计划2，百分百中奖","http://www.sina.com"));
-//        adTextBeans.add(new ADTextBean("推荐专家计划3，中奖率达到80%","http://www.sohu.com"));
-//        adTextBeans.add(new ADTextBean("推荐专家计划4，跟投必中","http://new.163.com"));
-//        adTextBeans.add(new ADTextBean("推荐福利彩票","http://www.cwl.gov.cn/"));
-//        adTextBeans.add(new ADTextBean("推荐时时彩","http://caipiao.163.com/award/cqssc/"));
+        adTextBeans.add(new ADTextBean("欢迎光临",""));
         newMessage(true);
     }
 
@@ -210,6 +252,32 @@ public class MainFragment1 extends BaseFragment {
             }
         }
 
+    }
+
+    public void requestNotice(){
+        RequestUtil.httpGet(getContext(), Constant.URL_NOTICE_LIST, new HashMap<String, String>(), new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError error) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.e("my","URL_NOTICE_LIST response:" + response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray jsonArray = data.optJSONArray("list");
+                    if(jsonArray != null && jsonArray.length() > 0){
+                        adTextBeans = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<ADTextBean>>(){}.getType());
+                    }
+                } catch (Exception exception){
+                    exception.printStackTrace();
+                } finally {
+
+                }
+            }
+        });
     }
 
 }

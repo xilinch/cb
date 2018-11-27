@@ -41,4 +41,10 @@ public class Constant {
 
     //方案详情
     public static final String URL_SCHEME_CONFIG = "http://112.74.97.238/public/scheme/recommends";
+
+    //功能列表
+    public static final String URL_FUNTION_LIST = "http://112.74.97.238/public/function/list?pageNum=1&pageSize=30";
+
+    //通知列表
+    public static final String URL_NOTICE_LIST = "http://112.74.97.238/public/notice/list?pageSize=10&pageNum=1";
 }

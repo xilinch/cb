@@ -12,6 +12,7 @@ public class SharepreferenceUtil {
     public static final String S_FILE = "xbb";
     public static final String S_ACCOUNT = "S_ACCOUNT";
     public static final String S_SHOW_HELP = "S_SHOW_HELP";
+    public static final String S_FUN_LIST = "S_FUN_LIST";
 
 
     /**
@@ -48,6 +49,21 @@ public class SharepreferenceUtil {
         isShow = sp.getBoolean(S_SHOW_HELP,false);
 
         return isShow;
+    }
+
+    public static void saveFun(String funList){
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(S_FUN_LIST,funList);
+        editor.commit();
+    }
+
+
+    public static String getFun(){
+        String fun = "";
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE, Context.MODE_PRIVATE);
+        fun = sp.getString(S_FUN_LIST,"");
+        return fun;
     }
 
 }

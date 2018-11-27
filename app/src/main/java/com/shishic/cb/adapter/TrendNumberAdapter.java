@@ -106,11 +106,11 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
 //                    for(int i = 0; i< 10;i++){
 //                        if(value == numBasic[i]){
 //                            //中了这个 红色底白色字，
-//                            funViewHolder.textViews.get(i).setText(String.valueOf(value));
+//                            funViewHolder.textViews.get(i).setDescription(String.valueOf(value));
 //                            funViewHolder.textViews.get(i).setTextColor(Color.WHITE);
 //                            funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_red);
 //                        } else {
-//                            funViewHolder.textViews.get(i).setText(String.valueOf(funBean.getLc()));
+//                            funViewHolder.textViews.get(i).setDescription(String.valueOf(funBean.getLc()));
 //                            funViewHolder.textViews.get(i).setTextColor(Color.BLACK);
 //                            funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_white);
 //                        }

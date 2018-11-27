@@ -45,7 +45,7 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
              String code = funBean.getN5() + "," + funBean.getN4() + "," + funBean.getN3() + "," + funBean.getN2() + "," + funBean.getN1();
              funViewHolder.tv_opencode.setText("开奖号码：" + code);
              funViewHolder.tv_expect.setText("开奖期数：" + funBean.getJournal());
-//             funViewHolder.tv_opentime.setText("开奖时间：" + funBean.getOpentime());
+//             funViewHolder.tv_opentime.setDescription("开奖时间：" + funBean.getOpentime());
          }
     }
 

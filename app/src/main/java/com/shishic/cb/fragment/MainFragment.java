@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -107,7 +106,7 @@ public class MainFragment extends BaseFragment {
                 case MSG_SHOW:
                     int length = adTextBeans.size();
                     if (textSwitcher != null && adTextBeans != null && length > 0) {
-                        textSwitcher.setText(adTextBeans.get(index % length).getText());
+                        textSwitcher.setText(adTextBeans.get(index % length).getTitle());
                         index++;
                     }
                     handler.sendEmptyMessageDelayed(MSG_SHOW, 4000);

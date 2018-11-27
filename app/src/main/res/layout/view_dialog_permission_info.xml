@@ -33,7 +33,7 @@
             android:lineSpacingMultiplier="1.1"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:text="需要与客服进行会话请添加微信号wx225888,或者加qq群685455，或者加qq客服357845789，谢谢。"
+            android:text="需要与客服进行会话请添加微信号,或者加qq群，或者加qq客服，谢谢。"
             android:textColor="@color/c_gray_666666"
             android:textSize="15sp" />
 

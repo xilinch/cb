@@ -5,14 +5,18 @@ public class FunBean extends BaseBean {
 
     private int id;
 
-    private String text;
+    private int functionCode;
+
+    private String description;
 
     private String url;
 
+    private int valid;
+
     private String icon;
 
-    public FunBean(String text, String url, String icon) {
-        this.text = text;
+    public FunBean(String description, String url, String icon) {
+        this.description = description;
         this.url = url;
         this.icon = icon;
     }
@@ -25,12 +29,12 @@ public class FunBean extends BaseBean {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getDescription() {
+        return description;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getUrl() {
@@ -49,12 +53,30 @@ public class FunBean extends BaseBean {
         this.icon = icon;
     }
 
+    public int getValid() {
+        return valid;
+    }
+
+    public void setValid(int valid) {
+        this.valid = valid;
+    }
+
+    public int getFunctionCode() {
+        return functionCode;
+    }
+
+    public void setFunctionCode(int functionCode) {
+        this.functionCode = functionCode;
+    }
+
     @Override
     public String toString() {
         return "ADIMGBean{" +
                 "id=" + id +
-                ", text='" + text + '\'' +
+                ", description='" + description + '\'' +
                 ", url='" + url + '\'' +
+                ", valid='" + valid + '\'' +
+                ", functionCode='" + functionCode + '\'' +
                 ", icon='" + icon + '\'' +
                 '}';
     }

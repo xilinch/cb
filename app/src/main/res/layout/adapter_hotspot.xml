@@ -32,7 +32,7 @@
             android:padding="10dp"
             android:textColor="@color/black"
             android:textSize="16sp"
-            tools:text="enenenenenenenenenesssssssssssssssssssssssssn" />
+            tools:description="enenenenenenenenenesssssssssssssssssssssssssn" />
 
         <LinearLayout
             android:visibility="gone"
@@ -63,7 +63,7 @@
                 android:maxLines="1"
                 android:textColor="@color/c_gray_999999"
                 android:textSize="11sp"
-                tools:text="佛山发布" />
+                tools:description="佛山发布" />
 
             <TextView
                 android:id="@+id/adapter_hotspot_comment_num"
@@ -72,7 +72,7 @@
                 android:layout_marginRight="10dp"
                 android:textColor="@color/c_gray_999999"
                 android:textSize="11sp"
-                tools:text="90评" />
+                tools:description="90评" />
 
             <TextView
                 android:id="@+id/adapter_hotspot_time"
@@ -81,7 +81,7 @@
                 android:layout_marginRight="10dp"
                 android:textColor="@color/c_gray_999999"
                 android:textSize="11sp"
-                tools:text="2017-12-30" />
+                tools:description="2017-12-30" />
 
         </LinearLayout>
     </LinearLayout>
