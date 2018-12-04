@@ -18,6 +18,7 @@ import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.R;
+import com.shishic.cb.ShuidaoActivity;
 import com.shishic.cb.SpecialActivity;
 import com.shishic.cb.TrendNumberActivity;
 import com.shishic.cb.bean.Account;
@@ -92,6 +93,9 @@ public class FunAdapter extends RecyclerView.Adapter {
                         } else if (funBean.getDescription().equals("走势图")) {
                             //走势图
                             intent.setClass(context, TrendNumberActivity.class);
+                            context.startActivity(intent);
+                        } else if(funBean.getDescription().equals("大拇指稻谷")){
+                            intent.setClass(context, ShuidaoActivity.class);
                             context.startActivity(intent);
                         } else {
                             final String link = funBean.getUrl();

@@ -98,6 +98,7 @@ public class SpecialActivity extends BaseActivity {
                             List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>(){}.getType());
                             adapter.updateData(list);
                         }
+                        ToastUtils.toastShow(SpecialActivity.this,"没有更多数据了");
                     }
 
                 } catch (Exception exception){

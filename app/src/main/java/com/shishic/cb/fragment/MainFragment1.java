@@ -173,9 +173,10 @@ public class MainFragment1 extends BaseFragment {
             }
             if(isTest){
                 //审核中加入本地应用
-                list.add(new FunBean("出彩说明", "https://baike.baidu.com/item/%E7%A8%BB%E8%B0%B7/2073705?fr=aladdin","https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4d6c0bc22f1f95cab2f89ae4a87e145b/b999a9014c086e06c7f331f708087bf40ad1cb37.jpg"));
-                list.add(new FunBean("稻谷也能出彩", "http://finance.ifeng.com/a/20161013/14935334_0.shtml","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3954302348,2457306993&fm=26&gp=0.jpg"));
-                list.add(new FunBean("成就出彩", "http://www.zjjyb.cn/html/2018-07/04/content_13094.htm","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543338588707&di=d018930b6d7a5757b659ed795ffe2845&imgtype=0&src=http%3A%2F%2Fpic25.photophoto.cn%2F20121022%2F0034034563273819_b.jpg"));
+                list.add(new FunBean("产物介绍", "https://baike.baidu.com/item/%E7%A8%BB%E8%B0%B7/2073705?fr=aladdin","https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4d6c0bc22f1f95cab2f89ae4a87e145b/b999a9014c086e06c7f331f708087bf40ad1cb37.jpg"));
+                list.add(new FunBean("育种", "https://baike.baidu.com/item/%E6%B0%B4%E7%A8%BB%E8%82%B2%E7%A7%8D%E5%AD%A6/12174166","https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3954302348,2457306993&fm=26&gp=0.jpg"));
+                list.add(new FunBean("选种", "https://baijiahao.baidu.com/s?id=1601879875483450610&wfr=spider&for=pc","https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1543338588707&di=d018930b6d7a5757b659ed795ffe2845&imgtype=0&src=http%3A%2F%2Fpic25.photophoto.cn%2F20121022%2F0034034563273819_b.jpg"));
+                list.add(new FunBean("大拇指稻谷", "https://baijiahao.baidu.com/s?id=1601879875483450610&wfr=spider&for=pc","https://gd3.alicdn.com/imgextra/i3/2819709291/TB2u4KhdhSYBuNjSsphXXbGvVXa_!!2819709291.jpg"));
 
             }
             funAdapter = new FunAdapter(list,getActivity());

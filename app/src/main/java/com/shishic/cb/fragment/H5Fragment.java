@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -66,7 +67,10 @@ public class H5Fragment extends BaseFragment {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 LogUtil.e("my","shouldOverrideUrlLoading:" + url);
-                view.loadUrl(url);
+                if(URLUtil.isValidUrl(url)){
+                    view.loadUrl(url);
+
+                }
                 return true;
             }
         });
