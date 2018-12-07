@@ -13,6 +13,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -20,11 +22,15 @@ import android.widget.TextView;
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
+import com.bumptech.glide.Glide;
 import com.shishic.cb.BindPhoneActivity;
 import com.shishic.cb.FeedBackActivity;
 import com.shishic.cb.LoginActivity;
+import com.shishic.cb.MessageActivity;
+import com.shishic.cb.NotifyActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.bean.Account;
+import com.shishic.cb.dialog.CenterDialog;
 import com.shishic.cb.dialog.ServiceIntroduceDialog;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.LogUtil;
@@ -52,8 +58,12 @@ public class MyFragment extends BaseFragment{
     private RelativeLayout rl_share;
     private RelativeLayout rl_feedback;
     private RelativeLayout rl_online_service;
+    private RelativeLayout rl_message;
+    private RelativeLayout rl_cache;
+    private RelativeLayout rl_notify;
     public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
     private ServiceIntroduceDialog dialog;
+    private CenterDialog cacheDialog;
 
     private BroadcastReceiver loginBroadCast = new BroadcastReceiver() {
         @Override
@@ -77,6 +87,9 @@ public class MyFragment extends BaseFragment{
             rl_feedback = view.findViewById(R.id.rl_feedback);
             rl_online_service = view.findViewById(R.id.rl_online_service);
             ll_phone = view.findViewById(R.id.ll_phone);
+            rl_message = view.findViewById(R.id.rl_message);
+            rl_cache = view.findViewById(R.id.rl_cache);
+            rl_notify = view.findViewById(R.id.rl_notify);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
@@ -119,6 +132,49 @@ public class MyFragment extends BaseFragment{
                     showSign();
                 }
 
+            }
+        });
+        rl_message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
+        rl_cache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //清除缓存
+                LayoutInflater inflater = LayoutInflater.from(getContext());
+                LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.clear_cache_dialog, null);
+
+                cacheDialog = new CenterDialog(getContext()).builder("isFromClearCache", R.style.ActionDialogStyle).setView(layout).setCanceledOnTouchOutside(true);
+                cacheDialog.show();
+                new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        Glide.get(getContext()).clearDiskCache();
+                    }
+                }
+                .start();
+
+
+                CookieSyncManager.createInstance(getContext());
+                CookieManager.getInstance().removeAllCookie();
+                rl_cache.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        cacheDialog.dismiss();
+                    }
+                },1000);
+            }
+        });
+        rl_notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NotifyActivity.class);
+                startActivity(intent);
             }
         });
         rl_share.setOnClickListener(new View.OnClickListener() {
@@ -226,7 +282,7 @@ public class MyFragment extends BaseFragment{
             tv_personal_center_nickname.setText(name);
         } else {
             civ_personal_center_avatar.setImageResource(R.mipmap.my_avatar_icon_default);
-            tv_personal_center_nickname.setText("");
+            tv_personal_center_nickname.setText("点击登录");
         }
     }
 

@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     buildToolsVersion '27.0.3'
     defaultConfig {
-        applicationId "com.shishic.cb"
+        applicationId "com.ssc.zx"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1

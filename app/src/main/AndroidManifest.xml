@@ -44,6 +44,8 @@
         <activity android:name=".TrendNumberActivity"/>
         <activity android:name=".IntroduceActivity"/>
         <activity android:name=".ShuidaoActivity"/>
+        <activity android:name=".MessageActivity"/>
+        <activity android:name=".NotifyActivity"/>
     </application>
 
 </manifest>
