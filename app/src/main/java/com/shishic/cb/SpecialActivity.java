@@ -54,7 +54,7 @@ public class SpecialActivity extends BaseActivity {
                 finish();
             }
         });
-        tv_title.setText("专家计划");
+        tv_title.setText("专家");
         recyclerView = findViewById(R.id.listRefreshLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List list = new ArrayList();

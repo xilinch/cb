@@ -70,6 +70,7 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                  funViewHolder.tv_contact.setText(contact);
              }
              funViewHolder.tv_content.setText(funBean.getContent());
+             funViewHolder.iv_tag.setText("TOP" + (position+ 1));
              funViewHolder.ll_root.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -85,6 +86,7 @@ public class SpecailAdapter extends RecyclerView.Adapter {
     static class FunViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_contact;
         public TextView tv_content;
+        public TextView iv_tag;
         public LinearLayout ll_root;
 
         public FunViewHolder(View view){
@@ -92,6 +94,7 @@ public class SpecailAdapter extends RecyclerView.Adapter {
             ll_root = view.findViewById(R.id.ll_root);
             tv_content = view.findViewById(R.id.tv_content);
             tv_contact = view.findViewById(R.id.tv_contact);
+            iv_tag = view.findViewById(R.id.iv_tag);
         }
     }
 }

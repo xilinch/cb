@@ -17,6 +17,7 @@ import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.LostAnalyActivity;
+import com.shishic.cb.NumberChoiceActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.ShuidaoActivity;
 import com.shishic.cb.SpecialActivity;
@@ -96,6 +97,9 @@ public class FunAdapter extends RecyclerView.Adapter {
                             context.startActivity(intent);
                         } else if(funBean.getDescription().equals("大拇指稻谷")){
                             intent.setClass(context, ShuidaoActivity.class);
+                            context.startActivity(intent);
+                        } else if(funBean.getDescription().equals("号码直选")){
+                            intent.setClass(context, NumberChoiceActivity.class);
                             context.startActivity(intent);
                         } else {
                             final String link = funBean.getUrl();

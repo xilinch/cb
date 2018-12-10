@@ -14,6 +14,10 @@
 
     </style>
 
+    <style name="check_style">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/dd_selector_cb</item>
+    </style>
     <style name="login_popup_window_show_dismiss">
         <item name="android:windowExitAnimation">@anim/login_window_out</item>
         <item name="android:windowEnterAnimation">@anim/login_window_in</item>

@@ -76,6 +76,7 @@ public class MainFragment1 extends BaseFragment {
             "用户聊天室",
             "走势图",
             "历史开奖",
+            "号码直选",
 //            "留言板",
 //            "工具",
 //            "活动中心",
@@ -98,13 +99,13 @@ public class MainFragment1 extends BaseFragment {
     };
 
     String[] icon = new String[]{
-            "http://imgsrc.baidu.com/imgad/pic/item/0b46f21fbe096b63fad55b9906338744eaf8ac2e.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050199&di=7c333f75d7a07212d99fc77642d00fb5&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01cc8b5541cbda00000115410bbde7.jpg%401280w_1l_2o_100sh.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542797339588&di=df2df12e4220fc40ff82507b24210acc&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F7c1ed21b0ef41bd56e88dacf5ada81cb39db3d35.jpg",
-            "http://5b0988e595225.cdn.sohucs.com/q_mini,c_zoom,w_640/images/20170806/cf2754f0334e4ae398b58f83fc79a7d3.jpeg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544455281328&di=4a21988b5f0761e6bb0fb46deed0725b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F3b87e950352ac65c1356014ef0f2b21193138abf.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/962bd40735fae6cd9fa66ba905b30f2443a70fec.jpg",
-            "http://imgsrc.baidu.com/image/c0%3Dshijue1%2C0%2C0%2C294%2C40/sign=1ab85f376a59252db71a15475cf2694e/d52a2834349b033b98f441f71fce36d3d539bd9b.jpg",
-            "http://imgsrc.baidu.com/imgad/pic/item/5fdf8db1cb1349540bb849925c4e9258d0094aa5.jpg",
-            "http://img.zcool.cn/community/0140f956f23cfe32f875a94465d100.jpg@1280w_1l_2o_100sh.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050052&di=578a7ac9bbc46c2dde01091df10804e0&imgtype=jpg&er=1&src=http%3A%2F%2Fstatic.fotor.com.cn%2Fassets%2Fstickers%2Ffreelancer_lmf_0111_10%2Fbff44ef0-56d9-4c8c-8727-d5cd1c3301fc_medium_thumb.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544455604475&di=d1d6f833d661e9438dcbda9bcad42544&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fb7fd5266d016092426c5d126df0735fae6cd342e.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050878&di=9f578488b687cc3815bec7ef8e19df7d&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9d82d158ccbf6c81d46952d5b73eb13533fa40b4.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/e7cd7b899e510fb3657e30b3d333c895d1430caa.jpg",
             "http://img.zcool.cn/community/01599757ee1e33a84a0e282b4bc6ea.png",
             "http://pic34.photophoto.cn/20150112/0017030075105673_b.jpg",
@@ -157,7 +158,74 @@ public class MainFragment1 extends BaseFragment {
         String funList = SharepreferenceUtil.getFun();
         try {
             JSONArray jsonArray = new JSONArray(funList);
-            List<FunBean> list = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<FunBean>>(){}.getType());
+            String funStr = "[\n" +
+                    "{\n" +
+                    "id: 0,\n" +
+                    "functionCode: 0,\n" +
+                    "description: \"遗漏统计\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1542015644000,\n" +
+                    "updateTime: 1543324829000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 1,\n" +
+                    "functionCode: 1,\n" +
+                    "description: \"专家计划\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1542015644000,\n" +
+                    "updateTime: 1543324829000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 2,\n" +
+                    "functionCode: 2,\n" +
+                    "description: \"免费计划\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1542015680000,\n" +
+                    "updateTime: 1544429914000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 100,\n" +
+                    "functionCode: 9999,\n" +
+                    "description: \"审核中\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543323801000,\n" +
+                    "updateTime: 1543932442000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 101,\n" +
+                    "functionCode: 3,\n" +
+                    "description: \"用户聊天室\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324322000,\n" +
+                    "updateTime: 1543328210000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 102,\n" +
+                    "functionCode: 4,\n" +
+                    "description: \"走势图\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324336000,\n" +
+                    "updateTime: 1544429925000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 103,\n" +
+                    "functionCode: 5,\n" +
+                    "description: \"历史开奖\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324345000,\n" +
+                    "updateTime: 1544429921000\n" +
+                    "},\n" +
+                    "{\n" +
+                    "id: 104,\n" +
+                    "functionCode: 6,\n" +
+                    "description: \"号码直选\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324345000,\n" +
+                    "updateTime: 1544429921000\n" +
+                    "}\n" +
+                    "]";
+//            List<FunBean> list = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<FunBean>>(){}.getType());
+            List<FunBean> list = new Gson().fromJson(funStr, new TypeToken<List<FunBean>>(){}.getType());
             Iterator<FunBean> iterator =  list.iterator();
             boolean isTest = false;
             while (iterator.hasNext()) {
@@ -171,6 +239,7 @@ public class MainFragment1 extends BaseFragment {
                     iterator.remove();
                 }
             }
+            isTest = false;
             if(isTest){
                 //审核中加入本地应用
                 list.add(new FunBean("产物介绍", "https://baike.baidu.com/item/%E7%A8%BB%E8%B0%B7/2073705?fr=aladdin","https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4d6c0bc22f1f95cab2f89ae4a87e145b/b999a9014c086e06c7f331f708087bf40ad1cb37.jpg"));

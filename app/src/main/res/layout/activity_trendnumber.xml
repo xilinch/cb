@@ -4,9 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/include_view_title" />
+    <include
+        layout="@layout/include_view_title" />
 
     <RadioGroup
+        android:background="@color/white"
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
