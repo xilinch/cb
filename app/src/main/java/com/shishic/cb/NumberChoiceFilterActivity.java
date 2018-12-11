@@ -20,22 +20,26 @@ import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.adapter.NumberChoiceAdapter;
+import com.shishic.cb.adapter.NumberChoiceFilterAdapter;
 import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class NumberChoiceActivity extends BaseActivity {
+public class NumberChoiceFilterActivity extends BaseActivity {
 
     private TextView tv_title;
+    private TextView tv_count;
     private LinearLayout ll_back;
     private RecyclerView recyclerView;
-    private NumberChoiceAdapter adapter;
+    private NumberChoiceFilterAdapter adapter;
 
     private Button btn_confirm;
     private Button btn_copy;
@@ -69,12 +73,13 @@ public class NumberChoiceActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number_choice);
+        setContentView(R.layout.activity_number_choice_filter);
         initView();
         initListener();
     }
     private void initView(){
         tv_title = findViewById(R.id.tv_title);
+        tv_count = findViewById(R.id.tv_count);
         ll_back = findViewById(R.id.ll_back);
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,11 +87,12 @@ public class NumberChoiceActivity extends BaseActivity {
                 finish();
             }
         });
-        tv_title.setText("号码直选工具");
+        tv_title.setText("号码过滤工具");
         recyclerView = findViewById(R.id.listRefreshLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List list = new ArrayList();
-        adapter = new NumberChoiceAdapter(list,this);
+        adapter = new NumberChoiceFilterAdapter(list,this);
+        adapter.setTv_count(tv_count);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -108,6 +114,8 @@ public class NumberChoiceActivity extends BaseActivity {
         tg_tab = findViewById(R.id.tg_tab);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
+        rb_2.setText("后二过滤");
+        rb_3.setText("后三过滤");
         tg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -139,7 +147,7 @@ public class NumberChoiceActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //
-                ToastUtils.toastShow(NumberChoiceActivity.this,"已复制。");
+                ToastUtils.toastShow(NumberChoiceFilterActivity.this,"已复制。");
             }
         });
     }

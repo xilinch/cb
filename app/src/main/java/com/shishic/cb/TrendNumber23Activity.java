@@ -1,0 +1,197 @@
+package com.shishic.cb;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.shishic.cb.adapter.TrendNumberAdapter;
+import com.shishic.cb.bean.HistoryBean;
+import com.shishic.cb.loadmore.IRefreshHandler;
+import com.shishic.cb.loadmore.ListRefreshLayout;
+import com.shishic.cb.util.Constant;
+import com.shishic.cb.util.LogUtil;
+import org.json.JSONArray;
+import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+/**
+ * 走势图
+ */
+public class TrendNumber23Activity extends BaseActivity {
+
+    private TextView tv_title;
+    private LinearLayout ll_back;
+    private ListRefreshLayout recyclerView;
+    private TrendNumberAdapter adapter;
+    private RadioGroup rg_tab,tg_tab;
+    private RadioButton rb_1,rb_2,rb_3,rb_5,rbx_2,rbx_3;
+    private int type = 0;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_trendnumber23);
+        initView();
+        initListener();
+        requestData();
+    }
+    private void initView(){
+        tv_title = findViewById(R.id.tv_title);
+        ll_back = findViewById(R.id.ll_back);
+        rg_tab = findViewById(R.id.rg_tab);
+        rb_1 = findViewById(R.id.rb_1);
+        rb_2 = findViewById(R.id.rb_2);
+        rb_3 = findViewById(R.id.rb_3);
+        rbx_2 = findViewById(R.id.rbx_2);
+        rbx_3 = findViewById(R.id.rbx_3);
+        rb_5 = findViewById(R.id.rb_5);
+        tg_tab = findViewById(R.id.tg_tab);
+        ll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        tv_title.setText("后2后3走势图分析");
+        recyclerView = findViewById(R.id.listRefreshLayout);
+        recyclerView.setShowLastTips(false);
+        recyclerView.setRecyclerLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
+        List list = new ArrayList();
+        adapter = new TrendNumberAdapter(list,this);
+        recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
+        recyclerView.setRecyclerAdapter(adapter);
+        recyclerView.setHandler(new IRefreshHandler() {
+            @Override
+            public boolean canRefresh() {
+                return false;
+            }
+
+            @Override
+            public boolean canLoad() {
+                return false;
+            }
+
+            @Override
+            public void refresh(int requestPage) {
+                if(recyclerView != null){
+                    recyclerView.currentPage = 1;
+                    requestData();
+                }
+
+            }
+
+            @Override
+            public void load(int requestPage) {
+//                requestData();
+            }
+        });
+        rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i){
+                    case R.id.rb_1:
+                        type = 0;
+                        break;
+                    case R.id.rb_2:
+                        type = 1;
+                        break;
+                    case R.id.rb_3:
+                        type = 2;
+                        break;
+                    case R.id.rb_4:
+                        type = 3;
+                        break;
+                    case R.id.rb_5:
+                        type = 4;
+                        break;
+                }
+
+                adapter.setType(type);
+            }
+        });
+        tg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId){
+                    case R.id.rbx_2:
+                        rb_1.setVisibility(View.VISIBLE);
+                        rb_2.setVisibility(View.VISIBLE);
+                        rb_3.setVisibility(View.GONE);
+                        break;
+                    case R.id.rbx_3:
+                        rb_1.setVisibility(View.VISIBLE);
+                        rb_2.setVisibility(View.VISIBLE);
+                        rb_3.setVisibility(View.VISIBLE);
+                        break;
+
+                }
+            }
+        });
+        rbx_2.setChecked(true);
+    }
+
+    private void initListener(){
+        ll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+    /**
+     * 请求新数据
+     */
+    private void requestData(){
+        HashMap<String,String> params = new HashMap<>();
+        params.put("pageNum",String.valueOf(recyclerView.currentPage));
+        params.put("pageSize","30");
+        RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError logError) {
+                LogUtil.e("my","URL_HISTORY logError");
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.e("my","URL_HISTORY response:" + response);
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray listData = data.optJSONArray("list");
+                    int pages = data.optInt("pages");
+                    recyclerView.setTotalPage(pages);
+                    if(listData != null && listData.length() > 0){
+                        List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        if(recyclerView != null && recyclerView.currentPage == 1){
+                            HistoryBean historyBean = new HistoryBean();
+                            historyBean.setType(-1);
+                            list.add(0,historyBean);
+                            recyclerView.updateClearAndAdd(list);
+                            adapter.setType(type);
+                        } else if(recyclerView != null && recyclerView.currentPage > 1){
+                            recyclerView.updateAdd(list);
+                        }
+                    }
+                    recyclerView.completeRefresh(true);
+                } catch (Exception exception){
+                    exception.printStackTrace();
+                    recyclerView.completeRefresh(false);
+                }
+            }
+        });
+    }
+}

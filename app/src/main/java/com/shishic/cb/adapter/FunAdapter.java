@@ -18,9 +18,11 @@ import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.NumberChoiceActivity;
+import com.shishic.cb.NumberChoiceFilterActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.ShuidaoActivity;
 import com.shishic.cb.SpecialActivity;
+import com.shishic.cb.TrendNumber23Activity;
 import com.shishic.cb.TrendNumberActivity;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.FunBean;
@@ -99,6 +101,15 @@ public class FunAdapter extends RecyclerView.Adapter {
                             intent.setClass(context, ShuidaoActivity.class);
                             context.startActivity(intent);
                         } else if(funBean.getDescription().equals("号码直选")){
+                            intent.setClass(context, NumberChoiceActivity.class);
+                            context.startActivity(intent);
+                        }  else if(funBean.getDescription().equals("二星三星走势分析")){
+                            intent.setClass(context, TrendNumber23Activity.class);
+                            context.startActivity(intent);
+                        }  else if(funBean.getDescription().equals("号码过滤工具")){
+                            intent.setClass(context, NumberChoiceFilterActivity.class);
+                            context.startActivity(intent);
+                        }  else if(funBean.getDescription().equals("倍投工具")){
                             intent.setClass(context, NumberChoiceActivity.class);
                             context.startActivity(intent);
                         } else {

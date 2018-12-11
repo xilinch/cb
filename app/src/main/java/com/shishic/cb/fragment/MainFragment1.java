@@ -107,8 +107,8 @@ public class MainFragment1 extends BaseFragment {
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544455604475&di=d1d6f833d661e9438dcbda9bcad42544&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fb7fd5266d016092426c5d126df0735fae6cd342e.jpg",
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050878&di=9f578488b687cc3815bec7ef8e19df7d&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9d82d158ccbf6c81d46952d5b73eb13533fa40b4.jpg",
             "http://imgsrc.baidu.com/imgad/pic/item/e7cd7b899e510fb3657e30b3d333c895d1430caa.jpg",
-            "http://img.zcool.cn/community/01599757ee1e33a84a0e282b4bc6ea.png",
-            "http://pic34.photophoto.cn/20150112/0017030075105673_b.jpg",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544545207581&di=568c564c0bc296af3a0775317e75210a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F17%2F11%2F23%2Ffa8530f827c8458f9c660ce0058419cf.jpg%2521%2Ffwfh%2F804x744%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue",
+            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545139927&di=7d61225ba55abc788b7263b281b56175&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150812%2F0017029468154313_b.jpg",
 
     };
 
@@ -184,15 +184,7 @@ public class MainFragment1 extends BaseFragment {
                     "updateTime: 1544429914000\n" +
                     "},\n" +
                     "{\n" +
-                    "id: 100,\n" +
-                    "functionCode: 9999,\n" +
-                    "description: \"审核中\",\n" +
-                    "valid: 1,\n" +
-                    "createTime: 1543323801000,\n" +
-                    "updateTime: 1543932442000\n" +
-                    "},\n" +
-                    "{\n" +
-                    "id: 101,\n" +
+                    "id: 3,\n" +
                     "functionCode: 3,\n" +
                     "description: \"用户聊天室\",\n" +
                     "valid: 1,\n" +
@@ -200,7 +192,7 @@ public class MainFragment1 extends BaseFragment {
                     "updateTime: 1543328210000\n" +
                     "},\n" +
                     "{\n" +
-                    "id: 102,\n" +
+                    "id: 4,\n" +
                     "functionCode: 4,\n" +
                     "description: \"走势图\",\n" +
                     "valid: 1,\n" +
@@ -208,7 +200,7 @@ public class MainFragment1 extends BaseFragment {
                     "updateTime: 1544429925000\n" +
                     "},\n" +
                     "{\n" +
-                    "id: 103,\n" +
+                    "id: 5,\n" +
                     "functionCode: 5,\n" +
                     "description: \"历史开奖\",\n" +
                     "valid: 1,\n" +
@@ -216,9 +208,30 @@ public class MainFragment1 extends BaseFragment {
                     "updateTime: 1544429921000\n" +
                     "},\n" +
                     "{\n" +
-                    "id: 104,\n" +
+                    "id: 6,\n" +
                     "functionCode: 6,\n" +
                     "description: \"号码直选\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324345000,\n" +
+                    "updateTime: 1544429921000\n" +
+                    "},\n" +
+                    "{id: 7,\n" +
+                    "functionCode: 7,\n" +
+                    "description: \"号码过滤工具\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324345000,\n" +
+                    "updateTime: 1544429921000\n" +
+                    "},\n" +
+                    "{id: 8,\n" +
+                    "functionCode: 8,\n" +
+                    "description: \"二星三星走势分析\",\n" +
+                    "valid: 1,\n" +
+                    "createTime: 1543324345000,\n" +
+                    "updateTime: 1544429921000\n" +
+                    "},\n" +
+                    "{id: 9,\n" +
+                    "functionCode: 9,\n" +
+                    "description: \"倍投工具\",\n" +
                     "valid: 1,\n" +
                     "createTime: 1543324345000,\n" +
                     "updateTime: 1544429921000\n" +
