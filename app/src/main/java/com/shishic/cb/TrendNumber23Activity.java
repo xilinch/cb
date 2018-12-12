@@ -14,6 +14,7 @@ import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.shishic.cb.adapter.TrendNumber23Adapter;
 import com.shishic.cb.adapter.TrendNumberAdapter;
 import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.loadmore.IRefreshHandler;
@@ -35,6 +36,7 @@ public class TrendNumber23Activity extends BaseActivity {
     private LinearLayout ll_back;
     private ListRefreshLayout recyclerView;
     private TrendNumberAdapter adapter;
+    private TrendNumber23Adapter adapter2;
     private RadioGroup rg_tab,tg_tab;
     private RadioButton rb_1,rb_2,rb_3,rb_5,rbx_2,rbx_3;
     private int type = 0;
@@ -69,10 +71,11 @@ public class TrendNumber23Activity extends BaseActivity {
         recyclerView.setShowLastTips(false);
         recyclerView.setRecyclerLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-        List list = new ArrayList();
+        final List list = new ArrayList();
         adapter = new TrendNumberAdapter(list,this);
+        adapter2 = new TrendNumber23Adapter(list,this);
         recyclerView.setBackgroundColorResource((R.color.c_gray_f7f7f7));
-        recyclerView.setRecyclerAdapter(adapter);
+//        recyclerView.setRecyclerAdapter(adapter);
         recyclerView.setHandler(new IRefreshHandler() {
             @Override
             public boolean canRefresh() {
@@ -104,22 +107,43 @@ public class TrendNumber23Activity extends BaseActivity {
                 switch (i){
                     case R.id.rb_1:
                         type = 0;
+                        adapter.setType(type);
+                        recyclerView.setRecyclerAdapter(adapter);
                         break;
                     case R.id.rb_2:
                         type = 1;
+                        adapter.setType(type);
+                        recyclerView.setRecyclerAdapter(adapter);
                         break;
                     case R.id.rb_3:
                         type = 2;
+                        adapter.setType(type);
+                        recyclerView.setRecyclerAdapter(adapter);
                         break;
+
                     case R.id.rb_4:
                         type = 3;
                         break;
                     case R.id.rb_5:
-                        type = 4;
+                        int type = 2;
+                        //二星或者三星
+                        if(rbx_2.isChecked()){
+                            //
+                            type =2;
+                        } else if(rbx_3.isChecked()){
+                            //
+                            type = 3;
+                        }
+                        if(adapter2 == null){
+                            adapter2 = new TrendNumber23Adapter(list,TrendNumber23Activity.this);
+                            adapter2.setType(type);
+                        }
+                        recyclerView.setRecyclerAdapter(adapter2);
+
                         break;
                 }
 
-                adapter.setType(type);
+
             }
         });
         tg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -177,11 +201,20 @@ public class TrendNumber23Activity extends BaseActivity {
                     if(listData != null && listData.length() > 0){
                         List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
                         if(recyclerView != null && recyclerView.currentPage == 1){
-                            HistoryBean historyBean = new HistoryBean();
-                            historyBean.setType(-1);
-                            list.add(0,historyBean);
-                            recyclerView.updateClearAndAdd(list);
+
+
                             adapter.setType(type);
+                            if(type < 3){
+                                recyclerView.setRecyclerAdapter(adapter);
+                            } else {
+                                recyclerView.setRecyclerAdapter(adapter2);
+                            }
+                            if(rbx_3.isChecked()){
+                                adapter2.setType(3);
+                            } else {
+                                adapter2.setType(2);
+                            }
+                            recyclerView.updateClearAndAdd(list);
                         } else if(recyclerView != null && recyclerView.currentPage > 1){
                             recyclerView.updateAdd(list);
                         }
