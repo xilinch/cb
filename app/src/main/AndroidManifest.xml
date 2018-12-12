@@ -49,6 +49,7 @@
         <activity android:name=".NumberChoiceActivity"/>
         <activity android:name=".NumberChoiceFilterActivity"/>
         <activity android:name=".TrendNumber23Activity"/>
+        <activity android:name=".DoubleToolActivity"/>
     </application>
 
 </manifest>

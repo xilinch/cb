@@ -50,7 +50,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
         int beanType = funBean.getType();
         if (holder instanceof FunViewHolder) {
             FunViewHolder funViewHolder = (FunViewHolder) holder;
-            funViewHolder.tv_journ.setText("期数");
+            funViewHolder.tv_journ.setText(String.valueOf(funBean.getJournal()));
             int number_1 = funBean.getN1();
             int number_2 = funBean.getN2();
             int number_3 = funBean.getN3();
@@ -83,6 +83,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
                 }
                 if(curNumber_repeat_times > 0){
                     funViewHolder.textViewsNum.get(i).setVisibility(View.VISIBLE);
+                    funViewHolder.textViewsNum.get(i).setText(String.valueOf(curNumber_repeat_times));
                 } else {
                     funViewHolder.textViewsNum.get(i).setVisibility(View.GONE);
                 }

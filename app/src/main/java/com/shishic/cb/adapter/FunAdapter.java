@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shishic.cb.ChatActivity;
+import com.shishic.cb.DoubleToolActivity;
 import com.shishic.cb.FreePlanActivity;
 import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
@@ -110,7 +111,7 @@ public class FunAdapter extends RecyclerView.Adapter {
                             intent.setClass(context, NumberChoiceFilterActivity.class);
                             context.startActivity(intent);
                         }  else if(funBean.getDescription().equals("倍投工具")){
-                            intent.setClass(context, NumberChoiceActivity.class);
+                            intent.setClass(context, DoubleToolActivity.class);
                             context.startActivity(intent);
                         } else {
                             final String link = funBean.getUrl();

@@ -39,7 +39,7 @@ public class TrendNumber23Activity extends BaseActivity {
     private TrendNumber23Adapter adapter2;
     private RadioGroup rg_tab,tg_tab;
     private RadioButton rb_1,rb_2,rb_3,rb_5,rbx_2,rbx_3;
-    private int type = 0;
+    private int type = 5;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -136,8 +136,8 @@ public class TrendNumber23Activity extends BaseActivity {
                         }
                         if(adapter2 == null){
                             adapter2 = new TrendNumber23Adapter(list,TrendNumber23Activity.this);
-                            adapter2.setType(type);
                         }
+                        adapter2.setType(type);
                         recyclerView.setRecyclerAdapter(adapter2);
 
                         break;
@@ -154,6 +154,7 @@ public class TrendNumber23Activity extends BaseActivity {
                         rb_1.setVisibility(View.VISIBLE);
                         rb_2.setVisibility(View.VISIBLE);
                         rb_3.setVisibility(View.GONE);
+
                         break;
                     case R.id.rbx_3:
                         rb_1.setVisibility(View.VISIBLE);
@@ -162,6 +163,20 @@ public class TrendNumber23Activity extends BaseActivity {
                         break;
 
                 }
+                int type = 2;
+                //二星或者三星
+                if(rbx_2.isChecked()){
+                    //
+                    type =2;
+                } else if(rbx_3.isChecked()){
+                    //
+                    type = 3;
+                }
+                if(adapter2 == null){
+                    adapter2 = new TrendNumber23Adapter(list,TrendNumber23Activity.this);
+                }
+                adapter2.setType(type);
+                recyclerView.setRecyclerAdapter(adapter2);
             }
         });
         rbx_2.setChecked(true);
