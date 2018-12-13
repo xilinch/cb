@@ -8,7 +8,7 @@
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/logo"
-        android:src="@mipmap/launcher"
+        android:src="@mipmap/damuzhi"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView

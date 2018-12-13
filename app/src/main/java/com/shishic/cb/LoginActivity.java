@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity {
                     startActivity(intent);
                     finish();
                 } else {
-                    Account.saveAccount(null);
+                    Account.saveAccount(account);
                     Intent intent = new Intent();
                     intent.setAction(MyFragment.ACTION_LOGIN);
                     sendBroadcast(intent);
