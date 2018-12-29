@@ -157,7 +157,7 @@ public class MainFragment1 extends BaseFragment {
         recyclerView.addItemDecoration(new VerticaltemDecoration(DensityUtils.dipTopx(getContext(),15)));
         String funList = SharepreferenceUtil.getFun();
         try {
-            JSONArray jsonArray = new JSONArray(funList);
+//            JSONArray jsonArray = new JSONArray(funList);
             String funStr = "[\n" +
                     "{\n" +
                     "id: 0,\n" +
