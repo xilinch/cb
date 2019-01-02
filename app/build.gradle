@@ -4,11 +4,12 @@ android {
     compileSdkVersion 26
     buildToolsVersion '27.0.3'
     defaultConfig {
+        //com.ssc.zx
         applicationId "com.ssc.zx"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
     }
     buildTypes {
         release {
@@ -40,4 +41,7 @@ dependencies {
     compile(name: 'smart-headerfooter-recyclerview-release', ext: 'aar')
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile 'com.astuetz:pagerslidingtabstrip:1.0.1'
+
+    compile  'com.umeng.umsdk:analytics:7.5.4'
+    compile  'com.umeng.umsdk:common:1.5.4'
 }

@@ -38,6 +38,7 @@
         <activity android:name=".LoginActivity"/>
         <activity android:name=".ChatActivity"/>
         <activity android:name=".FreePlanActivity"/>
+        <activity android:name=".FreePlanActivity1"/>
         <activity android:name=".HistoryActivity"/>
         <activity android:name=".LostAnalyActivity"/>
         <activity android:name=".SpecialActivity"/>

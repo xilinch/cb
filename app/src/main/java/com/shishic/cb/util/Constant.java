@@ -1,6 +1,15 @@
 package com.shishic.cb.util;
 
 public class Constant {
+
+
+
+    //大拇指计划
+    public static final String UMENG_KEY = "5c2c8311f1f55611c4000217";
+
+    //拇指计划
+    public static final String UMENG_KEY_MUZHI = "5c2c8b54f1f556044500025e";
+
     //登录接口
     public static final String URL_LOGIN = "http://112.74.97.238/public/userinfo/login";
     //注册接口

@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide;
 import com.shishic.cb.ChatActivity;
 import com.shishic.cb.DoubleToolActivity;
 import com.shishic.cb.FreePlanActivity;
+import com.shishic.cb.FreePlanActivity1;
 import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
@@ -92,7 +93,8 @@ public class FunAdapter extends RecyclerView.Adapter {
                             context.startActivity(intent);
                         } else if (funBean.getDescription().equals("免费计划")) {
                             //免费计划
-                            intent.setClass(context, FreePlanActivity.class);
+//                            intent.setClass(context, FreePlanActivity.class);
+                            intent.setClass(context, FreePlanActivity1.class);
                             context.startActivity(intent);
                         } else if (funBean.getDescription().equals("走势图")) {
                             //走势图

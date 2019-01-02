@@ -7,6 +7,8 @@ import android.os.Build;
 import com.android.network.NFRequestUtil;
 import com.android.nfRequest.NFLog;
 import com.bumptech.glide.Glide;
+import com.shishic.cb.util.Constant;
+import com.umeng.commonsdk.UMConfigure;
 
 public class ReaderApplication extends Application {
 
@@ -25,6 +27,7 @@ public class ReaderApplication extends Application {
         applicationContext = (ReaderApplication)getApplicationContext();
         NFRequestUtil.getInstance().init(this);
         NFLog.DEBUG = true;
+        UMConfigure.init(this, Constant.UMENG_KEY,"umeng",UMConfigure.DEVICE_TYPE_PHONE, null);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
