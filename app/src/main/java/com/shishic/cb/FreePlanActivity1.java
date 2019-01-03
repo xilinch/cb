@@ -55,7 +55,7 @@ public class FreePlanActivity1 extends BaseActivity {
 
     private Spinner cp_type,plan;
 
-    private String[] typeStr = new String[]{"时时"};
+    private String[] typeStr = new String[]{"时时彩"};
     private ArrayList<String> typeList = new ArrayList<>();
     private ArrayList<String> planList = new ArrayList<>();
 
@@ -66,7 +66,9 @@ public class FreePlanActivity1 extends BaseActivity {
 
     private List<FreePlanTabBean> list;
     //显示的计划详情
-    private List<Object> listPlan;
+    private List<FreePlan> listPlan;
+    //显示的计划
+    private List<Object> showList;
 
     private FreePlanAdapter adapter;
 
@@ -96,11 +98,11 @@ public class FreePlanActivity1 extends BaseActivity {
         });
         tv_title.setText("免费计划");
         recyclerView = findViewById(R.id.recyclerView);
-        adapter = new FreePlanAdapter(listPlan,this);
+        adapter = new FreePlanAdapter(null,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-        typeList.add("时时");
+        typeList.add("时时彩");
 
         typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
         planAdapter = new ArrayAdapter(this, R.layout.item_type,planList);
@@ -121,6 +123,11 @@ public class FreePlanActivity1 extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 LogUtil.e("my","plan onItemClick :" + planList.get(position));
+                if(list != null && list.size() > 0 && position < list.size()){
+                    FreePlanTabBean freePlanTabBean = list.get(position);
+                    requestPlanData(String.valueOf(freePlanTabBean.getId()));
+
+                }
             }
 
             @Override
@@ -213,18 +220,20 @@ public class FreePlanActivity1 extends BaseActivity {
 //                            //当前期数
 //                            private TextView tv_currenJounal;
 
-                            if(listBeans != null && listBeans.size() > 0){
+                            if(listBeans != null && listBeans.size() > 1){
                                 FreePlan.ListBean listBean = listBeans.get(0);
-                                iv_forecast_jounal.setText("预测期号:" + listBean.getCurrenJounal());
-                                iv_forecast.setText("当前预测:" + listBean.getFromJounal() );
-                                tv_currenNumber.setText("当前开奖:" + listBean.getLuckyNumbers());
-                                tv_currenJounal.setText("当前期数:" + listBean.getJounal());
+                                FreePlan.ListBean listBean1 = listBeans.get(1);
+                                iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal());
+                                iv_forecast.setText("当前预测:" + listBean.getRecommendNumbers());
+                                tv_currenJounal.setText("当前期数:" + listBean.getCurrenJounal());
+                                tv_currenNumber.setText("当前开奖:" + listBean1.getLuckyNumbers());
                             }
                             iv_plan_name.setText("当前计划:" + name);
 
                         }
+                        initDatas();
                     }
-                    adapter.changeData(listPlan);
+                    adapter.changeData(showList);
                     //刷新完成
 //                    swipeRefreshLayout.setRefreshing(false);
                 } catch (Exception exception){
@@ -236,5 +245,20 @@ public class FreePlanActivity1 extends BaseActivity {
         });
     }
 
+    /**
+     * 数据转换
+     */
+    private void initDatas(){
+        showList = new ArrayList<>();
+        if(listPlan != null){
+            for(int i = 0; i < listPlan.size() ; i++){
+                List<FreePlan.ListBean> childList = listPlan.get(i).getList();
+                showList.add(list.get(i));
+                if(childList != null){
+                    showList.addAll(childList);
+                }
+            }
+        }
+    }
 
 }
