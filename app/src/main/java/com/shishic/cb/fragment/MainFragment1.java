@@ -157,7 +157,7 @@ public class MainFragment1 extends BaseFragment {
         recyclerView.addItemDecoration(new VerticaltemDecoration(DensityUtils.dipTopx(getContext(),15)));
         String funList = SharepreferenceUtil.getFun();
         try {
-//            JSONArray jsonArray = new JSONArray(funList);
+            JSONArray jsonArray = new JSONArray(funList);
             String funStr = "[\n" +
                     "{\n" +
                     "id: 0,\n" +
@@ -252,7 +252,7 @@ public class MainFragment1 extends BaseFragment {
                     iterator.remove();
                 }
             }
-            isTest = false;
+//            isTest = false;
             if(isTest){
                 //审核中加入本地应用
                 list.add(new FunBean("产物介绍", "https://baike.baidu.com/item/%E7%A8%BB%E8%B0%B7/2073705?fr=aladdin","https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/c0%3Dbaike92%2C5%2C5%2C92%2C30/sign=4d6c0bc22f1f95cab2f89ae4a87e145b/b999a9014c086e06c7f331f708087bf40ad1cb37.jpg"));

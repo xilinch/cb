@@ -4,8 +4,8 @@ android {
     compileSdkVersion 26
     buildToolsVersion '27.0.3'
     defaultConfig {
-        //com.ssc.zx
-        applicationId "com.ssc.zx"
+        //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft
+        applicationId "com.muzhiplansoft.zx"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
