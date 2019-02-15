@@ -5,10 +5,14 @@
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
-        android:background="@color/red"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
-
+    <ImageView
+        android:layout_marginTop="150dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/muzhi_plan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <Button
         android:id="@+id/imgbutton_help_finish"
         android:layout_width="wrap_content"

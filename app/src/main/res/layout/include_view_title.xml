@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="50dp">
 
     <LinearLayout
@@ -10,7 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp">
         <ImageView
-            android:src="@mipmap/left_back"
+            android:src="@mipmap/left_back_white"
             android:layout_width="27dp"
             android:layout_height="27dp" />
 
@@ -22,7 +21,7 @@
         android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:text="@string/please_register"
-        android:textColor="@color/login_text_color"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
 </RelativeLayout>

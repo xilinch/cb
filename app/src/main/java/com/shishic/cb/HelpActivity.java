@@ -48,7 +48,7 @@ public class HelpActivity extends BaseActivity {
 
     private void initViewOrData() {
         ImageView view1 = new ImageView(this);
-        view1.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        view1.setScaleType(ImageView.ScaleType.CENTER_CROP);
 //        ImageView view2 = new ImageView(mContext);
 //        view2.setScaleType(ImageView.ScaleType.FIT_CENTER);
 //        ImageView view3 = new ImageView(mContext);
