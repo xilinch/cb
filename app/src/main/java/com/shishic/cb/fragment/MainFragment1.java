@@ -111,6 +111,18 @@ public class MainFragment1 extends BaseFragment {
             "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545139927&di=7d61225ba55abc788b7263b281b56175&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150812%2F0017029468154313_b.jpg",
 
     };
+    int[] newIcon = new int[]{
+            R.mipmap.icon_1_yilou,
+            R.mipmap.icon_2_zhuanjia,
+            R.mipmap.icon_3_zhixuan,
+            R.mipmap.icon_4_lishi,
+            R.mipmap.icon_5_zoushitu,
+            R.mipmap.icon_6_liaotian,
+            R.mipmap.icon_7_gongju,
+            R.mipmap.icon_8_beitou,
+            R.mipmap.icon_9,
+            R.mipmap.icon_10
+    };
 
     private Handler handler = new Handler() {
         @Override
@@ -244,9 +256,9 @@ public class MainFragment1 extends BaseFragment {
             while (iterator.hasNext()) {
                 FunBean funBean = iterator.next();
                 int functionCode = funBean.getFunctionCode();
-                if(functionCode < 9000 && funBean.getValid() == 1 && functionCode < icon.length){
+                if(functionCode < 9000 && funBean.getValid() == 1 && functionCode < newIcon.length){
                     //功能列表
-                    funBean.setIcon(icon[functionCode]);
+                    funBean.setIconSrcId(newIcon[functionCode]);
                 } else if(functionCode == 9999){
                     isTest = true;
                     iterator.remove();

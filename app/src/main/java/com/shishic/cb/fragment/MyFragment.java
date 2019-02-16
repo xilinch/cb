@@ -61,6 +61,7 @@ public class MyFragment extends BaseFragment{
     private RelativeLayout rl_message;
     private RelativeLayout rl_cache;
     private RelativeLayout rl_notify;
+    private RelativeLayout rl_login;
     public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
     private ServiceIntroduceDialog dialog;
     private CenterDialog cacheDialog;
@@ -90,6 +91,7 @@ public class MyFragment extends BaseFragment{
             rl_message = view.findViewById(R.id.rl_message);
             rl_cache = view.findViewById(R.id.rl_cache);
             rl_notify = view.findViewById(R.id.rl_notify);
+            rl_login = view.findViewById(R.id.rl_login);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
@@ -201,6 +203,12 @@ public class MyFragment extends BaseFragment{
             public void onClick(View v) {
                 //
                showDialog();
+            }
+        });
+        rl_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showLogin();
             }
         });
     }

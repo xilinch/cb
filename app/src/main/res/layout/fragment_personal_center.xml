@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activity_divider"
+    android:background="@mipmap/person_bg"
     android:scrollbarSize="6dp"
     android:scrollbarThumbVertical="@drawable/shape_scroll_bar">
 
@@ -20,18 +20,17 @@
 
             <LinearLayout
                 android:id="@+id/ll_phone"
-                android:paddingTop="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingTop="15dp">
 
                 <com.shishic.cb.view.CircleImageView
                     android:id="@+id/civ_personal_center_avatar"
                     android:layout_width="76dp"
                     android:layout_height="76dp"
-                    android:src="@mipmap/my_avatar_icon_default"
+                    android:src="@mipmap/person_icon_default"
                     app:border_color="@color/c_gray_dddddd"
                     app:border_width="1px" />
 
@@ -42,7 +41,7 @@
                     android:layout_marginBottom="20dp"
                     android:paddingTop="10dp"
                     android:text="点击登录"
-                    android:textColor="@color/c_gray_333333"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -52,10 +51,10 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/rl_modify_pwd"
             style="@style/personal_center_item"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <TextView
                 style="@style/personal_center_title"
@@ -72,10 +71,9 @@
         </RelativeLayout>
 
         <FrameLayout
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/white">
+            android:visibility="gone">
 
             <View
                 android:layout_width="match_parent"
@@ -85,9 +83,9 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/rl_bindphone"
-            style="@style/personal_center_item">
+            style="@style/personal_center_item"
+            android:visibility="gone">
 
             <TextView
                 style="@style/personal_center_title"
@@ -149,10 +147,10 @@
 
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/rl_share"
             style="@style/personal_center_item"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:visibility="gone">
 
             <TextView
                 style="@style/personal_center_title"
@@ -197,6 +195,7 @@
                 style="@style/personal_center_arrow" />
 
         </RelativeLayout>
+
         <RelativeLayout
             android:id="@+id/rl_notify"
             style="@style/personal_center_item">
@@ -224,15 +223,32 @@
         </FrameLayout>
 
         <RelativeLayout
-            android:visibility="gone"
             android:id="@+id/rl_online_service"
-            style="@style/personal_center_item">
+            style="@style/personal_center_item"
+            android:visibility="gone">
 
             <TextView
                 style="@style/personal_center_title"
                 android:text="在线客服" />
 
             <ImageView style="@style/personal_center_arrow" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_marginTop="40dp"
+            android:id="@+id/rl_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                style="@style/personal_center_title"
+                android:layout_width="153dp"
+                android:layout_height="43dp"
+                android:gravity="center"
+                android:background="@mipmap/person_login"
+                android:text="立即登录" />
+
         </RelativeLayout>
 
     </LinearLayout>

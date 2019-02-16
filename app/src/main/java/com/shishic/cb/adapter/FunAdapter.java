@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +53,7 @@ public class FunAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_hotspot, parent, false));
+        RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_hotspot1, parent, false));
         return ViewHolder;
     }
 
@@ -63,7 +64,11 @@ public class FunAdapter extends RecyclerView.Adapter {
             FunViewHolder funViewHolder = (FunViewHolder) holder;
             funViewHolder.tv_title.setText(funBean.getDescription());
             String url = funBean.getIcon();
-            Glide.with(context).load(url).placeholder(R.mipmap.icon_default1).centerCrop().into(funViewHolder.iv_logo);
+            if(TextUtils.isEmpty(url)){
+                Glide.with(context).load(funBean.getIconSrcId()).placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_logo);
+            } else {
+                Glide.with(context).load(url).placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_logo);
+            }
             funViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

@@ -15,10 +15,20 @@ public class FunBean extends BaseBean {
 
     private String icon;
 
+    private int iconSrcId;
+
     public FunBean(String description, String url, String icon) {
         this.description = description;
         this.url = url;
         this.icon = icon;
+    }
+
+    public int getIconSrcId() {
+        return iconSrcId;
+    }
+
+    public void setIconSrcId(int iconSrcId) {
+        this.iconSrcId = iconSrcId;
     }
 
     public int getId() {

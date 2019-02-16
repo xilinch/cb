@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/chat_bg"
     android:orientation="vertical">
 
     <include
@@ -51,6 +52,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textColor="@color/white"
             android:text="提交" />
     </LinearLayout>
 
