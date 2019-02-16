@@ -3,6 +3,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/register_bg"
     android:orientation="vertical">
 
     <include
@@ -11,7 +12,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/c_gray_f7f7f7"
         android:paddingTop="50dp"
         >
 
@@ -22,7 +22,7 @@
             android:gravity="center_horizontal"
             android:text="为了您的账户安全，请绑定手机号码"
             android:textSize="16sp"
-            android:textColor="@color/c_gray_666666"/>
+            android:textColor="@color/white"/>
 
         <RelativeLayout
             android:layout_below="@id/tv_bind_tip"
@@ -53,8 +53,8 @@
                     android:hint="@string/please_enter_phone_number"
                     android:inputType="number"
                     android:maxLength="11"
-                    android:textColor="@color/c_gray_333333"
-                    android:textColorHint="@color/c_gray_cccccc"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="16sp"
                     />
 
@@ -67,6 +67,7 @@
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0.5px"
                 android:layout_below="@+id/phone_number_layout"
@@ -96,8 +97,8 @@
                     android:background="@null"
                     android:hint="@string/please_enter_code"
                     android:inputType="number"
-                    android:textColor="@color/c_gray_333333"
-                    android:textColorHint="@color/c_gray_cccccc"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="16sp"
                     />
 
@@ -107,11 +108,12 @@
                     android:layout_height="wrap_content"
                     android:enabled="true"
                     android:text="@string/request_code"
-                    android:textColor="@color/request_code_color"
+                    android:textColor="@color/white"
                     android:textSize="14sp"/>
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="0.5px"
                 android:layout_below="@+id/password_layout"

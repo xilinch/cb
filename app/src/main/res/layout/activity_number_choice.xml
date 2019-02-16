@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/register_bg"
     android:orientation="vertical">
 
     <include
@@ -176,6 +177,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:textColor="@color/white"
             android:text="十位选择："
             android:layout_width="wrap_content"
             android:layout_height="25dp" />
@@ -190,6 +192,7 @@
         <View
             android:layout_width="1sp"
             android:layout_height="25dp"
+            android:visibility="invisible"
             android:background="@color/c_gray_f2f2f2" />
 
         <CheckBox
@@ -203,6 +206,7 @@
         <View
             android:layout_width="1sp"
             android:layout_height="25dp"
+            android:visibility="invisible"
             android:background="@color/c_gray_f2f2f2" />
 
         <CheckBox
@@ -214,6 +218,7 @@
             android:text="2" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -227,6 +232,7 @@
             android:text="3" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -240,6 +246,7 @@
             android:text="4" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -253,6 +260,7 @@
             android:text="5" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -266,6 +274,7 @@
             android:text="6" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -279,6 +288,7 @@
             android:text="7" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -292,6 +302,7 @@
             android:text="8" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -313,6 +324,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <TextView
+            android:textColor="@color/white"
             android:text="个位选择："
             android:layout_width="wrap_content"
             android:layout_height="25dp" />
@@ -325,6 +337,7 @@
             android:text="0" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -338,6 +351,7 @@
             android:text="1" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -351,6 +365,7 @@
             android:text="2" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -364,6 +379,7 @@
             android:text="3" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -377,6 +393,7 @@
             android:text="4" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -390,6 +407,7 @@
             android:text="5" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -403,6 +421,7 @@
             android:text="6" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -416,6 +435,7 @@
             android:text="7" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -429,6 +449,7 @@
             android:text="8" />
 
         <View
+            android:visibility="invisible"
             android:layout_width="1sp"
             android:layout_height="25dp"
             android:background="@color/c_gray_f2f2f2" />
@@ -443,7 +464,6 @@
 
     </LinearLayout>
     <LinearLayout
-        android:background="@color/white"
         android:layout_marginTop="15dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"

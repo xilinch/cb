@@ -2,11 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/register_bg"
     android:orientation="vertical">
 
     <include layout="@layout/include_view_title" />
 
     <TextView
+        android:textColor="@color/white"
         android:id="@+id/tv_intrudoce"
         android:padding="10dp"
         android:layout_width="match_parent"

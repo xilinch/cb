@@ -253,7 +253,7 @@ public class FreePlanActivity1 extends BaseActivity {
         if(listPlan != null){
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
-                showList.add(list.get(i));
+//                showList.add(list.get(i));
                 if(childList != null){
                     showList.addAll(childList);
                 }

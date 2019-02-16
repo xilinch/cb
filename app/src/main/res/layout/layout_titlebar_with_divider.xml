@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="50dip"
-    android:background="@android:color/white">
+    android:layout_height="50dip">
 
     <ImageView
         android:id="@+id/iv_back"
@@ -13,14 +12,14 @@
         android:layout_marginLeft="5dp"
         android:padding="10dp"
         android:scaleType="fitCenter"
-        android:src="@mipmap/backbutton" />
+        android:src="@mipmap/left_back_white" />
 
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="@color/title_color"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:visibility="visible" />
 
