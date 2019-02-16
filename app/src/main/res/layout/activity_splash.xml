@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
     android:gravity="center"
+    android:background="@mipmap/person_bg"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
@@ -8,7 +9,7 @@
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/logo"
-        android:src="@mipmap/damuzhi"
+        android:src="@mipmap/muzhi_plan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
