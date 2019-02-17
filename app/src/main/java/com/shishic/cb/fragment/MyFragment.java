@@ -34,16 +34,22 @@ import com.shishic.cb.dialog.CenterDialog;
 import com.shishic.cb.dialog.ServiceIntroduceDialog;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.NFCallback;
+import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.view.CircleImageView;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 import static com.shishic.cb.util.Constant.URL_SCORE;
 
 public class MyFragment extends BaseFragment{
 
-    private TextView tv_personal_center_nickname;
+    private TextView tv_personal_center_nickname,tv_logon_text;
 
     private LinearLayout ll_phone;
 
@@ -92,6 +98,7 @@ public class MyFragment extends BaseFragment{
             rl_cache = view.findViewById(R.id.rl_cache);
             rl_notify = view.findViewById(R.id.rl_notify);
             rl_login = view.findViewById(R.id.rl_login);
+            tv_logon_text = view.findViewById(R.id.tv_logon_text);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
@@ -208,7 +215,14 @@ public class MyFragment extends BaseFragment{
         rl_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showLogin();
+                Account account = Account.getAccount();
+                if(account == null){
+                    showLogin();
+                } else {
+                    //
+                    Account.saveAccount(null);
+                    updateUser();
+                }
             }
         });
     }
@@ -266,6 +280,23 @@ public class MyFragment extends BaseFragment{
                 ToastUtils.toastShow(getActivity(),"签到成功");
             }
         });
+        //TODO 调用示例
+        RequestUtils.httpget(getActivity(), URL_SCORE, params, new NFCallback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                dismissSign();
+                ToastUtils.toastShow(getActivity(),R.string.network_error);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
+                LogUtil.e("my","URL_SCORE response:" + response);
+                dismissSign();
+                ToastUtils.toastShow(getActivity(),"签到成功");
+            }
+        });
 
     }
 
@@ -288,9 +319,11 @@ public class MyFragment extends BaseFragment{
             String name = account.getUserName();
             civ_personal_center_avatar.setImageResource(R.mipmap.icon_login_wechat);
             tv_personal_center_nickname.setText(name);
+            tv_logon_text.setText("退出登录");
         } else {
             civ_personal_center_avatar.setImageResource(R.mipmap.person_icon_default);
             tv_personal_center_nickname.setText("点击登录");
+            tv_logon_text.setText("点击登录");
         }
     }
 

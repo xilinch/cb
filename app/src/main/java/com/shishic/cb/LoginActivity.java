@@ -17,12 +17,18 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.fragment.MyFragment;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RegexStringUtils;
+import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class LoginActivity extends BaseActivity {
 
@@ -161,6 +167,20 @@ public class LoginActivity extends BaseActivity {
                 } finally {
 
                 }
+            }
+        });
+
+        RequestUtils.httpget(this, Constant.URL_LOGIN, params, new NFCallback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                ToastUtils.toastShow(LoginActivity.this,R.string.network_error);
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
+                LogUtil.e("my","URL_LOGIN response:" + response.body().toString());
             }
         });
     }

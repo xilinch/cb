@@ -13,6 +13,7 @@ public class SharepreferenceUtil {
     public static final String S_ACCOUNT = "S_ACCOUNT";
     public static final String S_SHOW_HELP = "S_SHOW_HELP";
     public static final String S_FUN_LIST = "S_FUN_LIST";
+    public static final String S_SESSIONID = "S_SESSIONID";
 
 
     /**
@@ -66,4 +67,17 @@ public class SharepreferenceUtil {
         return fun;
     }
 
+    public static String getSessionid() {
+        String sessionid = "";
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE, Context.MODE_PRIVATE);
+        sessionid = sp.getString(S_SESSIONID,"");
+        return sessionid;
+    }
+
+    public static void setSessionid(String sessionid) {
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(S_SESSIONID,sessionid);
+        editor.commit();
+    }
 }

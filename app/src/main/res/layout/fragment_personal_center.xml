@@ -242,6 +242,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/tv_logon_text"
                 style="@style/personal_center_title"
                 android:layout_width="153dp"
                 android:layout_height="43dp"

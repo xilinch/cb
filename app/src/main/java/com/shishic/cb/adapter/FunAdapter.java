@@ -74,16 +74,19 @@ public class FunAdapter extends RecyclerView.Adapter {
                 public void onClick(View v) {
                     Intent intent = new Intent();
                     Account account = Account.getAccount();
-                    if (account == null) {
-                        //引导登录
-                        ToastUtils.toastShow(context, "请先登录");
-                        intent.setClass(context, LoginActivity.class);
-                        context.startActivity(intent);
-                    } else {
+
                         if (funBean.getDescription().equals("用户聊天室")) {
-                            //用户聊天室
-                            intent.setClass(context, ChatActivity.class);
-                            context.startActivity(intent);
+                            if (account == null) {
+                                //引导登录
+                                ToastUtils.toastShow(context, "请先登录");
+                                intent.setClass(context, LoginActivity.class);
+                                context.startActivity(intent);
+                            } else {
+                                //用户聊天室
+                                intent.setClass(context, ChatActivity.class);
+                                context.startActivity(intent);
+                            }
+
                         } else if (funBean.getDescription().equals("专家计划")) {
                             //专家计划
                             intent.setClass(context, SpecialActivity.class);
@@ -129,7 +132,6 @@ public class FunAdapter extends RecyclerView.Adapter {
                             }
                         }
 
-                    }
                 }
             });
 
