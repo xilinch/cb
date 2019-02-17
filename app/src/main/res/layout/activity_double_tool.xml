@@ -12,11 +12,11 @@
         android:layout_width="match_parent"
         android:layout_height="1sp"/>
     <LinearLayout
+        android:background="@drawable/dd_shape_rec_e43834_93754d"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp">
         <TextView
-            android:background="@color/c_red_f64e45"
             android:textColor="@color/white"
             android:text="起始本金"
             android:gravity="center"
@@ -28,8 +28,9 @@
             android:maxLength="8"
             android:id="@+id/et_capital"
             android:hint="请输入起始本金"
+            android:textColor="@color/white"
             android:numeric="integer"
-            android:background="@color/white"
+            android:background="@null"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
@@ -37,9 +38,9 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:background="@drawable/dd_shape_rec_e43834_93754d"
         android:layout_height="50dp">
         <TextView
-            android:background="@color/c_red_f64e45"
             android:textColor="@color/white"
             android:gravity="center"
             android:text="倍数"
@@ -52,7 +53,8 @@
             android:hint="请输入倍数"
             android:maxLength="8"
             android:numeric="integer"
-            android:background="@color/white"
+            android:background="@null"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
