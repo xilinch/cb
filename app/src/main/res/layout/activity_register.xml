@@ -107,10 +107,45 @@
             android:background="@color/c_gray_eeeeee" />
 
         <LinearLayout
-            android:id="@+id/password_picture"
+            android:id="@+id/password_code"
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_below="@+id/phone_number_layout"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/icon_pic_code" />
+
+            <EditText
+                android:id="@+id/window_code"
+                android:layout_width="0dp"
+                android:layout_height="52dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请输入验证码"
+                android:maxLength="6"
+                android:textColor="@color/white"
+                android:textColorHint="@color/c_gray_cccccc"
+                android:textSize="16sp" />
+            <TextView
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:id="@+id/tv_getCode"
+                android:text="点击获取验证码"
+                android:layout_width="120dp"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/password_picture"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_below="@+id/password_code"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 

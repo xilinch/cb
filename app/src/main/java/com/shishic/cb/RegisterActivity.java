@@ -2,6 +2,7 @@ package com.shishic.cb;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.View;
@@ -34,8 +35,16 @@ public class RegisterActivity extends BaseActivity {
     private EditText et_pwd_again;
     //登录
     private TextView tv_login;
+    //获取验证码
+    private TextView tv_getCode;
+    //验证码
+    private EditText window_code;
     //用户名
     private EditText et_name;
+    /**
+     * 倒计时
+     */
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +63,8 @@ public class RegisterActivity extends BaseActivity {
         et_pwd_again = findViewById(R.id.et_pwd_again);
         tv_login = findViewById(R.id.tv_login);
         et_name = findViewById(R.id.et_name);
+        tv_getCode = findViewById(R.id.tv_getCode);
+        window_code = findViewById(R.id.window_code);
     }
 
     private void initListener(){
@@ -72,6 +83,12 @@ public class RegisterActivity extends BaseActivity {
                 }
             }
         });
+        tv_getCode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestRegisterCode();
+            }
+        });
     }
 
     /**
@@ -82,6 +99,7 @@ public class RegisterActivity extends BaseActivity {
         boolean isValid = false;
         String phone = window_login_number.getText().toString().trim();
         String userName = et_name.getText().toString().trim();
+        String code = window_code.getText().toString().trim();
         String pwd = window_login_pic_code.getText().toString().trim();
         String pwd_again = et_pwd_again.getText().toString().trim();
         if(TextUtils.isEmpty(userName)){
@@ -94,10 +112,15 @@ public class RegisterActivity extends BaseActivity {
             ToastUtils.toastShow(this, "请输入正确的手机号码");
             return isValid;
         }
+        if(TextUtils.isEmpty(code)){
+            ToastUtils.toastShow(this, "请输入验证码");
+            return isValid;
+        }
         if(TextUtils.isEmpty(pwd)){
             ToastUtils.toastShow(this, "请输入密码");
             return isValid;
         }
+
         if(TextUtils.isEmpty(pwd_again)){
             ToastUtils.toastShow(this, "请输入密码");
             return isValid;
@@ -118,10 +141,13 @@ public class RegisterActivity extends BaseActivity {
         String userName = et_name.getText().toString().trim();
         String pwd = window_login_pic_code.getText().toString().trim();
         String pwd_again = et_pwd_again.getText().toString().trim();
+        String code = window_code.getText().toString().trim();
         HashMap<String,String> params = new HashMap<>();
         params.put("loginCode",phone);
+        params.put("tel",phone);
         params.put("password",pwd);
         params.put("userName",userName);
+        params.put("validCode",code);
         RequestUtil.httpGet(this, Constant.URL_REGISTER, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError error) {
@@ -155,4 +181,49 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
+    /**
+     * 获取验证码率
+     */
+    private void requestRegisterCode(){
+        String phone = window_login_number.getText().toString().trim();
+        HashMap<String,String> params = new HashMap<>();
+        params.put("tel", phone);
+        tv_getCode.setEnabled(false);
+        beginCountDown();
+        RequestUtil.httpGet(this, Constant.URL_REGISTER_CODE, params, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError logError) {
+                ToastUtils.toastShow(RegisterActivity.this,R.string.network_error);
+
+            }
+
+            @Override
+            public void onResponse(String result) {
+                LogUtil.e("my","URL_REGISTER_CODE  result:" + result);
+            }
+        });
+    }
+
+    private void beginCountDown(){
+        if(countDownTimer == null){
+            countDownTimer = new CountDownTimer(60000,1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    if(tv_getCode != null){
+                        tv_getCode.setText( millisUntilFinished/1000 + "s");
+                    }
+                }
+
+                @Override
+                public void onFinish() {
+                    if(tv_getCode != null){
+
+                        tv_getCode.setText("点击获取验证码");
+                        tv_getCode.setEnabled(true);
+                    }
+                }
+            };
+        }
+        countDownTimer.start();
+    }
 }

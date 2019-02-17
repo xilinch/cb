@@ -56,4 +56,9 @@ public class Constant {
 
     //通知列表
     public static final String URL_NOTICE_LIST = "http://112.74.97.238/public/notice/list?pageSize=10&pageNum=1";
+
+    //注册验证码
+    public static final String URL_REGISTER_CODE = "http://112.74.97.238/public/userinfo/registerCode";
+
+
 }
