@@ -17,10 +17,19 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.fragment.MyFragment;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RegexStringUtils;
+import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
 import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.Call;
+import okhttp3.Response;
+
+import static com.shishic.cb.util.Constant.URL_SCORE;
 
 public class RegisterActivity extends BaseActivity {
 
@@ -148,17 +157,20 @@ public class RegisterActivity extends BaseActivity {
         params.put("password",pwd);
         params.put("userName",userName);
         params.put("validCode",code);
-        RequestUtil.httpGet(this, Constant.URL_REGISTER, params, new NFHttpResponseListener<String>() {
+        RequestUtils.httpget(this, Constant.URL_REGISTER, params, new NFCallback() {
             @Override
-            public void onErrorResponse(LogError error) {
-                ToastUtils.toastShow(RegisterActivity.this, R.string.network_error);
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                ToastUtils.toastShow(RegisterActivity.this,R.string.network_error);
             }
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
                 try {
                     LogUtil.e("my","URL_REGISTER response:" + response);
-                    JSONObject jsonObject = new JSONObject(response);
+                    //{"code":-1,"msg":"存在相同账号的用户","success":false}
+                    JSONObject jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.optString("msg");
                     ToastUtils.toastShow(RegisterActivity.this, msg);
 
@@ -174,6 +186,7 @@ public class RegisterActivity extends BaseActivity {
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();
+                    ToastUtils.toastShow(RegisterActivity.this,R.string.network_error);
                 } finally {
 
                 }
@@ -190,18 +203,21 @@ public class RegisterActivity extends BaseActivity {
         params.put("tel", phone);
         tv_getCode.setEnabled(false);
         beginCountDown();
-        RequestUtil.httpGet(this, Constant.URL_REGISTER_CODE, params, new NFHttpResponseListener<String>() {
+        RequestUtils.httpget(this, Constant.URL_REGISTER_CODE, params, new NFCallback() {
             @Override
-            public void onErrorResponse(LogError logError) {
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
                 ToastUtils.toastShow(RegisterActivity.this,R.string.network_error);
-
             }
 
             @Override
-            public void onResponse(String result) {
-                LogUtil.e("my","URL_REGISTER_CODE  result:" + result);
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
+                LogUtil.e("my","URL_REGISTER_CODE  result:" + response.body().string());
             }
         });
+
+
     }
 
     private void beginCountDown(){

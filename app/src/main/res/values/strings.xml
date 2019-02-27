@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">拇指计划软件</string>
+    <!--大拇指时时彩计划软件  拇指计划软件  大拇指计划  时时彩计划软件-->
+    <string name="app_name">大拇指计划</string>
 
     <string name="please_login">请登录</string>
     <string name="please_register">注册</string>
@@ -8,6 +9,7 @@
     <string name="please_enter_name">请输入用户名</string>
     <string name="request_code">获取验证码</string>
     <string name="login_text">登录</string>
+    <string name="register_text">注册</string>
     <string name="please_enter_code">请输入验证码</string>
     <string name="network_wrong_please_retry">网络状态不好，请重新尝试</string>
     <string name="network_error">网络错误</string>
