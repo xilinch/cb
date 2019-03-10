@@ -9,6 +9,8 @@
     <!-- 标题栏颜色 -->
     <color name="bottom_bar_text_focus">#f83c41</color>
     <color name="bottom_bar_text">#999999</color>
+    <color name="bottom_bar_text_checked">#d41e15</color>
+    <color name="bottom_bar_text_normal">#848484</color>
     <color name="login_text_color">#4d4d4d</color>
     <color name="c_gray_eeeeee">#eeeeee</color>
     <color name="c_gray_999999">#999999</color>
