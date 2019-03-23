@@ -1,5 +1,6 @@
 package com.shishic.cb;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioGroup;
@@ -50,7 +51,9 @@ public class MainActivity extends BaseActivity {
                         switchTab(2);
                         break;
                     case R.id.rb4:
-                        switchTab(3);
+//                        switchTab(3);
+                        Intent intent = new Intent(MainActivity.this,LostAnalyActivity.class);
+                        startActivity(intent);
                         break;
                     case R.id.rb5:
                         switchTab(4);

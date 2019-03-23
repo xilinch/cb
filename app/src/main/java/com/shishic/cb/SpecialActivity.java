@@ -77,8 +77,11 @@ public class SpecialActivity extends BaseActivity {
      */
     private void requestData(){
         HashMap<String,String> params = new HashMap<>();
-
-        params.put("userId",String.valueOf(Account.getAccount().getId()));
+        if(Account.getAccount() == null){
+            params.put("userId",String.valueOf("2"));
+        } else {
+            params.put("userId",String.valueOf(Account.getAccount().getId()));
+        }
         RequestUtil.httpPost(this, Constant.URL_EXPORT, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError error) {

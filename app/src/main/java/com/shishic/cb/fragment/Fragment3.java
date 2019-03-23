@@ -1,20 +1,13 @@
 package com.shishic.cb.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextSwitcher;
-import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
@@ -42,32 +35,13 @@ import java.util.List;
 
 public class Fragment3 extends BaseFragment {
 
-
-    private TextSwitcher textSwitcher;
-
     private List<ADTextBean> adTextBeans = new ArrayList<>();
 
     private RecyclerView recyclerView;
-    /**
-     * 显示标题
-     */
-    private static final int MSG_SHOW = 1;
-
-    /**
-     * 索引
-     */
-    private int index = 0;
-
-    /**
-     * 停止
-     */
-    private static final int MSG_STOP = 2;
 
     private View view;
 
     private FunAdapter funAdapter;
-
-    private ViewSwitcher.ViewFactory viewFactory;
 
     String[] title = new String[]{
             "遗漏统计",
@@ -124,36 +98,14 @@ public class Fragment3 extends BaseFragment {
             R.mipmap.icon_10
     };
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case MSG_SHOW:
-                    int length = adTextBeans.size();
-                    if (textSwitcher != null && adTextBeans != null && length > 0) {
-                        textSwitcher.setText(adTextBeans.get(index % length).getTitle());
-                        index++;
-                    }
-                    handler.sendEmptyMessageDelayed(MSG_SHOW, 4000);
-                    break;
-                case MSG_STOP:
-                    handler.removeMessages(MSG_SHOW);
 
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(view == null){
-            view = inflater.inflate(R.layout.fragment_main,container,false);
+            view = inflater.inflate(R.layout.fragment_main_all_fun,container,false);
         }
-        textSwitcher = view.findViewById(R.id.textSwitcher);
         initRecycleView();
         initSwitcher();
         requestNotice();
@@ -298,56 +250,15 @@ public class Fragment3 extends BaseFragment {
 
     private void initSwitcher(){
         adTextBeans.add(new ADTextBean("欢迎光临",""));
-        newMessage(true);
     }
 
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        newMessage(false);
     }
 
-    /**
-     * @param isScroll 是否自动滚动 数量大于1 true
-     */
-    private void newMessage(boolean isScroll) {
-        if (viewFactory == null) {
-            viewFactory = new ViewSwitcher.ViewFactory() {
-                @Override
-                public View makeView() {
-                    TextView textView = new TextView(getContext());
-                    textView.setSingleLine();
-                    textView.setTextSize(14);//字号
-                    textView.setTextColor(getResources().getColor(R.color.c_gray_666666));
-//                    textView.setEllipsize(TextUtils.TruncateAt.END);
-                    textView.setPadding(DensityUtils.dipTopx(getContext(),10),0,0,0);
-                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.gravity = Gravity.CENTER_VERTICAL;
-                    textView.setLayoutParams(params);
-                    textView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //TODO 屏蔽掉打开应用
-//                            Intent intent = new Intent(getContext(), H5Activity.class);
-//                            int length = adTextBeans.size();
-//                            intent.putExtra(ADTextBean.class.getSimpleName(),adTextBeans.get(index % length));
-//                            startActivity(intent);
-                        }
-                    });
-                    return textView;
-                }
-            };
-            textSwitcher.setFactory(viewFactory);
-        }
-        if (handler != null && textSwitcher != null) {
-            handler.removeMessages(MSG_SHOW);
-            if (isScroll) {
-                handler.sendEmptyMessage(MSG_SHOW);
-            }
-        }
 
-    }
 
     public void requestNotice(){
         RequestUtil.httpGet(getContext(), Constant.URL_NOTICE_LIST, new HashMap<String, String>(), new NFHttpResponseListener<String>() {

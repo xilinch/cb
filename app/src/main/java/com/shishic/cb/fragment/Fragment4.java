@@ -2,119 +2,209 @@ package com.shishic.cb.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextSwitcher;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
-import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.R;
-import com.shishic.cb.adapter.FunAdapter;
-import com.shishic.cb.bean.ADTextBean;
-import com.shishic.cb.bean.FunBean;
+import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.util.Constant;
-import com.shishic.cb.util.DensityUtils;
-import com.shishic.cb.util.HorizontalItemDecoration;
 import com.shishic.cb.util.LogUtil;
-import com.shishic.cb.util.SharepreferenceUtil;
-import com.shishic.cb.util.VerticaltemDecoration;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 public class Fragment4 extends BaseFragment {
 
 
-    private PieChart mLineChart;
+    private LineChart mLineChart;
+
+    private TextView tv_title;
+
+    private LinearLayout ll_back;
 
     private View view;
 
-    private List<PieEntry> entries;
+    private List<Entry> entries;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(view == null){
-            view = inflater.inflate(R.layout.fragment_lost_pie, container, false);
+            view = inflater.inflate(R.layout.fragment_2, container, false);
             mLineChart = view.findViewById(R.id.lineChart);
-
-            //设置数据
-            entries  = new ArrayList<>();
-            if(getActivity() instanceof LostAnalyActivity){
-                LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
-                List<Integer> list = lostAnalyActivity.getLostList();
-                for (int i = 0; i < 10; i++) {
-                    PieEntry pieData = new PieEntry(list.get(i), "" + i);
-                    entries.add(pieData);
-                }
-            }
-
-            PieDataSet lineDataSet = new PieDataSet(entries, "指标遗漏分析");
-
-            lineDataSet.setValueTextSize(9f);
-            List<Integer> colors = new ArrayList<>();
-            colors.add(Color.RED);
-            colors.add(Color.GREEN);
-            colors.add(Color.BLUE);
-            colors.add(Color.YELLOW);
-            colors.add(Color.MAGENTA);
-            colors.add(Color.DKGRAY);
-            colors.add(Color.CYAN);
-            colors.add(Color.LTGRAY);
-            colors.add(Color.MAGENTA);
-            colors.add(Color.GREEN);
-            lineDataSet.setColors(colors);
-            lineDataSet.setValueFormatter(new IValueFormatter() {
-                @Override
-                public String getFormattedValue(float v, Entry entry, int i, ViewPortHandler viewPortHandler) {
-                    BigDecimal bigDecimal = new BigDecimal(v);
-                    BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
-                    return setScale + "%";
-                }
-            });
-            //线模式为圆滑曲线（默认折线）
-            PieData data = new PieData(lineDataSet);
-            /**
-             * 是否使用百分比
-             */
-            mLineChart.setUsePercentValues(true);
-            //设置X轴动画
-            mLineChart.animateX(1800);
-            mLineChart.setData(data);
-            mLineChart.setDrawEntryLabels(true);              //设置pieChart是否只显示饼图上百分比不显示文字（true：下面属性才有效果）
-            mLineChart.setEntryLabelColor(Color.WHITE);       //设置pieChart图表文本字体颜色
-            mLineChart.setEntryLabelTextSize(10f);            //设置pieChart图表文本字体大小
-
+            tv_title = view.findViewById(R.id.tv_title);
+            ll_back = view.findViewById(R.id.ll_back);
         }
+        tv_title.setText("遗漏");
+        ll_back.setVisibility(View.GONE);
+        requestData();
         return view;
     }
 
+    private void requestData(){
+        HashMap<String,String> params = new HashMap<>();
+        params.put("pageNum",String.valueOf(1));
+        params.put("pageSize","20");
+        RequestUtil.httpGet(getContext(), Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError logError) {
+                LogUtil.e("my","URL_HISTORY logError");
+            }
+
+            @Override
+            public void onResponse(String response) {
+                LogUtil.e("my","URL_HISTORY response:" + response);
+                try{
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray listData = data.optJSONArray("list");
+                    boolean success = jsonObject.optBoolean("success");
+                    if(success && listData != null && listData.length() > 0 ){
+                        List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        //进行遗漏和热点分析
+                        analy(list);
+                        showData();
+                    }
+                } catch (Exception exception){
+                    exception.printStackTrace();
+
+                }
+            }
+        });
+    }
+
+    private List<Integer> lostList = new ArrayList<>();
+    private List<Integer> hotList = new ArrayList<>();
+
+    /**
+     * 数据分析
+     */
+    private void analy(List<HistoryBean> list){
+        //
+        for(int i = 0; i < 10; i++){
+            lostList.add(0);
+            hotList.add(0);
+        }
+        if(list != null){
+            for(int i = 0 ; i< list.size(); i++){
+                //分析遗漏和热点
+                LogUtil.e("my","list.get(i)" + list.get(i).toString());
+                for(int j =0 ; j < 10; j++){
+//                    LogUtil.e("my","j:" + j);
+                    if(list.get(i).getN1() == j) {
+                        //自增
+                        hotList.set(j,hotList.get(j) + 1);
+                    } else if(list.get(i).getN2() == j) {
+                        //自增
+                        hotList.set(j,hotList.get(j) + 1);
+
+                    } else if(list.get(i).getN3() == j) {
+                        //自增
+                        hotList.set(j,hotList.get(j) + 1);
+
+                    } else if(list.get(i).getN4() == j) {
+                        //自增
+                        hotList.set(j,hotList.get(j) + 1);
+
+                    } else if(list.get(i).getN5() == j) {
+                        //自增
+                        hotList.set(j,hotList.get(j) + 1);
+                    }
+
+                    if(list.get(i).getN1() != j
+                            && list.get(i).getN2() != j
+                            && list.get(i).getN3() != j
+                            && list.get(i).getN4() != j
+                            && list.get(i).getN5() != j){
+                        lostList.set(j,hotList.get(j) + 1);
+                    }
+                }
+            }
+        }
+    }
+
+
+    private void showData(){
+        //显示边界
+        mLineChart.setDrawBorders(true);
+        //设置数据
+        entries  = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            entries.add(new Entry(i, lostList.get(i)));
+        }
+        //一个LineDataSet就是一条线
+        LineDataSet lineDataSet = new LineDataSet(entries, "遗漏分析");
+        //设置曲线值的圆点是实心还是空心
+        lineDataSet.setDrawCircleHole(false);
+        //设置显示值的字体大小
+        lineDataSet.setValueTextSize(9f);
+        //线模式为圆滑曲线（默认折线）
+        lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+
+        LineData data = new LineData(lineDataSet);
+        mLineChart.setData(data);
+        XAxis xAxis = mLineChart.getXAxis();
+        //值：BOTTOM,BOTH_SIDED,BOTTOM_INSIDE,TOP,TOP_INSIDE
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        //设置X轴坐标之间的最小间隔（因为此图有缩放功能，X轴,Y轴可设置可缩放）
+        xAxis.setGranularity(1f);
+        //设置X轴的刻度数量
+        // 第二个参数表示是否平均分配 如果为true则按比例分为12个点、如果为false则适配X刻度的值来分配点，可能没有12个点
+        xAxis.setLabelCount(10, true);
+        //设置X轴的值（最小值、最大值、然后会根据设置的刻度数量自动分配刻度显示）
+        xAxis.setAxisMinimum(0f);
+        xAxis.setAxisMaximum(9f);
+        lineDataSet.setValueFormatter(new IValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
+                int IValue = (int) value;
+                return String.valueOf(IValue);
+            }
+        });
+        //Y轴
+        YAxis leftYAxis = mLineChart.getAxisLeft();
+        YAxis rightYAxis = mLineChart.getAxisRight();
+        leftYAxis.setAxisMinimum(0f);
+        leftYAxis.setAxisMaximum(20f);
+
+        rightYAxis.setAxisMinimum(0f);
+        rightYAxis.setAxisMaximum(20f);
+
+        leftYAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return (int) value + "";
+            }
+        });
+        rightYAxis.setEnabled(false); //右侧Y轴不显示
+        rightYAxis.setGranularity(1f);
+        rightYAxis.setLabelCount(11,false);
+        rightYAxis.setTextColor(Color.BLUE); //文字颜色
+        rightYAxis.setGridColor(Color.RED); //网格线颜色
+        rightYAxis.setAxisLineColor(Color.GREEN); //Y轴颜色
+    }
 }
