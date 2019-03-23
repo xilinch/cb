@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/register_bg"
     android:orientation="vertical">
 
     <include
@@ -20,7 +19,7 @@
 
         <RadioButton
             android:id="@+id/rbx_2"
-            style="@style/bottom_btn_style"
+            style="@style/tab_btn_style"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:checked="true"
@@ -28,7 +27,7 @@
 
         <RadioButton
             android:id="@+id/rbx_3"
-            style="@style/bottom_btn_style"
+            style="@style/tab_btn_style"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="三星走势" />

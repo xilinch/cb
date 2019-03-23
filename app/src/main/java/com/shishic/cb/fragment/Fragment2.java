@@ -149,14 +149,14 @@ public class Fragment2 extends BaseFragment {
                         ll_shi.setVisibility(View.VISIBLE);
                         ll_ge.setVisibility(View.VISIBLE);
                         indi1.setVisibility(View.VISIBLE);
-                        indi2.setVisibility(View.GONE);
+                        indi2.setVisibility(View.INVISIBLE);
 
                         break;
                     case R.id.rb_3:
                         ll_bai.setVisibility(View.VISIBLE);
                         ll_shi.setVisibility(View.VISIBLE);
                         ll_ge.setVisibility(View.VISIBLE);
-                        indi1.setVisibility(View.GONE);
+                        indi1.setVisibility(View.INVISIBLE);
                         indi2.setVisibility(View.VISIBLE);
                         break;
                 }
