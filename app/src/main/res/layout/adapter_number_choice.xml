@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <TextView
-        android:textColor="@color/white"
+        android:textColor="@color/c_gray_666666"
         android:id="@+id/tv_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:textSize="14sp" />
 
     <TextView
-        android:textColor="@color/white"
+        android:textColor="@color/c_gray_666666"
         android:id="@+id/tv_lost"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

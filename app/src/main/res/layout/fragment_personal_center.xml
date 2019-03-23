@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/person_bg"
     android:scrollbarSize="6dp"
     android:scrollbarThumbVertical="@drawable/shape_scroll_bar">
 
@@ -12,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -30,7 +27,7 @@
                     android:id="@+id/civ_personal_center_avatar"
                     android:layout_width="76dp"
                     android:layout_height="76dp"
-                    android:src="@mipmap/person_icon_default"
+                    android:src="@mipmap/avatar_default"
                     app:border_color="@color/c_gray_dddddd"
                     app:border_width="1px" />
 
@@ -41,7 +38,7 @@
                     android:layout_marginBottom="20dp"
                     android:paddingTop="10dp"
                     android:text="点击登录"
-                    android:textColor="@color/white"
+                    android:textColor="@color/c_gray_999999"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
@@ -64,23 +61,7 @@
                 android:id="@+id/iv_south_daily"
                 style="@style/personal_center_arrow" />
 
-            <ImageView
-                style="@style/personal_center_nfTag"
-                android:layout_toLeftOf="@id/iv_south_daily"
-                android:src="@mipmap/my_nfw_icon" />
         </RelativeLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:visibility="gone">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="20dp"
-                android:background="@color/c_gray_eeeeee" />
-        </FrameLayout>
 
         <RelativeLayout
             android:id="@+id/rl_bindphone"
@@ -101,41 +82,45 @@
                 android:src="@mipmap/my_nfzz_icon" />
         </RelativeLayout>
 
-        <FrameLayout
+        <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/white">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="20dp"
-                android:background="@color/c_gray_eeeeee" />
-        </FrameLayout>
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
 
         <RelativeLayout
             android:id="@+id/rl_sign"
             style="@style/personal_center_item">
-
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_sign"
+                android:src="@mipmap/me_ico_mine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
+                android:layout_toRightOf="@+id/iv_sign"
                 style="@style/personal_center_title"
                 android:text="签到" />
 
-            <ImageView
-                android:id="@+id/iv_south_net"
-                style="@style/personal_center_arrow" />
-
-            <ImageView
-                style="@style/personal_center_nfTag"
-                android:layout_toLeftOf="@id/iv_south_net"
-                android:src="@mipmap/my_nfw_icon" />
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
         <RelativeLayout
             android:id="@+id/rl_message"
             style="@style/personal_center_item">
-
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_msg"
+                android:src="@mipmap/me_ico_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
+                android:layout_toRightOf="@+id/iv_msg"
                 style="@style/personal_center_title"
                 android:text="系统消息" />
 
@@ -159,68 +144,81 @@
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
 
-        <FrameLayout
+        <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/white">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="20dp"
-                android:background="@color/c_gray_eeeeee" />
-        </FrameLayout>
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
 
         <RelativeLayout
             android:id="@+id/rl_feedback"
             style="@style/personal_center_item">
-
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_feedback"
+                android:src="@mipmap/me_ico_yijian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
+                android:layout_toRightOf="@+id/iv_feedback"
                 style="@style/personal_center_title"
                 android:text="意见反馈" />
 
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
         <RelativeLayout
             android:id="@+id/rl_cache"
             style="@style/personal_center_item">
-
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_cache"
+                android:src="@mipmap/me_ico_touzhu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
+                android:layout_toRightOf="@+id/iv_cache"
                 style="@style/personal_center_title"
                 android:text="清除缓存" />
 
-            <ImageView
-                android:id="@+id/iv_cache"
-                style="@style/personal_center_arrow" />
 
         </RelativeLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
         <RelativeLayout
             android:id="@+id/rl_notify"
             style="@style/personal_center_item">
-
+            <ImageView
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/iv_notify"
+                android:src="@mipmap/me_ico_mine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
+                android:layout_toRightOf="@+id/iv_notify"
                 style="@style/personal_center_title"
                 android:text="我的通知" />
 
             <ImageView
-                android:id="@+id/iv_notify"
+                android:id="@+id/iv_notify1"
                 style="@style/personal_center_arrow" />
 
         </RelativeLayout>
-
-        <FrameLayout
+        <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/white">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="20dp"
-                android:background="@color/c_gray_eeeeee" />
-        </FrameLayout>
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
 
         <RelativeLayout
             android:id="@+id/rl_online_service"
@@ -244,10 +242,13 @@
             <TextView
                 android:id="@+id/tv_logon_text"
                 style="@style/personal_center_title"
-                android:layout_width="153dp"
-                android:layout_height="43dp"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:gravity="center"
-                android:background="@mipmap/person_login"
+                android:textColor="@color/white"
+                android:background="@drawable/dd_shape_rec_red_44"
                 android:text="立即登录" />
 
         </RelativeLayout>

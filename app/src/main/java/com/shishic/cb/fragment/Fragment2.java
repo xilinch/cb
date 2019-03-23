@@ -1,37 +1,58 @@
-package com.shishic.cb;
+package com.shishic.cb.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.shishic.cb.NumberChoiceActivity;
+import com.shishic.cb.R;
+import com.shishic.cb.adapter.FunAdapter;
 import com.shishic.cb.adapter.NumberChoiceAdapter;
+import com.shishic.cb.bean.ADTextBean;
+import com.shishic.cb.bean.FunBean;
 import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.util.Constant;
+import com.shishic.cb.util.DensityUtils;
+import com.shishic.cb.util.HorizontalItemDecoration;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.ToastUtils;
+import com.shishic.cb.util.VerticaltemDecoration;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
-public class NumberChoiceActivity extends BaseActivity {
-
+public class Fragment2 extends BaseFragment {
     private TextView tv_title;
     private LinearLayout ll_back;
     private RecyclerView recyclerView;
@@ -67,51 +88,58 @@ public class NumberChoiceActivity extends BaseActivity {
     private ArrayList<String> result = new ArrayList<>();
     private List<HashMap<String,String>> resultLost = new ArrayList<>();
 
+    private View view;
 
+    @Nullable
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_number_choice);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(view == null){
+            view = inflater.inflate(R.layout.activity_number_choice,container,false);
+        }
         initView();
         initListener();
+
+        return view;
     }
+
+
     private void initView(){
-        tv_title = findViewById(R.id.tv_title);
-        ll_back = findViewById(R.id.ll_back);
-        indi1 = findViewById(R.id.indi1);
-        indi2 = findViewById(R.id.indi2);
+        tv_title = view.findViewById(R.id.tv_title);
+        ll_back = view.findViewById(R.id.ll_back);
+        indi1 = view.findViewById(R.id.indi1);
+        indi2 = view.findViewById(R.id.indi2);
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getActivity().finish();
             }
         });
-        tv_title.setText("号码直选工具");
-        recyclerView = findViewById(R.id.listRefreshLayout);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        tv_title.setText("号码直选");
+        recyclerView = view.findViewById(R.id.listRefreshLayout);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         List list = new ArrayList();
-        adapter = new NumberChoiceAdapter(list,this);
+        adapter = new NumberChoiceAdapter(list,getContext());
         recyclerView.setAdapter(adapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
 
         for(int i = 0; i < id_bai.length ; i++){
-            textViewBai.add((CheckBox) findViewById(id_bai[i]));
+            textViewBai.add((CheckBox) view.findViewById(id_bai[i]));
         }
         for(int i = 0; i < id_shi.length ; i++){
-            textViewShi.add((CheckBox) findViewById(id_shi[i]));
+            textViewShi.add((CheckBox) view.findViewById(id_shi[i]));
         }
         for(int i = 0; i < id_ge.length ; i++){
-            textViewGe.add((CheckBox) findViewById(id_ge[i]));
+            textViewGe.add((CheckBox) view.findViewById(id_ge[i]));
         }
 
-        btn_copy = findViewById(R.id.btn_copy);
-        btn_confirm = findViewById(R.id.btn_confirm);
-        ll_bai = findViewById(R.id.ll_bai);
-        ll_shi = findViewById(R.id.ll_shi);
-        ll_ge = findViewById(R.id.ll_ge);
-        tg_tab = findViewById(R.id.tg_tab);
-        rb_2 = findViewById(R.id.rb_2);
-        rb_3 = findViewById(R.id.rb_3);
+        btn_copy = view.findViewById(R.id.btn_copy);
+        btn_confirm = view.findViewById(R.id.btn_confirm);
+        ll_bai = view.findViewById(R.id.ll_bai);
+        ll_shi = view.findViewById(R.id.ll_shi);
+        ll_ge = view.findViewById(R.id.ll_ge);
+        tg_tab = view.findViewById(R.id.tg_tab);
+        rb_2 = view.findViewById(R.id.rb_2);
+        rb_3 = view.findViewById(R.id.rb_3);
         tg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -148,7 +176,7 @@ public class NumberChoiceActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //
-                ToastUtils.toastShow(NumberChoiceActivity.this,"已复制。");
+                ToastUtils.toastShow(getContext(),"已复制。");
             }
         });
     }
@@ -157,7 +185,7 @@ public class NumberChoiceActivity extends BaseActivity {
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                getActivity().finish();
             }
         });
     }
@@ -185,10 +213,10 @@ public class NumberChoiceActivity extends BaseActivity {
 
         if(rb_2.isChecked()){
             if(shi.size() <= 0){
-                ToastUtils.toastShow(this,"请选择十位");
+                ToastUtils.toastShow(getContext(),"请选择十位");
             }
             if(ge.size() <= 0){
-                ToastUtils.toastShow(this,"请选择个位");
+                ToastUtils.toastShow(getContext(),"请选择个位");
             }
             //计算出2所有的组合
             for(int i =0 ; i < shi.size() ;i++){
@@ -202,13 +230,13 @@ public class NumberChoiceActivity extends BaseActivity {
             }
         } else if(rb_3.isChecked()){
             if(bai.size() <= 0){
-                ToastUtils.toastShow(this,"请选择百位");
+                ToastUtils.toastShow(getContext(),"请选择百位");
             }
             if(shi.size() <= 0){
-                ToastUtils.toastShow(this,"请选择十位");
+                ToastUtils.toastShow(getContext(),"请选择十位");
             }
             if(ge.size() <= 0){
-                ToastUtils.toastShow(this,"请选择个位");
+                ToastUtils.toastShow(getContext(),"请选择个位");
             }
             //计算出3所有的组合
             for(int i =0 ; i < bai.size() ;i++){
@@ -235,7 +263,7 @@ public class NumberChoiceActivity extends BaseActivity {
         HashMap<String,String> params = new HashMap<>();
         params.put("pageNum",String.valueOf(1));
         params.put("pageSize","30");
-        RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
+        RequestUtil.httpGet(getContext(), Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
                 LogUtil.e("my","URL_HISTORY logError");

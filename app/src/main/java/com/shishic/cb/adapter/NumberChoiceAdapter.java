@@ -2,6 +2,7 @@ package com.shishic.cb.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -64,6 +65,14 @@ public class NumberChoiceAdapter extends RecyclerView.Adapter {
              } else {
                  funViewHolder.tv_lost.setText(funBean.get("lost"));
                  funViewHolder.tv_number.setText(funBean.get("number"));
+                 if(position % 2 == 1){
+                     //
+                     funViewHolder.ll_root.setBackgroundColor(Color.WHITE);
+                 } else {
+                     //
+                     funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#f6f6f6"));
+
+                 }
              }
 
 
@@ -74,12 +83,14 @@ public class NumberChoiceAdapter extends RecyclerView.Adapter {
     static class FunViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_number;
         public TextView tv_lost;
+        public LinearLayout ll_root;
 
 
         public FunViewHolder(View view){
             super(view);
             tv_number = view.findViewById(R.id.tv_number);
             tv_lost = view.findViewById(R.id.tv_lost);
+            ll_root = view.findViewById(R.id.ll_root);
 
         }
     }
