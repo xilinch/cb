@@ -1,8 +1,13 @@
 package com.shishic.cb.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +47,15 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
         HistoryBean funBean = getList().get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
-             String code = funBean.getN5() + "," + funBean.getN4() + "," + funBean.getN3() + "," + funBean.getN2() + "," + funBean.getN1();
-             funViewHolder.tv_opencode.setText("开奖号码：" + code);
-             funViewHolder.tv_expect.setText("开奖期数：" + funBean.getJournal());
+             String code = "【" +funBean.getN5() + "   " + funBean.getN4() + "   " + funBean.getN3() + "   " + funBean.getN2() + "   " + funBean.getN1() + "】";
+             String result = "开奖号码" + code;
+             SpannableString sb = new SpannableString(result);
+             sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "开奖号码".length(), result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+             sb.setSpan(new ForegroundColorSpan(Color.RED), "开奖号码".length(),result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+             funViewHolder.tv_opencode.setText(sb);
+             String journal = String.valueOf(funBean.getJournal());
+             funViewHolder.tv_expect.setText("开奖期数：" + journal.substring(journal.length()-3 ,journal.length()));
 //             funViewHolder.tv_opentime.setDescription("开奖时间：" + funBean.getOpentime());
          }
     }

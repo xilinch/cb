@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/register_bg"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include
         layout="@layout/include_view_title" />
 
     <RadioGroup
-        android:background="@color/white"
+        android:background="@color/c_gray_eeeeee"
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -19,26 +19,31 @@
             android:checked="true"
             style="@style/tab_btn_style"
             android:id="@+id/rb_5"
+            android:textSize="14sp"
             android:text="万位走势" />
 
         <RadioButton
             android:id="@+id/rb_4"
             style="@style/tab_btn_style"
+            android:textSize="14sp"
             android:text="千位走势" />
 
         <RadioButton
             style="@style/tab_btn_style"
             android:id="@+id/rb_3"
+            android:textSize="14sp"
             android:text="百位走势" />
 
         <RadioButton
             style="@style/tab_btn_style"
             android:id="@+id/rb_2"
+            android:textSize="14sp"
             android:text="十位走势" />
 
         <RadioButton
             style="@style/tab_btn_style"
             android:id="@+id/rb_1"
+            android:textSize="14sp"
             android:text="个位走势" />
 
     </RadioGroup>

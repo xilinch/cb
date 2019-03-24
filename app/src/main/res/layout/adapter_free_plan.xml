@@ -4,15 +4,15 @@
     android:layout_height="wrap_content">
     <TextView
         android:id="@+id/tv_jounal"
-        android:text="xxx-xxx"
+        android:text="xxx-xxx期 中"
         android:padding="10dp"
-        android:textColor="@color/white"
+        android:textColor="@color/c_gray_333333"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <TextView
-        android:textColor="@color/white"
+        android:textColor="@color/c_gray_666666"
         android:id="@+id/tv_content"
-        android:text="推荐号码【04568】 第068期 出46836(6) 中"
+        android:text="推荐号码【04568】 第068期 出46836(6)"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"

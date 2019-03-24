@@ -223,7 +223,7 @@ public class FreePlanActivity1 extends BaseActivity {
                             if(listBeans != null && listBeans.size() > 1){
                                 FreePlan.ListBean listBean = listBeans.get(0);
                                 FreePlan.ListBean listBean1 = listBeans.get(1);
-                                iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal());
+                                iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal() + "期");
                                 iv_forecast.setText("当前预测:" + listBean.getRecommendNumbers());
                                 tv_currenJounal.setText("当前期数:" + listBean.getCurrenJounal());
                                 tv_currenNumber.setText("当前开奖:" + listBean1.getLuckyNumbers());

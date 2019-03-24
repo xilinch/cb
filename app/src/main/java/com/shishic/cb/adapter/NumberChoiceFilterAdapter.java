@@ -96,7 +96,7 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
     private void calutCount(){
         if(tv_count != null){
             if(list != null){
-                tv_count.setText("剩余：" + list.size() + "注");
+                tv_count.setText("剩余：" + (list.size()- 1) + "注");
             } else {
                 tv_count.setText("剩余：" + 0 + "注");
             }

@@ -1,8 +1,14 @@
 package com.shishic.cb.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,7 +62,11 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
             PlanViewHolder holder = (PlanViewHolder) viewHolder;
             FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;
-            //推荐号码【04568】 第068期 出46836(6) 中
+            //xxx-xxx期 中
+
+            //推荐号码【04568】 第068期 出46836(6)
+
+
             String end = "";
             if(freePlan1.getRecommendStatus() == 0){
                 //等待中
@@ -70,10 +80,19 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             if(TextUtils.isEmpty(luckNum)){
                 luckNum = "     ";
             }
-            String showContent = "推荐号码【" + freePlan1.getRecommendNumbers() + "】 第" + freePlan1.getCurrenJounal() +
-                    "期出：" + luckNum + "  "+ end;
+            String showContent = "推荐号码【" + freePlan1.getRecommendNumbers() + "】 第" + freePlan1.getCurrenJounal() + "期出：" + luckNum;
+            SpannableString recomentSpan = new SpannableString(showContent);
+            recomentSpan.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "推荐号码【".length(), showContent.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            recomentSpan.setSpan(new ForegroundColorSpan(Color.RED),"推荐号码【".length(), showContent.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
             holder.tv_content.setText(showContent);
-            holder.tv_jounal.setText(freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal());
+            String str1 = freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal() + "期 ";
+            SpannableString jounal = new SpannableString(str1 + end);
+            jounal.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length(), jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            holder.tv_jounal.setText(jounal);
+
+
         } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
             FreePlan freePlan = (FreePlan)object;
             PlanTitleViewHolder holder = (PlanTitleViewHolder) viewHolder;

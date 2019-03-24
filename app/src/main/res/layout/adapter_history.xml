@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:text="开奖时间：2018-11-16 22:36:30" />
     <View
+        android:visibility="invisible"
         android:background="@color/c_gray_dddddd"
         android:layout_width="match_parent"
         android:layout_height="1sp"/>

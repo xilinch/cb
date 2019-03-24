@@ -2,6 +2,7 @@ package com.shishic.cb.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -76,6 +77,21 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_touzhuchengben.setText("投注成本");
                 funViewHolder.tv_zongbenjin.setText("总本金");
                 funViewHolder.tv_lirun.setText("利润");
+                funViewHolder.tv_danbeijiangjin.setTextColor(Color.WHITE);
+                funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_jiangjin.setTextColor(Color.WHITE);
+                funViewHolder.tv_jiangjin.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_qishibenjin.setTextColor(Color.WHITE);
+                funViewHolder.tv_qishibenjin.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_qishu.setTextColor(Color.WHITE);
+                funViewHolder.tv_qishu.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_touzhuchengben.setTextColor(Color.WHITE);
+                funViewHolder.tv_touzhuchengben.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_zongbenjin.setTextColor(Color.WHITE);
+                funViewHolder.tv_zongbenjin.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_lirun.setTextColor(Color.WHITE);
+                funViewHolder.tv_lirun.setBackgroundColor(Color.BLACK);
+
             } else {
                 //显示数值
                 funViewHolder.tv_danbeijiangjin.setText(String.valueOf(funBean.getDanbeijiangjin()));
@@ -85,6 +101,21 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_touzhuchengben.setText(String.valueOf(funBean.getTouzhuchengben()));
                 funViewHolder.tv_zongbenjin.setText(String.valueOf(funBean.getZongbenjin()));
                 funViewHolder.tv_lirun.setText(String.valueOf(funBean.getLirun()));
+
+                funViewHolder.tv_danbeijiangjin.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_jiangjin.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_jiangjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_qishibenjin.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_qishibenjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_qishu.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_qishu.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_touzhuchengben.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_touzhuchengben.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_zongbenjin.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_zongbenjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_lirun.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_lirun.setBackgroundColor(Color.WHITE);
             }
 
         }
