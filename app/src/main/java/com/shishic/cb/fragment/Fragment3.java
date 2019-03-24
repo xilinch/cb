@@ -47,7 +47,7 @@ public class Fragment3 extends BaseFragment {
             "遗漏统计",
             "专家计划",
             "免费计划",
-            "用户聊天室",
+//            "用户聊天室",
             "走势图",
             "历史开奖",
             "号码直选",
@@ -147,14 +147,14 @@ public class Fragment3 extends BaseFragment {
                     "createTime: 1542015680000,\n" +
                     "updateTime: 1544429914000\n" +
                     "},\n" +
-                    "{\n" +
-                    "id: 3,\n" +
-                    "functionCode: 3,\n" +
-                    "description: \"用户聊天室\",\n" +
-                    "valid: 1,\n" +
-                    "createTime: 1543324322000,\n" +
-                    "updateTime: 1543328210000\n" +
-                    "},\n" +
+//                    "{\n" +
+//                    "id: 3,\n" +
+//                    "functionCode: 3,\n" +
+//                    "description: \"用户聊天室\",\n" +
+//                    "valid: 1,\n" +
+//                    "createTime: 1543324322000,\n" +
+//                    "updateTime: 1543328210000\n" +
+//                    "},\n" +
                     "{\n" +
                     "id: 4,\n" +
                     "functionCode: 4,\n" +

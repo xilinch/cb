@@ -36,7 +36,7 @@
             android:id="@+id/rb2"
             style="@style/bottom_btn_style"
             android:drawableTop="@drawable/btn_create_selector"
-            android:text="生成" />
+            android:text="免费计划" />
         <RadioButton
             android:id="@+id/rb3"
             style="@style/bottom_btn_style"

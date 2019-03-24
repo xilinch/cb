@@ -3,15 +3,17 @@ package com.shishic.cb;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.RadioGroup;
 
 import com.shishic.cb.fragment.Fragment2;
+import com.shishic.cb.fragment.FreePlanFragment;
+import com.shishic.cb.fragment.NumberChoiceFragment;
 import com.shishic.cb.fragment.Fragment3;
 import com.shishic.cb.fragment.Fragment4;
-import com.shishic.cb.fragment.MainFragment;
-import com.shishic.cb.fragment.MainFragment1;
 import com.shishic.cb.fragment.MainFragment3;
 import com.shishic.cb.fragment.MyFragment;
+import com.shishic.cb.util.ToastUtils;
 
 public class MainActivity extends BaseActivity {
 
@@ -93,7 +95,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.show(fragment2);
             } else if(fragment2 == null){
                 fragment2 = new Fragment2();
-                fragmentTransaction.add(R.id.ll_content,fragment2);
+                fragmentTransaction.add(R.id.ll_content, fragment2);
             }
         } else if(index == 2){
             if(fragment3 != null){
@@ -118,8 +120,27 @@ public class MainActivity extends BaseActivity {
                 myFragment = new MyFragment();
                 fragmentTransaction.add(R.id.ll_content,myFragment);
             }
-
         }
         fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    private long lastClick;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            long currentTIme = System.currentTimeMillis();
+            if(currentTIme - lastClick < 300){
+                //
+                lastClick = currentTIme;
+                return super.onKeyDown(keyCode, event);
+            } else {
+                lastClick = currentTIme;
+                ToastUtils.toastShow(this,"再点击一次退出");
+                return true;
+            }
+        } else {
+            return super.onKeyDown(keyCode, event);
+        }
     }
 }

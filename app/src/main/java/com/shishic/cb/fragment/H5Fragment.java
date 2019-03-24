@@ -25,6 +25,8 @@ public class H5Fragment extends BaseFragment {
 
     private LinearLayout ll_content;
 
+    private LinearLayout ll_back;
+
     private NfWebView nfWebView;
 
 //    private ADTextBean adTextBean;
@@ -36,6 +38,7 @@ public class H5Fragment extends BaseFragment {
         if(view == null){
             view = inflater.inflate(R.layout.fragment_h5, container, false);
             ll_content = view.findViewById(R.id.ll_content);
+            ll_back = view.findViewById(R.id.ll_back);
             nfWebView = new NfWebView(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             ll_content.addView(nfWebView,layoutParams);
@@ -49,6 +52,13 @@ public class H5Fragment extends BaseFragment {
 
 
     private void initWebview(){
+        ll_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().finish();
+            }
+        });
+
         nfWebView.setWebChromeClient(new WebChromeClient(){
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
