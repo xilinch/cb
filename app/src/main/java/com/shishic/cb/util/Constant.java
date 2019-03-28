@@ -8,7 +8,10 @@ public class Constant {
     public static final String UMENG_KEY = "5c2c8311f1f55611c4000217";
 
     //拇指计划
-    public static final String UMENG_KEY_MUZHI = "5c2c8b54f1f556044500025e";
+    public static final String UMENG_KEY_MUZHI = "5c9ce22561f5643894000027";
+
+    //拇指计划软件
+    public static final String UMENG_KEY_MUZHIJIHUARUANJIAN = "5c9ce2d061f564446e000778";
 
     //登录接口
     public static final String URL_LOGIN = "http://112.74.97.238/public/userinfo/login";

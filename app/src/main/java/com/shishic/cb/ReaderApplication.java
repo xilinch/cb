@@ -27,7 +27,7 @@ public class ReaderApplication extends Application {
         applicationContext = (ReaderApplication)getApplicationContext();
         NFRequestUtil.getInstance().init(this);
         NFLog.DEBUG = true;
-        UMConfigure.init(this, Constant.UMENG_KEY,"umeng",UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.init(this, Constant.UMENG_KEY_MUZHI,"umeng",UMConfigure.DEVICE_TYPE_PHONE, null);
     }
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
