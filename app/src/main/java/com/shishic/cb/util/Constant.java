@@ -51,7 +51,7 @@ public class Constant {
     //方案计划列表
     public static final String URL_SCHEME_LIST = "http://112.74.97.238/public/scheme/list";
 
-    //方案详情
+    //方案详情  1表示重庆的  2表示腾讯的
     public static final String URL_SCHEME_CONFIG = "http://112.74.97.238/public/scheme/recommends";
 
     //功能列表

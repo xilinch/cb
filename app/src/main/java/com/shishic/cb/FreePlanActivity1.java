@@ -1,10 +1,8 @@
 package com.shishic.cb;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,13 +16,11 @@ import android.widget.TextView;
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
-import com.astuetz.PagerSlidingTabStrip;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.adapter.FreePlanAdapter;
 import com.shishic.cb.bean.FreePlan;
 import com.shishic.cb.bean.FreePlanTabBean;
-import com.shishic.cb.fragment.FreePlanFragment;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
 
@@ -32,6 +28,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,8 +51,9 @@ public class FreePlanActivity1 extends BaseActivity {
     private TextView iv_plan_name;
 
     private Spinner cp_type,plan;
+    private int type = 1;
 
-    private String[] typeStr = new String[]{"时时彩"};
+    private String[] typeStr = new String[]{"时时彩","腾讯分分彩"};
     private ArrayList<String> typeList = new ArrayList<>();
     private ArrayList<String> planList = new ArrayList<>();
 
@@ -103,6 +101,7 @@ public class FreePlanActivity1 extends BaseActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
         typeList.add("时时彩");
+        typeList.add("腾讯分分彩");
 
         typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
         planAdapter = new ArrayAdapter(this, R.layout.item_type,planList);
@@ -112,6 +111,8 @@ public class FreePlanActivity1 extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 LogUtil.e("my","cp_type onItemClick :" + typeList.get(position));
+                type = position + 1;
+                requestData();
             }
 
             @Override
@@ -150,6 +151,7 @@ public class FreePlanActivity1 extends BaseActivity {
 
     private void requestData(){
         HashMap<String,String> params = new HashMap<>();
+        params.put("type", String.valueOf(type));
         RequestUtil.httpGet(this, Constant.URL_SCHEME_LIST, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
@@ -182,6 +184,18 @@ public class FreePlanActivity1 extends BaseActivity {
         });
     }
 
+    private boolean isStart = false;
+    private Handler handler = new Handler();
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            if(list != null && plan != null){
+                FreePlanTabBean freePlanTabBean = list.get(plan.getSelectedItemPosition());
+                isStart = false;
+                requestPlanData(String.valueOf(freePlanTabBean.getId()));
+            }
+        }
+    };
 
     /**
      * 请求具体的计划数据
@@ -211,14 +225,6 @@ public class FreePlanActivity1 extends BaseActivity {
                             String name = freePlan.getPlanName();
                             List<FreePlan.ListBean> listBeans = freePlan.getList();
 
-                            //预测期号
-//                            private TextView iv_forecast_jounal;
-//                            //当前预测
-//                            private TextView iv_forecast;
-//                            //当前开奖
-//                            private TextView tv_currenNumber;
-//                            //当前期数
-//                            private TextView tv_currenJounal;
 
                             if(listBeans != null && listBeans.size() > 1){
                                 FreePlan.ListBean listBean = listBeans.get(0);
@@ -239,7 +245,26 @@ public class FreePlanActivity1 extends BaseActivity {
                 } catch (Exception exception){
                     exception.printStackTrace();
                 }  finally {
-
+                    if( !isFinishing() && !isDestroyed()){
+                        long currentSecond = System.currentTimeMillis() ;
+                        Date date = new Date();
+                        date.setTime(currentSecond);
+                        int seconds = date.getSeconds();
+                        LogUtil.e("my","date:" + date.toString() + " seconds:" + seconds);
+                        //秒
+                        int repeatTime = 10;
+                        if(type == 1){
+                            //距离整分钟多少秒，就刷一次
+                            repeatTime = 63 - seconds;
+                        } else {
+                            //距离05秒多长，就刷一次
+                            repeatTime = 67 - seconds;
+                        }
+                        if(!isStart){
+                            handler.postDelayed(runnable,repeatTime * 1000);
+                            isStart = true;
+                        }
+                    }
                 }
             }
         });
