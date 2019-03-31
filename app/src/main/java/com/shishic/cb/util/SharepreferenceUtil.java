@@ -14,6 +14,8 @@ public class SharepreferenceUtil {
     public static final String S_SHOW_HELP = "S_SHOW_HELP";
     public static final String S_FUN_LIST = "S_FUN_LIST";
     public static final String S_SESSIONID = "S_SESSIONID";
+    public static final String S_HTML = "S_HTML";
+    public static final String S_UPDATE = "S_UPDATE";
 
 
     /**

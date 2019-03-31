@@ -4,12 +4,13 @@ android {
     compileSdkVersion 26
     buildToolsVersion '27.0.3'
     defaultConfig {
-        //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft  com.muzhiplansoft.zx
-        applicationId "com.damuz.plan"
+        //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft  com.muzhiplansoft.zx  com.shengtaiquan.ssc
+        //com.chongqingshishicai.cqssc
+        applicationId "com.muzhiplansoft.zx"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.1.3"
     }
     buildTypes {
         release {
@@ -46,4 +47,9 @@ dependencies {
     compile  'com.umeng.umsdk:common:1.5.4'
 
     compile files('libs/alipaySdk-20180601.jar')
+
+
+    // LeanCloud 基础包
+    compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
+    compile ('cn.leancloud.android:avoscloud-statistics:v3.+')
 }
