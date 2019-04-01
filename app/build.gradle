@@ -52,5 +52,5 @@ dependencies {
     compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
     compile ('cn.leancloud.android:avoscloud-statistics:v3.+')
     //升级库
-    dependencies { compile 'com.xl.updatelib:updateLib:1.0.0' }
+    dependencies { compile 'com.xl.updatelib:updateLib:1.0.1' }
 }

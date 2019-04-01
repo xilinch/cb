@@ -20,4 +20,9 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <com.shishic.cb.view.NfProgressBar
+        android:visibility="gone"
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
 </LinearLayout>
