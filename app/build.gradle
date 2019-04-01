@@ -5,7 +5,7 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft  com.muzhiplansoft.zx  com.chongqingshishicai.cqssc
-        applicationId "com.chongqingshishicai.cqssc"
+        applicationId "com.ssc.zx"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 4
@@ -51,4 +51,6 @@ dependencies {
     // LeanCloud 基础包
     compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
     compile ('cn.leancloud.android:avoscloud-statistics:v3.+')
+    //升级库
+    dependencies { compile 'com.xl.updatelib:updateLib:1.0.0' }
 }

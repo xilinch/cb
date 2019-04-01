@@ -29,6 +29,8 @@ public class H5Fragment extends BaseFragment {
 
     private NfWebView nfWebView;
 
+    private boolean canback;
+
 //    private ADTextBean adTextBean;
     private String url;
 
@@ -43,6 +45,7 @@ public class H5Fragment extends BaseFragment {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             ll_content.addView(nfWebView,layoutParams);
             url = getArguments().getString("url", "");
+            canback = getArguments().getBoolean("canback");
             initWebview();
 
             nfWebView.loadUrl(url);
@@ -55,7 +58,13 @@ public class H5Fragment extends BaseFragment {
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().finish();
+                if(canback){
+                    if(nfWebView.canGoBack()){
+                        nfWebView.goBack();
+                    }
+                } else {
+                    getActivity().finish();
+                }
             }
         });
 
