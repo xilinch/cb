@@ -6,9 +6,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.widget.RadioGroup;
 
+import com.shishic.cb.bean.Account;
 import com.shishic.cb.fragment.Fragment2;
-import com.shishic.cb.fragment.FreePlanFragment;
-import com.shishic.cb.fragment.NumberChoiceFragment;
 import com.shishic.cb.fragment.Fragment3;
 import com.shishic.cb.fragment.Fragment4;
 import com.shishic.cb.fragment.MainFragment3;
@@ -91,12 +90,19 @@ public class MainActivity extends BaseActivity {
             }
 
         } else if(index == 1){
-            if(fragment2 != null){
-                fragmentTransaction.show(fragment2);
-            } else if(fragment2 == null){
-                fragment2 = new Fragment2();
-                fragmentTransaction.add(R.id.ll_content, fragment2);
+            Account account = Account.getAccount();
+            if(account != null){
+                if(fragment2 != null){
+                    fragmentTransaction.show(fragment2);
+                } else if(fragment2 == null){
+                    fragment2 = new Fragment2();
+                    fragmentTransaction.add(R.id.ll_content, fragment2);
+                }
+            } else {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
             }
+
         } else if(index == 2){
             if(fragment3 != null){
                 fragmentTransaction.show(fragment3);

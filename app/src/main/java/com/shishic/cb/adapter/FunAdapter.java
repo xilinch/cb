@@ -102,7 +102,11 @@ public class FunAdapter extends RecyclerView.Adapter {
                         } else if (funBean.getDescription().equals("免费计划")) {
                             //免费计划
 //                            intent.setClass(context, FreePlanActivity.class);
-                            intent.setClass(context, FreePlanActivity1.class);
+                            if(account != null && account.getId() > 0){
+                                intent.setClass(context, FreePlanActivity1.class);
+                            } else {
+                                intent.setClass(context,LoginActivity.class);
+                            }
                             context.startActivity(intent);
                         } else if (funBean.getDescription().equals("走势图")) {
                             //走势图
