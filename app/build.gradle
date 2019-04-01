@@ -46,4 +46,9 @@ dependencies {
     compile  'com.umeng.umsdk:common:1.5.4'
 
     compile files('libs/alipaySdk-20180601.jar')
+
+
+    // LeanCloud 基础包
+    compile ('cn.leancloud.android:avoscloud-sdk:v3.+')
+    compile ('cn.leancloud.android:avoscloud-statistics:v3.+')
 }
