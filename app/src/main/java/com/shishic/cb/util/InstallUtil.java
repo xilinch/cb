@@ -65,17 +65,20 @@ public class InstallUtil {
     private void startInstallO() {
         boolean isGranted = mAct.getPackageManager().canRequestPackageInstalls();
         LogUtil.e("my","startInstallO  isGranted:" + isGranted);
-        if (isGranted) startInstallN();//安装应用的逻辑(写自己的就可以)
-        else new AlertDialog.Builder(mAct)
-                .setCancelable(false)
-                .setTitle("安装应用需要打开未知来源权限，请去设置中开启权限")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface d, int w) {
-                        Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-                        mAct.startActivityForResult(intent, UNKNOWN_CODE);
-                    }
-                })
-                .show();
+        if (isGranted){
+            startInstallN();//安装应用的逻辑(写自己的就可以)
+        } else {
+            new AlertDialog.Builder(mAct)
+                    .setCancelable(false)
+                    .setTitle("安装应用需要打开未知来源权限，请去设置中开启权限")
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface d, int w) {
+                            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+                            mAct.startActivityForResult(intent, UNKNOWN_CODE);
+                        }
+                    }).create()
+                    .show();
+        }
     }
 }
 

@@ -6,7 +6,7 @@ import android.view.KeyEvent;
 
 import com.shishic.cb.fragment.H5Fragment;
 
-public class HmtlActivity extends BaseActivity {
+public class HtmlActivity extends BaseActivity {
 
     private H5Fragment h5Fragment;
 
@@ -23,7 +23,9 @@ public class HmtlActivity extends BaseActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
-
+            if(h5Fragment != null){
+                h5Fragment.goback();
+            }
             return true;
         }
         return super.onKeyDown(keyCode, event);

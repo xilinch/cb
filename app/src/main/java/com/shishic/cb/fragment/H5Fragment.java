@@ -95,5 +95,18 @@ public class H5Fragment extends BaseFragment {
         });
     }
 
+    /**
+     * 返回
+     */
+    public void goback(){
+        if(canback){
+            if(nfWebView.canGoBack()){
+                nfWebView.goBack();
+            }
+        } else {
+            getActivity().finish();
+        }
+    }
+
 
 }

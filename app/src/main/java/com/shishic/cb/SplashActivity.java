@@ -5,12 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -18,7 +15,6 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Toast;
 
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
@@ -27,8 +23,6 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.FindCallback;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.DownloadUtil;
 import com.shishic.cb.util.InstallUtil;
@@ -36,7 +30,6 @@ import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.view.NfProgressBar;
-import com.xl.updatelib.bean.UpgradeModel;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -137,13 +130,13 @@ public class SplashActivity extends BaseActivity {
                                     String url = serverData.optString("url");
                                     String des = serverData.optString("des");
                                     String type = serverData.optString("type");
-                                    if("1".equals(type)){
+                                    if("2".equals(type)){
                                         //如果是配置网页，则只进入网页
-                                        intent.setClass(SplashActivity.this, HmtlActivity.class);
+                                        intent.setClass(SplashActivity.this, HtmlActivity.class);
                                         intent.putExtra("url", url);
                                         intent.putExtra("canback", true);
-                                    } else if("2".equals(type)){
-                                        //升级
+                                    } else if("1".equals(type)){
+                                        //强制更新
                                         download(url);
                                         return;
                                     } else {
@@ -194,14 +187,17 @@ public class SplashActivity extends BaseActivity {
      */
     private void download(String url) {
         progressBar.setVisibility(View.VISIBLE);
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + "kuoke.apk";
-        LogUtil.e("my","filePath:" + filePath);
+        String name = getLastName(url);
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + name;
+//        LogUtil.e("my","filePath:" + filePath);
         mInstallUtil = new InstallUtil(this, filePath);
-        DownloadUtil.get().download(url, Environment.getExternalStorageDirectory().getAbsolutePath(), "kuoke.apk", new DownloadUtil.OnDownloadListener() {
+        DownloadUtil.get().download(url, Environment.getExternalStorageDirectory().getAbsolutePath(), name, new DownloadUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 //下载完成进行相关逻辑操作
                 openFile(file);
+
+
             }
 
             @Override
@@ -219,14 +215,20 @@ public class SplashActivity extends BaseActivity {
 
     private void openFile(final File file) {
         // TODO Auto-generated method stub
-        mInstallUtil.install();//再次执行安装流程，包含权限判等
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mInstallUtil.install();//再次执行安装流程，包含权限判等
+            }
+        });
+
     }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK && requestCode == InstallUtil.UNKNOWN_CODE) {
+        if (requestCode == InstallUtil.UNKNOWN_CODE) {
             mInstallUtil.install();//再次执行安装流程，包含权限判等
         }
     }
@@ -240,5 +242,19 @@ public class SplashActivity extends BaseActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    private String getLastName(String url){
+        String name = "";
+        if(!TextUtils.isEmpty(url)){
+            int index = url.lastIndexOf("/");
+            if(index > 0 && index < url.length()){
+                name = url.substring(index + 1);
+            }
+        }
+
+//        LogUtil.e("my","getLastName:" + name);
+        return name;
     }
 }

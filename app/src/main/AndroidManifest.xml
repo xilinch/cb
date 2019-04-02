@@ -118,7 +118,7 @@
         <activity android:name=".TestActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".HmtlActivity"
+        <activity android:name=".HtmlActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
