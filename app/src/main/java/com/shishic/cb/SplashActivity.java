@@ -15,6 +15,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
@@ -29,7 +30,6 @@ import com.shishic.cb.util.InstallUtil;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.ToastUtils;
-import com.shishic.cb.view.NfProgressBar;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -42,7 +42,10 @@ import static com.shishic.cb.util.SharepreferenceUtil.S_FILE;
 import static com.shishic.cb.util.SharepreferenceUtil.S_SHOW_HELP;
 
 public class SplashActivity extends BaseActivity {
-    private NfProgressBar progressBar;
+    /**
+     * 升级提示
+     */
+    private LinearLayout ll_update;
 
     private InstallUtil mInstallUtil;
 
@@ -53,7 +56,7 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        progressBar = findViewById(R.id.progressBar);
+        ll_update = findViewById(R.id.ll_update);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             int grantedResult = ContextCompat.checkSelfPermission(this, permissions[0]);
             if (grantedResult == PackageManager.PERMISSION_GRANTED) {
@@ -186,12 +189,12 @@ public class SplashActivity extends BaseActivity {
      * @param url
      */
     private void download(String url) {
-        progressBar.setVisibility(View.VISIBLE);
+        ll_update.setVisibility(View.VISIBLE);
         String name = getLastName(url);
-        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + name;
-//        LogUtil.e("my","filePath:" + filePath);
+        String filePath = getFilesDir().getAbsolutePath() + "/" + name;
+        LogUtil.e("my","filePath:" + filePath );
         mInstallUtil = new InstallUtil(this, filePath);
-        DownloadUtil.get().download(url, Environment.getExternalStorageDirectory().getAbsolutePath(), name, new DownloadUtil.OnDownloadListener() {
+        DownloadUtil.get().download(url, getFilesDir().getAbsolutePath(), name, new DownloadUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(File file) {
                 //下载完成进行相关逻辑操作
@@ -202,7 +205,7 @@ public class SplashActivity extends BaseActivity {
 
             @Override
             public void onDownloading(int progress) {
-//                LogUtil.e("my", "下载百分之" + progress + "%。。。。");
+                LogUtil.d("my", "下载百分之" + progress + "%。。。。");
             }
 
             @Override
@@ -221,6 +224,16 @@ public class SplashActivity extends BaseActivity {
                 mInstallUtil.install();//再次执行安装流程，包含权限判等
             }
         });
+        //卸载应用
+        if(ll_update != null){
+            ll_update.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mInstallUtil.normaluninstallSilent(getPackageName());
+                    LogUtil.e("my","uninstallSilent" );
+                }
+            },500);
+        }
 
     }
 
@@ -237,7 +250,7 @@ public class SplashActivity extends BaseActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             //返回键不可返回
-            if(progressBar.getVisibility() == View.VISIBLE){
+            if(ll_update.getVisibility() == View.VISIBLE){
                 return true;
             }
         }

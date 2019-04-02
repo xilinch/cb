@@ -20,9 +20,25 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <com.shishic.cb.view.NfProgressBar
-        android:visibility="gone"
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp" />
+    <LinearLayout
+        android:visibility="visible"
+        android:id="@+id/ll_update"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:indeterminate="true"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp" />
+        <TextView
+            android:id="@+id/tv_update_text"
+            android:gravity="center_vertical"
+            android:text="正在升级中...."
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </LinearLayout>

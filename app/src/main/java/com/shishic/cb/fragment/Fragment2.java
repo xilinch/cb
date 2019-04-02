@@ -105,7 +105,7 @@ public class Fragment2 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-        typeList.add("时时彩");
+        typeList.add("重庆时时彩");
         typeList.add("腾讯分分彩");
 
         typeAdapter = new ArrayAdapter(getContext(), R.layout.item_type,typeList);
@@ -200,6 +200,7 @@ public class Fragment2 extends Fragment {
     private void requestPlanData(String id){
         HashMap<String,String> params = new HashMap<>();
         params.put("schemeConfigId", id);
+        params.put("type", String.valueOf(type));
         RequestUtil.httpGet(getContext(), Constant.URL_SCHEME_CONFIG, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {

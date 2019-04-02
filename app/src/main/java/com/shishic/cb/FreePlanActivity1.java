@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -203,6 +204,7 @@ public class FreePlanActivity1 extends BaseActivity {
     private void requestPlanData(String id){
         HashMap<String,String> params = new HashMap<>();
         params.put("schemeConfigId", id);
+        params.put("type", String.valueOf(type));
         RequestUtil.httpGet(this, Constant.URL_SCHEME_CONFIG, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
@@ -232,7 +234,11 @@ public class FreePlanActivity1 extends BaseActivity {
                                 iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal() + "期");
                                 iv_forecast.setText("当前预测:" + listBean.getRecommendNumbers());
                                 tv_currenJounal.setText("当前期数:" + listBean.getCurrenJounal());
-                                tv_currenNumber.setText("当前开奖:" + listBean1.getLuckyNumbers());
+                                String luckyNumbers = listBean1.getLuckyNumbers();
+                                if(TextUtils.isEmpty(luckyNumbers)){
+                                    luckyNumbers = "--";
+                                }
+                                tv_currenNumber.setText("当前开奖:" + luckyNumbers);
                             }
                             iv_plan_name.setText("当前计划:" + name);
 
