@@ -57,17 +57,19 @@ public class SplashActivity extends BaseActivity {
         setContentView(R.layout.activity_splash);
 
         ll_update = findViewById(R.id.ll_update);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            int grantedResult = ContextCompat.checkSelfPermission(this, permissions[0]);
-            if (grantedResult == PackageManager.PERMISSION_GRANTED) {
-                //申请权限
-                init();
-            } else {
-                ActivityCompat.requestPermissions(this, permissions, 321);
-            }
-        } else {
-            init();
-        }
+
+        init();
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            int grantedResult = ContextCompat.checkSelfPermission(this, permissions[0]);
+//            if (grantedResult == PackageManager.PERMISSION_GRANTED) {
+//                //申请权限
+//                init();
+//            } else {
+//                ActivityCompat.requestPermissions(this, permissions, 321);
+//            }
+//        } else {
+//            init();
+//        }
 
     }
 
@@ -221,20 +223,20 @@ public class SplashActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mInstallUtil.install();//再次执行安装流程，包含权限判等
+                //卸载应用
+                mInstallUtil.normaluninstallSilent(getPackageName());
+                LogUtil.e("my","uninstallSilent" );
+                if(ll_update != null){
+                    ll_update.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            mInstallUtil.install();//再次执行安装流程，包含权限判等
+                        }
+                    },50);
+                }
+
             }
         });
-        //卸载应用
-        if(ll_update != null){
-            ll_update.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mInstallUtil.normaluninstallSilent(getPackageName());
-                    LogUtil.e("my","uninstallSilent" );
-                }
-            },500);
-        }
-
     }
 
 
