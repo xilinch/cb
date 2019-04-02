@@ -101,6 +101,7 @@ public class MainActivity extends BaseActivity {
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
+                ToastUtils.toastShow(MainActivity.this,"请登录后使用.");
             }
 
         } else if(index == 2){

@@ -20,6 +20,7 @@ import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.LostAnalyActivity;
+import com.shishic.cb.MainActivity;
 import com.shishic.cb.NumberChoiceActivity;
 import com.shishic.cb.NumberChoiceFilterActivity;
 import com.shishic.cb.R;
@@ -105,6 +106,7 @@ public class FunAdapter extends RecyclerView.Adapter {
                             if(account != null && account.getId() > 0){
                                 intent.setClass(context, FreePlanActivity1.class);
                             } else {
+                                ToastUtils.toastShow(context,"请登录后使用.");
                                 intent.setClass(context,LoginActivity.class);
                             }
                             context.startActivity(intent);
