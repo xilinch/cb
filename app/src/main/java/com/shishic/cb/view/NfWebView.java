@@ -29,20 +29,20 @@ public class NfWebView extends WebView {
 	private void initWebViewSettings() {
 		WebSettings webSetting = this.getSettings();
 		webSetting.setJavaScriptEnabled(true);
-//		webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
-//		webSetting.setSupportZoom(true);
+		webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
+		webSetting.setSupportZoom(true);
 		webSetting.setBuiltInZoomControls(true);
 		webSetting.setUseWideViewPort(true);
 		webSetting.setLoadWithOverviewMode(true);
-//		webSetting.setAppCacheEnabled(true);
-//		webSetting.setDatabaseEnabled(true);
+		webSetting.setAppCacheEnabled(true);
+		webSetting.setDatabaseEnabled(true);
 		webSetting.setDomStorageEnabled(true);
 		webSetting.setGeolocationEnabled(true);
 		webSetting.setPluginState(WebSettings.PluginState.ON);
 		webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
 		webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
-		webSetting.setSupportMultipleWindows(true);
+//		webSetting.setSupportMultipleWindows(true);
 		webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
 		webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
 		webSetting.setAllowFileAccess(true);

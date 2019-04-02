@@ -1,6 +1,7 @@
 package com.shishic.cb.fragment;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.shishic.cb.R;
 import com.shishic.cb.bean.ADTextBean;
@@ -24,6 +26,8 @@ public class H5Fragment extends BaseFragment {
     private View view;
 
     private LinearLayout ll_content;
+
+    private RelativeLayout rl_header;
 
     private LinearLayout ll_back;
 
@@ -40,12 +44,16 @@ public class H5Fragment extends BaseFragment {
         if(view == null){
             view = inflater.inflate(R.layout.fragment_h5, container, false);
             ll_content = view.findViewById(R.id.ll_content);
+            rl_header = view.findViewById(R.id.rl_header);
             ll_back = view.findViewById(R.id.ll_back);
             nfWebView = new NfWebView(getContext());
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
             ll_content.addView(nfWebView,layoutParams);
             url = getArguments().getString("url", "");
             canback = getArguments().getBoolean("canback");
+            if(canback){
+                rl_header.setVisibility(View.GONE);
+            }
             initWebview();
 
             nfWebView.loadUrl(url);
@@ -80,6 +88,30 @@ public class H5Fragment extends BaseFragment {
                 super.onReceivedTitle(view, title);
                 LogUtil.e("my","onReceivedTitle:" + title);
             }
+
+            @Override
+            public void onShowCustomView(View view, CustomViewCallback callback) {
+                super.onShowCustomView(view, callback);
+                LogUtil.e("my", "onShowCustomView ");
+            }
+
+            @Override
+            public void onHideCustomView() {
+                super.onHideCustomView();
+                LogUtil.e("my", "onHideCustomView ");
+            }
+
+            @Override
+            public boolean onCreateWindow(WebView view, boolean isDialog, boolean isUserGesture, Message resultMsg) {
+                LogUtil.e("my", "onCreateWindow ");
+                if (nfWebView == null) {
+                    nfWebView = new NfWebView(getActivity());
+                }
+                WebView.WebViewTransport transport = (WebView.WebViewTransport) resultMsg.obj;
+                transport.setWebView(nfWebView);
+                resultMsg.sendToTarget();
+                return true;
+            }
         });
 
         nfWebView.setWebViewClient(new WebViewClient(){
@@ -92,6 +124,7 @@ public class H5Fragment extends BaseFragment {
                 }
                 return true;
             }
+
         });
     }
 

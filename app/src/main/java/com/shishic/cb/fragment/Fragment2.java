@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -230,7 +231,11 @@ public class Fragment2 extends Fragment {
                                 iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal() + "期");
                                 iv_forecast.setText("当前预测:" + listBean.getRecommendNumbers());
                                 tv_currenJounal.setText("当前期数:" + listBean.getCurrenJounal());
-                                tv_currenNumber.setText("当前开奖:" + listBean1.getLuckyNumbers());
+                                String luckyNumbers = listBean1.getLuckyNumbers();
+                                if(TextUtils.isEmpty(luckyNumbers)){
+                                    luckyNumbers = "--";
+                                }
+                                tv_currenNumber.setText("当前开奖:" + luckyNumbers);
                             }
                             iv_plan_name.setText("当前计划:" + name);
 
@@ -258,10 +263,12 @@ public class Fragment2 extends Fragment {
                             //距离05秒多长，就刷一次
                             repeatTime = 67 - seconds;
                         }
-                        if(!isStart){
-                            handler.postDelayed(runnable,repeatTime * 1000);
-                            isStart = true;
+                        if(isStart && runnable != null){
+                            handler.removeCallbacks(runnable);
                         }
+                        handler.postDelayed(runnable,repeatTime * 1000);
+                        isStart = true;
+
                     }
                 }
             }
