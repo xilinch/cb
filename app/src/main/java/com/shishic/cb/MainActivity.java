@@ -28,6 +28,8 @@ public class MainActivity extends BaseActivity {
     //我的
     private MyFragment myFragment;
 
+    private int checkedIndex = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,19 +46,24 @@ public class MainActivity extends BaseActivity {
                 switch (i){
                     case R.id.rb1:
                         switchTab(0);
+                        checkedIndex = 0;
                         break;
                     case R.id.rb2:
+                        checkedIndex = 1;
                         switchTab(1);
                         break;
                     case R.id.rb3:
+                        checkedIndex = 2;
                         switchTab(2);
                         break;
                     case R.id.rb4:
+                        checkedIndex = 3;
 //                        switchTab(3);
                         Intent intent = new Intent(MainActivity.this,LostAnalyActivity.class);
                         startActivity(intent);
                         break;
                     case R.id.rb5:
+                        checkedIndex = 4;
                         switchTab(4);
                         break;
                 }
@@ -132,6 +139,16 @@ public class MainActivity extends BaseActivity {
     }
 
     private long lastClick;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Account account = Account.getAccount();
+        if(account != null && checkedIndex == 1){
+            //
+            findViewById(R.id.rb2).performClick();
+        }
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

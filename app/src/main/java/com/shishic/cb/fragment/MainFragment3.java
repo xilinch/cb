@@ -332,7 +332,7 @@ public class MainFragment3 extends BaseFragment {
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,DensityUtils.dipTopx(getContext(),120));
 //            params.width = DensityUtils.getScreenWidth(getContext());
 //            params.height = DensityUtils.dipTopx(getContext(),120);
-
+            container.removeView(imageViews.get(position % imageViews.size()));
             container.addView(imageViews.get(position % imageViews.size()), 0,params);
             return imageViews.get(position % imageViews.size());
         }
