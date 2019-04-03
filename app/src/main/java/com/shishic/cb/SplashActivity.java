@@ -165,7 +165,10 @@ public class SplashActivity extends BaseActivity {
                     }
                 }
             });
-            AVQuery<AVObject> avQuery1 = new AVQuery<>("c_config_html");
+            //c_config_html 自控
+
+            //config
+            AVQuery<AVObject> avQuery1 = new AVQuery<>("config");
             avQuery1.orderByDescending("createdAt");
             avQuery1.findInBackground(new FindCallback<AVObject>() {
                 @Override
