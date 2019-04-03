@@ -56,7 +56,7 @@ public class HelpActivity extends BaseActivity {
 //        view1.setImageResource(R.drawable.guide1);
 //        view2.setImageResource(R.drawable.guide2);
 //        view3.setImageResource(R.drawable.guide3);
-        view1.setImageResource(R.mipmap.guid);
+        view1.setImageResource(R.mipmap.splash_cqssc);
         //将view装入数组
         pageview = new ArrayList<View>();
         pageview.add(view1);

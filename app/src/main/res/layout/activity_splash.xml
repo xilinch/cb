@@ -1,15 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
     android:gravity="center"
-    android:background="@mipmap/person_bg"
+    android:background="@mipmap/splash_cqssc"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
     <ImageView
+        android:layout_marginLeft="30dp"
         android:layout_gravity="center"
         android:id="@+id/logo"
-        android:src="@mipmap/muzhi_plan"
+        android:src="@mipmap/ic_launcher_cqssc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
