@@ -8,9 +8,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
     <ImageView
-        android:layout_marginTop="150dp"
-        android:layout_gravity="center_horizontal"
-        android:src="@mipmap/muzhi_plan"
+        android:visibility="visible"
+        android:layout_marginLeft="30dp"
+        android:layout_gravity="center"
+        android:id="@+id/logo"
+        android:src="@mipmap/ic_launcher_cqssc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
