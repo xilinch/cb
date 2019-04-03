@@ -30,6 +30,7 @@ import com.shishic.cb.util.InstallUtil;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.ToastUtils;
+import com.shishic.cb.view.CustomProgressWithPercentView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,12 +52,15 @@ public class SplashActivity extends BaseActivity {
 
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
+    private CustomProgressWithPercentView percent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
         ll_update = findViewById(R.id.ll_update);
+        percent = findViewById(R.id.percent);
 
         init();
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -198,16 +202,34 @@ public class SplashActivity extends BaseActivity {
         mInstallUtil = new InstallUtil(this, filePath);
         DownloadUtil.get().download(url, getFilesDir().getAbsolutePath(), name, new DownloadUtil.OnDownloadListener() {
             @Override
-            public void onDownloadSuccess(File file) {
+            public void onDownloadSuccess(final File file) {
                 //下载完成进行相关逻辑操作
                 openFile(file);
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        percent.setProgress(100);
+                        percent.setEnabled(true);
+                        percent.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                openFile(file);
+                            }
+                        });
+                    }
+                });
 
             }
 
             @Override
-            public void onDownloading(int progress) {
+            public void onDownloading(final int progress) {
                 LogUtil.d("my", "下载百分之" + progress + "%。。。。");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        percent.setProgress(progress);
+                    }
+                });
             }
 
             @Override

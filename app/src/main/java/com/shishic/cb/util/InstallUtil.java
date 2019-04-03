@@ -75,8 +75,10 @@ public class InstallUtil {
         if (isGranted) {
             startInstallN();//安装应用的逻辑(写自己的就可以)
         } else {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
-            mAct.startActivityForResult(intent, UNKNOWN_CODE);
+            startInstallN();
+//            Uri packageURI = Uri.parse("package:" + mAct.getPackageName());
+//            Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,packageURI);
+//            mAct.startActivityForResult(intent, UNKNOWN_CODE);
 //            new AlertDialog.Builder(mAct)
 //                    .setCancelable(false)
 //                    .setTitle("安装应用需要打开未知来源权限，请去设置中开启权限")

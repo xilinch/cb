@@ -62,12 +62,17 @@ public class DownloadUtil {
                     long total = response.body().contentLength();
                     fos = new FileOutputStream(file);
                     long sum = 0;
+                    long lastUpdate = System.currentTimeMillis();
                     while ((len = is.read(buf)) != -1) {
                         fos.write(buf, 0, len);
                         sum += len;
-                        int progress = (int) (sum * 1.0f / total * 100);
-                        // 下载中更新进度条
-                        listener.onDownloading(progress);
+                        long currentTime = System.currentTimeMillis();
+                        if(currentTime - lastUpdate >= 400){
+                            int progress = (int) (sum * 1.0f / total * 100);
+                            // 下载中更新进度条
+                            listener.onDownloading(progress);
+                            lastUpdate = currentTime;
+                        }
                     }
                     fos.flush();
                     // 下载完成
