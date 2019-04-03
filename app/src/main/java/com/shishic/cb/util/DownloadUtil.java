@@ -54,6 +54,9 @@ public class DownloadUtil {
                     dir.mkdirs();
                 }
                 File file = new File(dir, destFileName);
+                if(file.exists()){
+                    file.delete();
+                }
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();

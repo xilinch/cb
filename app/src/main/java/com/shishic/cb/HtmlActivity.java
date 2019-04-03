@@ -1,7 +1,9 @@
 package com.shishic.cb;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import com.shishic.cb.fragment.H5Fragment;
@@ -30,5 +32,26 @@ public class HtmlActivity extends BaseActivity {
         }
         return super.onKeyDown(keyCode, event);
 
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            // 当前为横屏
+            Log.d("my", "ORIENTATION_LANDSCAPE=" + Configuration.ORIENTATION_LANDSCAPE);// 2
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // 当前为竖屏
+            Log.d("my", "ORIENTATION_PORTRAIT=" + Configuration.ORIENTATION_PORTRAIT);// 1
+        }
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if(h5Fragment != null && keyCode == KeyEvent.KEYCODE_BACK){
+            h5Fragment.onkeyUp(keyCode,event);
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
     }
 }

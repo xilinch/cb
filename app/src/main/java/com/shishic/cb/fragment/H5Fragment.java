@@ -1,25 +1,26 @@
 package com.shishic.cb.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.webkit.URLUtil;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.shishic.cb.R;
-import com.shishic.cb.bean.ADTextBean;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.view.NfWebView;
-
-import java.io.Serializable;
 
 public class H5Fragment extends BaseFragment {
 
@@ -92,6 +93,7 @@ public class H5Fragment extends BaseFragment {
             @Override
             public void onShowCustomView(View view, CustomViewCallback callback) {
                 super.onShowCustomView(view, callback);
+                showCustomView(view,callback);
                 LogUtil.e("my", "onShowCustomView ");
             }
 
@@ -99,6 +101,7 @@ public class H5Fragment extends BaseFragment {
             public void onHideCustomView() {
                 super.onHideCustomView();
                 LogUtil.e("my", "onHideCustomView ");
+                hideCustomView();
             }
 
             @Override
@@ -141,5 +144,82 @@ public class H5Fragment extends BaseFragment {
         }
     }
 
+
+    /** 视频全屏参数 */
+    protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+    private View customView;
+    private FrameLayout fullscreenContainer;
+    private WebChromeClient.CustomViewCallback customViewCallback;
+
+    /** 视频播放全屏 **/
+    private void showCustomView(View view, WebChromeClient.CustomViewCallback callback) {
+        // if a view already exists then immediately terminate the new one
+        if (customView != null) {
+            callback.onCustomViewHidden();
+            return;
+        }
+
+        getActivity().getWindow().getDecorView();
+
+        FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
+        fullscreenContainer = new FullscreenHolder(getActivity());
+        fullscreenContainer.addView(view, COVER_SCREEN_PARAMS);
+        decor.addView(fullscreenContainer, COVER_SCREEN_PARAMS);
+        customView = view;
+        setStatusBarVisibility(false);
+        customViewCallback = callback;
+    }
+
+    /** 隐藏视频全屏 */
+    private void hideCustomView() {
+        if (customView == null) {
+            return;
+        }
+
+        setStatusBarVisibility(true);
+        FrameLayout decor = (FrameLayout) getActivity().getWindow().getDecorView();
+        decor.removeView(fullscreenContainer);
+        fullscreenContainer = null;
+        customView = null;
+        customViewCallback.onCustomViewHidden();
+        nfWebView.setVisibility(View.VISIBLE);
+    }
+
+    /** 全屏容器界面 */
+    static class FullscreenHolder extends FrameLayout {
+
+        public FullscreenHolder(Context ctx) {
+            super(ctx);
+            setBackgroundColor(ctx.getResources().getColor(android.R.color.black));
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent evt) {
+            return true;
+        }
+    }
+
+    private void setStatusBarVisibility(boolean visible) {
+        int flag = visible ? 0 : WindowManager.LayoutParams.FLAG_FULLSCREEN;
+        getActivity().getWindow().setFlags(flag, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+
+    public boolean onkeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                /** 回退键 事件处理 优先级:视频播放全屏-网页回退-关闭页面 */
+                if (customView != null) {
+                    hideCustomView();
+                } else if (nfWebView.canGoBack()) {
+                    nfWebView.goBack();
+                } else {
+                    getActivity().finish();
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
 
 }
