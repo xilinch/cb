@@ -66,9 +66,9 @@ public class FunAdapter extends RecyclerView.Adapter {
             funViewHolder.tv_title.setText(funBean.getDescription());
             String url = funBean.getIcon();
             if(TextUtils.isEmpty(url)){
-                Glide.with(context).load(funBean.getIconSrcId()).placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_logo);
+                Glide.with(context).load(funBean.getIconSrcId()).placeholder(R.mipmap.zhanwei).into(funViewHolder.iv_logo);
             } else {
-                Glide.with(context).load(url).placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_logo);
+                Glide.with(context).load(url).placeholder(R.mipmap.zhanwei).into(funViewHolder.iv_logo);
             }
             funViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

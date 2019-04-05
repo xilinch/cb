@@ -33,7 +33,9 @@ public class ReaderApplication extends Application {
         //自控"kwVxvCkr3WY2oRueeQ33FP5f-gzGzoHsz", "pyazU6MweETYz5jacOwvfwEC"
 
         // 保定 "EScXYEDJECGIYfsifYYWtX8w-gzGzoHsz", "vqFPbMoSBypqAImaauqUdaAb"
-        AVOSCloud.initialize(this,"EScXYEDJECGIYfsifYYWtX8w-gzGzoHsz", "vqFPbMoSBypqAImaauqUdaAb");
+
+        // pk10 "p2HxRyJcAscfVindyhAGDlyp-gzGzoHsz", "xwVfjHMXbtzIyReqVUF4Dswt"
+        AVOSCloud.initialize(this,"p2HxRyJcAscfVindyhAGDlyp-gzGzoHsz", "xwVfjHMXbtzIyReqVUF4Dswt");
         AVOSCloud.setDebugLogEnabled(true);
         AVAnalytics.enableCrashReport(this, true);
     }

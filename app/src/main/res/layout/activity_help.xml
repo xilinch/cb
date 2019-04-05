@@ -8,11 +8,11 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
     <ImageView
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_marginLeft="30dp"
         android:layout_gravity="center"
         android:id="@+id/logo"
-        android:src="@mipmap/ic_launcher_cqssc"
+        android:src="@mipmap/ic_launcher_new1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button

@@ -10,7 +10,6 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/main_icon_bg"
         android:orientation="vertical">
 
         <com.shishic.cb.view.CustomRoundImageView
@@ -31,7 +30,7 @@
             android:lines="2"
             android:padding="10dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/c_gray_333333"
             android:textSize="16sp"
              />
 

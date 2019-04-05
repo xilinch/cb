@@ -98,6 +98,19 @@ public class Fragment3 extends BaseFragment {
             R.mipmap.icon_10
     };
 
+    int[] newIcon1 = new int[]{
+            R.mipmap.whole_ico_bt,
+            R.mipmap.whole_ico_esx,
+            R.mipmap.whole_ico_hmgl,
+            R.mipmap.whole_ico_hmzx,
+            R.mipmap.whole_ico_lskj,
+            R.mipmap.whole_ico_mfjh,
+            R.mipmap.whole_ico_thlt,
+            R.mipmap.whole_ico_yljh,
+            R.mipmap.whole_ico_zjjh,
+            R.mipmap.whole_ico_zst
+    };
+
 
 
     @Nullable
@@ -210,7 +223,7 @@ public class Fragment3 extends BaseFragment {
                 int functionCode = funBean.getFunctionCode();
                 if(functionCode < 9000 && funBean.getValid() == 1 && functionCode < newIcon.length){
                     //功能列表
-                    funBean.setIconSrcId(newIcon[functionCode]);
+                    funBean.setIconSrcId(newIcon1[functionCode]);
                 } else if(functionCode == 9999){
                     isTest = true;
                     iterator.remove();
