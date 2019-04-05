@@ -1,5 +1,7 @@
 package com.shishic.cb;
 
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
@@ -148,6 +150,13 @@ public class NumberChoiceActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //
+                if(adapter != null){
+                    String numbers = adapter.getChoiceNumber();
+                    // 11以后使用content.Clipboardmanager,之前使用text.ClipboardManager
+                    ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    // 将文本内容放到系统剪贴板里。
+                    cm.setText(numbers);
+                }
                 ToastUtils.toastShow(NumberChoiceActivity.this,"已复制。");
             }
         });
