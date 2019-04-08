@@ -5,8 +5,8 @@ android {
     buildToolsVersion '27.0.3'
     defaultConfig {
         //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft  com.muzhiplansoft.zx  com.chongqingshishicai.cqssc  com.wdjmaoyaxgp.wdj
-        //com.muzhi.pk10  com.muzhi.beijingsaiche  com.muzhi.bjscpk
-        applicationId "com.muzhi.bjscpk"
+        //com.muzhi.pk10  com.muzhi.beijingsaiche  com.muzhi.bjscpk com.muzhi.cqssc
+        applicationId "com.kaixin.wangzhuan"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 4
