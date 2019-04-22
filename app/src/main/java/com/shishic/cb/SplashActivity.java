@@ -130,29 +130,29 @@ public class SplashActivity extends BaseActivity {
                                 editor.commit();
                             }
                             //如果是配置网页，则只进入网页
-                            String config_html = sp.getString(SharepreferenceUtil.S_HTML, "");
-                            if (!TextUtils.isEmpty(config_html)) {
-                                JSONArray jsonArray1 = new JSONArray(config_html);
-                                if (jsonArray1 != null && jsonArray1.length() > 0) {
-                                    JSONObject jsonObject2 = jsonArray1.optJSONObject(0);
-                                    JSONObject serverData = jsonObject2.optJSONObject("serverData");
-                                    String url = serverData.optString("url");
-                                    String des = serverData.optString("des");
-                                    String type = serverData.optString("type");
-                                    if("2".equals(type)){
-                                        //如果是配置网页，则只进入网页
-                                        intent.setClass(SplashActivity.this, HtmlActivity.class);
-                                        intent.putExtra("url", url);
-                                        intent.putExtra("canback", true);
-                                    } else if("1".equals(type)){
-                                        //强制更新
-                                        download(url);
-                                        return;
-                                    } else {
-                                        //
-                                    }
-                                }
-                            }
+//                            String config_html = sp.getString(SharepreferenceUtil.S_HTML, "");
+//                            if (!TextUtils.isEmpty(config_html)) {
+//                                JSONArray jsonArray1 = new JSONArray(config_html);
+//                                if (jsonArray1 != null && jsonArray1.length() > 0) {
+//                                    JSONObject jsonObject2 = jsonArray1.optJSONObject(0);
+//                                    JSONObject serverData = jsonObject2.optJSONObject("serverData");
+//                                    String url = serverData.optString("url");
+//                                    String des = serverData.optString("des");
+//                                    String type = serverData.optString("type");
+//                                    if("2".equals(type)){
+//                                        //如果是配置网页，则只进入网页
+//                                        intent.setClass(SplashActivity.this, HtmlActivity.class);
+//                                        intent.putExtra("url", url);
+//                                        intent.putExtra("canback", true);
+//                                    } else if("1".equals(type)){
+//                                        //强制更新
+//                                        download(url);
+//                                        return;
+//                                    } else {
+//                                        //
+//                                    }
+//                                }
+//                            }
                             //没有其他配置的情况下，进入首页
                             startActivity(intent);
                             finish();
