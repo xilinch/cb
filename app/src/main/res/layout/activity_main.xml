@@ -32,24 +32,24 @@
             android:id="@+id/rb1"
             style="@style/bottom_btn_style"
             android:text="首页" />
-        <RadioButton
-            android:id="@+id/rb2"
-            style="@style/bottom_btn_style"
-            android:drawableTop="@drawable/btn_create_selector"
-            android:text="生成" />
-        <RadioButton
-            android:id="@+id/rb3"
-            style="@style/bottom_btn_style"
-            android:drawableTop="@drawable/btn_new_selector"
-            android:text="全部" />
-        <RadioButton
-            android:id="@+id/rb4"
-            style="@style/bottom_btn_style"
-            android:drawableTop="@drawable/btn_lost_selector"
-            android:text="遗漏" />
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb2"-->
+            <!--style="@style/bottom_btn_style"-->
+            <!--android:drawableTop="@drawable/btn_create_selector"-->
+            <!--android:text="生成" />-->
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb3"-->
+            <!--style="@style/bottom_btn_style"-->
+            <!--android:drawableTop="@drawable/btn_new_selector"-->
+            <!--android:text="全部" />-->
+        <!--<RadioButton-->
+            <!--android:id="@+id/rb4"-->
+            <!--style="@style/bottom_btn_style"-->
+            <!--android:drawableTop="@drawable/btn_lost_selector"-->
+            <!--android:text="遗漏" />-->
 
         <RadioButton
-            android:id="@+id/rb5"
+            android:id="@+id/rb2"
             style="@style/bottom_btn_style"
             android:drawableTop="@drawable/btn_my_selector"
             android:text="我的" />

@@ -10,7 +10,7 @@
     <ImageView
         android:layout_marginTop="150dp"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/muzhi_plan"
+        android:src="@mipmap/ic_launcher_new1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
