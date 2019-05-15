@@ -11,6 +11,7 @@ import com.shishic.cb.fragment.Fragment2;
 import com.shishic.cb.fragment.Fragment3;
 import com.shishic.cb.fragment.Fragment4;
 import com.shishic.cb.fragment.MainFragment3;
+import com.shishic.cb.fragment.MainFragment4;
 import com.shishic.cb.fragment.MyFragment;
 import com.shishic.cb.util.ToastUtils;
 
@@ -18,13 +19,9 @@ public class MainActivity extends BaseActivity {
 
     private RadioGroup rg;
     //首页
-    private MainFragment3 mainFragment;
-    //生成
+    private MainFragment4 mainFragment;
+    //免费计划
     private Fragment2 fragment2;
-    //全部
-    private Fragment3 fragment3;
-    //遗漏
-    private Fragment4 fragment4;
     //我的
     private MyFragment myFragment;
 
@@ -38,12 +35,12 @@ public class MainActivity extends BaseActivity {
         switchTab(0);
     }
 
-    private void initView(){
+    private void initView() {
         rg = findViewById(R.id.rg_tab);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i){
+                switch (i) {
                     case R.id.rb1:
                         switchTab(0);
                         checkedIndex = 0;
@@ -56,84 +53,54 @@ public class MainActivity extends BaseActivity {
                         checkedIndex = 2;
                         switchTab(2);
                         break;
-                    case R.id.rb4:
-                        checkedIndex = 3;
-//                        switchTab(3);
-                        Intent intent = new Intent(MainActivity.this,LostAnalyActivity.class);
-                        startActivity(intent);
-                        break;
-                    case R.id.rb5:
-                        checkedIndex = 4;
-                        switchTab(4);
-                        break;
                 }
             }
         });
     }
 
-    private void switchTab(int index){
+    private void switchTab(int index) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        if(mainFragment != null){
+        if (mainFragment != null) {
             fragmentTransaction.hide(mainFragment);
         }
-        if(myFragment != null){
+        if (myFragment != null) {
             fragmentTransaction.hide(myFragment);
         }
-        if(fragment2 != null){
+        if (fragment2 != null) {
             fragmentTransaction.hide(fragment2);
         }
-        if(fragment3 != null){
-            fragmentTransaction.hide(fragment3);
-        }
-        if(fragment4 != null){
-            fragmentTransaction.hide(fragment4);
-        }
-        if(index == 0){
-            if(mainFragment != null){
+
+        if (index == 0) {
+            if (mainFragment != null) {
                 fragmentTransaction.show(mainFragment);
-            } else if(mainFragment == null){
-                mainFragment = new MainFragment3();
-                fragmentTransaction.add(R.id.ll_content,mainFragment);
+            } else if (mainFragment == null) {
+                mainFragment = new MainFragment4();
+                fragmentTransaction.add(R.id.ll_content, mainFragment);
             }
 
-        } else if(index == 1){
+        } else if (index == 1) {
             Account account = Account.getAccount();
-            if(account != null){
-                if(fragment2 != null){
+            if (account != null) {
+                if (fragment2 != null) {
                     fragmentTransaction.show(fragment2);
-                } else if(fragment2 == null){
+                } else if (fragment2 == null) {
                     fragment2 = new Fragment2();
                     fragmentTransaction.add(R.id.ll_content, fragment2);
                 }
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
-                ToastUtils.toastShow(MainActivity.this,"请登录后使用.");
+                ToastUtils.toastShow(MainActivity.this, "请登录后使用.");
             }
 
-        } else if(index == 2){
-            if(fragment3 != null){
-                fragmentTransaction.show(fragment3);
-            } else if(fragment3 == null){
-                fragment3 = new Fragment3();
-                fragmentTransaction.add(R.id.ll_content,fragment3);
-            }
-
-        } else if(index == 3){
-            if(fragment4 != null){
-                fragmentTransaction.show(fragment4);
-            } else if(fragment4 == null){
-                fragment4 = new Fragment4();
-                fragmentTransaction.add(R.id.ll_content,fragment4);
-            }
-
-        } else if(index == 4){
-            if(myFragment != null){
+        } else if (index == 2) {
+            if (myFragment != null) {
                 fragmentTransaction.show(myFragment);
-            } else if(myFragment == null){
+            } else if (myFragment == null) {
                 myFragment = new MyFragment();
-                fragmentTransaction.add(R.id.ll_content,myFragment);
+                fragmentTransaction.add(R.id.ll_content, myFragment);
             }
+
         }
         fragmentTransaction.commitAllowingStateLoss();
     }
@@ -144,7 +111,7 @@ public class MainActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         Account account = Account.getAccount();
-        if(account != null && checkedIndex == 1){
+        if (account != null && checkedIndex == 1) {
             //
             findViewById(R.id.rb2).performClick();
         }
@@ -152,15 +119,15 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             long currentTIme = System.currentTimeMillis();
-            if(currentTIme - lastClick < 300){
+            if (currentTIme - lastClick < 300) {
                 //
                 lastClick = currentTIme;
                 return super.onKeyDown(keyCode, event);
             } else {
                 lastClick = currentTIme;
-                ToastUtils.toastShow(this,"再点击一次退出");
+                ToastUtils.toastShow(this, "再点击一次退出");
                 return true;
             }
         } else {

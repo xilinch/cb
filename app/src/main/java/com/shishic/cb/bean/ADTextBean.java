@@ -8,8 +8,11 @@ public class ADTextBean extends BaseBean {
 
     private String title;
 
-
+    //跳转地址
     private String url;
+
+    //图片地址
+    private String content;
 
 
     public ADTextBean(String title, String url) {
@@ -41,12 +44,21 @@ public class ADTextBean extends BaseBean {
         this.url = url;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public String toString() {
         return "ADTextBean{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", url='" + url + '\'' +
+                ", content='" + content + '\'' +
                 '}';
     }
 }

@@ -10,7 +10,7 @@
         <item name="android:textSize">12sp</item>
         <item name="android:button">@null</item>
         <item name="android:paddingTop">4dp</item>
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/c_gray_f7f7f7</item>
         <item name="android:paddingBottom">4dp</item>
 
     </style>

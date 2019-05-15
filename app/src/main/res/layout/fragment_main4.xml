@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/c_red_f64e45"
+        android:gravity="center"
+        android:text="首页"
+        android:textColor="@color/white"
+        android:visibility="visible" />
+
+    <TextSwitcher
+        android:id="@+id/textSwitcher"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/bg_live_trailer"
+        android:inAnimation="@anim/push_bottom_in_300"
+        android:outAnimation="@anim/push_top_out_300"
+        android:visibility="gone" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:background="@color/c_gray_eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="2dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:background="@color/c_red_f64e45" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="公告"
+            android:textColor="@color/c_red_f64e45"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:id="@+id/tv_ad"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:ellipsize="end"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true" />
+
+    </LinearLayout>
+    <View
+        android:background="@color/c_gray_eeeeee"
+        android:layout_width="match_parent"
+        android:layout_height="1sp"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_1"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/tab1"
+            android:text="幸运走势"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_2"
+            android:drawableTop="@mipmap/tab2"
+            android:drawablePadding="5dp"
+            android:text="落码走势"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_3"
+            android:drawableTop="@mipmap/tab3"
+            android:drawablePadding="5dp"
+            android:text="遗漏统计"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_4"
+            android:drawableTop="@mipmap/tab4"
+            android:drawablePadding="5dp"
+            android:text="号码直选"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_5"
+            android:drawablePadding="5dp"
+            android:drawableTop="@mipmap/tab1"
+            android:text="倍投回报"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_6"
+            android:drawableTop="@mipmap/tab2"
+            android:drawablePadding="5dp"
+            android:text="号码过滤"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_7"
+            android:drawableTop="@mipmap/tab3"
+            android:drawablePadding="5dp"
+            android:text="历史开奖"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+        <TextView
+            android:id="@+id/tv_8"
+            android:drawableTop="@mipmap/tab4"
+            android:drawablePadding="5dp"
+            android:text="专家计划"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_weight="1.0"
+            android:layout_width="wrap_content"
+            android:layout_height="1sp"/>
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
+        android:scrollbars="none" />
+
+
+</LinearLayout>

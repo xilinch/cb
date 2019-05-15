@@ -263,6 +263,9 @@ public class Fragment2 extends Fragment {
                             //距离05秒多长，就刷一次
                             repeatTime = 67 - seconds;
                         }
+                        if(repeatTime > 30){
+                            repeatTime = 30;
+                        }
                         if(isStart && runnable != null){
                             handler.removeCallbacks(runnable);
                         }
