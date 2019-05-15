@@ -6,7 +6,7 @@ android {
     defaultConfig {
         //com.ssc.zx, com.muzhi.zx muzhi  muzhiplansoft  com.muzhiplansoft.zx  com.chongqingshishicai.cqssc  com.wdjmaoyaxgp.wdj
         //com.muzhi.pk10  com.muzhi.beijingsaiche  com.muzhi.bjscpk com.muzhi.cqssc  com.stqssc.sscjh
-        applicationId "com.stqssc.sscjh"
+        applicationId "com.chongqingshishicai.cqssc"
         minSdkVersion 17
         targetSdkVersion 26
         versionCode 6

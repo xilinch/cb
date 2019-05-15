@@ -13,14 +13,6 @@
         android:textColor="@color/white"
         android:visibility="visible" />
 
-    <TextSwitcher
-        android:id="@+id/textSwitcher"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/bg_live_trailer"
-        android:inAnimation="@anim/push_bottom_in_300"
-        android:outAnimation="@anim/push_top_out_300"
-        android:visibility="gone" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewPager"
@@ -31,6 +23,7 @@
     </android.support.v4.view.ViewPager>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
@@ -50,8 +43,19 @@
             android:text="公告"
             android:textColor="@color/c_red_f64e45"
             android:textSize="18sp" />
+        <TextSwitcher
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"
+            android:id="@+id/textSwitcher"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:inAnimation="@anim/push_bottom_in_300"
+            android:outAnimation="@anim/push_top_out_300"
+            android:visibility="visible" />
 
         <TextView
+            android:visibility="gone"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:id="@+id/tv_ad"

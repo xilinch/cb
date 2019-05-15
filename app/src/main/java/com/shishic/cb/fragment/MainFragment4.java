@@ -154,11 +154,14 @@ public class MainFragment4 extends BaseFragment {
             switch (msg.what) {
                 case MSG_SHOW:
                     int length = adTextBeans.size();
+                    String text = "";
                     if (textSwitcher != null && adTextBeans != null && length > 0) {
-                        textSwitcher.setText(adTextBeans.get(index % length).getTitle());
+                        text = adTextBeans.get(index % length).getTitle();
+                        textSwitcher.setText(text);
                         index++;
                     }
-                    handler.sendEmptyMessageDelayed(MSG_SHOW, 4000);
+                    LogUtil.e("my","MSG_SHOW " + text);
+                    handler.sendEmptyMessageDelayed(MSG_SHOW, 1000);
                     break;
                 case MSG_STOP:
                     handler.removeMessages(MSG_SHOW);
@@ -322,7 +325,7 @@ public class MainFragment4 extends BaseFragment {
                     textView.setTextColor(getResources().getColor(R.color.c_gray_666666));
 //                    textView.setEllipsize(TextUtils.TruncateAt.END);
                     textView.setPadding(DensityUtils.dipTopx(getContext(),10),0,0,0);
-                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                     params.gravity = Gravity.CENTER_VERTICAL;
                     textView.setLayoutParams(params);
                     textView.setOnClickListener(new View.OnClickListener() {
@@ -366,6 +369,7 @@ public class MainFragment4 extends BaseFragment {
                     if(jsonArray != null && jsonArray.length() > 0){
                         adTextBeans = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<ADTextBean>>(){}.getType());
                     }
+                    newMessage(true);
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {
@@ -388,7 +392,14 @@ public class MainFragment4 extends BaseFragment {
 //            params.height = DensityUtils.dipTopx(getContext(),120);
             container.removeView(imageViews.get(position % imageViews.size()));
             container.addView(imageViews.get(position % imageViews.size()), 0,params);
-            return imageViews.get(position % imageViews.size());
+            ImageView imageView = imageViews.get(position % imageViews.size());
+            if(adTextBeans != null && adTextBeans.size() > 0){
+                int setAd = position % (adTextBeans.size());
+                ADTextBean adTextBean = adTextBeans.get(setAd);
+                Glide.with(getContext()).load(adTextBean.getContent()).centerCrop().placeholder(R.mipmap.banner1).into(imageView);
+            }
+
+            return imageView;
         }
 
         @Override

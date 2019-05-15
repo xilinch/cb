@@ -9,6 +9,8 @@ public class Constant {
 
     //拇指计划
     public static final String UMENG_KEY_MUZHI = "5c9ce22561f5643894000027";
+    //重庆时时彩
+    public static final String UMENG_KEY_CHONGQINGSHISHICAI = "5c9cf44c20365782f0000a78";
 
     //拇指计划软件
     public static final String UMENG_KEY_MUZHIJIHUARUANJIAN = "5c9ce2d061f564446e000778";

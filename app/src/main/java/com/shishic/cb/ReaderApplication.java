@@ -29,7 +29,7 @@ public class ReaderApplication extends Application {
         applicationContext = (ReaderApplication)getApplicationContext();
         NFRequestUtil.getInstance().init(this);
         NFLog.DEBUG = true;
-        UMConfigure.init(this, Constant.UMENG_KEY_MUZHI,"umeng",UMConfigure.DEVICE_TYPE_PHONE, null);
+        UMConfigure.init(this, Constant.UMENG_KEY_CHONGQINGSHISHICAI,"umeng",UMConfigure.DEVICE_TYPE_PHONE, null);
         //自控"kwVxvCkr3WY2oRueeQ33FP5f-gzGzoHsz", "pyazU6MweETYz5jacOwvfwEC"
 
         // 保定 "EScXYEDJECGIYfsifYYWtX8w-gzGzoHsz", "vqFPbMoSBypqAImaauqUdaAb"
