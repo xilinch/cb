@@ -30,8 +30,10 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:id="@+id/tv_contact"
-        android:text="联系方式"
-        android:textColor="@color/white"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:text="点击购买，可见联系方式"
+        android:textColor="@color/c_red_f64e45"
         android:paddingBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

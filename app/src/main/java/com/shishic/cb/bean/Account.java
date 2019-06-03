@@ -21,6 +21,8 @@ public class Account extends BaseBean {
 
     private int score;
 
+    private int coins;
+
     public int getId() {
         return id;
     }
@@ -69,6 +71,14 @@ public class Account extends BaseBean {
         this.score = score;
     }
 
+    public int getCoins() {
+        return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
+    }
+
     public Account(int id, String userName, String icon, String phone, String sex, int score) {
         this.id = id;
         this.userName = userName;
@@ -98,6 +108,7 @@ public class Account extends BaseBean {
                 ", phone='" + phone + '\'' +
                 ", sex='" + sex + '\'' +
                 ", score='" + score + '\'' +
+                ", coins='" + coins + '\'' +
                 '}';
     }
 
