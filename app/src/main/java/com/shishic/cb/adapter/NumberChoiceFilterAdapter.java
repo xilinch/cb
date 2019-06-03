@@ -107,15 +107,14 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
      * 计算一下
      */
     public String getChoiceNumber(){
-        StringBuilder choiceNumber = new StringBuilder("[");
+        StringBuilder choiceNumber = new StringBuilder();
         if(list != null && list.size() > 1){
             for(int i = 0 ; i < list.size(); i++){
                HashMap<String,String> data = list.get(i);
-                choiceNumber.append(data.get("number")).append(",");
+                choiceNumber.append(data.get("number")).append(" ");
             }
 
         }
-        choiceNumber.append("]");
         return choiceNumber.toString();
     }
 

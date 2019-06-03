@@ -34,7 +34,7 @@ public class ReaderApplication extends Application {
 
         // 保定 "EScXYEDJECGIYfsifYYWtX8w-gzGzoHsz", "vqFPbMoSBypqAImaauqUdaAb"
 
-        // pk10 "p2HxRyJcAscfVindyhAGDlyp-gzGzoHsz", "xwVfjHMXbtzIyReqVUF4Dswt"
+        // pk10 "p2HxRyJcAscfVindyhAGDlyp-gzGzoHsz", "xwVfjHMXbtzIyReqVUF4Dswt"    leantest500@163.com  升级
         AVOSCloud.initialize(this,"p2HxRyJcAscfVindyhAGDlyp-gzGzoHsz", "xwVfjHMXbtzIyReqVUF4Dswt");
         AVOSCloud.setDebugLogEnabled(true);
         AVAnalytics.enableCrashReport(this, true);
