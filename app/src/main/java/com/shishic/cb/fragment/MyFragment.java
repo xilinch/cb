@@ -310,6 +310,7 @@ public class MyFragment extends BaseFragment{
                 dismissSign();
                 try {
                     String result = response.body().string();
+                    LogUtil.e("my","URL_SCORE result:" + result );
                     JSONObject jsonObject = new JSONObject(result);
                     String msg = jsonObject.optString("msg");
                     ToastUtils.toastShow(getActivity(),msg);

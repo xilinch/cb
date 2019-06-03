@@ -69,6 +69,9 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
             FunViewHolder funViewHolder = (FunViewHolder) holder;
             int type = funBean.getType();
             if(type == 1){
+
+                //投入注数/投入期数/起始倍数/单注奖金
+
                 //显示标题
                 funViewHolder.tv_danbeijiangjin.setText("单倍奖金");
                 funViewHolder.tv_jiangjin.setText("奖金");

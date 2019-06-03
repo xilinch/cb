@@ -21,7 +21,7 @@ import java.util.List;
 public class DoubleToolActivity extends BaseActivity {
     private TextView tv_title;
     private LinearLayout ll_back;
-    private EditText et_capital,et_double;
+    private EditText et_capital,et_double,et_qishu;
     private Button btn_confirm;
 
     private RecyclerView recyclerView;
@@ -42,6 +42,7 @@ public class DoubleToolActivity extends BaseActivity {
         btn_confirm = findViewById(R.id.btn_confirm);
         et_capital = findViewById(R.id.et_capital);
         et_double = findViewById(R.id.et_double);
+        et_qishu = findViewById(R.id.et_qishu);
         recyclerView = findViewById(R.id.recyclerView);
         tv_title.setText("倍投工具");
         List list = new ArrayList();
@@ -72,11 +73,16 @@ public class DoubleToolActivity extends BaseActivity {
                     ToastUtils.toastShow(DoubleToolActivity.this,"请设置起始本金");
                     return;
                 }
+                String qishu = et_qishu.getText().toString();
+                int qishu_int = 20;
+                if(!TextUtils.isEmpty(qishu)){
+                    qishu_int = Integer.valueOf(qishu);
+                }
 
                 List<DoubleBean> list = new ArrayList<>();
                 //按照这些设置好的计算20期
                 double zongtouzhujin = 0;
-                for(int i = 0;i< 20; i++){
+                for(int i = 0;i< qishu_int; i++){
                     double touzhujin = 0;
                     DoubleBean bean = new DoubleBean();
                     //单倍奖金固定

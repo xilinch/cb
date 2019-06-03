@@ -63,6 +63,31 @@
             android:text="1000"
             android:textColor="@color/c_gray_666666" />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="24dp"
+            android:text="投入期数"
+            android:textColor="@color/c_gray_333333" />
+
+        <EditText
+            android:id="@+id/et_qishu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="请输入期数"
+            android:maxLength="3"
+            android:text="20"
+            android:numeric="integer"
+            android:paddingLeft="10dp"
+            android:textColor="@color/c_gray_666666" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btn_confirm"
