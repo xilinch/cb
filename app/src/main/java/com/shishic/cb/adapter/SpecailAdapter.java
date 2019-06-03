@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.android.network.NFHttpResponseListener;
 import com.android.network.RequestUtil;
 import com.android.nfRequest.LogError;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.IntroduceActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.SpecialActivity;
@@ -21,12 +23,19 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.NFCallback;
+import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class SpecailAdapter extends RecyclerView.Adapter {
 
@@ -137,24 +146,34 @@ public class SpecailAdapter extends RecyclerView.Adapter {
             params.put("userId",String.valueOf(Account.getAccount().getId()));
         }
         params.put("eId",String.valueOf(funBean.getId()));
-        RequestUtil.httpPost(context, Constant.URL_EXPORT_BUY, params, new NFHttpResponseListener<String>() {
+
+        RequestUtils.httpget(context, Constant.URL_EXPORT_BUY, params, new NFCallback() {
             @Override
-            public void onErrorResponse(LogError error) {
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
                 ToastUtils.toastShow(context, R.string.network_error);
             }
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
                 try {
-                    LogUtil.e("my","URL_EXPORT response:" + response);
-                    JSONObject jsonObject = new JSONObject(response);
-                    String msg = jsonObject.optString("msg");
+                    String result = response.body().string();
+                    LogUtil.e("my","URL_EXPORT response:" + response + " result:" + result);
+                    JSONObject jsonObject = new JSONObject(result);
+                    final String msg = jsonObject.optString("msg");
                     boolean success = jsonObject.optBoolean("success");
-                    Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
                     //刷新列表
                     if(context instanceof SpecialActivity){
-                        SpecialActivity spe = (SpecialActivity)context;
-                        spe.requestData();
+                        final SpecialActivity spe = (SpecialActivity)context;
+                        spe.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+                                spe.requestData();
+                            }
+                        });
+
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();

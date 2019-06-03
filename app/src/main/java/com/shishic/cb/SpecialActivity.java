@@ -19,14 +19,22 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.NFCallback;
+import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Response;
+
+import static com.shishic.cb.util.Constant.URL_SCORE;
 
 /**
  * 专家计划
@@ -45,7 +53,8 @@ public class SpecialActivity extends BaseActivity {
         initListener();
         requestData();
     }
-    private void initView(){
+
+    private void initView() {
         tv_title = findViewById(R.id.tv_title);
         ll_back = findViewById(R.id.ll_back);
         ll_back.setOnClickListener(new View.OnClickListener() {
@@ -58,12 +67,12 @@ public class SpecialActivity extends BaseActivity {
         recyclerView = findViewById(R.id.listRefreshLayout);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         List list = new ArrayList();
-        adapter = new SpecailAdapter(list,this);
+        adapter = new SpecailAdapter(list, this);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
     }
 
-    private void initListener(){
+    private void initListener() {
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,41 +84,80 @@ public class SpecialActivity extends BaseActivity {
     /**
      * 请求新数据
      */
-    public void requestData(){
-        HashMap<String,String> params = new HashMap<>();
-        if(Account.getAccount() == null){
+    public void requestData() {
+        HashMap<String, String> params = new HashMap<>();
+        if (Account.getAccount() == null) {
+            params.put("userId",String.valueOf(0));
         } else {
-            params.put("userId",String.valueOf(Account.getAccount().getId()));
+            params.put("userId", String.valueOf(Account.getAccount().getId()));
         }
-        RequestUtil.httpPost(this, Constant.URL_EXPORT, params, new NFHttpResponseListener<String>() {
+
+        RequestUtils.httpget(this, Constant.URL_EXPORT, params, new NFCallback() {
             @Override
-            public void onErrorResponse(LogError error) {
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
                 ToastUtils.toastShow(SpecialActivity.this, R.string.network_error);
             }
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
                 try {
-                    LogUtil.e("my","URL_EXPORT response:" + response);
-                    JSONObject jsonObject = new JSONObject(response);
+                    String result = response.body().string();
+                    LogUtil.e("my", "URL_EXPORT response:" + response + "  result:" + result);
+                    JSONObject jsonObject = new JSONObject(result);
                     String msg = jsonObject.optString("msg");
                     boolean success = jsonObject.optBoolean("success");
-                    if(success){
+                    if (success) {
                         JSONArray data = jsonObject.optJSONArray("data");
-                        if(data != null && data.length() > 0){
-                            List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>(){}.getType());
-                            adapter.updateData(list);
+                        if (data != null && data.length() > 0) {
+                            final List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>() {
+                            }.getType());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    adapter.updateData(list);
+                                }
+                            });
                         }
-//                        ToastUtils.toastShow(SpecialActivity.this,"没有更多数据了");
                     }
-
-                } catch (Exception exception){
+                } catch (Exception exception) {
                     exception.printStackTrace();
                 } finally {
 
                 }
             }
         });
+
+//        RequestUtil.httpPost(this, Constant.URL_EXPORT, params, new NFHttpResponseListener<String>() {
+//            @Override
+//            public void onErrorResponse(LogError error) {
+//                ToastUtils.toastShow(SpecialActivity.this, R.string.network_error);
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    LogUtil.e("my","URL_EXPORT response:" + response);
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    String msg = jsonObject.optString("msg");
+//                    boolean success = jsonObject.optBoolean("success");
+//                    if(success){
+//                        JSONArray data = jsonObject.optJSONArray("data");
+//                        if(data != null && data.length() > 0){
+//                            List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>(){}.getType());
+//                            adapter.updateData(list);
+//                        }
+////                        ToastUtils.toastShow(SpecialActivity.this,"没有更多数据了");
+//                    }
+//
+//                } catch (Exception exception){
+//                    exception.printStackTrace();
+//                } finally {
+//
+//                }
+//            }
+//        });
     }
 
 }
