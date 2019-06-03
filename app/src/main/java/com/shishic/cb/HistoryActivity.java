@@ -4,7 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.network.NFHttpResponseListener;
@@ -37,6 +40,9 @@ public class HistoryActivity extends BaseActivity {
     private LinearLayout ll_back;
     private ListRefreshLayout recyclerView;
     private HistoryAdapter adapter;
+    private Spinner spinner;
+    private ArrayList<String> planList = new ArrayList<>();
+    private ArrayAdapter planAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -81,22 +87,48 @@ public class HistoryActivity extends BaseActivity {
             public void refresh(int requestPage) {
                 if(recyclerView != null ){
                     recyclerView.currentPage = 1;
-                    requestData();
+                    requestData(spinner.getSelectedItemPosition());
                 }
             }
 
             @Override
             public void load(int requestPage) {
-                requestData();
+                requestData(spinner.getSelectedItemPosition());
             }
         });
-        requestData();
+        planList.add("重庆时时彩");
+        planList.add("腾讯分分彩");
+        planList.add("黑龙江时时彩");
+        planList.add("天津时时彩");
+        planList.add("新疆时时彩");
+        planList.add("北京赛车");
+        planList.add("福彩3D");
+        planList.add("排列3");
+        planList.add("幸运飞艇");
+        planAdapter = new ArrayAdapter(this, R.layout.item_type,planList);
+        spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(planAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //选择了
+                requestData(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner.setSelection(0);
+//        requestData();
     }
 
-    private void requestData(){
+    private void requestData(int type){
         HashMap<String,String> params = new HashMap<>();
         params.put("pageNum",String.valueOf(recyclerView.currentPage));
         params.put("pageSize","20");
+        params.put("type",String.valueOf(type+1));
         RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {

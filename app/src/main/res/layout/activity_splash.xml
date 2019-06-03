@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/parent"
     android:gravity="center"
-    android:background="@mipmap/person_bg"
+    android:background="@mipmap/splash_cqssc"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >

@@ -47,8 +47,8 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
         HistoryBean funBean = getList().get(position);
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
-             String code = "【" +funBean.getN5() + "   " + funBean.getN4() + "   " + funBean.getN3() + "   " + funBean.getN2() + "   " + funBean.getN1() + "】";
-             String result = "开奖号码" + code;
+//             String code = "【" +funBean.getN5() + "   " + funBean.getN4() + "   " + funBean.getN3() + "   " + funBean.getN2() + "   " + funBean.getN1() + "】";
+             String result = "开奖号码" + funBean.getOpenCode();
              SpannableString sb = new SpannableString(result);
              sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "开奖号码".length(), result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
              sb.setSpan(new ForegroundColorSpan(Color.RED), "开奖号码".length(),result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);

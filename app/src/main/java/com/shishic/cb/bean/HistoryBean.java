@@ -1,8 +1,5 @@
 package com.shishic.cb.bean;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class HistoryBean extends BaseBean {
 
 
@@ -17,6 +14,9 @@ public class HistoryBean extends BaseBean {
      * valid : 1
      * createTime : 1542441666000
      * updateTime : 1542442201000
+     * openCode:"5,6,0,8,2",
+     * "luckyType": 1,
+     * "expect": "20190602044"
      */
 
     private int id;
@@ -29,7 +29,14 @@ public class HistoryBean extends BaseBean {
     private int valid;
     private long createTime;
     private long updateTime;
-    //连出
+    //彩种
+    private int luckyType;
+    //开奖号码
+    private String openCode;
+    //预测期号
+    private String expect;
+
+    //连出，根据号码的数量计算
     private int[][] lc = {{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
             {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
@@ -135,6 +142,30 @@ public class HistoryBean extends BaseBean {
         this.type = type;
     }
 
+    public int getLuckyType() {
+        return luckyType;
+    }
+
+    public void setLuckyType(int luckyType) {
+        this.luckyType = luckyType;
+    }
+
+    public String getOpenCode() {
+        return openCode;
+    }
+
+    public void setOpenCode(String openCode) {
+        this.openCode = openCode;
+    }
+
+    public String getExpect() {
+        return expect;
+    }
+
+    public void setExpect(String expect) {
+        this.expect = expect;
+    }
+
     @Override
     public String toString() {
         return "HistoryBean{" +
@@ -145,9 +176,17 @@ public class HistoryBean extends BaseBean {
                 ", n4=" + n4 +
                 ", n5=" + n5 +
                 ", lc=" + erWeiInt2String(lc) +
+                ", luckyType" + luckyType +
+                ", openCode" + openCode +
+                ", expect" + expect +
                 '}';
     }
 
+    /**
+     * 计算
+     * @param numbs
+     * @return
+     */
     private String erWeiInt2String(int[][] numbs){
         String string = "";
         if(numbs != null){

@@ -63,17 +63,17 @@ public class SplashActivity extends BaseActivity {
         percent = findViewById(R.id.percent);
 
         init();
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            int grantedResult = ContextCompat.checkSelfPermission(this, permissions[0]);
-//            if (grantedResult == PackageManager.PERMISSION_GRANTED) {
-//                //申请权限
-//                init();
-//            } else {
-//                ActivityCompat.requestPermissions(this, permissions, 321);
-//            }
-//        } else {
-//            init();
-//        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int grantedResult = ContextCompat.checkSelfPermission(this, permissions[0]);
+            if (grantedResult == PackageManager.PERMISSION_GRANTED) {
+                //申请权限
+                init();
+            } else {
+                ActivityCompat.requestPermissions(this, permissions, 321);
+            }
+        } else {
+            init();
+        }
 
     }
 

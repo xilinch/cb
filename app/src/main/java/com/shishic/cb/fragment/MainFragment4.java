@@ -160,7 +160,7 @@ public class MainFragment4 extends BaseFragment {
                         textSwitcher.setText(text);
                         index++;
                     }
-                    LogUtil.e("my","MSG_SHOW " + text);
+//                    LogUtil.e("my","MSG_SHOW " + text);
                     handler.sendEmptyMessageDelayed(MSG_SHOW, 1000);
                     break;
                 case MSG_STOP:
