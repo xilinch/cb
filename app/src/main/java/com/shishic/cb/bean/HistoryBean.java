@@ -168,17 +168,39 @@ public class HistoryBean extends BaseBean {
         this.expect = expect;
     }
 
+    /**
+     * 转化以后进行计算
+     */
     public void translate2Old(){
+        if(TextUtils.isEmpty(openCode)){
+            return;
+        }
         if(luckyType <= 5 ){
             //时时彩类
             if(!TextUtils.isEmpty(openCode)){
                 String[] opencodeStrs = openCode.split(",");
+                int size = opencodeStrs.length;
+                if(size >= 5){
+                    //分析前5
+                    n5 = Integer.valueOf(opencodeStrs[0]);
+                    n4 = Integer.valueOf(opencodeStrs[1]);
+                    n3 = Integer.valueOf(opencodeStrs[2]);
+                    n2 = Integer.valueOf(opencodeStrs[3]);
+                    n1 = Integer.valueOf(opencodeStrs[4]);
+                }
 
             }
 
         } else if(luckyType > 5 && luckyType <= 9){
             //只出3位的
-
+            String[] opencodeStrs = openCode.split(",");
+            int size = opencodeStrs.length;
+            if(size >= 3){
+                //分析前3
+                n3 = Integer.valueOf(opencodeStrs[0]);
+                n2 = Integer.valueOf(opencodeStrs[1]);
+                n1 = Integer.valueOf(opencodeStrs[2]);
+            }
         }
     }
 

@@ -23,7 +23,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
     private Context context;
     //2 后2, 3 后3,默认后2
     private int type = 2;
-    private int[] numBasic = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private int[] numBasic = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9,10};
 
     public TrendNumber23Adapter(List<HistoryBean> list, Context context) {
         super(list);
@@ -105,6 +105,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
         public TextView tv_7;
         public TextView tv_8;
         public TextView tv_9;
+        public TextView tv_10;
         public TextView tv_0_num;
         public TextView tv_1_num;
         public TextView tv_2_num;
@@ -115,6 +116,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
         public TextView tv_7_num;
         public TextView tv_8_num;
         public TextView tv_9_num;
+        public TextView tv_10_num;
         public ArrayList<TextView> textViews = new ArrayList<>();
         public ArrayList<TextView> textViewsNum = new ArrayList<>();
 
@@ -131,6 +133,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
             tv_7 = view.findViewById(R.id.tv_7);
             tv_8 = view.findViewById(R.id.tv_8);
             tv_9 = view.findViewById(R.id.tv_9);
+            tv_10 = view.findViewById(R.id.tv_10);
             tv_0_num = view.findViewById(R.id.tv_0_num);
             tv_1_num = view.findViewById(R.id.tv_1_num);
             tv_2_num = view.findViewById(R.id.tv_2_num);
@@ -141,6 +144,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
             tv_7_num = view.findViewById(R.id.tv_7_num);
             tv_8_num = view.findViewById(R.id.tv_8_num);
             tv_9_num = view.findViewById(R.id.tv_9_num);
+            tv_10_num = view.findViewById(R.id.tv_10_num);
             textViews.add(tv_0);
             textViews.add(tv_1);
             textViews.add(tv_2);
@@ -151,6 +155,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
             textViews.add(tv_7);
             textViews.add(tv_8);
             textViews.add(tv_9);
+            textViews.add(tv_10);
             textViewsNum.add(tv_0_num);
             textViewsNum.add(tv_1_num);
             textViewsNum.add(tv_2_num);
@@ -161,6 +166,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
             textViewsNum.add(tv_7_num);
             textViewsNum.add(tv_8_num);
             textViewsNum.add(tv_9_num);
+            textViewsNum.add(tv_10_num);
         }
     }
 

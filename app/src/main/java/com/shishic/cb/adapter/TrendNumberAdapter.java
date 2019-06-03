@@ -23,8 +23,8 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
 
     private Context context;
     private int type = 0;//从个位到万位
-    private int[] nums = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] numBasic = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    private int[] nums = new int[]{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1};
+    private int[] numBasic = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     public TrendNumberAdapter(List<HistoryBean> list, Context context) {
         super(list);
@@ -135,6 +135,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
         public TextView tv_7;
         public TextView tv_8;
         public TextView tv_9;
+        public TextView tv_10;
         public ArrayList<TextView> textViews = new ArrayList<>();
 
         public FunViewHolder(View view) {
@@ -150,6 +151,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
             tv_7 = view.findViewById(R.id.tv_7);
             tv_8 = view.findViewById(R.id.tv_8);
             tv_9 = view.findViewById(R.id.tv_9);
+            tv_10 = view.findViewById(R.id.tv_10);
             textViews.add(tv_0);
             textViews.add(tv_1);
             textViews.add(tv_2);
@@ -160,6 +162,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
             textViews.add(tv_7);
             textViews.add(tv_8);
             textViews.add(tv_9);
+            textViews.add(tv_10);
         }
     }
 

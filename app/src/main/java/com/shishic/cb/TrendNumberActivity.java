@@ -148,7 +148,8 @@ public class TrendNumberActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //选择了以后切换彩种
-
+                recyclerView.currentPage = 1;
+                requestData();
             }
 
             @Override
@@ -196,9 +197,15 @@ public class TrendNumberActivity extends BaseActivity {
                             HistoryBean historyBean = new HistoryBean();
                             historyBean.setType(-1);
                             list.add(0,historyBean);
+                            for(int i= 0; i< list.size(); i++){
+                                list.get(i).translate2Old();
+                            }
                             recyclerView.updateClearAndAdd(list);
                             adapter.setType(type);
                         } else if(recyclerView != null && recyclerView.currentPage > 1){
+                            for(int i= 0; i< list.size(); i++){
+                                list.get(i).translate2Old();
+                            }
                             recyclerView.updateAdd(list);
                         }
                     }

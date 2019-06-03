@@ -113,4 +113,11 @@
         android:background="@color/c_gray_f2f2f2"
         android:layout_height="20dp"
         android:layout_width="1sp"/>
+    <TextView
+        android:gravity="center"
+        android:text="10"
+        android:id="@+id/tv_10"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
 </LinearLayout>
