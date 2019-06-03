@@ -112,7 +112,10 @@ public class HistoryActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //选择了
-                requestData(position);
+                if(recyclerView != null ){
+                    recyclerView.currentPage = 1;
+                    requestData(spinner.getSelectedItemPosition());
+                }
             }
 
             @Override

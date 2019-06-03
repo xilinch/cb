@@ -54,7 +54,6 @@ public class FreePlanActivity1 extends BaseActivity {
     private Spinner cp_type,plan;
     private int type = 1;
 
-    private String[] typeStr = new String[]{"时时彩","腾讯分分彩"};
     private ArrayList<String> typeList = new ArrayList<>();
     private ArrayList<String> planList = new ArrayList<>();
 
@@ -101,8 +100,20 @@ public class FreePlanActivity1 extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-        typeList.add("时时彩");
+//        typeList.add("时时彩");
+//        typeList.add("腾讯分分彩");
+
+
+        typeList.add("重庆时时彩");
         typeList.add("腾讯分分彩");
+        typeList.add("黑龙江时时彩");
+        typeList.add("天津时时彩");
+        typeList.add("新疆时时彩");
+        typeList.add("北京赛车");
+        typeList.add("福彩3D");
+        typeList.add("排列3");
+        typeList.add("幸运飞艇");
+
 
         typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
         planAdapter = new ArrayAdapter(this, R.layout.item_type,planList);
@@ -264,7 +275,10 @@ public class FreePlanActivity1 extends BaseActivity {
                             repeatTime = 63 - seconds;
                         } else {
                             //距离05秒多长，就刷一次
-                            repeatTime = 67 - seconds;
+                            repeatTime = 65 - seconds;
+                        }
+                        if(repeatTime > 30){
+                            repeatTime = 30;
                         }
                         if(!isStart){
                             handler.postDelayed(runnable,repeatTime * 1000);

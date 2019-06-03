@@ -5,9 +5,12 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.network.NFHttpResponseListener;
@@ -39,6 +42,12 @@ public class TrendNumberActivity extends BaseActivity {
     private RadioGroup rg_tab;
     private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5;
     private int type = 0;
+
+
+    private Spinner spinner;
+    private int cp_type = 1;
+    private ArrayList<String> typeList = new ArrayList<>();
+    private ArrayAdapter typeAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -121,6 +130,32 @@ public class TrendNumberActivity extends BaseActivity {
                 adapter.setType(type);
             }
         });
+        spinner = findViewById(R.id.spinner);
+        typeList.add("重庆时时彩");
+        typeList.add("腾讯分分彩");
+        typeList.add("黑龙江时时彩");
+        typeList.add("天津时时彩");
+        typeList.add("新疆时时彩");
+//        typeList.add("北京赛车");
+//        typeList.add("福彩3D");
+//        typeList.add("排列3");
+//        typeList.add("幸运飞艇");
+
+
+        typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
+        spinner.setAdapter(typeAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //选择了以后切换彩种
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initListener(){
@@ -139,6 +174,7 @@ public class TrendNumberActivity extends BaseActivity {
         HashMap<String,String> params = new HashMap<>();
         params.put("pageNum",String.valueOf(recyclerView.currentPage));
         params.put("pageSize","20");
+        params.put("type",String.valueOf(spinner.getSelectedItemPosition() + 1));
         RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {

@@ -7,6 +7,10 @@
 
     <include
         layout="@layout/include_view_title" />
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
 
     <RadioGroup
         android:background="@color/c_gray_eeeeee"

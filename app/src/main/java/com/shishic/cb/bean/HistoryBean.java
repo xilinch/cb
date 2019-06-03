@@ -1,5 +1,7 @@
 package com.shishic.cb.bean;
 
+import android.text.TextUtils;
+
 public class HistoryBean extends BaseBean {
 
 
@@ -164,6 +166,20 @@ public class HistoryBean extends BaseBean {
 
     public void setExpect(String expect) {
         this.expect = expect;
+    }
+
+    public void translate2Old(){
+        if(luckyType <= 5 ){
+            //时时彩类
+            if(!TextUtils.isEmpty(openCode)){
+                String[] opencodeStrs = openCode.split(",");
+
+            }
+
+        } else if(luckyType > 5 && luckyType <= 9){
+            //只出3位的
+
+        }
     }
 
     @Override
