@@ -19,6 +19,10 @@ public class Constant {
     public static final String UMENG_KEY_MUZHI = "5c9ce22561f5643894000027";
     //重庆时时彩
     public static final String UMENG_KEY_CHONGQINGSHISHICAI = "5c9cf44c20365782f0000a78";
+    //豌豆荚 时时彩计划
+    public static final String UMENG_KEY_SHISHICAIJIHUA = "5cdd749d3fc195818a0002a2";
+    //豌豆荚 分分彩
+    public static final String UMENG_KEY_FENFENCAI = "5cdd75e8570df34636000479";
 
     //拇指计划软件
     public static final String UMENG_KEY_MUZHIJIHUARUANJIAN = "5c9ce2d061f564446e000778";
@@ -57,6 +61,8 @@ public class Constant {
 
     //专家列表
     public static final String URL_EXPORT = "http://api.iekims.com/public/expert/list";
+    //专家计划购买
+    public static final String URL_EXPORT_BUY = "http://api.iekims.com//public/expert/buy";
 
     //方案计划列表
     public static final String URL_SCHEME_LIST = "http://api.iekims.com/public/scheme/list";

@@ -41,7 +41,7 @@ public class TrendNumber23Activity extends BaseActivity {
     private TrendNumberAdapter adapter;
     private TrendNumber23Adapter adapter2;
     private RadioGroup rg_tab,tg_tab;
-    private RadioButton rb_1,rb_2,rb_3,rb_5,rbx_2,rbx_3;
+    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rbx_2,rbx_3;
     private int type = 5;
 
     private Spinner spinner;
@@ -64,6 +64,7 @@ public class TrendNumber23Activity extends BaseActivity {
         rb_1 = findViewById(R.id.rb_1);
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
+        rb_4 = findViewById(R.id.rb_4);
         rbx_2 = findViewById(R.id.rbx_2);
         rbx_3 = findViewById(R.id.rbx_3);
         rb_5 = findViewById(R.id.rb_5);
@@ -109,6 +110,7 @@ public class TrendNumber23Activity extends BaseActivity {
 //                requestData();
             }
         });
+        rb_1.setChecked(true);
         rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -195,10 +197,10 @@ public class TrendNumber23Activity extends BaseActivity {
         typeList.add("黑龙江时时彩");
         typeList.add("天津时时彩");
         typeList.add("新疆时时彩");
-//        typeList.add("北京赛车");
-//        typeList.add("福彩3D");
-//        typeList.add("排列3");
-//        typeList.add("幸运飞艇");
+        typeList.add("北京赛车");
+        typeList.add("福彩3D");
+        typeList.add("排列3");
+        typeList.add("幸运飞艇");
 
 
         typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
@@ -208,7 +210,16 @@ public class TrendNumber23Activity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //选择了以后切换彩种
                 recyclerView.currentPage = 1;
+                rb_1.setChecked(true);
                 requestData();
+                if(position < 5){
+                    rb_5.setVisibility(View.VISIBLE);
+                    rb_4.setVisibility(View.VISIBLE);
+                } else {
+                    rb_5.setVisibility(View.GONE);
+                    rb_4.setVisibility(View.GONE);
+
+                }
             }
 
             @Override

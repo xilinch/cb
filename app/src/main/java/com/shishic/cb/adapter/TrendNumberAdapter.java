@@ -56,7 +56,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
             if (beanType == -1) {
                 //
                 funViewHolder.tv_journ.setText("期数");
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i <= 10; i++) {
                     funViewHolder.textViews.get(i).setTextColor(Color.BLACK);
                     funViewHolder.textViews.get(i).setText(String.valueOf(numBasic[i]));
                     funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_white);
@@ -80,7 +80,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
                 }
                 LogUtil.e("my","position:"+ position +" HistoryBean:" + funBean.toString());
                 LogUtil.e("my","nums:"+ Arrays.toString(nums));
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i <= 10; i++) {
                     if (value == numBasic[i]) {
                         //中了 红色底白色字，
                         if(lc[type][i] < 0){

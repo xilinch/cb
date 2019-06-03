@@ -69,7 +69,7 @@ public class TrendNumber23Adapter extends PlusRecyclerAdapter<HistoryBean> {
                 numbers_num = new int[]{number_1, number_2};
             }
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i <= 10; i++) {
                 int curNumber = numBasic[i];
                 funViewHolder.textViews.get(i).setTextColor(Color.BLACK);
                 funViewHolder.textViews.get(i).setText(String.valueOf(curNumber));

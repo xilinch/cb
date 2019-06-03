@@ -19,6 +19,7 @@ import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.adapter.TrendNumberAdapter;
+import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.HistoryBean;
 import com.shishic.cb.loadmore.IRefreshHandler;
 import com.shishic.cb.loadmore.ListRefreshLayout;
@@ -130,16 +131,17 @@ public class TrendNumberActivity extends BaseActivity {
                 adapter.setType(type);
             }
         });
+        rb_1.setChecked(true);
         spinner = findViewById(R.id.spinner);
         typeList.add("重庆时时彩");
         typeList.add("腾讯分分彩");
         typeList.add("黑龙江时时彩");
         typeList.add("天津时时彩");
         typeList.add("新疆时时彩");
-//        typeList.add("北京赛车");
-//        typeList.add("福彩3D");
-//        typeList.add("排列3");
-//        typeList.add("幸运飞艇");
+        typeList.add("北京赛车");
+        typeList.add("福彩3D");
+        typeList.add("排列3");
+        typeList.add("幸运飞艇");
 
 
         typeAdapter = new ArrayAdapter(this, R.layout.item_type,typeList);
@@ -149,7 +151,16 @@ public class TrendNumberActivity extends BaseActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //选择了以后切换彩种
                 recyclerView.currentPage = 1;
+                rb_1.setChecked(true);
                 requestData();
+                if(position < 5){
+                    rb_5.setVisibility(View.VISIBLE);
+                    rb_4.setVisibility(View.VISIBLE);
+                } else {
+                    rb_5.setVisibility(View.GONE);
+                    rb_4.setVisibility(View.GONE);
+
+                }
             }
 
             @Override

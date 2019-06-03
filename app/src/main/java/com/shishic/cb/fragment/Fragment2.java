@@ -195,11 +195,16 @@ public class Fragment2 extends Fragment {
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            if(list != null && plan != null){
-                FreePlanTabBean freePlanTabBean = list.get(plan.getSelectedItemPosition());
-                isStart = false;
-                requestPlanData(String.valueOf(freePlanTabBean.getId()));
+            try {
+                if(list != null && plan != null){
+                    FreePlanTabBean freePlanTabBean = list.get(plan.getSelectedItemPosition());
+                    isStart = false;
+                    requestPlanData(String.valueOf(freePlanTabBean.getId()));
+                }
+            } catch (Exception e){
+
             }
+
         }
     };
 

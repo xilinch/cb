@@ -75,10 +75,9 @@ public class SpecialActivity extends BaseActivity {
     /**
      * 请求新数据
      */
-    private void requestData(){
+    public void requestData(){
         HashMap<String,String> params = new HashMap<>();
         if(Account.getAccount() == null){
-            params.put("userId",String.valueOf("2"));
         } else {
             params.put("userId",String.valueOf(Account.getAccount().getId()));
         }
@@ -101,7 +100,7 @@ public class SpecialActivity extends BaseActivity {
                             List<SpecialBean> list = new Gson().fromJson(data.toString(), new TypeToken<List<SpecialBean>>(){}.getType());
                             adapter.updateData(list);
                         }
-                        ToastUtils.toastShow(SpecialActivity.this,"没有更多数据了");
+//                        ToastUtils.toastShow(SpecialActivity.this,"没有更多数据了");
                     }
 
                 } catch (Exception exception){

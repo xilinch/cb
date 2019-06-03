@@ -8,8 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
-import android.view.Gravity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSON;
-import com.android.network.NFHttpResponseListener;
-import com.android.network.RequestUtil;
-import com.android.nfRequest.LogError;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.shishic.cb.BindPhoneActivity;
 import com.shishic.cb.FeedBackActivity;
 import com.shishic.cb.LoginActivity;
@@ -267,31 +263,6 @@ public class MyFragment extends BaseFragment{
             signDialog.setContentView(view,params);
         }
         signDialog.show();
-//        HashMap<String,String> params = new HashMap<String, String>();
-//        params.put("userId",String.valueOf(Account.getAccount().getId()));
-//        RequestUtil.httpGet(getActivity(), URL_SCORE, params , new NFHttpResponseListener<String>() {
-//            @Override
-//            public void onErrorResponse(LogError error) {
-//                dismissSign();
-//                ToastUtils.toastShow(getActivity(),R.string.network_error);
-//            }
-//
-//            @Override
-//            public void onResponse(String response) {
-//                LogUtil.e("my","URL_SCORE response:" + response);
-//                dismissSign();
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    String msg = jsonObject.optString("msg");
-//                    ToastUtils.toastShow(getActivity(),msg);
-//                } catch (Exception exception){
-//                    exception.printStackTrace();
-//                } finally {
-//
-//                }
-//
-//            }
-//        });
         //TODO 调用示例
         HashMap<String,String> params = new HashMap<String, String>();
         params.put("userId",String.valueOf(Account.getAccount().getId()));
@@ -313,6 +284,11 @@ public class MyFragment extends BaseFragment{
                     LogUtil.e("my","URL_SCORE result:" + result );
                     JSONObject jsonObject = new JSONObject(result);
                     String msg = jsonObject.optString("msg");
+                    String data = jsonObject.optString("data");
+                    if(!TextUtils.isEmpty(data)){
+                        Account account = new Gson().fromJson(data,Account.class);
+                        Account.saveAccount(account);
+                    }
                     ToastUtils.toastShow(getActivity(),msg);
                 } catch (Exception exception){
                     exception.printStackTrace();

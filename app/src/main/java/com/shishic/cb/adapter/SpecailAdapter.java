@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +11,21 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
 import com.shishic.cb.IntroduceActivity;
 import com.shishic.cb.R;
-import com.shishic.cb.bean.ChatBean;
+import com.shishic.cb.SpecialActivity;
+import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
-import com.shishic.cb.loadmore.PlusRecyclerAdapter;
+import com.shishic.cb.util.Constant;
+import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
-import com.shishic.cb.view.CustomRoundImageView;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.List;
 
 public class SpecailAdapter extends RecyclerView.Adapter {
@@ -71,13 +76,21 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                      @Override
                      public void onClick(View v) {
                          //todo 进行支付，支付完了刷新页面
-
+                         buy(funBean);
                      }
                  });
              } else {
+                 contact = "点击查看，专家联系方式。";
                  funViewHolder.tv_contact.setVisibility(View.GONE);
                  funViewHolder.tv_contact.setText(contact);
-                 funViewHolder.tv_contact.setOnClickListener(null);
+                 funViewHolder.tv_contact.setOnClickListener(new View.OnClickListener() {
+                     @Override
+                     public void onClick(View view) {
+                         Intent intent = new Intent(context, IntroduceActivity.class);
+                         intent.putExtra("introduce",funBean.getIntroduce());
+                         context.startActivity(intent);
+                     }
+                 });
              }
              funViewHolder.tv_content.setText(funBean.getContent());
              funViewHolder.iv_tag.setText("TOP" + (position+ 1));
@@ -114,5 +127,41 @@ public class SpecailAdapter extends RecyclerView.Adapter {
             tv_detail = view.findViewById(R.id.tv_detail);
             iv_tag = view.findViewById(R.id.iv_tag);
         }
+    }
+
+    private void buy(SpecialBean funBean){
+        HashMap<String,String> params = new HashMap<>();
+        if(Account.getAccount() == null){
+            params.put("userId",String.valueOf("0"));
+        } else {
+            params.put("userId",String.valueOf(Account.getAccount().getId()));
+        }
+        params.put("eId",String.valueOf(funBean.getId()));
+        RequestUtil.httpPost(context, Constant.URL_EXPORT_BUY, params, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError error) {
+                ToastUtils.toastShow(context, R.string.network_error);
+            }
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    LogUtil.e("my","URL_EXPORT response:" + response);
+                    JSONObject jsonObject = new JSONObject(response);
+                    String msg = jsonObject.optString("msg");
+                    boolean success = jsonObject.optBoolean("success");
+                    Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+                    //刷新列表
+                    if(context instanceof SpecialActivity){
+                        SpecialActivity spe = (SpecialActivity)context;
+                        spe.requestData();
+                    }
+                } catch (Exception exception){
+                    exception.printStackTrace();
+                } finally {
+
+                }
+            }
+        });
     }
 }
