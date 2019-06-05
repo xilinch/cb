@@ -6,7 +6,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.network.NFHttpResponseListener;
@@ -40,7 +43,11 @@ public class LostAnalyActivity extends BaseActivity {
     private ViewPager pager;
     private PagerSlidingTabStrip tabs;
     private ArrayList<Fragment> fragments = new ArrayList<>();
+    private TestAdapter testAdapter;
 
+    private Spinner spinner;
+    private ArrayList<String> planList = new ArrayList<>();
+    private ArrayAdapter planAdapter;
 
     private String[] titles = new String[]{"遗漏分析", "冷热分析", "指标遗漏分析", "指标冷热分析"};
 
@@ -68,15 +75,47 @@ public class LostAnalyActivity extends BaseActivity {
         pager = findViewById(R.id.pager);
         // Bind the tabs to the ViewPager
         tabs = findViewById(R.id.tabs);
+
+        planList.add("重庆时时彩");
+        planList.add("腾讯分分彩");
+        planList.add("黑龙江时时彩");
+        planList.add("天津时时彩");
+        planList.add("新疆时时彩");
+        planList.add("北京赛车");
+        planList.add("福彩3D");
+        planList.add("排列3");
+        planList.add("幸运飞艇");
+        planAdapter = new ArrayAdapter(this, R.layout.item_type,planList);
+        spinner = findViewById(R.id.spinner);
+        spinner.setAdapter(planAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //选择了
+                requestData();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner.setSelection(0);
     }
 
 
     private void initTabs(){
+        fragments.clear();
         fragments.add(new LostAnalyFragment());
         fragments.add(new HotAnalyFragment());
         fragments.add(new LostAnalyFragment1());
         fragments.add(new HotAnalyFragment1());
-        pager.setAdapter(new TestAdapter(titles, fragments));
+        if(testAdapter == null){
+            testAdapter = new TestAdapter(titles, fragments);
+        } else {
+            testAdapter.changeData(fragments);
+        }
+        pager.setAdapter(testAdapter);
         pager.setCurrentItem(0);
         tabs.setViewPager(pager);
         tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -98,6 +137,7 @@ public class LostAnalyActivity extends BaseActivity {
         HashMap<String,String> params = new HashMap<>();
         params.put("pageNum",String.valueOf(1));
         params.put("pageSize","20");
+        params.put("type",String.valueOf(spinner.getSelectedItemPosition()+1));
         RequestUtil.httpGet(this, Constant.URL_HISTORY, params, new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
@@ -114,6 +154,9 @@ public class LostAnalyActivity extends BaseActivity {
                     boolean success = jsonObject.optBoolean("success");
                     if(success && listData != null && listData.length() > 0 ){
                         List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        for(int i = 0; i < list.size();i++){
+                            list.get(i).translate2Old();
+                        }
                         //进行遗漏和热点分析
                         analy(list);
                         //显示tab
@@ -143,15 +186,17 @@ public class LostAnalyActivity extends BaseActivity {
      */
     private void analy(List<HistoryBean> list){
         //
-        for(int i = 0; i < 10; i++){
+        lostList.clear();
+        hotList.clear();
+        for(int i = 0; i <= 10; i++){
             lostList.add(0);
             hotList.add(0);
         }
         if(list != null){
-            for(int i = 0 ; i< list.size(); i++){
+            for(int i = 0 ; i<= list.size(); i++){
                 //分析遗漏和热点
                 LogUtil.e("my","list.get(i)" + list.get(i).toString());
-                for(int j =0 ; j < 10; j++){
+                for(int j =0 ; j <= 10; j++){
 //                    LogUtil.e("my","j:" + j);
                     if(list.get(i).getN1() == j) {
                         //自增
@@ -178,15 +223,15 @@ public class LostAnalyActivity extends BaseActivity {
                             && list.get(i).getN3() != j
                             && list.get(i).getN4() != j
                             && list.get(i).getN5() != j){
-                        lostList.set(j,hotList.get(j) + 1);
+                        lostList.set(j,lostList.get(j) + 1);
                     }
                 }
-//                LogUtil.e("my","lostList:" + lostList.toString());
-//                LogUtil.e("my","hotList:" + hotList.toString());
+                LogUtil.e("my","lostList:" + lostList.toString());
+                LogUtil.e("my","hotList:" + hotList.toString());
             }
         }
-//        LogUtil.e("my","lostList:" + lostList.toString());
-//        LogUtil.e("my","hotList:" + hotList.toString());
+        LogUtil.e("my","lostList:" + lostList.toString());
+        LogUtil.e("my","hotList:" + hotList.toString());
     }
 
 
@@ -210,6 +255,11 @@ public class LostAnalyActivity extends BaseActivity {
             super(getSupportFragmentManager());
             this.titles = titles;
             this.fragments = fragments;
+        }
+
+        public void changeData(ArrayList<Fragment> fragments){
+            this.fragments = fragments;
+            notifyDataSetChanged();
         }
 
         @Override

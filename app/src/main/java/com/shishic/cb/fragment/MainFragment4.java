@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.DoubleToolActivity;
 import com.shishic.cb.HistoryActivity;
+import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.NumberChoiceActivity;
 import com.shishic.cb.NumberChoiceFilterActivity;
 import com.shishic.cb.R;
@@ -200,7 +201,7 @@ public class MainFragment4 extends BaseFragment {
                         intent.setClass(getContext(), TrendNumberActivity.class);
                         break;
                     case R.id.tv_2:
-                        intent.setClass(getContext(), TrendNumberActivity.class);
+                        intent.setClass(getContext(), LostAnalyActivity.class);
                         break;
                     case R.id.tv_3:
                         intent.setClass(getContext(), HistoryActivity.class);

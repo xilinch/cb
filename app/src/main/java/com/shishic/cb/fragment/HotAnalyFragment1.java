@@ -54,7 +54,7 @@ public class HotAnalyFragment1 extends BaseFragment {
             if(getActivity() instanceof LostAnalyActivity){
                 LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
                 List<Integer> list = lostAnalyActivity.getHotList();
-                for (int i = 0; i < 10; i++) {
+                for (int i = 0; i <= 10; i++) {
                     PieEntry pieData = new PieEntry(list.get(i), "" + i);
                     entries.add(pieData);
                 }

@@ -109,11 +109,13 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
     public String getChoiceNumber(){
         StringBuilder choiceNumber = new StringBuilder();
         if(list != null && list.size() > 1){
-            for(int i = 0 ; i < list.size(); i++){
+            for(int i = 1 ; i < list.size(); i++){
                HashMap<String,String> data = list.get(i);
                 choiceNumber.append(data.get("number")).append(" ");
             }
-
+            if(choiceNumber.length() > 0){
+                choiceNumber = choiceNumber.deleteCharAt(choiceNumber.lastIndexOf(" "));
+            }
         }
         return choiceNumber.toString();
     }
