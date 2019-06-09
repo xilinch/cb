@@ -258,7 +258,7 @@ public class Fragment2 extends Fragment {
                                     tv_currenNumber.setText("当前开奖:" + luckyNumbers);
                                 }
                             }
-                            iv_plan_name.setText("当前计划:" + name + " " + freePlan.getNotice());
+                            iv_plan_name.setText("当前计划:" + name + " " + (freePlan.getNotice() == null?"":freePlan.getNotice()));
 
                         }
                         initDatas();

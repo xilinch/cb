@@ -17,10 +17,12 @@ import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.IntroduceActivity;
+import com.shishic.cb.LoginActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.SpecialActivity;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
+import com.shishic.cb.dialog.BuySpecialDialog;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.NFCallback;
@@ -85,7 +87,18 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                      @Override
                      public void onClick(View v) {
                          //todo 进行支付，支付完了刷新页面
-                         buy(funBean);
+                         //判断是否登录，如果未登录，先登录
+                         Account account = Account.getAccount();
+                         if(account != null){
+                             showConfirmDialog(funBean);
+                         } else {
+                             Toast.makeText(context,"请先登录",Toast.LENGTH_SHORT).show();
+                             Intent intent = new Intent(context,LoginActivity.class);
+                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                             context.startActivity(intent);
+                         }
+                         //
+
                      }
                  });
              } else {
@@ -136,6 +149,26 @@ public class SpecailAdapter extends RecyclerView.Adapter {
             tv_detail = view.findViewById(R.id.tv_detail);
             iv_tag = view.findViewById(R.id.iv_tag);
         }
+    }
+
+    private BuySpecialDialog buySpecialDialog;
+
+    /**
+     * 购买确认
+     * @param funBean
+     */
+    private void showConfirmDialog(final SpecialBean funBean){
+        if(buySpecialDialog == null){
+            buySpecialDialog = new BuySpecialDialog(context);
+        }
+        buySpecialDialog.setConfirmClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buy(funBean);
+            }
+        });
+        buySpecialDialog.setSpecialBean(funBean);
+        buySpecialDialog.show();
     }
 
     private void buy(SpecialBean funBean){

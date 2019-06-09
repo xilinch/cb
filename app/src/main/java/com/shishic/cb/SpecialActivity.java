@@ -51,7 +51,6 @@ public class SpecialActivity extends BaseActivity {
         setContentView(R.layout.activity_special);
         initView();
         initListener();
-        requestData();
     }
 
     private void initView() {
@@ -79,6 +78,12 @@ public class SpecialActivity extends BaseActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestData();
     }
 
     /**
