@@ -52,19 +52,24 @@
             android:layout_gravity="center"
             android:inAnimation="@anim/push_bottom_in_300"
             android:outAnimation="@anim/push_top_out_300"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_gravity="center"
             android:gravity="center_vertical"
             android:id="@+id/tv_ad"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:ellipsize="end"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:focusable="true"
+            android:ellipsize="marquee"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:singleLine="true" />
+            android:focusableInTouchMode="true"
+            android:singleLine="true" >
+            <requestFocus />
+        </TextView>
 
     </LinearLayout>
     <View

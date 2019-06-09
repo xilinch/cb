@@ -48,7 +48,7 @@ import static com.shishic.cb.util.Constant.URL_SCORE;
 
 public class MyFragment extends BaseFragment{
 
-    private TextView tv_personal_center_nickname,tv_logon_text;
+    private TextView tv_personal_center_nickname,tv_logon_text,tv_personal_coin;
 
     private LinearLayout ll_phone;
 
@@ -98,6 +98,7 @@ public class MyFragment extends BaseFragment{
             rl_notify = view.findViewById(R.id.rl_notify);
             rl_login = view.findViewById(R.id.rl_login);
             tv_logon_text = view.findViewById(R.id.tv_logon_text);
+            tv_personal_coin = view.findViewById(R.id.tv_personal_coin);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
@@ -320,9 +321,12 @@ public class MyFragment extends BaseFragment{
             civ_personal_center_avatar.setImageResource(R.mipmap.icon_login_wechat);
             tv_personal_center_nickname.setText(name);
             tv_logon_text.setText("退出登录");
+            tv_personal_coin.setText(account.getCoins()+ "金币");
+            tv_personal_coin.setVisibility(View.VISIBLE);
         } else {
             civ_personal_center_avatar.setImageResource(R.mipmap.person_icon_default);
             tv_personal_center_nickname.setText("点击登录");
+            tv_personal_coin.setVisibility(View.INVISIBLE);
             tv_logon_text.setText("点击登录");
         }
     }

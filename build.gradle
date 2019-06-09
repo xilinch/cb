@@ -3,6 +3,7 @@
 buildscript {
     repositories {
         maven {url 'https://maven.google.com'}
+        maven { url 'https://dl.google.com/dl/android/maven2/'}
         jcenter()
         maven { url 'https://jitpack.io' }
         maven { url 'https://dl.bintray.com/umsdk/release' }
@@ -22,6 +23,7 @@ allprojects {
     repositories {
         maven {url 'https://maven.google.com'}
         jcenter()
+        maven { url 'https://dl.google.com/dl/android/maven2/'}
         maven { url 'https://jitpack.io' }
         maven { url 'https://dl.bintray.com/umsdk/release' }
         //这里是 LeanCloud 的包仓库

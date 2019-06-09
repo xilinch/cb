@@ -135,7 +135,7 @@ public class FreePlanActivity1 extends BaseActivity {
         plan.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                LogUtil.e("my","plan onItemClick :" + planList.get(position));
+                LogUtil.e("my","plan onItemClick :" + list.get(position));
                 if(list != null && list.size() > 0 && position < list.size()){
                     FreePlanTabBean freePlanTabBean = list.get(position);
                     requestPlanData(String.valueOf(freePlanTabBean.getId()));
@@ -249,9 +249,16 @@ public class FreePlanActivity1 extends BaseActivity {
                                 if(TextUtils.isEmpty(luckyNumbers)){
                                     luckyNumbers = "--";
                                 }
-                                tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                //如果是时时彩类的，不显示-，否则显示-
+                                if(cp_type.getSelectedItemPosition() <= 4){
+                                    luckyNumbers = luckyNumbers.replaceAll("-","");
+                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                } else {
+                                    //否则显示-
+                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                }
                             }
-                            iv_plan_name.setText("当前计划:" + name);
+                            iv_plan_name.setText("当前计划:" + name + " " + freePlan.getNotice());
 
                         }
                         initDatas();
@@ -298,7 +305,7 @@ public class FreePlanActivity1 extends BaseActivity {
         if(listPlan != null){
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
-//                showList.add(list.get(i));
+                showList.add(list.get(i));
                 if(childList != null){
                     showList.addAll(childList);
                 }

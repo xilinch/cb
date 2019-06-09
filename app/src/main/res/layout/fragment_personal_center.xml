@@ -36,13 +36,21 @@
                     android:id="@+id/tv_personal_center_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     android:paddingTop="10dp"
                     android:text="点击登录"
                     android:textColor="@color/white"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-
+                <TextView
+                    android:id="@+id/tv_personal_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:paddingTop="10dp"
+                    android:text="金币"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 

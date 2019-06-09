@@ -123,9 +123,9 @@
         <activity android:name=".DoubleToolActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
-        <activity android:name=".TestActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <!--<activity android:name=".TestActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:configChanges="orientation|keyboardHidden|screenSize"/>-->
         <activity android:name=".HtmlActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 

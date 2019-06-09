@@ -251,7 +251,6 @@ public class MainFragment4 extends BaseFragment {
             Glide.with(getContext()).load(R.mipmap.banner1).centerCrop().placeholder(R.mipmap.banner1).into(imageView);
             imageViews.add(imageView);
         }
-        tv_ad.setText("欢迎各位新老朋友");
         ImageAdapter adapter = new ImageAdapter();
         viewPager.setAdapter(adapter);
     }
@@ -350,7 +349,6 @@ public class MainFragment4 extends BaseFragment {
                 handler.sendEmptyMessage(MSG_SHOW);
             }
         }
-
     }
 
     public void requestNotice(){
@@ -369,6 +367,13 @@ public class MainFragment4 extends BaseFragment {
                     JSONArray jsonArray = data.optJSONArray("list");
                     if(jsonArray != null && jsonArray.length() > 0){
                         adTextBeans = new Gson().fromJson(jsonArray.toString(), new TypeToken<List<ADTextBean>>(){}.getType());
+                        //组装一次所有的内容
+                        StringBuilder sb = new StringBuilder();
+                        int size = adTextBeans.size();
+                        for(int i = 0; i < size ;i++){
+                            sb.append("                 ").append(adTextBeans.get(i).getTitle()).append("           ");
+                        }
+                        tv_ad.setText(sb.toString());
                     }
                     newMessage(true);
                 } catch (Exception exception){

@@ -249,9 +249,16 @@ public class Fragment2 extends Fragment {
                                 if(TextUtils.isEmpty(luckyNumbers)){
                                     luckyNumbers = "--";
                                 }
-                                tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                //如果是时时彩类的，不显示-，否则显示-
+                                if(cp_type.getSelectedItemPosition() <= 4){
+                                    luckyNumbers = luckyNumbers.replaceAll("-","");
+                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                } else {
+                                    //否则显示-
+                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                }
                             }
-                            iv_plan_name.setText("当前计划:" + name);
+                            iv_plan_name.setText("当前计划:" + name + " " + freePlan.getNotice());
 
                         }
                         initDatas();
