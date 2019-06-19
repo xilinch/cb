@@ -203,32 +203,32 @@ public class MainFragment3 extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         try {
             List<NewsBean> list = new ArrayList<>();
-            NewsBean newsBean1 = new NewsBean();
-            newsBean1.setAuther("广东福彩网");
-            newsBean1.setDescription("肇庆新彩民喜中刮刮乐“美梦成真”头奖");
-            newsBean1.setTime("2019-03-22 17:25");
-            newsBean1.setTime("今年首个刮刮乐一等奖");
-            newsBean1.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/22/766906_320x150c.jpg");
-            newsBean1.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean1);
-
-            NewsBean newsBean2 = new NewsBean();
-            newsBean2.setAuther("重庆彩票网");
-            newsBean2.setDescription("“责任福彩、理性购彩”重庆福彩参与社会工作宣传周");
-            newsBean2.setTime("2019-03-21 21:29");
-            newsBean2.setTime("责任福彩、理性购彩");
-            newsBean2.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/21/766833_500x500.jpg");
-            newsBean2.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean2);
-
-            NewsBean newsBean3 = new NewsBean();
-            newsBean3.setAuther("沈阳晚报");
-            newsBean3.setDescription("海归投身福彩事业 经营半年深得彩民厚爱");
-            newsBean3.setTime("2019-03-22 17:25");
-            newsBean3.setTime("最受沈城百姓欢迎福彩投注站");
-            newsBean3.setIcon("院长");
-            newsBean3.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean3);
+//            NewsBean newsBean1 = new NewsBean();
+//            newsBean1.setAuther("广东福彩网");
+//            newsBean1.setDescription("肇庆新彩民喜中刮刮乐“美梦成真”头奖");
+//            newsBean1.setTime("2019-03-22 17:25");
+//            newsBean1.setTime("今年首个刮刮乐一等奖");
+//            newsBean1.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/22/766906_320x150c.jpg");
+//            newsBean1.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
+//            list.add(newsBean1);
+//
+//            NewsBean newsBean2 = new NewsBean();
+//            newsBean2.setAuther("重庆彩票网");
+//            newsBean2.setDescription("“责任福彩、理性购彩”重庆福彩参与社会工作宣传周");
+//            newsBean2.setTime("2019-03-21 21:29");
+//            newsBean2.setTime("责任福彩、理性购彩");
+//            newsBean2.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/21/766833_500x500.jpg");
+//            newsBean2.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
+//            list.add(newsBean2);
+//
+//            NewsBean newsBean3 = new NewsBean();
+//            newsBean3.setAuther("沈阳晚报");
+//            newsBean3.setDescription("海归投身福彩事业 经营半年深得彩民厚爱");
+//            newsBean3.setTime("2019-03-22 17:25");
+//            newsBean3.setTime("最受沈城百姓欢迎福彩投注站");
+//            newsBean3.setIcon("院长");
+//            newsBean3.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
+//            list.add(newsBean3);
 
             newsAdapter = new NewsAdapter(list,getActivity());
             recyclerView.setAdapter(newsAdapter);

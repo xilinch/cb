@@ -74,7 +74,7 @@ public class LostAnalyFragment extends BaseFragment {
         xAxis.setGranularity(1f);
         //设置X轴的刻度数量
         // 第二个参数表示是否平均分配 如果为true则按比例分为12个点、如果为false则适配X刻度的值来分配点，可能没有12个点
-        xAxis.setLabelCount(11, true);
+        xAxis.setLabelCount(10, true);
         //设置X轴的值（最小值、最大值、然后会根据设置的刻度数量自动分配刻度显示）
         xAxis.setAxisMinimum(0f);
         xAxis.setAxisMaximum(10f);

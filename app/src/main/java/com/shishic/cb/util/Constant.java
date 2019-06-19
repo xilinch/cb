@@ -78,6 +78,13 @@ public class Constant {
 
     //注册验证码
     public static final String URL_REGISTER_CODE = "http://api.iekims.com/public/userinfo/registerCode";
+    //新闻列表
+    public static final String URL_NEWS_LIST = "http://api.iekims.com/public/article/list?page=1&rows=20";
+
+    //新闻详情
+    public static final String URL_NEWS_DETAIL = "http://api.iekims.com/public/article/detail?id=1";
+    //新闻详情页面
+    public static final String URL_NEWS_DETAIL_URL = "http://api.iekims.com/static/wap/article.html?id=";
 
 
 }

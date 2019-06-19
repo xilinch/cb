@@ -51,6 +51,12 @@ public class NewsAdapter extends RecyclerView.Adapter {
     }
 
 
+    public void changeDate(List<NewsBean> list){
+        this.list = list;
+        notifyDataSetChanged();
+    }
+
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -64,14 +70,11 @@ public class NewsAdapter extends RecyclerView.Adapter {
         if (holder instanceof NewsViewHolder) {
             NewsViewHolder funViewHolder = (NewsViewHolder) holder;
             funViewHolder.tv_title.setText(funBean.getTitle());
-            String url = funBean.getIcon();
-            if(TextUtils.isEmpty(url)){
-                Glide.with(context).load(funBean.getIcon()).centerCrop().placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_icon);
-            } else {
-                Glide.with(context).load(url).centerCrop().placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_icon);
-            }
-            funViewHolder.tv_des.setText(funBean.getDescription());
-            funViewHolder.tv_time.setText(funBean.getTime());
+            String url = funBean.getCover();
+            Glide.with(context).load(url).centerCrop().placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_icon);
+
+            funViewHolder.tv_des.setText(funBean.getContent());
+            funViewHolder.tv_time.setVisibility(View.GONE);
             funViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

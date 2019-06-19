@@ -85,69 +85,6 @@ public class MainFragment4 extends BaseFragment {
 
     private TextView tv_1,tv_2,tv_3,tv_4,tv_5,tv_6,tv_7,tv_8;
 
-    String[] title = new String[]{
-            "遗漏统计",
-            "专家计划",
-            "免费计划",
-            "用户聊天室",
-            "走势图",
-            "历史开奖",
-            "号码直选",
-//            "留言板",
-//            "工具",
-//            "活动中心",
-//            "公告栏"
-            "出彩说明"
-    };
-
-    String[] url = new String[]{
-            "https://chart.cp.360.cn/kaijiang/ssccq?sb_spm=4363c04888386886a00358cd39e3efe7",
-            "http://125.88.183.181:8889/",
-            "http://125.88.183.181:8889/",
-            "https://chart.cp.360.cn/kaijiang/ssccq?sb_spm=1e56179efbfea18a6419fc17d3fadef1",
-            "http://trend.caipiao.163.com/cqssc/",
-            "http://caipiao.163.com/award/cqssc/"
-//            "",
-//            "",
-//            "",
-//            "",
-
-    };
-
-    String[] icon = new String[]{
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050199&di=7c333f75d7a07212d99fc77642d00fb5&imgtype=jpg&er=1&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01cc8b5541cbda00000115410bbde7.jpg%401280w_1l_2o_100sh.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542797339588&di=df2df12e4220fc40ff82507b24210acc&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F7c1ed21b0ef41bd56e88dacf5ada81cb39db3d35.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544455281328&di=4a21988b5f0761e6bb0fb46deed0725b&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F3b87e950352ac65c1356014ef0f2b21193138abf.jpg",
-            "http://imgsrc.baidu.com/imgad/pic/item/962bd40735fae6cd9fa66ba905b30f2443a70fec.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050052&di=578a7ac9bbc46c2dde01091df10804e0&imgtype=jpg&er=1&src=http%3A%2F%2Fstatic.fotor.com.cn%2Fassets%2Fstickers%2Ffreelancer_lmf_0111_10%2Fbff44ef0-56d9-4c8c-8727-d5cd1c3301fc_medium_thumb.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544455604475&di=d1d6f833d661e9438dcbda9bcad42544&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fb7fd5266d016092426c5d126df0735fae6cd342e.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545050878&di=9f578488b687cc3815bec7ef8e19df7d&imgtype=jpg&er=1&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9d82d158ccbf6c81d46952d5b73eb13533fa40b4.jpg",
-            "http://imgsrc.baidu.com/imgad/pic/item/e7cd7b899e510fb3657e30b3d333c895d1430caa.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1544545207581&di=568c564c0bc296af3a0775317e75210a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F17%2F11%2F23%2Ffa8530f827c8458f9c660ce0058419cf.jpg%2521%2Ffwfh%2F804x744%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1545139927&di=7d61225ba55abc788b7263b281b56175&imgtype=jpg&er=1&src=http%3A%2F%2Fpic36.photophoto.cn%2F20150812%2F0017029468154313_b.jpg",
-
-    };
-
-    String[] newsIcon = new String[]{
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553367152187&di=e11e59e8b90c0160d7b8c9ddc5b13463&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201509%2F10%2F20150910215210_Vistk.jpeg",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553367152186&di=5e211e41d76ccd62de5e388f1f3ea892&imgtype=0&src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F9%2F57fdac2fd6c52.jpg%3Fdown",
-      "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553367152183&di=4162ca38000f90b06a7bc385f2ca83f7&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01bc76554c05bc000001bf72813087.jpg%401280w_1l_2o_100sh.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553367152182&di=04e0e84d364a02e8ce45d618c8db8ea6&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2Fd833c895d143ad4bfe7bc1fb89025aafa40f06b7.jpg",
-            "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553367152181&di=d5395a10eadd892ac9a5c13d0a77fc74&imgtype=0&src=http%3A%2F%2Fp.chanyouji.cn%2F1404306111%2F53526A90-0B37-AE4E-B863-55EB1B5197A3.jpg"
-    };
-
-    int[] newIcon = new int[]{
-            R.mipmap.tab1,
-            R.mipmap.tab2,
-            R.mipmap.tab3,
-            R.mipmap.tab4,
-            R.mipmap.tab5,
-            R.mipmap.tab6,
-            R.mipmap.tab7,
-            R.mipmap.tab8,
-            R.mipmap.tab8
-    };
-
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -258,46 +195,44 @@ public class MainFragment4 extends BaseFragment {
     private void initRecycleView(){
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        try {
-            List<NewsBean> list = new ArrayList<>();
-            NewsBean newsBean1 = new NewsBean();
-            newsBean1.setAuther("双色球");
-            newsBean1.setDescription("肇庆喜中双色球");
-            newsBean1.setTime("2019-04-22 17:25");
-            newsBean1.setTime("今年首个刮刮乐一等奖");
-            newsBean1.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/22/766906_320x150c.jpg");
-            newsBean1.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean1);
-
-            NewsBean newsBean2 = new NewsBean();
-            newsBean2.setAuther("福利彩票");
-            newsBean2.setDescription("“责任福彩、理性购彩”重庆福彩参与社会工作宣传周");
-            newsBean2.setTime("2019-05-11 21:29");
-            newsBean2.setTime("责任福彩、理性购彩");
-            newsBean2.setIcon("http://www.cwl.gov.cn/upload/resources/image/2019/03/21/766833_500x500.jpg");
-            newsBean2.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean2);
-
-            NewsBean newsBean3 = new NewsBean();
-            newsBean3.setAuther("体育彩票");
-            newsBean3.setDescription("海归投身福彩事业 经营半年深得彩民厚爱");
-            newsBean3.setTime("2019-05-12 17:25");
-            newsBean3.setTime("最受沈城百姓欢迎福彩投注站");
-            newsBean3.setIcon("院长");
-            newsBean3.setUrl("http://www.cwl.gov.cn/c/2019-03-22/450543.shtml");
-            list.add(newsBean3);
-
-            newsAdapter = new NewsAdapter(list,getActivity());
-            recyclerView.setAdapter(newsAdapter);
-
-        } catch (Exception exception){
-            exception.printStackTrace();
-        } finally {
-
-        }
+        List<NewsBean> list = new ArrayList<>();
+        newsAdapter = new NewsAdapter(list,getActivity());
+        recyclerView.setAdapter(newsAdapter);
+        requestNews();
 
 
     }
+
+    /**
+     * 获取新闻数据
+     */
+    private void requestNews(){
+        //
+        RequestUtil.httpPost(getContext(), Constant.URL_NEWS_LIST, null, new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError logError) {
+                LogUtil.e("my","URL_NEWS_LIST error:" );
+            }
+
+            @Override
+            public void onResponse(String o) {
+                //拿到新闻数据显示内容
+                try{
+                    JSONObject jsonObject = new JSONObject(o);
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    JSONArray listJSONArray = data.getJSONArray("list");
+                    List<NewsBean> list = new Gson().fromJson(listJSONArray.toString(),new TypeToken<List<NewsBean>>(){}.getType());
+                    LogUtil.e("my","URL_NEWS_LIST:" + o + " list:" + list);
+                    newsAdapter.changeDate(list);
+                } catch (Exception exception){
+                   exception.printStackTrace();
+                }
+
+            }
+        });
+
+    }
+
 
     private void initSwitcher(){
         adTextBeans.add(new ADTextBean("欢迎光临",""));

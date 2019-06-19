@@ -193,7 +193,7 @@ public class LostAnalyActivity extends BaseActivity {
             hotList.add(0);
         }
         if(list != null){
-            for(int i = 0 ; i<= list.size(); i++){
+            for(int i = 0 ; i< list.size(); i++){
                 //分析遗漏和热点
                 LogUtil.e("my","list.get(i)" + list.get(i).toString());
                 for(int j =0 ; j <= 10; j++){
