@@ -7,12 +7,13 @@ import android.view.KeyEvent;
 import android.widget.RadioGroup;
 
 import com.shishic.cb.bean.Account;
-import com.shishic.cb.fragment.Fragment2;
+import com.shishic.cb.fragment.FreePlanFragment2;
 import com.shishic.cb.fragment.Fragment3;
 import com.shishic.cb.fragment.Fragment4;
-import com.shishic.cb.fragment.MainFragment3;
 import com.shishic.cb.fragment.MainFragment4;
 import com.shishic.cb.fragment.MyFragment;
+import com.shishic.cb.fragment.SpecialFragment2;
+import com.shishic.cb.fragment.ToolFragment2;
 import com.shishic.cb.util.ToastUtils;
 
 public class MainActivity extends BaseActivity {
@@ -21,7 +22,11 @@ public class MainActivity extends BaseActivity {
     //首页
     private MainFragment4 mainFragment;
     //免费计划
-    private Fragment2 fragment2;
+    private FreePlanFragment2 freePlanFragment2;
+    //专家计划
+    private SpecialFragment2 fragment3;
+    //工具
+    private ToolFragment2 fragment4;
     //我的
     private MyFragment myFragment;
 
@@ -53,6 +58,14 @@ public class MainActivity extends BaseActivity {
                         checkedIndex = 2;
                         switchTab(2);
                         break;
+                    case R.id.rb4:
+                        checkedIndex = 3;
+                        switchTab(3);
+                        break;
+                    case R.id.rb5:
+                        checkedIndex = 4;
+                        switchTab(4);
+                        break;
                 }
             }
         });
@@ -66,8 +79,14 @@ public class MainActivity extends BaseActivity {
         if (myFragment != null) {
             fragmentTransaction.hide(myFragment);
         }
-        if (fragment2 != null) {
-            fragmentTransaction.hide(fragment2);
+        if (freePlanFragment2 != null) {
+            fragmentTransaction.hide(freePlanFragment2);
+        }
+        if (fragment3 != null) {
+            fragmentTransaction.hide(fragment3);
+        }
+        if (fragment4 != null) {
+            fragmentTransaction.hide(fragment4);
         }
 
         if (index == 0) {
@@ -81,11 +100,11 @@ public class MainActivity extends BaseActivity {
         } else if (index == 1) {
             Account account = Account.getAccount();
             if (account != null) {
-                if (fragment2 != null) {
-                    fragmentTransaction.show(fragment2);
-                } else if (fragment2 == null) {
-                    fragment2 = new Fragment2();
-                    fragmentTransaction.add(R.id.ll_content, fragment2);
+                if (freePlanFragment2 != null) {
+                    fragmentTransaction.show(freePlanFragment2);
+                } else if (freePlanFragment2 == null) {
+                    freePlanFragment2 = new FreePlanFragment2();
+                    fragmentTransaction.add(R.id.ll_content, freePlanFragment2);
                 }
             } else {
                 Intent intent = new Intent(this, LoginActivity.class);
@@ -94,13 +113,28 @@ public class MainActivity extends BaseActivity {
             }
 
         } else if (index == 2) {
+            if (fragment3 != null) {
+                fragmentTransaction.show(fragment3);
+            } else if (fragment3 == null) {
+                fragment3 = new SpecialFragment2();
+                fragmentTransaction.add(R.id.ll_content, fragment3);
+            }
+
+        } else if (index == 3) {
+            if (fragment4 != null) {
+                fragmentTransaction.show(fragment4);
+            } else if (fragment4 == null) {
+                fragment4 = new ToolFragment2();
+                fragmentTransaction.add(R.id.ll_content, fragment4);
+            }
+
+        } else if (index == 5) {
             if (myFragment != null) {
                 fragmentTransaction.show(myFragment);
             } else if (myFragment == null) {
                 myFragment = new MyFragment();
                 fragmentTransaction.add(R.id.ll_content, myFragment);
             }
-
         }
         fragmentTransaction.commitAllowingStateLoss();
     }

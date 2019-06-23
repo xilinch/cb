@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.shishic.cb.ChatActivity;
 import com.shishic.cb.DoubleToolActivity;
+import com.shishic.cb.DoubleToolActivity2;
 import com.shishic.cb.FreePlanActivity;
 import com.shishic.cb.FreePlanActivity1;
+import com.shishic.cb.FreePlanActivity2;
 import com.shishic.cb.H5Activity;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LoginActivity;
@@ -104,7 +106,7 @@ public class FunAdapter extends RecyclerView.Adapter {
                             //免费计划
 //                            intent.setClass(context, FreePlanActivity.class);
                             if(account != null && account.getId() > 0){
-                                intent.setClass(context, FreePlanActivity1.class);
+                                intent.setClass(context, FreePlanActivity2.class);
                             } else {
                                 ToastUtils.toastShow(context,"请登录后使用.");
                                 intent.setClass(context,LoginActivity.class);
@@ -127,7 +129,7 @@ public class FunAdapter extends RecyclerView.Adapter {
                             intent.setClass(context, NumberChoiceFilterActivity.class);
                             context.startActivity(intent);
                         }  else if(funBean.getDescription().equals("倍投工具")){
-                            intent.setClass(context, DoubleToolActivity.class);
+                            intent.setClass(context, DoubleToolActivity2.class);
                             context.startActivity(intent);
                         } else {
                             final String link = funBean.getUrl();

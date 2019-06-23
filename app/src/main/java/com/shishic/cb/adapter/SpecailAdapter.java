@@ -20,6 +20,7 @@ import com.shishic.cb.IntroduceActivity;
 import com.shishic.cb.LoginActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.SpecialActivity;
+import com.shishic.cb.SpecialActivity2;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.dialog.BuySpecialDialog;
@@ -198,12 +199,12 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                     boolean success = jsonObject.optBoolean("success");
                     //刷新列表
                     if(context instanceof SpecialActivity){
-                        final SpecialActivity spe = (SpecialActivity)context;
+                        final SpecialActivity2 spe = (SpecialActivity2)context;
                         spe.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
-                                spe.requestData();
+                                spe.getSpecialFragment2().requestData();
                             }
                         });
 

@@ -21,6 +21,7 @@ public class HelpActivity extends BaseActivity {
     public static String title;
     private ViewPager viewPager;
     private Button button;
+    private Button imgbutton_help_skip;
     // 引导图片资源
     private ArrayList<View> pageview;
 
@@ -41,7 +42,15 @@ public class HelpActivity extends BaseActivity {
                 finish();
             }
         });
-
+        imgbutton_help_skip.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(HelpActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 
@@ -49,22 +58,23 @@ public class HelpActivity extends BaseActivity {
     private void initViewOrData() {
         ImageView view1 = new ImageView(this);
         view1.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//        ImageView view2 = new ImageView(mContext);
-//        view2.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        ImageView view3 = new ImageView(mContext);
-//        view3.setScaleType(ImageView.ScaleType.FIT_CENTER);
-//        view1.setImageResource(R.drawable.guide1);
-//        view2.setImageResource(R.drawable.guide2);
-//        view3.setImageResource(R.drawable.guide3);
-        view1.setImageResource(R.mipmap.splash_cqssc);
+        ImageView view2 = new ImageView(this);
+        view2.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        ImageView view3 = new ImageView(this);
+        view3.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        view1.setImageResource(R.mipmap.splash_1);
+        view2.setImageResource(R.mipmap.splash_2);
+        view3.setImageResource(R.mipmap.splash_3);
+//        view1.setImageResource(R.mipmap.splash_cqssc);
         //将view装入数组
         pageview = new ArrayList<View>();
         pageview.add(view1);
-//        pageview.add(view2);
-//        pageview.add(view3);
+        pageview.add(view2);
+        pageview.add(view3);
 
 //        finishButtonDrawable = getResources().getDrawable(R.drawable.help_coming_border_bg);
         button = findViewById(R.id.imgbutton_help_finish);
+        imgbutton_help_skip = findViewById(R.id.imgbutton_help_skip);
         viewPager = findViewById(R.id.pager);
         viewPager.setAdapter(new SlideImageAdapter());
 

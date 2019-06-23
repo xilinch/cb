@@ -28,19 +28,29 @@
 
         <RadioButton
             android:checked="true"
-            android:drawableTop="@mipmap/tabbar_icon_home_0508"
+            android:drawableTop="@drawable/dd_home_tab1"
             android:id="@+id/rb1"
             style="@style/bottom_btn_style"
             android:text="首页" />
         <RadioButton
             android:id="@+id/rb2"
+            android:drawableTop="@drawable/dd_home_tab2"
             style="@style/bottom_btn_style"
-            android:drawableTop="@mipmap/tabbar_icon_free_plan_0508"
             android:text="免费计划" />
         <RadioButton
             android:id="@+id/rb3"
+            android:drawableTop="@drawable/dd_home_tab3"
             style="@style/bottom_btn_style"
-            android:drawableTop="@mipmap/tabbar_icon_me_0508"
+            android:text="工具" />
+        <RadioButton
+            android:id="@+id/rb4"
+            android:drawableTop="@drawable/dd_home_tab4"
+            style="@style/bottom_btn_style"
+            android:text="专家计划" />
+        <RadioButton
+            android:id="@+id/rb5"
+            style="@style/bottom_btn_style"
+            android:drawableTop="@drawable/dd_home_tab5"
             android:text="我的" />
 
     </RadioGroup>

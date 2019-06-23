@@ -40,7 +40,7 @@ import java.util.List;
 /**
  * 免费计划
  */
-public class Fragment2 extends Fragment {
+public class FreePlanFragment2 extends Fragment {
 
     private TextView tv_title;
     private LinearLayout ll_back;

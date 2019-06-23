@@ -33,6 +33,7 @@ import com.shishic.cb.NumberChoiceActivity;
 import com.shishic.cb.NumberChoiceFilterActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.SpecialActivity;
+import com.shishic.cb.SpecialActivity2;
 import com.shishic.cb.TrendNumberActivity;
 import com.shishic.cb.adapter.NewsAdapter;
 import com.shishic.cb.bean.ADTextBean;
@@ -157,7 +158,7 @@ public class MainFragment4 extends BaseFragment {
                             intent.setClass(getContext(), HistoryActivity.class);
                             break;
                         case R.id.tv_8:
-                            intent.setClass(getContext(), SpecialActivity.class);
+                            intent.setClass(getContext(), SpecialActivity2.class);
                             break;
                     }
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -185,12 +186,6 @@ public class MainFragment4 extends BaseFragment {
      *
      */
     private void initViewPager() {
-//        for(int i = 0; i< 3; i++){
-//            ImageView imageView = new ImageView(getContext());
-////            Glide.with(getContext()).load(newsIcon[i]).centerCrop().placeholder(R.mipmap.banner1).into(imageView);
-//            Glide.with(getContext()).load(R.mipmap.banner1).centerCrop().placeholder(R.mipmap.banner1).into(imageView);
-//            imageViews.add(imageView);
-//        }
         adapter = new ImageAdapter();
         viewPager.setAdapter(adapter);
     }
