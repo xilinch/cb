@@ -12,45 +12,59 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:background="@color/c_red_f64e45"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/green">
 
             <LinearLayout
                 android:id="@+id/ll_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="15dp">
+                android:orientation="horizontal"
+                android:paddingTop="15dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp">
 
                 <com.shishic.cb.view.CircleImageView
                     android:id="@+id/civ_personal_center_avatar"
-                    android:layout_width="76dp"
-                    android:layout_height="76dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@mipmap/avatar_default"
                     app:border_color="@color/c_gray_dddddd"
                     app:border_width="1px" />
 
-                <TextView
-                    android:id="@+id/tv_personal_center_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
-                    android:text="点击登录"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-                <TextView
-                    android:id="@+id/tv_personal_coin"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
-                    android:paddingTop="10dp"
-                    android:text="金币"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_personal_center_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:paddingTop="10dp"
+                        android:text="点击登录"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_personal_coin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.0"
+                        android:text="金币"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
 
@@ -97,40 +111,65 @@
             android:layout_marginLeft="20dp"
             android:background="@color/c_gray_cccccc" />
 
-        <RelativeLayout
-            android:id="@+id/rl_sign"
-            style="@style/personal_center_item">
-            <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
-                android:id="@+id/iv_sign"
-                android:src="@mipmap/me_ico_mine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_toRightOf="@+id/iv_sign"
-                style="@style/personal_center_title"
-                android:text="签到" />
+        <LinearLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_sign"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:drawableTop="@mipmap/me_ico_mine"
+                android:text="签到" />
+            <TextView
+                android:id="@+id/tv_messge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:drawableTop="@mipmap/me_ico_message"
+                android:text="我的消息" />
+
+            <TextView
+                android:id="@+id/tv_notify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:drawableTop="@mipmap/me_ico_mine"
+                android:text="我的通知" />
+        </LinearLayout>
+
+
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="20dp"
             android:background="@color/c_gray_cccccc" />
+
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_message"
             style="@style/personal_center_item">
+
             <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_msg"
-                android:src="@mipmap/me_ico_message"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/me_ico_message" />
+
             <TextView
-                android:layout_toRightOf="@+id/iv_msg"
                 style="@style/personal_center_title"
+                android:layout_toRightOf="@+id/iv_msg"
                 android:text="系统消息" />
 
             <ImageView
@@ -162,60 +201,72 @@
         <RelativeLayout
             android:id="@+id/rl_feedback"
             style="@style/personal_center_item">
+
             <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_feedback"
-                android:src="@mipmap/me_ico_yijian"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/me_ico_yijian" />
+
             <TextView
-                android:layout_toRightOf="@+id/iv_feedback"
                 style="@style/personal_center_title"
+                android:layout_toRightOf="@+id/iv_feedback"
                 android:text="意见反馈" />
 
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="20dp"
             android:background="@color/c_gray_cccccc" />
+
         <RelativeLayout
             android:id="@+id/rl_cache"
             style="@style/personal_center_item">
+
             <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_cache"
-                android:src="@mipmap/me_ico_touzhu"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/me_ico_touzhu" />
+
             <TextView
-                android:layout_toRightOf="@+id/iv_cache"
                 style="@style/personal_center_title"
+                android:layout_toRightOf="@+id/iv_cache"
                 android:text="清除缓存" />
 
 
         </RelativeLayout>
+
         <View
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_marginLeft="20dp"
             android:background="@color/c_gray_cccccc" />
+
         <RelativeLayout
+            android:visibility="gone"
             android:id="@+id/rl_notify"
             style="@style/personal_center_item">
+
             <ImageView
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
                 android:id="@+id/iv_notify"
-                android:src="@mipmap/me_ico_mine"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/me_ico_mine" />
+
             <TextView
-                android:layout_toRightOf="@+id/iv_notify"
                 style="@style/personal_center_title"
+                android:layout_toRightOf="@+id/iv_notify"
                 android:text="我的通知" />
 
             <ImageView
@@ -223,6 +274,7 @@
                 style="@style/personal_center_arrow" />
 
         </RelativeLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
@@ -242,10 +294,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_marginTop="40dp"
             android:id="@+id/rl_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:gravity="center">
 
             <TextView
@@ -255,10 +307,10 @@
                 android:layout_height="44dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:gravity="center"
-                android:textColor="@color/white"
                 android:background="@drawable/dd_shape_rec_red_44"
-                android:text="立即登录" />
+                android:gravity="center"
+                android:text="立即登录"
+                android:textColor="@color/white" />
 
         </RelativeLayout>
 

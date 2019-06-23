@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/login_register"
     android:orientation="vertical">
 
     <include
@@ -14,15 +15,15 @@
         android:background="@color/c_gray_dddddd" />
     <ImageView
         android:scaleType="center"
-        android:src="@mipmap/sign_bg"
         android:layout_width="match_parent"
-        android:layout_height="120dp" />
+        android:layout_height="30dp" />
     <RelativeLayout
+        android:background="@color/transparent_20"
         android:id="@+id/rl_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        android:layout_margin="30dp">
 
         <LinearLayout
             android:id="@+id/name_layout"

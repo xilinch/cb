@@ -103,8 +103,8 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                      }
                  });
              } else {
-                 contact = "点击查看，专家联系方式。";
-                 funViewHolder.tv_contact.setVisibility(View.GONE);
+//                 contact = "点击查看，专家联系方式。";
+                 funViewHolder.tv_contact.setVisibility(View.VISIBLE);
                  funViewHolder.tv_contact.setText(contact);
                  funViewHolder.tv_contact.setOnClickListener(new View.OnClickListener() {
                      @Override
@@ -115,8 +115,11 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                      }
                  });
              }
+
+             funViewHolder.tv_title.setText("专家名称：" + funBean.getName());
+             funViewHolder.tv_fee.setText("费用：" + funBean.getFee()+ "金币");
              funViewHolder.tv_content.setText(funBean.getContent());
-             funViewHolder.iv_tag.setText("TOP" + (position+ 1));
+             funViewHolder.iv_tag.setText("购买人气榜TOP" + (position+ 1));
              funViewHolder.ll_root.setOnClickListener(new View.OnClickListener() {
                  @Override
                  public void onClick(View view) {
@@ -140,6 +143,8 @@ public class SpecailAdapter extends RecyclerView.Adapter {
         public TextView tv_content;
         public TextView tv_detail;
         public TextView iv_tag;
+        public TextView tv_title;
+        public TextView tv_fee;
         public LinearLayout ll_root;
 
         public FunViewHolder(View view){
@@ -149,6 +154,8 @@ public class SpecailAdapter extends RecyclerView.Adapter {
             tv_contact = view.findViewById(R.id.tv_contact);
             tv_detail = view.findViewById(R.id.tv_detail);
             iv_tag = view.findViewById(R.id.iv_tag);
+            tv_title = view.findViewById(R.id.tv_title);
+            tv_fee = view.findViewById(R.id.tv_fee);
         }
     }
 

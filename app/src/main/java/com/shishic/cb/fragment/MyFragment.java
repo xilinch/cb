@@ -59,7 +59,7 @@ public class MyFragment extends BaseFragment{
     private Dialog signDialog;
     private RelativeLayout rl_modify_pwd;
     private RelativeLayout rl_bindphone;
-    private RelativeLayout rl_sign;
+//    private RelativeLayout rl_sign;
     private RelativeLayout rl_share;
     private RelativeLayout rl_feedback;
     private RelativeLayout rl_online_service;
@@ -67,6 +67,12 @@ public class MyFragment extends BaseFragment{
     private RelativeLayout rl_cache;
     private RelativeLayout rl_notify;
     private RelativeLayout rl_login;
+
+    private TextView tv_sign;
+    private TextView tv_messge;
+    private TextView tv_notify;
+
+
     public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
     private ServiceIntroduceDialog dialog;
     private CenterDialog cacheDialog;
@@ -88,7 +94,7 @@ public class MyFragment extends BaseFragment{
             civ_personal_center_avatar = view.findViewById(R.id.civ_personal_center_avatar);
             rl_modify_pwd = view.findViewById(R.id.rl_modify_pwd);
             rl_bindphone = view.findViewById(R.id.rl_bindphone);
-            rl_sign = view.findViewById(R.id.rl_sign);
+//            rl_sign = view.findViewById(R.id.rl_sign);
             rl_share = view.findViewById(R.id.rl_share);
             rl_feedback = view.findViewById(R.id.rl_feedback);
             rl_online_service = view.findViewById(R.id.rl_online_service);
@@ -99,6 +105,9 @@ public class MyFragment extends BaseFragment{
             rl_login = view.findViewById(R.id.rl_login);
             tv_logon_text = view.findViewById(R.id.tv_logon_text);
             tv_personal_coin = view.findViewById(R.id.tv_personal_coin);
+            tv_sign = view.findViewById(R.id.tv_sign);
+            tv_messge = view.findViewById(R.id.tv_messge);
+            tv_notify = view.findViewById(R.id.tv_notify);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
@@ -131,22 +140,47 @@ public class MyFragment extends BaseFragment{
                 startActivity(intent);
             }
         });
-        rl_sign.setOnClickListener(new View.OnClickListener() {
+//        rl_sign.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(needLogin()){
+//                    Intent intent =new Intent(getContext(), LoginActivity.class);
+//                    startActivity(intent);
+//                } else {
+//                    showSign();
+//                }
+//
+//            }
+//        });
+        rl_message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getContext(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
+        tv_sign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if(needLogin()){
                     Intent intent =new Intent(getContext(), LoginActivity.class);
                     startActivity(intent);
                 } else {
                     showSign();
                 }
-
             }
         });
-        rl_message.setOnClickListener(new View.OnClickListener() {
+        tv_messge.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent intent = new Intent(getContext(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
+        tv_notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), NotifyActivity.class);
                 startActivity(intent);
             }
         });

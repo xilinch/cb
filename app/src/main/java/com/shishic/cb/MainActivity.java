@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity {
                 fragmentTransaction.add(R.id.ll_content, fragment4);
             }
 
-        } else if (index == 5) {
+        } else if (index == 4) {
             if (myFragment != null) {
                 fragmentTransaction.show(myFragment);
             } else if (myFragment == null) {

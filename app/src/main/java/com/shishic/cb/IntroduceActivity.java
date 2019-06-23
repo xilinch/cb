@@ -32,7 +32,7 @@ public class IntroduceActivity extends BaseActivity {
                 finish();
             }
         });
-        tv_title.setText("专家介绍");
+        tv_title.setText("专家详情");
         introduce = getIntent().getStringExtra("introduce");
         LogUtil.e("my","introduce:" + introduce);
         tv_intrudoce.setText(introduce);
