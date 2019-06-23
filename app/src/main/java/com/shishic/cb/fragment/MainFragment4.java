@@ -211,7 +211,7 @@ public class MainFragment4 extends BaseFragment {
      */
     private void requestNews() {
         //
-        RequestUtil.httpPost(getContext(), Constant.URL_NEWS_LIST, null, new NFHttpResponseListener<String>() {
+        RequestUtil.httpGet(getContext(), Constant.URL_NEWS_LIST, new HashMap<String, String>(), new NFHttpResponseListener<String>() {
             @Override
             public void onErrorResponse(LogError logError) {
                 LogUtil.e("my", "URL_NEWS_LIST error:");
@@ -221,6 +221,7 @@ public class MainFragment4 extends BaseFragment {
             public void onResponse(String o) {
                 //拿到新闻数据显示内容
                 try {
+                    LogUtil.e("my", "URL_NEWS_LIST :" + o);
                     JSONObject jsonObject = new JSONObject(o);
                     JSONObject data = jsonObject.optJSONObject("data");
                     JSONArray listJSONArray = data.getJSONArray("list");
