@@ -13,6 +13,7 @@ import com.shishic.cb.fragment.Fragment4;
 import com.shishic.cb.fragment.MainFragment4;
 import com.shishic.cb.fragment.MyFragment;
 import com.shishic.cb.fragment.SpecialFragment2;
+import com.shishic.cb.fragment.TabToolFragment;
 import com.shishic.cb.fragment.ToolFragment2;
 import com.shishic.cb.util.ToastUtils;
 
@@ -24,9 +25,9 @@ public class MainActivity extends BaseActivity {
     //免费计划
     private FreePlanFragment2 freePlanFragment2;
     //专家计划
-    private SpecialFragment2 fragment3;
+    private SpecialFragment2 fragment4;
     //工具
-    private ToolFragment2 fragment4;
+    private TabToolFragment fragment3;
     //我的
     private MyFragment myFragment;
 
@@ -116,7 +117,7 @@ public class MainActivity extends BaseActivity {
             if (fragment3 != null) {
                 fragmentTransaction.show(fragment3);
             } else if (fragment3 == null) {
-                fragment3 = new SpecialFragment2();
+                fragment3 = new TabToolFragment();
                 fragmentTransaction.add(R.id.ll_content, fragment3);
             }
 
@@ -124,7 +125,7 @@ public class MainActivity extends BaseActivity {
             if (fragment4 != null) {
                 fragmentTransaction.show(fragment4);
             } else if (fragment4 == null) {
-                fragment4 = new ToolFragment2();
+                fragment4 = new SpecialFragment2();
                 fragmentTransaction.add(R.id.ll_content, fragment4);
             }
 

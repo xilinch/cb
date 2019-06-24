@@ -27,6 +27,19 @@ public class ToolFragment2 extends BaseFragment {
     private EditText et_capital,et_double,et_qishu;
     private Button btn_confirm;
 
+    //投入注数
+    private EditText et_touruzushu;
+    //投入期数
+    private EditText et_touruqishu;
+    //起始倍数
+    private EditText et_qishibeishu;
+    //单倍奖金
+    private EditText et_danbeijiangjin;
+    //单注本金
+    private EditText et_danzhubenjin;
+    //收益率
+    private EditText et_shouyilv;
+
     private RecyclerView recyclerView;
 
     private DoubleToolAdapter adapter;
@@ -48,6 +61,12 @@ public class ToolFragment2 extends BaseFragment {
         et_capital = view.findViewById(R.id.et_capital);
         et_double = view.findViewById(R.id.et_double);
         et_qishu = view.findViewById(R.id.et_qishu);
+        et_touruzushu = view.findViewById(R.id.et_touruzushu);
+        et_touruqishu = view.findViewById(R.id.et_touruqishu);
+        et_qishibeishu = view.findViewById(R.id.et_qishibeishu);
+        et_danbeijiangjin = view.findViewById(R.id.et_danbeijiangjin);
+        et_danzhubenjin = view.findViewById(R.id.et_danzhubenjin);
+        et_shouyilv = view.findViewById(R.id.et_shouyilv);
         recyclerView = view.findViewById(R.id.recyclerView);
         List list = new ArrayList();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

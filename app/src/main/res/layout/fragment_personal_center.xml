@@ -112,12 +112,13 @@
             android:background="@color/c_gray_cccccc" />
 
         <LinearLayout
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingLeft="20dp">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_sign"
@@ -125,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 android:gravity="center"
-                android:drawableTop="@mipmap/me_ico_mine"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_sign"
                 android:text="签到" />
             <TextView
                 android:id="@+id/tv_messge"
@@ -133,7 +135,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 android:gravity="center"
-                android:drawableTop="@mipmap/me_ico_message"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_message"
                 android:text="我的消息" />
 
             <TextView
@@ -142,7 +145,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
                 android:gravity="center"
-                android:drawableTop="@mipmap/me_ico_mine"
+                android:drawablePadding="5dp"
+                android:drawableTop="@mipmap/icon_notify"
                 android:text="我的通知" />
         </LinearLayout>
 
