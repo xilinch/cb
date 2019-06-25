@@ -327,6 +327,8 @@ public class FreePlanFragment2 extends Fragment {
                                     }
                                 }
                             }
+                            int type = freePlan.getPlanType();
+                            adapter.setPlanType(type);
                         }
                         initDatas();
                     }

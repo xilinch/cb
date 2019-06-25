@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <TextView
         android:id="@+id/tv_jounal"
-        android:text="xxx-xxx期 中"
-        android:padding="10dp"
-        android:textColor="@color/c_gray_333333"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="xxx-xxx期 中"
+        android:textColor="@color/c_gray_333333" />
+
     <TextView
-        android:textColor="@color/c_gray_666666"
         android:id="@+id/tv_content"
-        android:text="推荐号码【04568】 第068期 出46836(6)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
+        android:text="推荐号码【04568】 第068期 出46836(6)"
+        android:textColor="@color/c_gray_666666" />
+
+    <TextView
+        android:id="@+id/tv_danshi_all"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/c_gray_666666" />
 
 </LinearLayout>

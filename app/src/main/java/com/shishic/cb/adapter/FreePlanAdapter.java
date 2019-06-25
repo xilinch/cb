@@ -26,6 +26,15 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
     private Context context;
 
+    /**
+     *  ZHIXUAN(1,"直选"),
+     *     SINGLE(2,"单式"),
+     *     ZHU_SAN(3,"组三"),
+     *     ZHU_LIU(4,"组六"),
+     *     FUXUAN(5,"复选");
+     */
+    private int planType;
+
     public FreePlanAdapter(List<Object> list,Context context){
         this.list = list;
         this.context = context;
@@ -39,6 +48,14 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
     public void addData(List<Object> list){
         this.list.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public int getPlanType() {
+        return planType;
+    }
+
+    public void setPlanType(int planType) {
+        this.planType = planType;
     }
 
     @Override
@@ -91,6 +108,17 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             jounal.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length(), jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.tv_jounal.setText(jounal);
+            //如果是单式的话，自己组合全部的集合
+
+            if(planType == 2){
+                //显示单式组合
+                String all = getAllNumbers();
+                holder.tv_danshi_all.setText("");
+                holder.tv_danshi_all.setVisibility(View.VISIBLE);
+            } else {
+                holder.tv_danshi_all.setVisibility(View.GONE);
+            }
+
 
 
         } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
@@ -108,6 +136,27 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
+    private String getAllNumbers(String recommendNumbers){
+        StringBuilder result = new StringBuilder();
+        if(recommendNumbers != null){
+            String[] numbers = recommendNumbers.split(",");
+            if(numbers != null ){
+                for(int i = 0; i < numbers.length; i++){
+
+                    String[] numbers1 = numbers[i].split("-");
+                    if(numbers1 != null){
+                        for(int j = 0 ; j < numbers1.length; j++){
+                            //自动加上
+
+                        }
+                    }
+                }
+            }
+
+        }
+        return result.toString();
+    }
+
     @Override
     public int getItemViewType(int position) {
         Object object = list.get(position);
@@ -121,11 +170,13 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
     static class PlanViewHolder extends RecyclerView.ViewHolder{
         public TextView tv_jounal;
         public TextView tv_content;
+        public TextView tv_danshi_all;
 
         public PlanViewHolder(View view){
             super(view);
             tv_content = view.findViewById(R.id.tv_content);
             tv_jounal = view.findViewById(R.id.tv_jounal);
+            tv_danshi_all = view.findViewById(R.id.tv_danshi_all);
         }
     }
 
