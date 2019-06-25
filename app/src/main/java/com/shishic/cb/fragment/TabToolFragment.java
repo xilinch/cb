@@ -80,7 +80,7 @@ public class TabToolFragment extends BaseFragment implements View.OnClickListene
                 intent.setClass(getContext(), DoubleToolActivity2.class);
                 break;
             case R.id.rl_4:
-                intent.setClass(getContext(), HistoryActivity.class);
+                intent.setClass(getContext(), LostAnalyActivity.class);
                 break;
             case R.id.rl_5:
                 intent.setClass(getContext(), NumberChoiceFilterActivity.class);

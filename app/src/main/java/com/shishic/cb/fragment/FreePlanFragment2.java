@@ -44,23 +44,16 @@ public class FreePlanFragment2 extends Fragment {
 
     private TextView tv_title;
     private LinearLayout ll_back;
-    //预测期号
-    private TextView iv_forecast_jounal;
-    //当前预测
-    private TextView iv_forecast;
-    //当前开奖
-    private TextView tv_currenNumber;
+    //当前公告
+    private TextView tv_notice;
     //当前期数
     private TextView tv_currenJounal;
-    //当前期数
-    private TextView iv_plan_name;
 
     private Spinner cp_type,plan;
     private int type = 1;
     private ArrayList<String> typeList = new ArrayList<>();
     private ArrayList<String> planList = new ArrayList<>();
 
-//    private String[] typeStr = new String[]{"时时"};
     private ArrayAdapter typeAdapter, planAdapter;
 
     private RecyclerView recyclerView;
@@ -75,11 +68,16 @@ public class FreePlanFragment2 extends Fragment {
 
     private View view;
 
+    /**
+     * 中奖号码
+     */
+    private TextView tv_1,tv_2,tv_3,tv_4,tv_5,tv_6,tv_7,tv_8,tv_9,tv_10;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(view == null){
-            view =inflater.inflate(R.layout.activity_freeplan1,container,false);
+            view =inflater.inflate(R.layout.fragment_freeplan2,container,false);
         }
         initView();
         initListener();
@@ -90,11 +88,20 @@ public class FreePlanFragment2 extends Fragment {
     private void initView(){
         tv_title = view.findViewById(R.id.tv_title);
         ll_back = view.findViewById(R.id.ll_back);
-        iv_forecast_jounal = view.findViewById(R.id.iv_forecast_jounal);
-        iv_forecast = view.findViewById(R.id.iv_forecast);
-        tv_currenNumber = view.findViewById(R.id.tv_currenNumber);
+        tv_notice = view.findViewById(R.id.tv_notice);
+        tv_1 = view.findViewById(R.id.tv_1);
+        tv_2 = view.findViewById(R.id.tv_2);
+        tv_3 = view.findViewById(R.id.tv_3);
+        tv_4 = view.findViewById(R.id.tv_4);
+        tv_5 = view.findViewById(R.id.tv_5);
+        tv_6 = view.findViewById(R.id.tv_6);
+        tv_7 = view.findViewById(R.id.tv_7);
+        tv_8 = view.findViewById(R.id.tv_8);
+        tv_9 = view.findViewById(R.id.tv_9);
+        tv_10 = view.findViewById(R.id.tv_10);
+
+        tv_notice = view.findViewById(R.id.tv_notice);
         tv_currenJounal = view.findViewById(R.id.tv_currenJounal);
-        iv_plan_name = view.findViewById(R.id.iv_plan_name);
         plan = view.findViewById(R.id.plan);
         cp_type = view.findViewById(R.id.cp_type);
         ll_back.setVisibility(View.GONE);
@@ -105,8 +112,6 @@ public class FreePlanFragment2 extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
-//        typeList.add("重庆时时彩");
-//        typeList.add("腾讯分分彩");
 
         typeList.add("重庆时时彩");
         typeList.add("腾讯分分彩");
@@ -242,24 +247,86 @@ public class FreePlanFragment2 extends Fragment {
                             if(listBeans != null && listBeans.size() > 1){
                                 FreePlan.ListBean listBean = listBeans.get(0);
                                 FreePlan.ListBean listBean1 = listBeans.get(1);
-                                iv_forecast_jounal.setText("预测期号:" + listBean.getFromJounal() + "-"+ listBean.getEndJounal() + "期");
-                                iv_forecast.setText("当前预测:" + listBean.getRecommendNumbers());
                                 tv_currenJounal.setText("当前期数:" + listBean.getCurrenJounal());
                                 String luckyNumbers = listBean1.getLuckyNumbers();
                                 if(TextUtils.isEmpty(luckyNumbers)){
                                     luckyNumbers = "--";
                                 }
+                                String notice = freePlan.getNotice();
+                                tv_notice.setText(notice);
                                 //如果是时时彩类的，不显示-，否则显示-
+                                String[] numbers = luckyNumbers.split(",");
                                 if(cp_type.getSelectedItemPosition() <= 4){
-                                    luckyNumbers = luckyNumbers.replaceAll("-","");
-                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                    if(numbers != null && numbers.length >= 5){
+                                        tv_1.setVisibility(View.VISIBLE);
+                                        tv_2.setVisibility(View.VISIBLE);
+                                        tv_3.setVisibility(View.VISIBLE);
+                                        tv_4.setVisibility(View.VISIBLE);
+                                        tv_5.setVisibility(View.VISIBLE);
+                                        tv_6.setVisibility(View.GONE);
+                                        tv_7.setVisibility(View.GONE);
+                                        tv_8.setVisibility(View.GONE);
+                                        tv_9.setVisibility(View.GONE);
+                                        tv_10.setVisibility(View.GONE);
+                                    } else {
+                                        tv_1.setVisibility(View.GONE);
+                                        tv_2.setVisibility(View.GONE);
+                                        tv_3.setVisibility(View.GONE);
+                                        tv_4.setVisibility(View.GONE);
+                                        tv_5.setVisibility(View.GONE);
+                                        tv_6.setVisibility(View.GONE);
+                                        tv_7.setVisibility(View.GONE);
+                                        tv_8.setVisibility(View.GONE);
+                                        tv_9.setVisibility(View.GONE);
+                                        tv_10.setVisibility(View.GONE);
+                                        tv_5.setText(numbers[0]);
+                                        tv_4.setText(numbers[1]);
+                                        tv_3.setText(numbers[2]);
+                                        tv_2.setText(numbers[3]);
+                                        tv_1.setText(numbers[4]);
+                                    }
+
                                 } else {
-                                    //否则显示-
-                                    tv_currenNumber.setText("当前开奖:" + luckyNumbers);
+                                    if(cp_type.getSelectedItemPosition() == 5 || cp_type.getSelectedItemPosition() == 8){
+                                        //10个数字
+                                        tv_1.setVisibility(View.VISIBLE);
+                                        tv_2.setVisibility(View.VISIBLE);
+                                        tv_3.setVisibility(View.VISIBLE);
+                                        tv_4.setVisibility(View.VISIBLE);
+                                        tv_5.setVisibility(View.VISIBLE);
+                                        tv_6.setVisibility(View.VISIBLE);
+                                        tv_7.setVisibility(View.VISIBLE);
+                                        tv_8.setVisibility(View.VISIBLE);
+                                        tv_9.setVisibility(View.VISIBLE);
+                                        tv_10.setVisibility(View.VISIBLE);
+                                        tv_10.setText(numbers[0]);
+                                        tv_9.setText(numbers[1]);
+                                        tv_8.setText(numbers[2]);
+                                        tv_7.setText(numbers[3]);
+                                        tv_6.setText(numbers[4]);
+                                        tv_5.setText(numbers[5]);
+                                        tv_4.setText(numbers[6]);
+                                        tv_3.setText(numbers[7]);
+                                        tv_2.setText(numbers[8]);
+                                        tv_1.setText(numbers[9]);
+                                    } else {
+                                        //3个数字
+                                        tv_1.setVisibility(View.VISIBLE);
+                                        tv_2.setVisibility(View.VISIBLE);
+                                        tv_3.setVisibility(View.VISIBLE);
+                                        tv_4.setVisibility(View.GONE);
+                                        tv_5.setVisibility(View.GONE);
+                                        tv_6.setVisibility(View.GONE);
+                                        tv_7.setVisibility(View.GONE);
+                                        tv_8.setVisibility(View.GONE);
+                                        tv_9.setVisibility(View.GONE);
+                                        tv_10.setVisibility(View.GONE);
+                                        tv_3.setText(numbers[0]);
+                                        tv_2.setText(numbers[1]);
+                                        tv_1.setText(numbers[2]);
+                                    }
                                 }
                             }
-                            iv_plan_name.setText("当前计划:" + name + " " + (freePlan.getNotice() == null?"":freePlan.getNotice()));
-
                         }
                         initDatas();
                     }

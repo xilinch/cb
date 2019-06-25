@@ -16,6 +16,14 @@ public class FreePlan extends BaseBean {
     private String planName;
     private String notice;
     private List<ListBean> list;
+    /**
+     *  ZHIXUAN(1,"直选"),
+     *     SINGLE(2,"单式"),
+     *     ZHU_SAN(3,"组三"),
+     *     ZHU_LIU(4,"组六"),
+     *     FUXUAN(5,"复选");
+     */
+    private int planType;
 
     public int getPlanId() {
         return planId;
@@ -25,12 +33,22 @@ public class FreePlan extends BaseBean {
         this.planId = planId;
     }
 
+
+
     public String getPlanName() {
         return planName;
     }
 
     public void setPlanName(String planName) {
         this.planName = planName;
+    }
+
+    public int getPlanType() {
+        return planType;
+    }
+
+    public void setPlanType(int planType) {
+        this.planType = planType;
     }
 
     public List<ListBean> getList() {
