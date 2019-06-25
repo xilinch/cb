@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.DoubleToolActivity;
+import com.shishic.cb.DoubleToolActivity2;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.NumberChoiceActivity;
@@ -149,7 +150,7 @@ public class MainFragment4 extends BaseFragment {
                             intent.setClass(getContext(), NumberChoiceActivity.class);
                             break;
                         case R.id.tv_5:
-                            intent.setClass(getContext(), DoubleToolActivity.class);
+                            intent.setClass(getContext(), DoubleToolActivity2.class);
                             break;
                         case R.id.tv_6:
                             intent.setClass(getContext(), NumberChoiceFilterActivity.class);
@@ -176,19 +177,11 @@ public class MainFragment4 extends BaseFragment {
             initRecycleView();
             initSwitcher();
             requestNotice();
-            initViewPager();
         }
 
         return view;
     }
 
-    /**
-     *
-     */
-    private void initViewPager() {
-        adapter = new ImageAdapter();
-        viewPager.setAdapter(adapter);
-    }
 
     private void initRecycleView() {
         recyclerView = view.findViewById(R.id.recyclerView);
@@ -318,6 +311,8 @@ public class MainFragment4 extends BaseFragment {
                             imageViews.add(imageView);
                         }
                         tv_ad.setText(sb.toString());
+                        adapter = new ImageAdapter();
+                        viewPager.setAdapter(adapter);
                         if(adapter != null){
                             adapter.notifyDataSetChanged();
                         }
@@ -357,7 +352,7 @@ public class MainFragment4 extends BaseFragment {
 
         @Override
         public int getCount() {
-            return imageViews.size() * 10000;
+            return imageViews.size();
         }
 
         @Override

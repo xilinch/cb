@@ -39,6 +39,24 @@ public class UtilInteger {
     }
 
     /**
+     * string到int的转化
+     * @param parseStr
+     * @return
+     */
+    public static double parseDouble(String parseStr, double defaultValue){
+        double result = defaultValue;
+        if(!TextUtils.isEmpty(parseStr)){
+            try{
+                result = Double.parseDouble(parseStr);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
+        }
+        return result;
+    }
+
+
+    /**
      * string到long的转化
      * 缺省值为-1
      * @param parseStr
@@ -47,6 +65,18 @@ public class UtilInteger {
     public static long parseLong(String parseStr){
         long defaultValue = -1;
         return parseLong(parseStr,defaultValue);
+    }
+
+
+    /**
+     * string到long的转化
+     * 缺省值为-1
+     * @param parseStr
+     * @return
+     */
+    public static double parseDouble(String parseStr){
+        double defaultValue = -1;
+        return parseDouble(parseStr,defaultValue);
     }
 
     /**

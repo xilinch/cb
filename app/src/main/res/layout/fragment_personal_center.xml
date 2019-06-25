@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:background="@color/green">
+            android:background="@drawable/dd_shape_green_content_8">
 
             <LinearLayout
                 android:id="@+id/ll_phone"

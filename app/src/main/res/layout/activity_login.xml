@@ -16,9 +16,19 @@
         android:scaleType="center"
         android:layout_width="match_parent"
         android:layout_height="30dp" />
+    <TextView
+        android:layout_marginTop="30dp"
+        android:text="用户登录"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <RelativeLayout
-        android:layout_margin="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:id="@+id/window_login_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,12 +40,12 @@
             android:id="@+id/phone_number_layout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_below="@+id/window_login_text"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
+                android:visibility="gone"
                 android:layout_marginLeft="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -47,7 +57,7 @@
                 android:layout_height="52dp"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@color/transparent"
                 android:hint="@string/please_enter_phone_number"
                 android:inputType="number"
                 android:maxLength="11"
@@ -64,10 +74,9 @@
         </LinearLayout>
 
         <View
+            android:layout_below="@+id/phone_number_layout"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="16dp"
             android:background="@color/c_gray_eeeeee"
             android:visibility="visible" />
 
@@ -80,6 +89,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:visibility="gone"
                 android:layout_marginLeft="5dp"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -91,7 +101,7 @@
                 android:layout_height="52dp"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:background="@null"
+                android:background="@color/transparent"
                 android:hint="请输入密码"
                 android:maxLength="18"
                 android:textColor="@color/black"
@@ -101,7 +111,12 @@
 
         </LinearLayout>
 
-
+        <View
+            android:layout_below="@+id/password_picture"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/c_gray_eeeeee"
+            android:visibility="visible" />
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="match_parent"

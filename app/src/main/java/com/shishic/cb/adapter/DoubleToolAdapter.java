@@ -61,20 +61,20 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_touzhuchengben.setText("投注成本");
                 funViewHolder.tv_zongbenjin.setText("总本金");
                 funViewHolder.tv_lirun.setText("利润");
-                funViewHolder.tv_danbeijiangjin.setTextColor(Color.WHITE);
-                funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_jiangjin.setTextColor(Color.WHITE);
-                funViewHolder.tv_jiangjin.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_qishibenjin.setTextColor(Color.WHITE);
-                funViewHolder.tv_qishibenjin.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_qishu.setTextColor(Color.WHITE);
-                funViewHolder.tv_qishu.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_touzhuchengben.setTextColor(Color.WHITE);
-                funViewHolder.tv_touzhuchengben.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_zongbenjin.setTextColor(Color.WHITE);
-                funViewHolder.tv_zongbenjin.setBackgroundColor(Color.BLACK);
-                funViewHolder.tv_lirun.setTextColor(Color.WHITE);
-                funViewHolder.tv_lirun.setBackgroundColor(Color.BLACK);
+                funViewHolder.tv_danbeijiangjin.setTextColor(Color.GREEN);
+                funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_jiangjin.setTextColor(Color.GREEN);
+                funViewHolder.tv_jiangjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_qishibenjin.setTextColor(Color.GREEN);
+                funViewHolder.tv_qishibenjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_qishu.setTextColor(Color.GREEN);
+                funViewHolder.tv_qishu.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_touzhuchengben.setTextColor(Color.GREEN);
+                funViewHolder.tv_touzhuchengben.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_zongbenjin.setTextColor(Color.GREEN);
+                funViewHolder.tv_zongbenjin.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_lirun.setTextColor(Color.GREEN);
+                funViewHolder.tv_lirun.setBackgroundColor(Color.WHITE);
 
             } else {
                 //显示数值

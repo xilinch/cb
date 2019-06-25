@@ -17,6 +17,7 @@ import com.android.nfRequest.LogError;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.shishic.cb.DoubleToolActivity;
+import com.shishic.cb.DoubleToolActivity2;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.NumberChoiceFilterActivity;
@@ -76,7 +77,7 @@ public class TabToolFragment extends BaseFragment implements View.OnClickListene
                 intent.setClass(getContext(), TrendNumberActivity.class);
                 break;
             case R.id.rl_3:
-                intent.setClass(getContext(), DoubleToolActivity.class);
+                intent.setClass(getContext(), DoubleToolActivity2.class);
                 break;
             case R.id.rl_4:
                 intent.setClass(getContext(), HistoryActivity.class);

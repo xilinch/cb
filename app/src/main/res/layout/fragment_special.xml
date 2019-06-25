@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/tv_title"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="专家计划"
+        android:background="@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listRefreshLayout"
         android:layout_width="match_parent"

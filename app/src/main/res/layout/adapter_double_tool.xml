@@ -14,65 +14,72 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/bottom_btn_style"
-                android:padding="10dp"
+                style="@style/tool_tab_style"
+                android:padding="5dp"
                 android:id="@+id/tv_qishu"
                 android:layout_width="wrap_content"
+                android:minWidth="50dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="期数" />
 
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_qishibenjin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="起始本金" />
 
 
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_danbeijiangjin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="单倍奖金" />
 
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_touzhuchengben"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="投注成本" />
 
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_zongbenjin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="总本金" />
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_jiangjin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="奖金" />
 
             <TextView
-                style="@style/bottom_btn_style"
+                style="@style/tool_tab_style"
                 android:id="@+id/tv_lirun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:minWidth="50dp"
+                android:padding="5dp"
                 android:gravity="center"
                 android:text="利润" />
         </LinearLayout>

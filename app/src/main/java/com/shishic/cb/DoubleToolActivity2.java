@@ -30,7 +30,7 @@ public class DoubleToolActivity2 extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_double_tool);
+        setContentView(R.layout.activity_double_tool2);
         initView();
         initListener();
     }

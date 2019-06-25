@@ -2,9 +2,20 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/c_gray_f2f2f2"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_title"
+        android:textColor="@color/white"
+        android:text="倍投工具"
+        android:visibility="gone"
+        android:background="@color/green"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="3dp"
@@ -23,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="投入注数"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_touruzushu"
@@ -36,7 +47,7 @@
                 android:gravity="center"
                 android:text="10"
                 android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="投入期数"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_touruqishu"
@@ -63,8 +74,9 @@
                 android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
                 android:gravity="center"
                 android:text="10"
+                android:maxLength="2"
                 android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
 
         <LinearLayout
@@ -79,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="起始倍数"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_qishibeishu"
@@ -92,7 +104,7 @@
                 android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
                 android:text="10"
                 android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +119,7 @@
                 android:layout_height="wrap_content"
                 android:text="单倍奖金"
                 android:gravity="center"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_danbeijiangjin"
@@ -118,9 +130,9 @@
                 android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
-                android:text="10"
-                android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:text="19.5"
+                android:inputType="number"
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="单注本金"
                 android:gravity="center"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_danzhubenjin"
@@ -146,9 +158,9 @@
                 android:layout_marginRight="5dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
-                android:text="10"
+                android:text="2"
                 android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -162,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:text="收益率"
                 android:gravity="center"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
 
             <EditText
                 android:id="@+id/et_shouyilv"
@@ -175,7 +187,7 @@
                 android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
                 android:text="10"
                 android:numeric="integer"
-                android:textColor="@color/c_gray_666666" />
+                android:textColor="@color/c_gray_333333" />
         </LinearLayout>
     </LinearLayout>
 
@@ -207,6 +219,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
@@ -233,6 +246,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal">
@@ -257,32 +271,53 @@
             android:text="20"
             android:textColor="@color/c_gray_666666" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_confirm"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
+    <RelativeLayout
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/dd_shape_rec_red_44"
-        android:text="开始计算"
-        android:textColor="@color/white" />
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_confirm"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/dd_shape_rec_green_44"
+            android:text="开始计算"
+            android:textColor="@color/white" />
+
+        <Button
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/btn_reset"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/dd_shape_rec_green_44"
+            android:text="重置"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
 
     <View
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1sp"
         android:background="@color/c_gray_f2f2f2" />
 
     <HorizontalScrollView
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp">
+            android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
     </HorizontalScrollView>

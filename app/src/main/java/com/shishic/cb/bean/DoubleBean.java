@@ -7,9 +7,9 @@ public class DoubleBean extends BaseBean {
     private double qishibenjin;
 
     private double danbeijiangjin = 19.5;
-    //共20
+    //最高99
     private int qishu;
-    //
+    //动态倍数
     private int beishu;
     //投注(n) + 投注(n-1) + 投注... + 投注(1)
     private double zongbenjin;
