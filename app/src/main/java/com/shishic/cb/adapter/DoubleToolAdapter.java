@@ -50,9 +50,7 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
             FunViewHolder funViewHolder = (FunViewHolder) holder;
             int type = funBean.getType();
             if(type == 1){
-
                 //投入注数/投入期数/起始倍数/单注奖金
-
                 //显示标题
                 funViewHolder.tv_danbeijiangjin.setText("单倍奖金");
                 funViewHolder.tv_jiangjin.setText("奖金");
@@ -61,6 +59,7 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_touzhuchengben.setText("投注成本");
                 funViewHolder.tv_zongbenjin.setText("总本金");
                 funViewHolder.tv_lirun.setText("利润");
+                funViewHolder.tv_lirunlv.setText("利润率");
                 funViewHolder.tv_danbeijiangjin.setTextColor(Color.GREEN);
                 funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.WHITE);
                 funViewHolder.tv_jiangjin.setTextColor(Color.GREEN);
@@ -75,6 +74,8 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_zongbenjin.setBackgroundColor(Color.WHITE);
                 funViewHolder.tv_lirun.setTextColor(Color.GREEN);
                 funViewHolder.tv_lirun.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_lirunlv.setTextColor(Color.GREEN);
+                funViewHolder.tv_lirunlv.setBackgroundColor(Color.WHITE);
 
             } else {
                 //显示数值
@@ -85,6 +86,7 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_touzhuchengben.setText(String.valueOf(funBean.getTouzhuchengben()));
                 funViewHolder.tv_zongbenjin.setText(String.valueOf(funBean.getZongbenjin()));
                 funViewHolder.tv_lirun.setText(String.valueOf(funBean.getLirun()));
+                funViewHolder.tv_lirunlv.setText(String.valueOf(funBean.getLirunlv()));
 
                 funViewHolder.tv_danbeijiangjin.setTextColor(Color.parseColor("#333333"));
                 funViewHolder.tv_danbeijiangjin.setBackgroundColor(Color.WHITE);
@@ -100,6 +102,8 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
                 funViewHolder.tv_zongbenjin.setBackgroundColor(Color.WHITE);
                 funViewHolder.tv_lirun.setTextColor(Color.parseColor("#333333"));
                 funViewHolder.tv_lirun.setBackgroundColor(Color.WHITE);
+                funViewHolder.tv_lirunlv.setTextColor(Color.parseColor("#333333"));
+                funViewHolder.tv_lirunlv.setBackgroundColor(Color.WHITE);
             }
 
         }
@@ -122,6 +126,7 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
         public TextView tv_zongbenjin;
         public TextView tv_jiangjin;
         public TextView tv_lirun;
+        public TextView tv_lirunlv;
 
         public FunViewHolder(View view) {
             super(view);
@@ -132,6 +137,7 @@ public class DoubleToolAdapter extends RecyclerView.Adapter {
             tv_zongbenjin = view.findViewById(R.id.tv_zongbenjin);
             tv_jiangjin = view.findViewById(R.id.tv_jiangjin);
             tv_lirun = view.findViewById(R.id.tv_lirun);
+            tv_lirunlv = view.findViewById(R.id.tv_lirunlv);
         }
     }
 }

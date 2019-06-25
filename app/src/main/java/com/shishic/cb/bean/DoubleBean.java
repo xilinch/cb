@@ -17,6 +17,8 @@ public class DoubleBean extends BaseBean {
     private double jiangjin;
     //奖金-总成本
     private double lirun;
+    //利润率
+    private double lirunlv;
     //1显示标题
     private int type;
 
@@ -92,6 +94,14 @@ public class DoubleBean extends BaseBean {
         this.type = type;
     }
 
+    public double getLirunlv() {
+        return lirunlv;
+    }
+
+    public void setLirunlv(double lirunlv) {
+        this.lirunlv = lirunlv;
+    }
+
     @Override
     public String toString() {
         return "DoubleBean{" +
@@ -104,6 +114,7 @@ public class DoubleBean extends BaseBean {
                 ", jiangjin=" + jiangjin +
                 ", lirun=" + lirun +
                 ", type=" + type +
+                ", lirunlv=" + lirunlv +
                 '}';
     }
 }

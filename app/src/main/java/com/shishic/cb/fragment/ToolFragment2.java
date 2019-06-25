@@ -17,6 +17,7 @@ import com.shishic.cb.DoubleToolActivity;
 import com.shishic.cb.R;
 import com.shishic.cb.adapter.DoubleToolAdapter;
 import com.shishic.cb.bean.DoubleBean;
+import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
 import com.shishic.cb.util.UtilInteger;
 
@@ -160,9 +161,11 @@ public class ToolFragment2 extends BaseFragment {
                     double lirun = bean.getJiangjin() - bean.getZongbenjin();
                     bean.setLirun(lirun);
                     double lirunlv = lirun * 100 / bean.getZongbenjin();
+//                    LogUtil.e("my","lirunlv:" + lirunlv);
                     if(lirunlv >= shouyilv_num){
                         list.add(bean);
                     }
+                    bean.setLirunlv(lirunlv);
                 }
                 DoubleBean bean = new DoubleBean();
                 bean.setType(1);

@@ -82,6 +82,16 @@
                 android:padding="5dp"
                 android:gravity="center"
                 android:text="利润" />
+
+            <TextView
+                style="@style/tool_tab_style"
+                android:id="@+id/tv_lirunlv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="50dp"
+                android:padding="5dp"
+                android:gravity="center"
+                android:text="利润率" />
         </LinearLayout>
 
 
