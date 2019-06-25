@@ -6,12 +6,27 @@
 
     <include layout="@layout/include_view_title" />
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
-    </Spinner>
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
+            android:gravity="center_horizontal"></Spinner>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/cityarrow" />
+    </FrameLayout>
 
     <com.shishic.cb.loadmore.ListRefreshLayout
         android:id="@+id/listRefreshLayout"

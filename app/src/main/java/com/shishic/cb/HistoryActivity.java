@@ -150,6 +150,11 @@ public class HistoryActivity extends BaseActivity {
                     recyclerView.setTotalPage(pages);
                     if(listData != null && listData.length() > 0){
                         List<HistoryBean> list = new Gson().fromJson(listData.toString(), new TypeToken<List<HistoryBean>>(){}.getType());
+                        if(recyclerView.currentPage == 1){
+                            HistoryBean historyBean = new HistoryBean();
+                            historyBean.setType(-2);
+                            list.add(0,historyBean);
+                        }
                         if(recyclerView != null && recyclerView.currentPage == 1){
                             recyclerView.updateClearAndAdd(list);
                         } else if(recyclerView != null && recyclerView.currentPage > 1){

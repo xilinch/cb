@@ -2,53 +2,100 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/c_gray_f2f2f2"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/include_view_title" />
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></Spinner>
+    <include layout="@layout/include_view_title" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
+            android:gravity="center_horizontal"></Spinner>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/cityarrow" />
+    </FrameLayout>
 
     <RadioGroup
-        android:background="@color/c_gray_eeeeee"
         android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/c_gray_eeeeee"
         android:orientation="horizontal">
-
         <RadioButton
-            android:checked="true"
+            android:visibility="gone"
+            android:id="@+id/rb_10"
             style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="10"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/rb_9"
+            style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="9"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/rb_8"
+            style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="8"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/rb_7"
+            style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="7"
+            android:textSize="14sp" />
+        <RadioButton
+            android:id="@+id/rb_6"
+            style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="6"
+            android:textSize="14sp" />
+        <RadioButton
             android:id="@+id/rb_5"
-            android:textSize="14sp"
-            android:text="万位走势" />
+            style="@style/tab_btn_style"
+            android:checked="true"
+            android:text="万位"
+            android:textSize="14sp" />
 
         <RadioButton
             android:id="@+id/rb_4"
             style="@style/tab_btn_style"
-            android:textSize="14sp"
-            android:text="千位走势" />
+            android:text="千位"
+            android:textSize="14sp" />
 
         <RadioButton
-            style="@style/tab_btn_style"
             android:id="@+id/rb_3"
-            android:textSize="14sp"
-            android:text="百位走势" />
+            style="@style/tab_btn_style"
+            android:text="百位"
+            android:textSize="14sp" />
 
         <RadioButton
-            style="@style/tab_btn_style"
             android:id="@+id/rb_2"
-            android:textSize="14sp"
-            android:text="十位走势" />
+            style="@style/tab_btn_style"
+            android:text="十位"
+            android:textSize="14sp" />
 
         <RadioButton
-            style="@style/tab_btn_style"
             android:id="@+id/rb_1"
-            android:textSize="14sp"
-            android:text="个位走势" />
+            style="@style/tab_btn_style"
+            android:text="个位"
+            android:textSize="14sp" />
 
     </RadioGroup>
 

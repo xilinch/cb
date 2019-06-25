@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shishic.cb.R;
@@ -77,6 +78,16 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
                     value = funBean.getN4();
                 } else if (type == 4) {
                     value = funBean.getN5();
+                } else if (type == 5) {
+                    value = funBean.getN6();
+                } else if (type == 6) {
+                    value = funBean.getN7();
+                } else if (type == 7) {
+                    value = funBean.getN8();
+                } else if (type == 8) {
+                    value = funBean.getN9();
+                } else if (type == 9) {
+                    value = funBean.getN10();
                 }
                 LogUtil.e("my","position:"+ position +" HistoryBean:" + funBean.toString());
                 LogUtil.e("my","nums:"+ Arrays.toString(nums));
@@ -102,21 +113,6 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
                         funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_white);
                     }
                 }
-//                } else {
-//                    for(int i = 0; i< 10;i++){
-//                        if(value == numBasic[i]){
-//                            //中了这个 红色底白色字，
-//                            funViewHolder.textViews.get(i).setDescription(String.valueOf(value));
-//                            funViewHolder.textViews.get(i).setTextColor(Color.WHITE);
-//                            funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_red);
-//                        } else {
-//                            funViewHolder.textViews.get(i).setDescription(String.valueOf(funBean.getLc()));
-//                            funViewHolder.textViews.get(i).setTextColor(Color.BLACK);
-//                            funViewHolder.textViews.get(i).setBackgroundResource(R.drawable.dd_shape_circle_white);
-//                        }
-//
-//                    }
-//                }
 
             }
         }
@@ -124,6 +120,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
 
 
     static class FunViewHolder extends RecyclerView.ViewHolder {
+        public LinearLayout ll_root;
         public TextView tv_journ;
         public TextView tv_0;
         public TextView tv_1;
@@ -140,6 +137,7 @@ public class TrendNumberAdapter extends PlusRecyclerAdapter<HistoryBean> {
 
         public FunViewHolder(View view) {
             super(view);
+            ll_root = view.findViewById(R.id.ll_root);
             tv_journ = view.findViewById(R.id.tv_journ);
             tv_0 = view.findViewById(R.id.tv_0);
             tv_1 = view.findViewById(R.id.tv_1);

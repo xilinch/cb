@@ -41,7 +41,7 @@ public class TrendNumberActivity extends BaseActivity {
     private ListRefreshLayout recyclerView;
     private TrendNumberAdapter adapter;
     private RadioGroup rg_tab;
-    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5;
+    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rb_6,rb_7,rb_8,rb_9,rb_10;
     private int type = 0;
 
 
@@ -67,6 +67,11 @@ public class TrendNumberActivity extends BaseActivity {
         rb_3 = findViewById(R.id.rb_3);
         rb_4 = findViewById(R.id.rb_4);
         rb_5 = findViewById(R.id.rb_5);
+        rb_6 = findViewById(R.id.rb_6);
+        rb_7 = findViewById(R.id.rb_7);
+        rb_8 = findViewById(R.id.rb_8);
+        rb_9 = findViewById(R.id.rb_9);
+        rb_10 = findViewById(R.id.rb_10);
         ll_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -126,6 +131,21 @@ public class TrendNumberActivity extends BaseActivity {
                     case R.id.rb_5:
                         type = 4;
                         break;
+                    case R.id.rb_6:
+                        type = 5;
+                        break;
+                    case R.id.rb_7:
+                        type = 6;
+                        break;
+                    case R.id.rb_8:
+                        type = 7;
+                        break;
+                    case R.id.rb_9:
+                        type = 8;
+                        break;
+                    case R.id.rb_10:
+                        type = 9;
+                        break;
                 }
 
                 adapter.setType(type);
@@ -156,9 +176,46 @@ public class TrendNumberActivity extends BaseActivity {
                 if(position < 5){
                     rb_5.setVisibility(View.VISIBLE);
                     rb_4.setVisibility(View.VISIBLE);
+                    rb_6.setVisibility(View.GONE);
+                    rb_7.setVisibility(View.GONE);
+                    rb_8.setVisibility(View.GONE);
+                    rb_9.setVisibility(View.GONE);
+                    rb_10.setVisibility(View.GONE);
+                    rb_1.setText("个位");
+                    rb_2.setText("十位");
+                    rb_3.setText("百位");
+                    rb_4.setText("千位");
+                    rb_5.setText("万位");
                 } else {
-                    rb_5.setVisibility(View.GONE);
-                    rb_4.setVisibility(View.GONE);
+                    if(position == 5 || position == 8){
+                        //显示10个数
+                        rb_5.setVisibility(View.VISIBLE);
+                        rb_4.setVisibility(View.VISIBLE);
+                        rb_6.setVisibility(View.VISIBLE);
+                        rb_7.setVisibility(View.VISIBLE);
+                        rb_8.setVisibility(View.VISIBLE);
+                        rb_9.setVisibility(View.VISIBLE);
+                        rb_10.setVisibility(View.VISIBLE);
+                        rb_1.setText(String.valueOf(1));
+                        rb_2.setText(String.valueOf(2));
+                        rb_3.setText(String.valueOf(3));
+                        rb_4.setText(String.valueOf(4));
+                        rb_5.setText(String.valueOf(5));
+                    } else {
+                        rb_5.setVisibility(View.GONE);
+                        rb_4.setVisibility(View.GONE);
+                        rb_6.setVisibility(View.GONE);
+                        rb_7.setVisibility(View.GONE);
+                        rb_8.setVisibility(View.GONE);
+                        rb_9.setVisibility(View.GONE);
+                        rb_10.setVisibility(View.GONE);
+                        rb_1.setText("个位");
+                        rb_2.setText("十位");
+                        rb_3.setText("百位");
+                        rb_4.setText("千位");
+                        rb_5.setText("万位");
+                    }
+
 
                 }
             }

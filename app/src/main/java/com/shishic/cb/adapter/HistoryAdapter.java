@@ -35,27 +35,45 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
 
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        HistoryBean funBean = getList().get(position);
+        int type = funBean.getType();
+        if(type < 0){
+            return R.layout.adapter_history_top;
+        } else {
+
+            return R.layout.adapter_history;
+        }
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_history,parent,false));
-        return ViewHolder;
+       if(viewType == R.layout.adapter_history_top){
+           return new FunTopViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_history_top,parent,false));
+       } else {
+           RecyclerView.ViewHolder ViewHolder = new FunViewHolder(LayoutInflater.from(context).inflate(R.layout.adapter_history,parent,false));
+           return ViewHolder;
+       }
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         HistoryBean funBean = getList().get(position);
+
          if(holder instanceof FunViewHolder){
              FunViewHolder funViewHolder = (FunViewHolder) holder;
 //             String code = "【" +funBean.getN5() + "   " + funBean.getN4() + "   " + funBean.getN3() + "   " + funBean.getN2() + "   " + funBean.getN1() + "】";
-             String result = "开奖号码" + funBean.getOpenCode();
+             String result = funBean.getOpenCode();
              SpannableString sb = new SpannableString(result);
-             sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "开奖号码".length(), result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-             sb.setSpan(new ForegroundColorSpan(Color.RED), "开奖号码".length(),result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+             sb.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), 0, result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+             sb.setSpan(new ForegroundColorSpan(Color.RED), 0,result.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
              funViewHolder.tv_opencode.setText(sb);
              String journal = String.valueOf(funBean.getJournal());
-             funViewHolder.tv_expect.setText("开奖期数：" + journal.substring(journal.length()-3 ,journal.length()));
+             funViewHolder.tv_expect.setText(journal);
 //             funViewHolder.tv_opentime.setDescription("开奖时间：" + funBean.getOpentime());
          }
     }
@@ -71,6 +89,14 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
             tv_opencode = view.findViewById(R.id.tv_opencode);
             tv_expect = view.findViewById(R.id.tv_expect);
             tv_opentime = view.findViewById(R.id.tv_opentime);
+        }
+    }
+
+    static class FunTopViewHolder extends RecyclerView.ViewHolder{
+
+        public FunTopViewHolder(View view){
+            super(view);
+
         }
     }
 }

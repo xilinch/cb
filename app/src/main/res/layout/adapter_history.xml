@@ -13,11 +13,12 @@
         <TextView
             android:id="@+id/tv_expect"
             android:layout_width="wrap_content"
+            android:layout_weight="1.0"
             android:layout_height="wrap_content"
             android:text="期数:2018120254" />
 
         <TextView
-            android:layout_marginLeft="15dp"
+            android:layout_weight="1.0"
             android:id="@+id/tv_opencode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

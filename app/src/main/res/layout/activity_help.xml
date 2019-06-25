@@ -17,23 +17,22 @@
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/imgbutton_help_finish"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="60dp"
-        android:background="@mipmap/help_btn_bg"
+        android:background="@null"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="90dp"
-        android:text="体验新版"
         android:visibility="gone"
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
     <Button
         android:id="@+id/imgbutton_help_skip"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="60dp"
-        android:background="@mipmap/help_btn_bg"
         android:layout_gravity="right|top"
         android:layout_marginTop="25dp"
+        android:background="@null"
         android:text="体验新版"
         android:visibility="invisible"
         android:textColor="#ffffff"
