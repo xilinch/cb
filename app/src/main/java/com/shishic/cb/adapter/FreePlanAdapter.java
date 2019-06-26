@@ -1,5 +1,6 @@
 package com.shishic.cb.adapter;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +9,6 @@ import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
-import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.shishic.cb.R;
 import com.shishic.cb.bean.FreePlan;
-import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.ToastUtils;
 
 import java.util.List;
 
@@ -77,12 +77,11 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 //        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
 //        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
         if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
-            PlanViewHolder holder = (PlanViewHolder) viewHolder;
+            final PlanViewHolder holder = (PlanViewHolder) viewHolder;
             FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;
             //xxx-xxx期 中
 
             //推荐号码【04568】 第068期 出46836(6)
-
 
             String end = "";
             if(freePlan1.getRecommendStatus() == 0){
@@ -112,9 +111,22 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
             if(planType == 2){
                 //显示单式组合
-                String all = getAllNumbers();
+                String all = getDanshiAllNumbers(freePlan1.getRecommendNumbers());
                 holder.tv_danshi_all.setText("");
                 holder.tv_danshi_all.setVisibility(View.VISIBLE);
+                holder.tv_danshi_all.setText(all);
+                holder.tv_danshi_all.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //复制到粘贴板
+                        String numbers = holder.tv_danshi_all.getText().toString();
+                        // 11以后使用content.Clipboardmanager,之前使用text.ClipboardManager
+                        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+                        // 将文本内容放到系统剪贴板里。
+                        cm.setText(numbers);
+                        ToastUtils.toastShow(context,"已复制。");
+                    }
+                });
             } else {
                 holder.tv_danshi_all.setVisibility(View.GONE);
             }
@@ -136,21 +148,62 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         return 0;
     }
 
-    private String getAllNumbers(String recommendNumbers){
+    private String getDanshiAllNumbers(String recommendNumbers){
         StringBuilder result = new StringBuilder();
         if(recommendNumbers != null){
             String[] numbers = recommendNumbers.split(",");
             if(numbers != null ){
-                for(int i = 0; i < numbers.length; i++){
 
-                    String[] numbers1 = numbers[i].split("-");
-                    if(numbers1 != null){
-                        for(int j = 0 ; j < numbers1.length; j++){
-                            //自动加上
+                int length = numbers.length;
+                if(length == 1){
+                    //如果是一个
+                    String[] ge = numbers[0].split("-");
+                    for(int i = 0; i < ge.length; i++){
+                        result.append(ge[i]).append(" ");
+                    }
+                } else if(length == 2){
+                    //计算出2所有的组合
+                    String[] shi = numbers[0].split("-");
+                    String[] ge = numbers[1].split("-");
+                    for(int i =0 ; i < shi.length ;i++){
+                        for(int j = 0 ;j < ge.length;j++){
+                            result.append(shi[i]).append(ge[j]).append(" ");
+                        }
+                    }
+                } else if(length == 3){
+                    //计算出2所有的组合
+                    String[] bai = numbers[0].split("-");
+                    String[] shi = numbers[1].split("-");
+                    String[] ge = numbers[2].split("-");
+                    for(int i =0 ; i < bai.length ;i++){
+                        for(int j = 0 ;j < shi.length;j++){
+                            for(int k = 0 ;k < ge.length;k++){
+                                result.append(bai[i]).append(shi[j]).append(ge[k]).append(" ");
+                            }
 
                         }
                     }
+                } else if(length == 4){
+                    //计算出2所有的组合
+                    String[] qian = numbers[0].split("-");
+                    String[] bai = numbers[1].split("-");
+                    String[] shi = numbers[2].split("-");
+                    String[] ge = numbers[3].split("-");
+                    for(int i =0 ; i < qian.length ;i++) {
+                        for (int j = 0; j < bai.length; j++) {
+                            for (int k = 0; k < shi.length; k++) {
+                                for (int l = 0; l  < ge.length; l++) {
+                                    result.append(qian[i]).append(bai[j]).append(shi[k]).append(ge[l]).append(" ");
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    //不支持
+                    result.append("暂不支持");
                 }
+
+
             }
 
         }
