@@ -1,16 +1,10 @@
 package com.shishic.cb.util;
 
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-
 import java.io.IOException;
-import java.net.CookieStore;
-import java.util.HashMap;
 import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.Cookie;
 import okhttp3.Headers;
 import okhttp3.Response;
 

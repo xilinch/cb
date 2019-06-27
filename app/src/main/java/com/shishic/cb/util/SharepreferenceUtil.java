@@ -14,6 +14,7 @@ public class SharepreferenceUtil {
     public static final String S_SHOW_HELP = "S_SHOW_HELP";
     public static final String S_FUN_LIST = "S_FUN_LIST";
     public static final String S_SESSIONID = "S_SESSIONID";
+    public static final String S_USERINFO = "S_USERINFO";
     public static final String S_HTML = "S_HTML";
     public static final String S_UPDATE = "S_UPDATE";
 
@@ -80,6 +81,20 @@ public class SharepreferenceUtil {
         SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE,Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString(S_SESSIONID,sessionid);
+        editor.commit();
+    }
+
+    public static String getUserInfo() {
+        String sessionid = "";
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE, Context.MODE_PRIVATE);
+        sessionid = sp.getString(S_USERINFO,"");
+        return sessionid;
+    }
+
+    public static void setUserInfo(String json) {
+        SharedPreferences sp = ReaderApplication.getInstace().getSharedPreferences(S_FILE,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString(S_USERINFO,json);
         editor.commit();
     }
 }

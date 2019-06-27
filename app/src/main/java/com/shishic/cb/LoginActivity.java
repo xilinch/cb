@@ -20,6 +20,7 @@ import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RegexStringUtils;
 import com.shishic.cb.util.RequestUtils;
+import com.shishic.cb.util.SharepreferenceUtil;
 import com.shishic.cb.util.ToastUtils;
 
 import org.json.JSONObject;
@@ -133,8 +134,8 @@ public class LoginActivity extends BaseActivity {
      * 请求数据
      */
     private void requestData(){
-        String userName = window_login_number.getText().toString().trim();
-        String pwd = window_login_pic_code.getText().toString().trim();
+        final String userName = window_login_number.getText().toString().trim();
+        final String pwd = window_login_pic_code.getText().toString().trim();
         HashMap<String,String> params = new HashMap<>();
         params.put("loginCode",userName);
         params.put("password",pwd);
@@ -155,6 +156,11 @@ public class LoginActivity extends BaseActivity {
 
                     boolean success = jsonObject.optBoolean("success");
                     if(success){
+                        JSONObject jsonObject1 = new JSONObject();
+                        jsonObject1.put("userName",userName);
+                        jsonObject1.put("password",pwd);
+                        SharepreferenceUtil.setUserInfo(jsonObject1.toString());
+
                         Account account = new Gson().fromJson(jsonObject.optString("data"), Account.class);
                         Account.saveAccount(account);
                         Intent intent = new Intent();

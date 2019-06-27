@@ -325,6 +325,7 @@ public class MyFragment extends BaseFragment{
                         Account.saveAccount(account);
                     }
                     ToastUtils.toastShow(getActivity(),msg);
+                    //显示一个优美的签到成功
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

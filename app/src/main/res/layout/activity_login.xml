@@ -6,7 +6,8 @@
     android:background="@mipmap/login_register"
     android:orientation="vertical">
 
-    <include layout="@layout/include_view_title" />
+    <include layout="@layout/include_view_title"
+        android:visibility="gone"/>
     <View
         android:visibility="gone"
         android:background="@color/c_gray_dddddd"
