@@ -29,6 +29,7 @@ import com.shishic.cb.R;
 import com.shishic.cb.bean.Account;
 import com.shishic.cb.dialog.CenterDialog;
 import com.shishic.cb.dialog.ServiceIntroduceDialog;
+import com.shishic.cb.dialog.SignDialog;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.NFCallback;
@@ -318,14 +319,33 @@ public class MyFragment extends BaseFragment{
                     String result = response.body().string();
                     LogUtil.e("my","URL_SCORE result:" + result );
                     JSONObject jsonObject = new JSONObject(result);
-                    String msg = jsonObject.optString("msg");
+                    final String msg = jsonObject.optString("msg");
+                    final int code = jsonObject.optInt("code");
                     String data = jsonObject.optString("data");
                     if(!TextUtils.isEmpty(data)){
                         Account account = new Gson().fromJson(data,Account.class);
                         Account.saveAccount(account);
                     }
-                    ToastUtils.toastShow(getActivity(),msg);
                     //显示一个优美的签到成功
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtils.toastShow(getActivity(),msg);
+                            SignDialog signDialog = new SignDialog(getContext());
+                            if(code == 0){
+                                //成功
+                                signDialog.setType(0);
+                            } else if(code == 1){
+                                //重复签到
+                                signDialog.setType(1);
+                            } else {
+                                //失败
+                                signDialog.setType(2);
+                            }
+                            signDialog.show();
+                        }
+                    });
+
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {
