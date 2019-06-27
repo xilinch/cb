@@ -45,6 +45,7 @@ public class NumberChoiceFilterActivity extends BaseActivity {
 
     private Button btn_confirm;
     private Button btn_copy;
+    private Button btn_reset;
 
     private LinearLayout ll_bai,ll_shi,ll_ge;
     private RadioGroup tg_tab;
@@ -110,6 +111,7 @@ public class NumberChoiceFilterActivity extends BaseActivity {
 
         btn_copy = findViewById(R.id.btn_copy);
         btn_confirm = findViewById(R.id.btn_confirm);
+        btn_reset = findViewById(R.id.btn_reset);
         ll_bai = findViewById(R.id.ll_bai);
         ll_shi = findViewById(R.id.ll_shi);
         ll_ge = findViewById(R.id.ll_ge);
@@ -157,6 +159,21 @@ public class NumberChoiceFilterActivity extends BaseActivity {
                     cm.setText(numbers);
                 }
                 ToastUtils.toastShow(NumberChoiceFilterActivity.this,"已复制。");
+            }
+        });
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                for(int i = 0; i < textViewBai.size(); i++){
+                    textViewBai.get(i).setChecked(false);
+                }
+                for(int i = 0; i < textViewShi.size(); i++){
+                    textViewShi.get(i).setChecked(false);
+                }
+                for(int i = 0; i < textViewGe.size(); i++){
+                    textViewGe.get(i).setChecked(false);
+                }
             }
         });
     }

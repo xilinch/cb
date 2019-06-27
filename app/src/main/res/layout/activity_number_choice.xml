@@ -5,19 +5,20 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <include
-        layout="@layout/include_view_title" />
+    <include layout="@layout/include_view_title" />
 
     <RadioGroup
-        android:background="@color/white"
         android:id="@+id/tg_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_2"
-            style="@style/tab_btn_style"
+            style="@style/tab_btn_style_filter"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:checked="true"
@@ -25,464 +26,501 @@
 
         <RadioButton
             android:id="@+id/rb_3"
-            style="@style/tab_btn_style"
+            style="@style/tab_btn_style_filter"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="三星直选" />
     </RadioGroup>
     <LinearLayout
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_height="1sp">
+        android:orientation="horizontal">
+
         <View
             android:id="@+id/indi1"
-            android:layout_weight="1.0"
-            android:background="@color/c_red_f64e45"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
-        <View
+            android:layout_height="match_parent"
             android:layout_weight="1.0"
-            android:visibility="invisible"
+            android:background="@color/c_red_f64e45" />
+
+        <View
             android:id="@+id/indi2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
             android:background="@color/c_red_f64e45"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"/>
+            android:visibility="invisible" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginLeft="24dp"
-        android:visibility="gone"
-        android:layout_marginTop="5dp"
-        android:id="@+id/ll_bai"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:text="百位："
-            android:layout_width="wrap_content"
-            android:layout_height="25dp" />
-        <CheckBox
-            android:id="@+id/bai_tv_0"
-            style="@style/check_style"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="0" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="1" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="2" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="3" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="4" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="5" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_6"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="6" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_7"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="7" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_8"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="8" />
-
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/bai_tv_9"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="9" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/ll_shi"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/c_gray_333333"
-            android:text="十位："
-            android:layout_width="wrap_content"
-            android:layout_height="25dp" />
-        <CheckBox
-            android:id="@+id/shi_tv_0"
-            style="@style/check_style"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="0" />
-
-        <View
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="1" />
-
-        <View
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:visibility="invisible"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="2" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="3" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="4" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="5" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_6"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="6" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_7"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="7" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_8"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="8" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/shi_tv_9"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="9" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="5dp"
-        android:id="@+id/ll_ge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:textColor="@color/c_gray_333333"
-            android:text="个位："
-            android:layout_width="wrap_content"
-            android:layout_height="25dp" />
-        <CheckBox
-            android:id="@+id/ge_tv_0"
-            style="@style/check_style"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="0" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_1"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="1" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_2"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="2" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="3" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_4"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="4" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="5" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_6"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="6" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_7"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="7" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_8"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="8" />
-
-        <View
-            android:visibility="invisible"
-            android:layout_width="1sp"
-            android:layout_height="25dp"
-            android:background="@color/c_gray_f2f2f2" />
-
-        <CheckBox
-            style="@style/check_style"
-            android:id="@+id/ge_tv_9"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:gravity="center"
-            android:text="9" />
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:text="生成"
-            android:textColor="@color/white"
-            android:background="@color/red"
-            android:id="@+id/btn_confirm"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+
+
+        <LinearLayout
+            android:id="@+id/ll_bai"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
-        <Button
+            android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:text="复制全部"
-            android:textColor="@color/white"
-            android:background="@color/red"
-            android:id="@+id/btn_copy"
             android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:textColor="@color/c_red_f64e45"
+                android:text="百：" />
+
+            <CheckBox
+                android:id="@+id/bai_tv_0"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="0" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_1"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="1" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_2"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="2" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_3"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="3" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_4"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="4" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_5"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="5" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_6"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="6" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_7"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="7" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_8"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="8" />
+
+
+            <CheckBox
+                android:id="@+id/bai_tv_9"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="9" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_shi"
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="十："
+                android:textColor="@color/c_red_f64e45" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_0"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="0" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_1"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="1" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_2"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="2" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_3"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="3" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_4"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="4" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_5"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="5" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_6"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="6" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_7"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="7" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_8"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="8" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/shi_tv_9"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="9" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_ge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="个："
+                android:textColor="@color/c_red_f64e45" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_0"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="0" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_1"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="1" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_2"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="2" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_3"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="3" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_4"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="4" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_5"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="5" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_6"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="6" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_7"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="7" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_8"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="8" />
+
+            <View
+                android:layout_width="1sp"
+                android:layout_height="25dp"
+                android:background="@color/c_gray_f2f2f2"
+                android:visibility="invisible" />
+
+            <CheckBox
+                android:id="@+id/ge_tv_9"
+                style="@style/check_style"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:gravity="center"
+                android:text="9" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/dd_shape_green_content_8"
+            android:text="开始计算"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/dd_shape_green_content_8"
+            android:text="重置"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_copy"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1.0"
+            android:background="@drawable/dd_shape_green_content_8"
+            android:text="复制"
+            android:textColor="@color/white" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
+        android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
+        android:id="@+id/listRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:id="@+id/listRefreshLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0"
         android:scrollbars="none" />
 
 </LinearLayout>

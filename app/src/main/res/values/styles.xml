@@ -42,10 +42,24 @@
         <item name="android:paddingBottom">4dp</item>
     </style>
 
+    <style name="tab_btn_style_filter">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@drawable/tab_text_color_filter</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:button">@null</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
+
     <style name="check_style">
         <item name="android:layout_margin">1dp</item>
         <item name="android:button">@null</item>
-        <item name="android:background">@drawable/dd_selector_cb</item>
+        <item name="android:textColor">@drawable/tab_cb_text_color</item>
+        <item name="android:background">@drawable/dd_selector_cb_1</item>
     </style>
     <style name="login_popup_window_show_dismiss">
         <item name="android:windowExitAnimation">@anim/login_window_out</item>
