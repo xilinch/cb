@@ -1,6 +1,8 @@
 package com.shishic.cb;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -50,6 +52,23 @@ public class LostAnalyActivity extends BaseActivity {
     private ArrayAdapter planAdapter;
 
     private String[] titles = new String[]{"遗漏分析", "冷热分析", "指标遗漏分析", "指标冷热分析"};
+
+    private int MSG_REPEST = 1;
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if(msg.what == MSG_REPEST){
+                if(!isDestroyed() && !isFinishing()){
+                    //每30秒刷新一次
+                    requestData();
+                    handler.sendEmptyMessageDelayed(MSG_REPEST, 30000);
+                }
+            }
+
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -159,8 +178,13 @@ public class LostAnalyActivity extends BaseActivity {
                         }
                         //进行遗漏和热点分析
                         analy(list);
+
                         //显示tab
                         initTabs();
+                        if(!isDestroyed() && !isFinishing()){
+                            handler.sendEmptyMessageDelayed(MSG_REPEST,30000);
+                        }
+
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();
