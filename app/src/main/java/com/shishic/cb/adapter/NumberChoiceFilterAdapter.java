@@ -1,6 +1,7 @@
 package com.shishic.cb.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -71,7 +72,7 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
                  funViewHolder.tv_number.setText(funBean.get("number"));
                  funViewHolder.ll_close.setVisibility(View.INVISIBLE);
                  funViewHolder.ll_close.setEnabled(false);
-
+//                 funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#fff6f6f6"));
              } else {
                  funViewHolder.tv_lost.setText(funBean.get("lost"));
                  funViewHolder.tv_number.setText(funBean.get("number"));
@@ -86,6 +87,14 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
                          calutCount();
                      }
                  });
+                 if(position % 2 == 1){
+                     //
+//                     funViewHolder.ll_root.setBackgroundColor(Color.WHITE);
+                 } else {
+                     //
+//                     funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#fff6f6f6"));
+
+                 }
              }
          }
     }
@@ -125,13 +134,14 @@ public class NumberChoiceFilterAdapter extends RecyclerView.Adapter {
         public TextView tv_number;
         public TextView tv_lost;
         public LinearLayout ll_close;
-
+        public LinearLayout ll_root;
 
         public FunViewHolder(View view){
             super(view);
             tv_number = view.findViewById(R.id.tv_number);
             tv_lost = view.findViewById(R.id.tv_lost);
             ll_close = view.findViewById(R.id.ll_close);
+            ll_root = view.findViewById(R.id.ll_root);
 
         }
     }

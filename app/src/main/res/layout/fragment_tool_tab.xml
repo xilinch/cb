@@ -203,6 +203,122 @@
                     android:textColor="@color/c_gray_666666"
                     android:textSize="14sp" />
             </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_6"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
+                android:gravity="center_vertical"
+                android:paddingLeft="50dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@mipmap/tab2" />
+
+                <TextView
+                    android:id="@+id/tv_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="幸运走势"
+                    android:textColor="@color/c_gray_333333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_6_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_6"
+                    android:layout_marginTop="5dp"
+                    android:text="幸运号码走势"
+                    android:textColor="@color/c_gray_666666"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_7"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
+                android:gravity="center_vertical"
+                android:paddingLeft="50dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@mipmap/tab3" />
+
+                <TextView
+                    android:id="@+id/tv_7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="遗漏分析"
+                    android:textColor="@color/c_gray_333333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_7_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_7"
+                    android:layout_marginTop="5dp"
+                    android:text="遗漏号码分析"
+                    android:textColor="@color/c_gray_666666"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_8"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/dd_shape_ffffff_stroke_f2f2f2_content_5"
+                android:gravity="center_vertical"
+                android:paddingLeft="50dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:src="@mipmap/tab7" />
+
+                <TextView
+                    android:id="@+id/tv_8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:text="号码直选"
+                    android:textColor="@color/c_gray_333333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_8_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_8"
+                    android:layout_marginTop="5dp"
+                    android:text="号码直选"
+                    android:textColor="@color/c_gray_666666"
+                    android:textSize="14sp" />
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

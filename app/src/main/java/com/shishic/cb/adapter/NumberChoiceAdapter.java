@@ -62,7 +62,7 @@ public class NumberChoiceAdapter extends RecyclerView.Adapter {
                  //头部信息
                  funViewHolder.tv_lost.setText(funBean.get("lost"));
                  funViewHolder.tv_number.setText(funBean.get("number"));
-                 funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#f6f6f6"));
+//                 funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#fff6f6f6"));
              } else {
                  funViewHolder.tv_lost.setText(funBean.get("lost"));
                  funViewHolder.tv_number.setText(funBean.get("number"));
@@ -71,7 +71,7 @@ public class NumberChoiceAdapter extends RecyclerView.Adapter {
                      funViewHolder.ll_root.setBackgroundColor(Color.WHITE);
                  } else {
                      //
-                     funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#f6f6f6"));
+//                     funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#fff6f6f6"));
 
                  }
              }

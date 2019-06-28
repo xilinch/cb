@@ -20,8 +20,10 @@ import com.shishic.cb.DoubleToolActivity;
 import com.shishic.cb.DoubleToolActivity2;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LostAnalyActivity;
+import com.shishic.cb.NumberChoiceActivity;
 import com.shishic.cb.NumberChoiceFilterActivity;
 import com.shishic.cb.R;
+import com.shishic.cb.TrendNumber23Activity;
 import com.shishic.cb.TrendNumberActivity;
 import com.shishic.cb.adapter.FunAdapter;
 import com.shishic.cb.bean.ADTextBean;
@@ -44,7 +46,7 @@ import java.util.List;
 public class TabToolFragment extends BaseFragment implements View.OnClickListener {
 
     private View view;
-    private RelativeLayout rl_1, rl_2, rl_3, rl_4, rl_5;
+    private RelativeLayout rl_1, rl_2, rl_3, rl_4, rl_5,rl_6,rl_7,rl_8;
 
 
     @Nullable
@@ -57,11 +59,17 @@ public class TabToolFragment extends BaseFragment implements View.OnClickListene
             rl_3 = view.findViewById(R.id.rl_3);
             rl_4 = view.findViewById(R.id.rl_4);
             rl_5 = view.findViewById(R.id.rl_5);
+            rl_6 = view.findViewById(R.id.rl_6);
+            rl_7 = view.findViewById(R.id.rl_7);
+            rl_8 = view.findViewById(R.id.rl_8);
             rl_1.setOnClickListener(this);
             rl_2.setOnClickListener(this);
             rl_3.setOnClickListener(this);
             rl_4.setOnClickListener(this);
             rl_5.setOnClickListener(this);
+            rl_6.setOnClickListener(this);
+            rl_7.setOnClickListener(this);
+            rl_8.setOnClickListener(this);
         }
         return view;
     }
@@ -84,6 +92,15 @@ public class TabToolFragment extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.rl_5:
                 intent.setClass(getContext(), NumberChoiceFilterActivity.class);
+                break;
+            case R.id.rl_6:
+                intent.setClass(getContext(), TrendNumber23Activity.class);
+                break;
+            case R.id.rl_7:
+                intent.setClass(getContext(), LostAnalyActivity.class);
+                break;
+            case R.id.rl_8:
+                intent.setClass(getContext(), NumberChoiceActivity.class);
                 break;
         }
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
