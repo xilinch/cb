@@ -20,9 +20,14 @@ import okhttp3.Response;
 
 public class LoginUtil {
 
+    private static long lastRequestTime = 0l;
     public static void login(){
 
         String userInfo = SharepreferenceUtil.getUserInfo();
+        final long currentTime = System.currentTimeMillis();
+        if(currentTime - lastRequestTime < 1000){
+            return;
+        }
         if(!TextUtils.isEmpty(userInfo)){
             try {
                 JSONObject jsonObject1 = new JSONObject(userInfo);
@@ -45,6 +50,7 @@ public class LoginUtil {
                     public void onResponse(Call call, Response response) throws IOException {
                         super.onResponse(call, response);
                         LogUtil.e("my","URL_LOGIN response:" + response.body().toString());
+                        lastRequestTime = currentTime;
                         try {
                             JSONObject jsonObject = new JSONObject(response.body().string());
                             Account account = new Gson().fromJson(jsonObject.optString("data"), Account.class);
