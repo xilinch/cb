@@ -140,17 +140,57 @@ public class LoginActivity extends BaseActivity {
         params.put("loginCode",userName);
         params.put("password",pwd);
         params.put("userName",userName);
-        RequestUtil.httpGet(this, Constant.URL_LOGIN, params, new NFHttpResponseListener<String>() {
+//        RequestUtil.httpGet(this, Constant.URL_LOGIN, params, new NFHttpResponseListener<String>() {
+//            @Override
+//            public void onErrorResponse(LogError error) {
+//                ToastUtils.toastShow(LoginActivity.this, R.string.network_error);
+//            }
+//
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    LogUtil.e("my","URL_LOGIN response:" + response);
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    String msg = jsonObject.optString("msg");
+//                    ToastUtils.toastShow(LoginActivity.this, msg);
+//
+//                    boolean success = jsonObject.optBoolean("success");
+//                    if(success){
+//                        JSONObject jsonObject1 = new JSONObject();
+//                        jsonObject1.put("userName",userName);
+//                        jsonObject1.put("password",pwd);
+//                        SharepreferenceUtil.setUserInfo(jsonObject1.toString());
+//
+//                        Account account = new Gson().fromJson(jsonObject.optString("data"), Account.class);
+//                        Account.saveAccount(account);
+//                        Intent intent = new Intent();
+//                        intent.setAction(MyFragment.ACTION_LOGIN);
+//                        sendBroadcast(intent);
+//                        finish();
+//                    }
+//                } catch (Exception exception){
+//                    exception.printStackTrace();
+//                } finally {
+//
+//                }
+//            }
+//        });
+
+        RequestUtils.httpget(this, Constant.URL_LOGIN, params, new NFCallback() {
             @Override
-            public void onErrorResponse(LogError error) {
-                ToastUtils.toastShow(LoginActivity.this, R.string.network_error);
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                ToastUtils.toastShow(LoginActivity.this,R.string.network_error);
             }
 
             @Override
-            public void onResponse(String response) {
+            public void onResponse(Call call, Response response) throws IOException {
+                super.onResponse(call, response);
+                LogUtil.e("my","URL_LOGIN response:" + response.body().toString());
+
+                LogUtil.e("my","URL_LOGIN response:" + response);
                 try {
-                    LogUtil.e("my","URL_LOGIN response:" + response);
-                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject jsonObject = new JSONObject(response.body().string());
                     String msg = jsonObject.optString("msg");
                     ToastUtils.toastShow(LoginActivity.this, msg);
 
@@ -173,20 +213,7 @@ public class LoginActivity extends BaseActivity {
                 } finally {
 
                 }
-            }
-        });
 
-        RequestUtils.httpget(this, Constant.URL_LOGIN, params, new NFCallback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                super.onFailure(call, e);
-                ToastUtils.toastShow(LoginActivity.this,R.string.network_error);
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                super.onResponse(call, response);
-                LogUtil.e("my","URL_LOGIN response:" + response.body().toString());
             }
         });
     }

@@ -26,6 +26,7 @@ import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.dialog.BuySpecialDialog;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.LoginUtil;
 import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
@@ -45,6 +46,13 @@ public class SpecailAdapter extends RecyclerView.Adapter {
     private Context context;
 
     private List<SpecialBean> list;
+
+    private OnRefreshListener onRefreshListener;
+
+
+    public void setOnRefreshListener(OnRefreshListener onRefreshListener) {
+        this.onRefreshListener = onRefreshListener;
+    }
 
     public SpecailAdapter(List<SpecialBean> list, Context context){
         this.list = list;
@@ -205,16 +213,12 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                     final String msg = jsonObject.optString("msg");
                     boolean success = jsonObject.optBoolean("success");
                     //刷新列表
-                    if(context instanceof SpecialActivity){
-                        final SpecialActivity2 spe = (SpecialActivity2)context;
-                        spe.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
-                                spe.getSpecialFragment2().requestData();
-                            }
-                        });
-
+                    if(onRefreshListener != null && success){
+                        onRefreshListener.onRefresh();
+                    }
+                    int code = jsonObject.optInt("code");
+                    if(code == 5000){
+                        LoginUtil.login();
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();
@@ -223,5 +227,9 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                 }
             }
         });
+    }
+
+    public interface OnRefreshListener{
+        void onRefresh();
     }
 }

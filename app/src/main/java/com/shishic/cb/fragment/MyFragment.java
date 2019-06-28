@@ -32,6 +32,7 @@ import com.shishic.cb.dialog.ServiceIntroduceDialog;
 import com.shishic.cb.dialog.SignDialog;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.LoginUtil;
 import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
@@ -325,6 +326,7 @@ public class MyFragment extends BaseFragment{
                     if(!TextUtils.isEmpty(data)){
                         Account account = new Gson().fromJson(data,Account.class);
                         Account.saveAccount(account);
+                        tv_personal_coin.setText(account.getCoins()+ "金币");
                     }
                     //显示一个优美的签到成功
                     getActivity().runOnUiThread(new Runnable() {
@@ -345,7 +347,9 @@ public class MyFragment extends BaseFragment{
                             signDialog.show();
                         }
                     });
-
+                    if(code == 5000){
+                        LoginUtil.login();
+                    }
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

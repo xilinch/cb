@@ -29,6 +29,5 @@ public abstract class  NFCallback implements Callback {
             sessionId = sessionId.substring(0, sessionId.indexOf(";"));
             SharepreferenceUtil.setSessionid(sessionId);
         }
-
     }
 }

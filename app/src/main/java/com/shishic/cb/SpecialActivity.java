@@ -19,6 +19,7 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.LoginUtil;
 import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
@@ -125,6 +126,10 @@ public class SpecialActivity extends BaseActivity {
                                 }
                             });
                         }
+                    }
+                    int code = jsonObject.optInt("code");
+                    if(code == 5000){
+                        LoginUtil.login();
                     }
                 } catch (Exception exception) {
                     exception.printStackTrace();

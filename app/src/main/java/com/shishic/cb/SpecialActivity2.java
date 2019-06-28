@@ -12,7 +12,7 @@ import com.shishic.cb.fragment.SpecialFragment2;
 /**
  * 专家计划
  */
-public class SpecialActivity2 extends BaseActivity {
+public class SpecialActivity2 extends BaseActivity{
     private TextView tv_title;
     private LinearLayout ll_back;
     private LinearLayout ll_content;

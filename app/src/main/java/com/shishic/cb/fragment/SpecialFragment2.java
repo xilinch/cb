@@ -18,6 +18,7 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.bean.SpecialBean;
 import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.LogUtil;
+import com.shishic.cb.util.LoginUtil;
 import com.shishic.cb.util.NFCallback;
 import com.shishic.cb.util.RequestUtils;
 import com.shishic.cb.util.ToastUtils;
@@ -33,7 +34,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class SpecialFragment2 extends BaseFragment {
+public class SpecialFragment2 extends BaseFragment implements SpecailAdapter.OnRefreshListener {
 
     private View view;
     private RecyclerView recyclerView;
@@ -54,6 +55,7 @@ public class SpecialFragment2 extends BaseFragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         List list = new ArrayList();
         adapter = new SpecailAdapter(list, getContext());
+        adapter.setOnRefreshListener(this);
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
     }
@@ -106,6 +108,10 @@ public class SpecialFragment2 extends BaseFragment {
                             });
                         }
                     }
+                    int code = jsonObject.optInt("code");
+                    if(code == 5000){
+                        LoginUtil.login();
+                    }
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 } finally {
@@ -113,5 +119,10 @@ public class SpecialFragment2 extends BaseFragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+        requestData();
     }
 }
