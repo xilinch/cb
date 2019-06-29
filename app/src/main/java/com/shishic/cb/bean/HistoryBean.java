@@ -288,7 +288,7 @@ public class HistoryBean extends BaseBean {
                 ", n8=" + n8 +
                 ", n9=" + n9 +
                 ", n10=" + n10 +
-                ", lc=" + erWeiInt2String(lc) +
+//                ", lc=" + erWeiInt2String(lc) +
                 ", luckyType" + luckyType +
                 ", openCode" + openCode +
                 ", expect" + expect +

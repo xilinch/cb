@@ -76,8 +76,8 @@ public class LostAnalyActivity extends BaseActivity {
         setContentView(R.layout.activity_lost);
         initView();
         initListener();
+        initTabs();
         requestData();
-
     }
 
     private void initView() {
@@ -125,31 +125,33 @@ public class LostAnalyActivity extends BaseActivity {
 
     private void initTabs(){
         fragments.clear();
-        fragments.add(new LostAnalyFragment());
-        fragments.add(new HotAnalyFragment());
-        fragments.add(new LostAnalyFragment1());
-        fragments.add(new HotAnalyFragment1());
-        if(testAdapter == null){
-            testAdapter = new TestAdapter(titles, fragments);
-        } else {
-            testAdapter.changeData(fragments);
+        if(fragments == null || fragments.size() == 0){
+            fragments.add(new LostAnalyFragment());
+            fragments.add(new HotAnalyFragment());
+            fragments.add(new LostAnalyFragment1());
+            fragments.add(new HotAnalyFragment1());
+            if(testAdapter == null){
+                testAdapter = new TestAdapter(titles, fragments);
+            } else {
+                testAdapter.changeData(fragments);
+            }
+            pager.setAdapter(testAdapter);
+            pager.setCurrentItem(0);
+            tabs.setViewPager(pager);
+            tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                @Override
+                public void onPageScrolled(int i, float v, int i1) {
+                }
+
+                @Override
+                public void onPageSelected(int i) {
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int i) {
+                }
+            });
         }
-        pager.setAdapter(testAdapter);
-        pager.setCurrentItem(0);
-        tabs.setViewPager(pager);
-        tabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-            }
-        });
     }
 
     private void requestData(){
@@ -179,13 +181,30 @@ public class LostAnalyActivity extends BaseActivity {
                         //进行遗漏和热点分析
                         analy(list);
 
-                        //显示tab
-                        initTabs();
                         handler.removeMessages(MSG_REPEST);
                         if(!isDestroyed() && !isFinishing()){
                             handler.sendEmptyMessageDelayed(MSG_REPEST,30000);
                         }
 
+
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(!isDestroyed() && !isFinishing()){
+                                    if(fragments != null && fragments.size() > 0){
+                                        int size = fragments.size();
+                                        for(int i = 0; i < size ;i ++){
+                                            Fragment fragment = fragments.get(i);
+                                            if(fragment instanceof OnRefreshListener){
+                                                OnRefreshListener onRefreshListener = (OnRefreshListener) fragment;
+                                                onRefreshListener.showData();
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                        },100);
                     }
                 } catch (Exception exception){
                     exception.printStackTrace();
@@ -197,6 +216,7 @@ public class LostAnalyActivity extends BaseActivity {
 
     private List<Integer> lostList = new ArrayList<>();
     private List<Integer> hotList = new ArrayList<>();
+    private int luckyType = 10;
 
     public List<Integer> getLostList() {
         return lostList;
@@ -206,6 +226,14 @@ public class LostAnalyActivity extends BaseActivity {
         return hotList;
     }
 
+    public int getLuckyType() {
+        return luckyType;
+    }
+
+    public void setLuckyType(int luckyType) {
+        this.luckyType = luckyType;
+    }
+
     /**
      * 数据分析
      */
@@ -213,44 +241,142 @@ public class LostAnalyActivity extends BaseActivity {
         //
         lostList.clear();
         hotList.clear();
-        for(int i = 0; i <= 10; i++){
+        if(list != null && list.size() > 0){
+            luckyType = list.get(0).getLuckyType();
+        }
+        int start = 0;
+        int end = 10;
+        if(luckyType <= 5){
+            end = 9;
+        } else if(luckyType == 6 || luckyType == 9){
+            start = 1;
+            end = 10;
+        } else {
+            end = 3;
+        }
+        for(int i = 0; i <= end; i++){
             lostList.add(0);
             hotList.add(0);
         }
         if(list != null){
             for(int i = 0 ; i< list.size(); i++){
                 //分析遗漏和热点
+                list.get(i).translate2Old();
+                luckyType = list.get(i).getLuckyType();
                 LogUtil.e("my","list.get(i)" + list.get(i).toString());
-                for(int j =0 ; j <= 10; j++){
+                if(luckyType <= 5){
+                    //只分析时时彩 5位数的
+                    for(int j =0 ; j <= 9; j++){
 //                    LogUtil.e("my","j:" + j);
-                    if(list.get(i).getN1() == j) {
-                        //自增
-                        hotList.set(j,hotList.get(j) + 1);
-                    } else if(list.get(i).getN2() == j) {
-                        //自增
-                        hotList.set(j,hotList.get(j) + 1);
+                        if(list.get(i).getN1() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN2() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
 
-                    } else if(list.get(i).getN3() == j) {
-                        //自增
-                        hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN3() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
 
-                    } else if(list.get(i).getN4() == j) {
-                        //自增
-                        hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN4() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
 
-                    } else if(list.get(i).getN5() == j) {
-                        //自增
-                        hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN5() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        }
+
+                        if(list.get(i).getN1() != j
+                                && list.get(i).getN2() != j
+                                && list.get(i).getN3() != j
+                                && list.get(i).getN4() != j
+                                && list.get(i).getN5() != j){
+                            lostList.set(j,lostList.get(j) + 1);
+                        }
                     }
 
-                    if(list.get(i).getN1() != j
-                            && list.get(i).getN2() != j
-                            && list.get(i).getN3() != j
-                            && list.get(i).getN4() != j
-                            && list.get(i).getN5() != j){
-                        lostList.set(j,lostList.get(j) + 1);
+                } else if(luckyType == 6 || luckyType == 9){
+                    //10位数
+                    for(int j =1 ; j <= 10; j++){
+//                    LogUtil.e("my","j:" + j);
+                        if(list.get(i).getN1() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN2() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN3() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN4() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN5() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN6() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN7() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN8() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN9() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN10() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        }
+
+                        if(list.get(i).getN1() != j
+                                && list.get(i).getN2() != j
+                                && list.get(i).getN3() != j
+                                && list.get(i).getN4() != j
+                                && list.get(i).getN5() != j
+                                && list.get(i).getN6() != j
+                                && list.get(i).getN7() != j
+                                && list.get(i).getN8() != j
+                                && list.get(i).getN9() != j
+                                && list.get(i).getN10() != j){
+                            lostList.set(j,lostList.get(j) + 1);
+                        }
+                    }
+                } else {
+                    //3位数的
+                    for(int j =0 ; j < 10; j++){
+//                    LogUtil.e("my","j:" + j);
+                        if(list.get(i).getN1() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+                        } else if(list.get(i).getN2() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        } else if(list.get(i).getN3() == j) {
+                            //自增
+                            hotList.set(j,hotList.get(j) + 1);
+
+                        }
+
+                        if(list.get(i).getN1() != j
+                                && list.get(i).getN2() != j
+                                && list.get(i).getN3() != j){
+                            lostList.set(j,lostList.get(j) + 1);
+                        }
                     }
                 }
+
 //                LogUtil.e("my","lostList:" + lostList.toString());
 //                LogUtil.e("my","hotList:" + hotList.toString());
             }
