@@ -49,7 +49,10 @@ public class LostAnalyFragment1 extends BaseFragment implements OnRefreshListene
     @Override
     public  void showData(){
         //设置数据
-        entries  = new ArrayList<>();
+        if(entries == null){
+            entries  = new ArrayList<>();
+        }
+        entries.clear();
         if(getActivity() instanceof LostAnalyActivity){
             LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
             List<Integer> list = lostAnalyActivity.getLostList();
@@ -83,9 +86,17 @@ public class LostAnalyFragment1 extends BaseFragment implements OnRefreshListene
                 lineDataSet.setValueFormatter(new IValueFormatter() {
                     @Override
                     public String getFormattedValue(float v, Entry entry, int i, ViewPortHandler viewPortHandler) {
-                        BigDecimal bigDecimal = new BigDecimal(v);
-                        BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
-                        return setScale + "%";
+                        String text = "";
+                        try{
+                            BigDecimal bigDecimal = new BigDecimal(v);
+                            BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
+                            text = setScale + "%";
+                        } catch (Exception exception){
+                           exception.printStackTrace();
+                        } finally {
+                            return text;
+                        }
+
                     }
                 });
                 //线模式为圆滑曲线（默认折线）

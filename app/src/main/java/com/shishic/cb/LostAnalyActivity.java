@@ -53,6 +53,8 @@ public class LostAnalyActivity extends BaseActivity {
 
     private String[] titles = new String[]{"遗漏分析", "冷热分析", "指标遗漏分析", "指标冷热分析"};
 
+    private boolean isInited;
+
     private int MSG_REPEST = 1;
 
     private Handler handler = new Handler(){
@@ -76,7 +78,6 @@ public class LostAnalyActivity extends BaseActivity {
         setContentView(R.layout.activity_lost);
         initView();
         initListener();
-        initTabs();
         requestData();
     }
 
@@ -180,7 +181,10 @@ public class LostAnalyActivity extends BaseActivity {
                         }
                         //进行遗漏和热点分析
                         analy(list);
-
+                        if(!isInited){
+                            initTabs();
+                            isInited = true;
+                        }
                         handler.removeMessages(MSG_REPEST);
                         if(!isDestroyed() && !isFinishing()){
                             handler.sendEmptyMessageDelayed(MSG_REPEST,30000);

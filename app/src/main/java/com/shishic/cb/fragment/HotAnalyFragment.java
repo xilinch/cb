@@ -49,7 +49,10 @@ public class HotAnalyFragment extends BaseFragment implements OnRefreshListener 
         //显示边界
         mLineChart.setDrawBorders(true);
         //设置数据
-        entries  = new ArrayList<>();
+        if(entries == null){
+            entries  = new ArrayList<>();
+        }
+        entries.clear();
         if(getActivity() instanceof LostAnalyActivity){
             LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
             List<Integer> list = lostAnalyActivity.getHotList();

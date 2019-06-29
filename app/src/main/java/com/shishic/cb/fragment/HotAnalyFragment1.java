@@ -57,7 +57,10 @@ public class HotAnalyFragment1 extends BaseFragment implements OnRefreshListener
     @Override
     public  void showData(){
         //设置数据
-        entries  = new ArrayList<>();
+        if(entries == null){
+            entries  = new ArrayList<>();
+        }
+        entries.clear();
         if(getActivity() instanceof LostAnalyActivity){
             LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
             List<Integer> list = lostAnalyActivity.getHotList();
@@ -90,9 +93,20 @@ public class HotAnalyFragment1 extends BaseFragment implements OnRefreshListener
                 lineDataSet.setValueFormatter(new IValueFormatter() {
                     @Override
                     public String getFormattedValue(float v, Entry entry, int i, ViewPortHandler viewPortHandler) {
-                        BigDecimal bigDecimal = new BigDecimal(v);
-                        BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
-                        return setScale + "%";
+//                        BigDecimal bigDecimal = new BigDecimal(v);
+//                        BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
+//                        return setScale + "%";
+                        String text = "";
+                        try{
+                            BigDecimal bigDecimal = new BigDecimal(v);
+                            BigDecimal setScale = bigDecimal.setScale(1,BigDecimal.ROUND_HALF_DOWN);
+                            text = setScale + "%";
+                        } catch (Exception exception){
+                            exception.printStackTrace();
+                        } finally {
+                            return text;
+                        }
+
                     }
                 });
                 //线模式为圆滑曲线（默认折线）
@@ -106,7 +120,7 @@ public class HotAnalyFragment1 extends BaseFragment implements OnRefreshListener
                 mLineChart.setData(data);
                 mLineChart.setDrawEntryLabels(true);              //设置pieChart是否只显示饼图上百分比不显示文字（true：下面属性才有效果）
                 mLineChart.setEntryLabelColor(Color.WHITE);       //设置pieChart图表文本字体颜色
-                mLineChart.setEntryLabelTextSize(10f);            //设置pieChart图表文本字体大小
+                mLineChart.setEntryLabelTextSize(11f);            //设置pieChart图表文本字体大小
             }
         }
 

@@ -53,17 +53,15 @@ public class LostAnalyFragment extends BaseFragment implements OnRefreshListener
         //显示边界
         mLineChart.setDrawBorders(true);
         //设置数据
-        entries  = new ArrayList<>();
+        if(entries == null){
+            entries  = new ArrayList<>();
+        }
+        entries.clear();
         if(getActivity() instanceof LostAnalyActivity){
             LostAnalyActivity lostAnalyActivity = (LostAnalyActivity)getActivity();
             List<Integer> list = lostAnalyActivity.getLostList();
-            int luckyType = lostAnalyActivity.getLuckyType();
             if(list.size() > 0){
-                int size = 9;
-                if(luckyType == 6 || luckyType == 9){
-                    size = 10;
-                }
-                for (int i = 0; i <= size; i++) {
+                for (int i = 0; i <= 10; i++) {
                     if(i < list.size()){
                         entries.add(new Entry(i, list.get(i)));
                     } else {
@@ -80,6 +78,7 @@ public class LostAnalyFragment extends BaseFragment implements OnRefreshListener
                 lineDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
 
                 LineData data = new LineData(lineDataSet);
+                mLineChart.clear();
                 mLineChart.setData(data);
                 XAxis xAxis = mLineChart.getXAxis();
                 //值：BOTTOM,BOTH_SIDED,BOTTOM_INSIDE,TOP,TOP_INSIDE

@@ -283,6 +283,7 @@ public class HistoryBean extends BaseBean {
                 ", n2=" + n2 +
                 ", n3=" + n3 +
                 ", n4=" + n4 +
+                ", n5=" + n5 +
                 ", n6=" + n6 +
                 ", n7=" + n7 +
                 ", n8=" + n8 +
