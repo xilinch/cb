@@ -20,6 +20,7 @@ import com.github.mikephil.charting.utils.ViewPortHandler;
 import com.shishic.cb.HistoryActivity;
 import com.shishic.cb.LostAnalyActivity;
 import com.shishic.cb.R;
+import com.shishic.cb.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +39,15 @@ public class LostAnalyFragment extends BaseFragment {
         if(view == null){
             view = inflater.inflate(R.layout.fragment_lost, container, false);
             mLineChart = view.findViewById(R.id.lineChart);
-            showData();
+
         }
+        showData();
         return view;
     }
 
 
     private void showData(){
+        LogUtil.e("my","showData");
         //显示边界
         mLineChart.setDrawBorders(true);
         //设置数据

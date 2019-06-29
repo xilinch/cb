@@ -11,6 +11,27 @@
         android:background="@color/c_gray_f2f2f2"
         android:layout_width="match_parent"
         android:layout_height="1sp"/>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="140dp"
+            android:layout_height="30dp"
+            android:background="@drawable/dd_shape_f2f2f2_stroke_ffffff_content_5"
+            android:gravity="center_horizontal"></Spinner>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="10dp"
+            android:src="@mipmap/cityarrow" />
+    </FrameLayout>
     <RadioGroup
         android:background="@color/c_gray_eeeeee"
         android:id="@+id/tg_tab"

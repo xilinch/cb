@@ -88,10 +88,10 @@ public class ToolFragment2 extends BaseFragment {
             @Override
             public void onClick(View v) {
                 //
-                et_touruzushu.setText("10");
+                et_touruzushu.setText("3");
                 et_touruqishu.setText("20");
                 et_qishibeishu.setText("10");
-                et_danbeijiangjin.setText(String.valueOf(19));
+                et_danbeijiangjin.setText(String.valueOf(19.5));
                 et_danzhubenjin.setText(String.valueOf(2));
                 et_shouyilv.setText(String.valueOf(0));
 
@@ -145,7 +145,7 @@ public class ToolFragment2 extends BaseFragment {
                     bean.setQishu(i+1);
                     bean.setDanbeijiangjin(danbeijiangjin_num);
                     //倍数设置好的
-                    bean.setBeishu(qishibeishu_num * touruzushu_num);
+                    bean.setBeishu(qishibeishu_num );
                     zongjiangjin = zongjiangjin + bean.getBeishu() * bean.getDanbeijiangjin();
                     //奖金
                     bean.setJiangjin(zongjiangjin);
@@ -162,9 +162,9 @@ public class ToolFragment2 extends BaseFragment {
                     bean.setLirun(lirun);
                     double lirunlv = lirun * 100 / bean.getZongbenjin();
 //                    LogUtil.e("my","lirunlv:" + lirunlv);
-                    if(lirunlv >= shouyilv_num){
+//                    if(lirunlv >= shouyilv_num){
                         list.add(bean);
-                    }
+//                    }
                     bean.setLirunlv(lirunlv);
                 }
                 DoubleBean bean = new DoubleBean();

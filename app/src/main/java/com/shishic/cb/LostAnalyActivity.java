@@ -181,6 +181,7 @@ public class LostAnalyActivity extends BaseActivity {
 
                         //显示tab
                         initTabs();
+                        handler.removeMessages(MSG_REPEST);
                         if(!isDestroyed() && !isFinishing()){
                             handler.sendEmptyMessageDelayed(MSG_REPEST,30000);
                         }
@@ -250,8 +251,8 @@ public class LostAnalyActivity extends BaseActivity {
                         lostList.set(j,lostList.get(j) + 1);
                     }
                 }
-                LogUtil.e("my","lostList:" + lostList.toString());
-                LogUtil.e("my","hotList:" + hotList.toString());
+//                LogUtil.e("my","lostList:" + lostList.toString());
+//                LogUtil.e("my","hotList:" + hotList.toString());
             }
         }
         LogUtil.e("my","lostList:" + lostList.toString());

@@ -284,6 +284,7 @@ public class NumberChoiceActivity extends BaseActivity {
                 boolean has = false;
                 for(int j = 0 ; j < list.size() && !has; j++){
                     HistoryBean bean = list.get(j);
+                    bean.translate2Old();
                     String luckyNumber = "";
                     if(rb_2.isChecked()){
                         luckyNumber = bean.getN2() + "" + bean.getN1();

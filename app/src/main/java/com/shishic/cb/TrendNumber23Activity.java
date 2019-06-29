@@ -41,7 +41,7 @@ public class TrendNumber23Activity extends BaseActivity {
     private TrendNumberAdapter adapter;
     private TrendNumber23Adapter adapter2;
     private RadioGroup rg_tab,tg_tab;
-    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rbx_2,rbx_3;
+    private RadioButton rb_1,rb_2,rb_3,rb_4,rb_5,rb_6,rb_7,rb_8,rb_9,rb_10,rbx_2,rbx_3;
     private int type = 5;
 
     private Spinner spinner;
@@ -65,6 +65,12 @@ public class TrendNumber23Activity extends BaseActivity {
         rb_2 = findViewById(R.id.rb_2);
         rb_3 = findViewById(R.id.rb_3);
         rb_4 = findViewById(R.id.rb_4);
+        rb_5 = findViewById(R.id.rb_5);
+        rb_6 = findViewById(R.id.rb_6);
+        rb_7 = findViewById(R.id.rb_7);
+        rb_8 = findViewById(R.id.rb_8);
+        rb_9 = findViewById(R.id.rb_9);
+        rb_10 = findViewById(R.id.rb_10);
         rbx_2 = findViewById(R.id.rbx_2);
         rbx_3 = findViewById(R.id.rbx_3);
         rb_5 = findViewById(R.id.rb_5);
@@ -209,16 +215,52 @@ public class TrendNumber23Activity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //选择了以后切换彩种
+                //选择了以后切换彩种
                 recyclerView.currentPage = 1;
                 rb_1.setChecked(true);
                 requestData();
                 if(position < 5){
                     rb_5.setVisibility(View.VISIBLE);
                     rb_4.setVisibility(View.VISIBLE);
+                    rb_6.setVisibility(View.GONE);
+                    rb_7.setVisibility(View.GONE);
+                    rb_8.setVisibility(View.GONE);
+                    rb_9.setVisibility(View.GONE);
+                    rb_10.setVisibility(View.GONE);
+                    rb_1.setText("个位");
+                    rb_2.setText("十位");
+                    rb_3.setText("百位");
+                    rb_4.setText("千位");
+                    rb_5.setText("万位");
                 } else {
-                    rb_5.setVisibility(View.GONE);
-                    rb_4.setVisibility(View.GONE);
-
+                    if(position == 5 || position == 8){
+                        //显示10个数
+                        rb_5.setVisibility(View.VISIBLE);
+                        rb_4.setVisibility(View.VISIBLE);
+                        rb_6.setVisibility(View.VISIBLE);
+                        rb_7.setVisibility(View.VISIBLE);
+                        rb_8.setVisibility(View.VISIBLE);
+                        rb_9.setVisibility(View.VISIBLE);
+                        rb_10.setVisibility(View.VISIBLE);
+                        rb_1.setText(String.valueOf(1));
+                        rb_2.setText(String.valueOf(2));
+                        rb_3.setText(String.valueOf(3));
+                        rb_4.setText(String.valueOf(4));
+                        rb_5.setText(String.valueOf(5));
+                    } else {
+                        rb_5.setVisibility(View.GONE);
+                        rb_4.setVisibility(View.GONE);
+                        rb_6.setVisibility(View.GONE);
+                        rb_7.setVisibility(View.GONE);
+                        rb_8.setVisibility(View.GONE);
+                        rb_9.setVisibility(View.GONE);
+                        rb_10.setVisibility(View.GONE);
+                        rb_1.setText("个位");
+                        rb_2.setText("十位");
+                        rb_3.setText("百位");
+                        rb_4.setText("千位");
+                        rb_5.setText("万位");
+                    }
                 }
             }
 
