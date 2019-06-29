@@ -81,6 +81,7 @@ public class FreePlan extends BaseBean {
          * createTime : 1542556684000
          * updateTime : 1542557161000
          * endJounal : 20181118124
+         * luckType : 20181118124
          */
 
         private int id;
@@ -95,6 +96,7 @@ public class FreePlan extends BaseBean {
         private long createTime;
         private long updateTime;
         private long endJounal;
+        private int luckType;
 
         public int getId() {
             return id;
@@ -190,6 +192,14 @@ public class FreePlan extends BaseBean {
 
         public void setEndJounal(long endJounal) {
             this.endJounal = endJounal;
+        }
+
+        public int getLuckType() {
+            return luckType;
+        }
+
+        public void setLuckType(int luckType) {
+            this.luckType = luckType;
         }
     }
 }

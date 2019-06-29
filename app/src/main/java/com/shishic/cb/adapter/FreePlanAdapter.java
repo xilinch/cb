@@ -108,7 +108,10 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.tv_jounal.setText(jounal);
             //如果是单式的话，自己组合全部的集合
-
+            int luckyType = freePlan1.getLuckType();
+            if(luckyType > 0){
+                planType = luckyType;
+            }
             if(planType == 2){
                 //显示单式组合
                 String all = getDanshiAllNumbers(freePlan1.getRecommendNumbers());
