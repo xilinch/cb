@@ -58,7 +58,7 @@ public class MyFragment extends BaseFragment{
 
     private View view;
 
-    private Dialog signDialog;
+    private Dialog loadDialog;
     private RelativeLayout rl_modify_pwd;
     private RelativeLayout rl_bindphone;
 //    private RelativeLayout rl_sign;
@@ -289,17 +289,19 @@ public class MyFragment extends BaseFragment{
        startActivity(intent);
     }
 
+    private SignDialog signDialog;
+
     private void showSign(){
         //对话框
-        if (signDialog == null) {
-            signDialog = new Dialog(getContext(), R.style.ActionSheetDialogStyle);
+        if (loadDialog == null) {
+            loadDialog = new Dialog(getContext(), R.style.ActionSheetDialogStyle);
             View view = LayoutInflater.from(getContext()).inflate(R.layout.dialog_waite, null);
             int sp_120 = DensityUtils.dipTopx(getContext(), 120);
             int sp_60 = DensityUtils.dipTopx(getContext(), 50);
             ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(sp_120, sp_60);
-            signDialog.setContentView(view,params);
+            loadDialog.setContentView(view,params);
         }
-        signDialog.show();
+        loadDialog.show();
         //TODO 调用示例
         HashMap<String,String> params = new HashMap<String, String>();
         params.put("userId",String.valueOf(Account.getAccount().getId()));
@@ -307,7 +309,7 @@ public class MyFragment extends BaseFragment{
             @Override
             public void onFailure(Call call, IOException e) {
                 super.onFailure(call, e);
-                dismissSign();
+                dismissLoadDialog();
                 ToastUtils.toastShow(getActivity(),R.string.network_error);
             }
 
@@ -315,25 +317,27 @@ public class MyFragment extends BaseFragment{
             public void onResponse(Call call, Response response) throws IOException {
                 super.onResponse(call, response);
                 LogUtil.e("my","URL_SCORE response:" + response );
-                dismissSign();
+                dismissLoadDialog();
                 try {
                     String result = response.body().string();
                     LogUtil.e("my","URL_SCORE result:" + result );
                     JSONObject jsonObject = new JSONObject(result);
                     final String msg = jsonObject.optString("msg");
                     final int code = jsonObject.optInt("code");
-                    String data = jsonObject.optString("data");
-                    if(!TextUtils.isEmpty(data)){
-                        Account account = new Gson().fromJson(data,Account.class);
-                        Account.saveAccount(account);
-                        tv_personal_coin.setText(account.getCoins()+ "金币");
-                    }
+                    final String data = jsonObject.optString("data");
                     //显示一个优美的签到成功
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            if(!TextUtils.isEmpty(data)){
+                                Account account = new Gson().fromJson(data,Account.class);
+                                Account.saveAccount(account);
+                                tv_personal_coin.setText(account.getCoins()+ "金币");
+                            }
                             ToastUtils.toastShow(getActivity(),msg);
-                            SignDialog signDialog = new SignDialog(getContext());
+                            if(signDialog == null){
+                                signDialog = new SignDialog(getContext());
+                            }
                             if(code == 0){
                                 //成功
                                 signDialog.setType(0);
@@ -390,9 +394,9 @@ public class MyFragment extends BaseFragment{
         }
     }
 
-    private void dismissSign(){
-        if(signDialog != null){
-            signDialog.dismiss();
+    private void dismissLoadDialog(){
+        if(loadDialog != null){
+            loadDialog.dismiss();
         }
     }
 
