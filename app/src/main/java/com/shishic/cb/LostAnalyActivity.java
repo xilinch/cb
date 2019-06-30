@@ -256,7 +256,7 @@ public class LostAnalyActivity extends BaseActivity {
             start = 1;
             end = 10;
         } else {
-            end = 3;
+            end = 9;
         }
         for(int i = 0; i <= end; i++){
             lostList.add(0);
