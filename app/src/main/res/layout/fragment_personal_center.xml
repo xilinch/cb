@@ -203,6 +203,28 @@
             android:background="@color/c_gray_cccccc" />
 
         <RelativeLayout
+            android:id="@+id/rl_kefu"
+            style="@style/personal_center_item"
+            android:layout_marginTop="10dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:gravity="center"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/icon_kefu"
+                style="@style/personal_center_title"
+                android:text="联系方式 客服微信 7978019" />
+
+            <ImageView style="@style/personal_center_arrow" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="20dp"
+            android:background="@color/c_gray_cccccc" />
+        <RelativeLayout
             android:id="@+id/rl_feedback"
             style="@style/personal_center_item">
 
