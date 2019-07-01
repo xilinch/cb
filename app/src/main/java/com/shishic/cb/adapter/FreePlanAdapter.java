@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import com.shishic.cb.R;
 import com.shishic.cb.bean.FreePlan;
+import com.shishic.cb.bean.FreePlanTabBean;
+import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.ToastUtils;
 
 import java.util.List;
@@ -74,8 +76,8 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         Object object = list.get(i);
 //        LogUtil.e("my","onBindViewHolder: i:" + i);
-//        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
-//        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
+        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
+        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
         if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
             final PlanViewHolder holder = (PlanViewHolder) viewHolder;
             FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;
@@ -136,10 +138,10 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
 
 
-        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
-            FreePlan freePlan = (FreePlan)object;
+        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlanTabBean){
+            FreePlanTabBean freePlan = (FreePlanTabBean)object;
             PlanTitleViewHolder holder = (PlanTitleViewHolder) viewHolder;
-            holder.tv_content.setText(freePlan.getPlanName());
+            holder.tv_content.setText(freePlan.getName());
         }
     }
 

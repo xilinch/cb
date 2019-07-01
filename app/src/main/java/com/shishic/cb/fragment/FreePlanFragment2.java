@@ -268,6 +268,11 @@ public class FreePlanFragment2 extends Fragment {
                                         tv_8.setVisibility(View.GONE);
                                         tv_9.setVisibility(View.GONE);
                                         tv_10.setVisibility(View.GONE);
+                                        tv_5.setText(numbers[0]);
+                                        tv_4.setText(numbers[1]);
+                                        tv_3.setText(numbers[2]);
+                                        tv_2.setText(numbers[3]);
+                                        tv_1.setText(numbers[4]);
                                     } else {
                                         tv_1.setVisibility(View.GONE);
                                         tv_2.setVisibility(View.GONE);
@@ -279,11 +284,6 @@ public class FreePlanFragment2 extends Fragment {
                                         tv_8.setVisibility(View.GONE);
                                         tv_9.setVisibility(View.GONE);
                                         tv_10.setVisibility(View.GONE);
-                                        tv_5.setText(numbers[0]);
-                                        tv_4.setText(numbers[1]);
-                                        tv_3.setText(numbers[2]);
-                                        tv_2.setText(numbers[3]);
-                                        tv_1.setText(numbers[4]);
                                     }
 
                                 } else {
@@ -372,11 +372,14 @@ public class FreePlanFragment2 extends Fragment {
      * 数据转换
      */
     private void initDatas(){
-        showList = new ArrayList<>();
+        if(showList == null){
+            showList = new ArrayList<>();
+        }
+        showList.clear();
         if(listPlan != null){
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
-//                showList.add(list.get(i));
+                showList.add(list.get(i));
                 if(childList != null){
                     showList.addAll(childList);
                 }
