@@ -56,7 +56,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
             String url = funBean.getCover();
             Glide.with(context).load(url).centerCrop().placeholder(R.mipmap.icon_default1).into(funViewHolder.iv_icon);
 
-            funViewHolder.tv_des.setText(funBean.getContent());
+            funViewHolder.tv_des.setText(funBean.getSummary());
             funViewHolder.tv_time.setVisibility(View.GONE);
             funViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

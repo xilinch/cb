@@ -35,7 +35,6 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
      *     ZHU_LIU(4,"组六"),
      *     FUXUAN(5,"复选");
      */
-    private int planType;
 
     public FreePlanAdapter(List<Object> list,Context context){
         this.list = list;
@@ -52,13 +51,6 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-    public int getPlanType() {
-        return planType;
-    }
-
-    public void setPlanType(int planType) {
-        this.planType = planType;
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
@@ -110,10 +102,7 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             holder.tv_jounal.setText(jounal);
             //如果是单式的话，自己组合全部的集合
-            int luckyType = freePlan1.getLuckType();
-            if(luckyType > 0){
-                planType = luckyType;
-            }
+            int planType = freePlan1.getPlanType();
             if(planType == 2){
                 //显示单式组合
                 String all = getDanshiAllNumbers(freePlan1.getRecommendNumbers());
@@ -138,10 +127,10 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
 
 
-        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlanTabBean){
-            FreePlanTabBean freePlan = (FreePlanTabBean)object;
+        } else if(viewHolder instanceof PlanTitleViewHolder && object instanceof FreePlan){
+            FreePlan freePlan = (FreePlan)object;
             PlanTitleViewHolder holder = (PlanTitleViewHolder) viewHolder;
-            holder.tv_content.setText(freePlan.getName());
+            holder.tv_content.setText(freePlan.getPlanName());
         }
     }
 

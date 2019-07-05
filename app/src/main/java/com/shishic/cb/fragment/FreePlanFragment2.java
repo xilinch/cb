@@ -179,16 +179,18 @@ public class FreePlanFragment2 extends Fragment {
                     JSONArray data = jsonObject.optJSONArray("data");
                     if(success && data != null && data.length() > 0){
                         list = new Gson().fromJson(data.toString(), new TypeToken<List<FreePlanTabBean>>(){}.getType());
+                        planList.clear();
                         if(list != null && list.size() > 0){
                             FreePlanTabBean freePlanTabBean = list.get(0);
                             requestPlanData(String.valueOf(freePlanTabBean.getId()));
-                            planList.clear();
                             for(int i = 0; i < list.size();i++){
                                 planList.add(list.get(i).getName());
                             }
-                            planAdapter.notifyDataSetChanged();
                         }
+                        planAdapter.notifyDataSetChanged();
                     }
+
+
                 } catch (Exception exception){
                     exception.printStackTrace();
                 }
@@ -327,8 +329,6 @@ public class FreePlanFragment2 extends Fragment {
                                     }
                                 }
                             }
-                            int type = freePlan.getPlanType();
-                            adapter.setPlanType(type);
                         }
                         initDatas();
                     }
@@ -379,7 +379,11 @@ public class FreePlanFragment2 extends Fragment {
         if(listPlan != null){
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
-                showList.add(list.get(i));
+                int planType = listPlan.get(i).getPlanType();
+                for(int j = 0; j < childList.size(); j++){
+                   childList.get(j).setPlanType(planType);
+                }
+                showList.add(listPlan.get(i));
                 if(childList != null){
                     showList.addAll(childList);
                 }
