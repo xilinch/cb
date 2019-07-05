@@ -90,19 +90,38 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
             if(TextUtils.isEmpty(luckNum)){
                 luckNum = "     ";
             }
-            String showContent = "推荐号码【" + freePlan1.getRecommendNumbers() + "】 第" + freePlan1.getCurrenJounal() + "期出：" + luckNum;
-            SpannableString recomentSpan = new SpannableString(showContent);
-            recomentSpan.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "推荐号码【".length(), showContent.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            String showContent = "推荐号码【" + freePlan1.getRecommendNumbers() + "】 第" + freePlan1.getCurrenJounal() + "期出：" + luckNum;
+//            SpannableString recomentSpan = new SpannableString(showContent);
+//            recomentSpan.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), "推荐号码【".length(), showContent.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 //            recomentSpan.setSpan(new ForegroundColorSpan(Color.RED),"推荐号码【".length(), showContent.indexOf("】"), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//
+//            holder.tv_content.setText(showContent);
+//            String str1 = freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal() + "期 ";
+//            SpannableString jounal = new SpannableString(str1 + end);
+//            jounal.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length(), jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            holder.tv_jounal.setText(jounal);
 
-            holder.tv_content.setText(showContent);
-            String str1 = freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal() + "期 ";
-            SpannableString jounal = new SpannableString(str1 + end);
-            jounal.setSpan(new StyleSpan(android.graphics.Typeface.BOLD), str1.length(), jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            jounal.setSpan(new ForegroundColorSpan(Color.RED),str1.length(),jounal.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-            holder.tv_jounal.setText(jounal);
             //如果是单式的话，自己组合全部的集合
             int planType = freePlan1.getPlanType();
+
+            StringBuilder showText = new StringBuilder();
+            String recommendNumbers;
+            if(planType == 2){
+                recommendNumbers = "";
+            } else {
+                recommendNumbers = "【" + freePlan1.getRecommendNumbers() + "】";
+            }
+            String showPlanName = freePlan1.getPlanName();
+            int index = showPlanName.indexOf("(");
+            if(index > 0){
+                showPlanName = showPlanName.substring(0,index);
+            }
+            showText.append(freePlan1.getFromJounal() + "-" + freePlan1.getEndJounal() + "期 ").append("  ").append(showPlanName)
+                    .append("  ").append(recommendNumbers + "  " + freePlan1.getCurrenJounal() + "期  ：" + end);
+
+            holder.tv_jounal.setText(showText.toString());
+
             if(planType == 2){
                 //显示单式组合
                 String all = getDanshiAllNumbers(freePlan1.getRecommendNumbers());

@@ -110,7 +110,7 @@ public class FreePlanFragment2 extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new FreePlanAdapter(null,getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
 
         typeList.add("重庆时时彩");
@@ -331,12 +331,15 @@ public class FreePlanFragment2 extends Fragment {
                             }
                         }
                         initDatas();
+                    } else {
+                        tv_notice.setText("");
                     }
                     adapter.changeData(showList);
                     //刷新完成
 //                    swipeRefreshLayout.setRefreshing(false);
                 } catch (Exception exception){
                     exception.printStackTrace();
+                    tv_notice.setText("");
                 }  finally {
                     if(getActivity() != null && !getActivity().isFinishing() && !getActivity().isDestroyed()){
                         long currentSecond = System.currentTimeMillis() ;
@@ -380,8 +383,10 @@ public class FreePlanFragment2 extends Fragment {
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
                 int planType = listPlan.get(i).getPlanType();
+                String planName = listPlan.get(i).getPlanName();
                 for(int j = 0; j < childList.size(); j++){
                    childList.get(j).setPlanType(planType);
+                   childList.get(j).setPlanName(planName);
                 }
                 showList.add(listPlan.get(i));
                 if(childList != null){

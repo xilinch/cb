@@ -99,6 +99,7 @@ public class FreePlan extends BaseBean {
         private long endJounal;
         private int luckType;
         private int planType;
+        private String planName;
 
         public int getId() {
             return id;
@@ -210,6 +211,14 @@ public class FreePlan extends BaseBean {
 
         public void setPlanType(int planType) {
             this.planType = planType;
+        }
+
+        public String getPlanName() {
+            return planName;
+        }
+
+        public void setPlanName(String planName) {
+            this.planName = planName;
         }
     }
 }

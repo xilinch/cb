@@ -8,11 +8,14 @@
         android:id="@+id/tv_jounal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
         android:text="xxx-xxx期 中"
         android:textColor="@color/c_gray_333333" />
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tv_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +31,6 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:paddingBottom="10dp"
         android:textColor="@color/c_gray_666666" />
 
 </LinearLayout>
