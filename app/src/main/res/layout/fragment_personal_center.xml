@@ -218,7 +218,7 @@
                 style="@style/personal_center_title"
                 android:text="客服微信 7978019" />
 
-            <ImageView style="@style/personal_center_arrow" />
+
         </RelativeLayout>
         <View
             android:layout_width="match_parent"
