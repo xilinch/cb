@@ -333,12 +333,13 @@ public class MyFragment extends BaseFragment{
                     final String msg = jsonObject.optString("msg");
                     final int code = jsonObject.optInt("code");
                     final String data = jsonObject.optString("data");
-                    //显示一个优美的签到成功
+                    final JSONObject dataJson = jsonObject.optJSONObject("data");
+                            //显示一个优美的签到成功
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            if(!TextUtils.isEmpty(data)){
-                                Account account = new Gson().fromJson(data,Account.class);
+                            if(dataJson != null){
+                                Account account = new Gson().fromJson(dataJson.toString(),Account.class);
                                 Account.saveAccount(account);
                                 tv_personal_coin.setText(account.getCoins()+ "金币");
                             }

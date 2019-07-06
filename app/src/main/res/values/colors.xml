@@ -27,6 +27,7 @@
     <color name="c_gray_f7f7f7">#f7f7f7</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_20">#20000000</color>
+    <color name="transparent_40">#50ffffff</color>
     <!-- 左边栏的字体颜色 -->
     <color name="input_biankuang_color">#DDDDDD</color>
     <color name="blue_3e9deb">#3e9deb</color>

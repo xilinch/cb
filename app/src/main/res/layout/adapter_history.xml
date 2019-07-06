@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/ll_root"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,10 +15,12 @@
             android:id="@+id/tv_expect"
             android:layout_width="wrap_content"
             android:layout_weight="1.0"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:text="期数:2018120254" />
 
         <TextView
+            android:gravity="center"
             android:layout_weight="1.0"
             android:id="@+id/tv_opencode"
             android:layout_width="wrap_content"

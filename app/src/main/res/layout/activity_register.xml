@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/login_register"
@@ -27,10 +28,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
     <RelativeLayout
-        android:background="@color/transparent_20"
+        android:background="@drawable/dd_shape_60ffffff_content_8"
         android:id="@+id/rl_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:paddingBottom="30dp"
         android:layout_margin="30dp">
 
@@ -38,7 +41,6 @@
             android:id="@+id/name_layout"
             android:layout_width="match_parent"
             android:layout_height="52dp"
-            android:layout_below="@+id/window_login_text"
             android:layout_marginTop="10dp"
             android:gravity="center_vertical"
             android:orientation="horizontal">
@@ -58,7 +60,7 @@
                 android:hint="@string/please_enter_name"
                 android:maxLength="11"
                 android:textColor="@color/black"
-                android:textColorHint="@color/c_gray_cccccc"
+                android:textColorHint="@color/c_gray_666666"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -95,7 +97,7 @@
                 android:inputType="number"
                 android:maxLength="11"
                 android:textColor="@color/black"
-                android:textColorHint="@color/c_gray_cccccc"
+                android:textColorHint="@color/c_gray_666666"
                 android:textSize="16sp" />
 
             <ImageView
@@ -138,11 +140,11 @@
                 android:hint="请输入验证码"
                 android:maxLength="6"
                 android:textColor="@color/black"
-                android:textColorHint="@color/c_gray_cccccc"
+                android:textColorHint="@color/c_gray_666666"
                 android:textSize="16sp" />
             <TextView
                 android:gravity="center"
-                android:textColor="@color/c_gray_999999"
+                android:textColor="@color/c_gray_333333"
                 android:id="@+id/tv_getCode"
                 android:text="点击获取验证码"
                 android:layout_width="120dp"
@@ -174,7 +176,7 @@
                 android:inputType="textPassword"
                 android:maxLength="18"
                 android:textColor="@color/black"
-                android:textColorHint="@color/c_gray_cccccc"
+                android:textColorHint="@color/c_gray_666666"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -204,7 +206,7 @@
                 android:inputType="textPassword"
                 android:maxLength="18"
                 android:textColor="@color/black"
-                android:textColorHint="@color/c_gray_cccccc"
+                android:textColorHint="@color/c_gray_666666"
                 android:textSize="16sp" />
 
         </LinearLayout>

@@ -11,6 +11,7 @@ import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -75,6 +76,11 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
              String journal = String.valueOf(funBean.getJournal());
              funViewHolder.tv_expect.setText(journal);
 //             funViewHolder.tv_opentime.setDescription("开奖时间：" + funBean.getOpentime());
+             if(position % 2 == 1){
+                 funViewHolder.ll_root.setBackgroundColor(Color.parseColor("#f2f2f2"));
+             } else {
+                 funViewHolder.ll_root.setBackgroundColor(Color.WHITE);
+             }
          }
     }
 
@@ -83,12 +89,14 @@ public class HistoryAdapter extends PlusRecyclerAdapter<HistoryBean> {
         public TextView tv_opencode;
         public TextView tv_expect;
         public TextView tv_opentime;
+        public LinearLayout ll_root;
 
         public FunViewHolder(View view){
             super(view);
             tv_opencode = view.findViewById(R.id.tv_opencode);
             tv_expect = view.findViewById(R.id.tv_expect);
             tv_opentime = view.findViewById(R.id.tv_opentime);
+            ll_root = view.findViewById(R.id.ll_root);
         }
     }
 
