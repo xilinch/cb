@@ -43,8 +43,13 @@ public class Constant {
     //意见反馈
     public static final String URL_FEEDBACK = "http://api.iekims.com/public/suggestion/save";
 
-    //签到
+    //客服联系方式
+    public static final String URL_CONTACT = "http://api.iekims.com/public/kv/detail?code=CONTACT_US";
+
+
+    //
     public static final String URL_SCORE = "http://api.iekims.com/public/score/save?type=1";
+
 
 
     //聊天历史

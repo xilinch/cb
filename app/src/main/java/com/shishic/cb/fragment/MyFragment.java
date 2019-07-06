@@ -18,6 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.android.network.NFHttpResponseListener;
+import com.android.network.RequestUtil;
+import com.android.nfRequest.LogError;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.shishic.cb.BindPhoneActivity;
@@ -30,6 +34,7 @@ import com.shishic.cb.bean.Account;
 import com.shishic.cb.dialog.CenterDialog;
 import com.shishic.cb.dialog.ServiceIntroduceDialog;
 import com.shishic.cb.dialog.SignDialog;
+import com.shishic.cb.util.Constant;
 import com.shishic.cb.util.DensityUtils;
 import com.shishic.cb.util.LogUtil;
 import com.shishic.cb.util.LoginUtil;
@@ -73,6 +78,7 @@ public class MyFragment extends BaseFragment{
     private TextView tv_sign;
     private TextView tv_messge;
     private TextView tv_notify;
+    private TextView tv_contact;
 
 
     public static final String ACTION_LOGIN = "com.shishic.cb.ACTION_LOGIN";
@@ -110,10 +116,12 @@ public class MyFragment extends BaseFragment{
             tv_sign = view.findViewById(R.id.tv_sign);
             tv_messge = view.findViewById(R.id.tv_messge);
             tv_notify = view.findViewById(R.id.tv_notify);
+            tv_contact = view.findViewById(R.id.tv_contact);
             initView();
             IntentFilter filter = new IntentFilter(ACTION_LOGIN);
             getActivity().registerReceiver(loginBroadCast, filter);
             updateUser();
+            requestForContact();
         }
         return view;
     }
@@ -401,5 +409,31 @@ public class MyFragment extends BaseFragment{
     }
 
 
+    private void requestForContact(){
+        RequestUtil.httpGet(getContext(), Constant.URL_CONTACT, new HashMap<String, String>(), new NFHttpResponseListener<String>() {
+            @Override
+            public void onErrorResponse(LogError error) {
+
+            }
+
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONObject data = jsonObject.optJSONObject("data");
+                    if(data != null){
+                        String content = data.optString("content");
+                        if(tv_contact != null){
+                            tv_contact.setText(content);
+                        }
+                    }
+                } catch (Exception exception){
+                    exception.printStackTrace();
+                } finally {
+
+                }
+            }
+        });
+    }
 
 }

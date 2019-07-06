@@ -220,6 +220,7 @@ public class SpecailAdapter extends RecyclerView.Adapter {
                     if(code == 5000){
                         LoginUtil.login();
                     }
+                    Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
                 } catch (Exception exception){
                     exception.printStackTrace();
                 } finally {

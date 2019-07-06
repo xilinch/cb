@@ -209,13 +209,14 @@
             android:visibility="visible">
 
             <TextView
+                android:id="@+id/tv_contact"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:drawablePadding="10dp"
                 android:drawableLeft="@mipmap/icon_kefu"
                 style="@style/personal_center_title"
-                android:text="联系方式 客服微信 7978019" />
+                android:text="客服微信 7978019" />
 
             <ImageView style="@style/personal_center_arrow" />
         </RelativeLayout>
