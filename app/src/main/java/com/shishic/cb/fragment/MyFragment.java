@@ -133,7 +133,11 @@ public class MyFragment extends BaseFragment{
         ll_phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLogin();
+                Account account = Account.getAccount();
+                if(account == null){
+                    showLogin();
+                } else {
+                }
             }
         });
         rl_modify_pwd.setOnClickListener(new View.OnClickListener() {
