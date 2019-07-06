@@ -383,14 +383,22 @@ public class FreePlanFragment2 extends Fragment {
             for(int i = 0; i < listPlan.size() ; i++){
                 List<FreePlan.ListBean> childList = listPlan.get(i).getList();
                 int planType = listPlan.get(i).getPlanType();
+                int luckType = listPlan.get(i).getLuckyType();
                 String planName = listPlan.get(i).getPlanName();
                 for(int j = 0; j < childList.size(); j++){
                    childList.get(j).setPlanType(planType);
                    childList.get(j).setPlanName(planName);
+                   childList.get(j).setLuckType(luckType);
                 }
                 showList.add(listPlan.get(i));
                 if(childList != null){
-                    showList.addAll(childList);
+                    if(planType == 2){
+                        //单式的只显示最上面一期
+                        showList.add(childList.get(0));
+                    } else {
+                        showList.addAll(childList);
+                    }
+
                 }
             }
         }

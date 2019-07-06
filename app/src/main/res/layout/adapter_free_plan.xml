@@ -26,11 +26,14 @@
         android:textColor="@color/c_gray_666666" />
 
     <TextView
+        android:background="@drawable/dd_shape_rec_f64e45_white_content"
         android:id="@+id/tv_danshi_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:textColor="@color/c_gray_666666" />
 
 </LinearLayout>

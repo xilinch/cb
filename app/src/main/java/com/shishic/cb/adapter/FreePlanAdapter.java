@@ -104,13 +104,16 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
             //如果是单式的话，自己组合全部的集合
             int planType = freePlan1.getPlanType();
-
+            int luckType = freePlan1.getLuckType();
             StringBuilder showText = new StringBuilder();
             String recommendNumbers;
             if(planType == 2){
                 recommendNumbers = "";
             } else {
                 recommendNumbers = "【" + freePlan1.getRecommendNumbers() + "】";
+            }
+            if(luckType != 6 && luckType != 9){
+                recommendNumbers = recommendNumbers.replaceAll("-","");
             }
             String showPlanName = freePlan1.getPlanName();
             int index = showPlanName.indexOf("(");

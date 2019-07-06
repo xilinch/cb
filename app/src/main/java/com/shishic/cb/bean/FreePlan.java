@@ -8,11 +8,13 @@ public class FreePlan extends BaseBean {
     /**
      * planId : 1
      * planName : 二星胆直选
+     * luckyType : 2
      * notice : 神牛计划的广告
      * list : [{"id":41,"planId":1,"recommendNumbers":"13478","luckyNumbers":"14002","jounal":20181118120,"fromJounal":20181118120,"currenJounal":20181118120,"recommendStatus":0,"valid":1,"createTime":1542556684000,"updateTime":1542557161000,"endJounal":20181118124}]
      */
 
     private int planId;
+    private int luckyType;
     private String planName;
     private String notice;
     private List<ListBean> list;
@@ -65,6 +67,14 @@ public class FreePlan extends BaseBean {
 
     public void setNotice(String notice) {
         this.notice = notice;
+    }
+
+    public int getLuckyType() {
+        return luckyType;
+    }
+
+    public void setLuckyType(int luckyType) {
+        this.luckyType = luckyType;
     }
 
     public static class ListBean {
