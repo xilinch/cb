@@ -13,6 +13,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1sp"
+        android:visibility="gone"
         android:background="@color/c_gray_dddddd" />
     <ImageView
         android:scaleType="center"

@@ -37,7 +37,8 @@
     <color name="blue_389BEE">#389BEE</color>
 
     <color name="red">#BA1A1D</color>
-    <color name="green">#FF34A350</color>
+    <color name="green1">#FF34A350</color>
+    <color name="green">#35ccab</color>
     <color name="yellow">#FFF7D23E</color>
     <color name="blue">#FF375BF1</color>
     <integer-array name="google_colors">
