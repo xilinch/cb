@@ -68,8 +68,8 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
         Object object = list.get(i);
 //        LogUtil.e("my","onBindViewHolder: i:" + i);
-        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
-        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
+//        LogUtil.e("my","viewHolder" + viewHolder.getClass().getSimpleName());
+//        LogUtil.e("my","object i:" + object.getClass().getSimpleName());
         if(viewHolder instanceof PlanViewHolder && object instanceof FreePlan.ListBean){
             final PlanViewHolder holder = (PlanViewHolder) viewHolder;
             FreePlan.ListBean freePlan1 = (FreePlan.ListBean) object;

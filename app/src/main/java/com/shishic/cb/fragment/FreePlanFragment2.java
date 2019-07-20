@@ -349,12 +349,29 @@ public class FreePlanFragment2 extends Fragment {
                         LogUtil.e("my","date:" + date.toString() + " seconds:" + seconds);
                         //秒
                         int repeatTime = 10;
-                        if(type == 1){
+                        if(type != 2){
                             //距离整分钟多少秒，就刷一次
-                            repeatTime = 63 - seconds;
+                            repeatTime = (65 - seconds) % 60;
+                            LogUtil.e("my","repeatTime:" + repeatTime );
+
                         } else {
                             //距离05秒多长，就刷一次
-                            repeatTime = 67 - seconds;
+                            int repeatTime1 = (65 - seconds) % 60 ;
+                            int repeatTime2 = (73 - seconds) % 60;
+                            int repeatTimeForType2;
+                            if(repeatTime1 > repeatTime2){
+                                repeatTimeForType2 = repeatTime2;
+                            } else {
+                                repeatTimeForType2 = repeatTime1;
+                            }
+                            if(repeatTimeForType2 <= 0){
+                                repeatTimeForType2 = 1;
+                            }
+                            if(repeatTimeForType2 > 30){
+                                repeatTimeForType2 = 30;
+                            }
+                            repeatTime = repeatTimeForType2;
+                            LogUtil.e("my","repeatTime1:" + repeatTime1 + " repeatTime2: " + repeatTime2);
                         }
                         if(repeatTime > 30){
                             repeatTime = 30;
@@ -392,13 +409,13 @@ public class FreePlanFragment2 extends Fragment {
                 }
                 showList.add(listPlan.get(i));
                 if(childList != null){
-                    if(planType == 2){
-                        //单式的只显示最上面一期
-                        showList.add(childList.get(0));
-                    } else {
-                        showList.addAll(childList);
-                    }
-
+//                    if(planType == 2){
+//                        //单式的只显示最上面一期
+//                        showList.add(childList.get(0));
+//                    } else {
+//                        showList.addAll(childList);
+//                    }
+                    showList.addAll(childList);
                 }
             }
         }
