@@ -125,7 +125,7 @@ public class FreePlanAdapter extends RecyclerView.Adapter {
 
             holder.tv_jounal.setText(showText.toString());
 
-            if(planType == 2){
+            if(planType == 2 && freePlan1.getRecommendStatus() == 0){
                 //显示单式组合
                 String all = getDanshiAllNumbers(freePlan1.getRecommendNumbers());
                 holder.tv_danshi_all.setText("");
