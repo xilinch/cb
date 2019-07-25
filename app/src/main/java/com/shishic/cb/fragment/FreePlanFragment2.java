@@ -172,7 +172,7 @@ public class FreePlanFragment2 extends Fragment {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.e("my","URL_SCHEME_LIST response:" + response);
+//                LogUtil.e("my","URL_SCHEME_LIST response:" + response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.optBoolean("success");
@@ -207,6 +207,7 @@ public class FreePlanFragment2 extends Fragment {
                     FreePlanTabBean freePlanTabBean = list.get(plan.getSelectedItemPosition());
                     isStart = false;
                     requestPlanData(String.valueOf(freePlanTabBean.getId()));
+                    LogUtil.e("my","更新-----");
                 }
             } catch (Exception e){
 
@@ -232,7 +233,7 @@ public class FreePlanFragment2 extends Fragment {
 
             @Override
             public void onResponse(String response) {
-                LogUtil.e("my","URL_SCHEME_CONFIG response:" + response);
+//                LogUtil.e("my","URL_SCHEME_CONFIG response:" + response);
                 try{
                     JSONObject jsonObject = new JSONObject(response);
                     boolean success = jsonObject.optBoolean("success");
@@ -352,7 +353,7 @@ public class FreePlanFragment2 extends Fragment {
                         if(type != 2){
                             //距离整分钟多少秒，就刷一次
                             repeatTime = (65 - seconds) % 60;
-                            LogUtil.e("my","repeatTime:" + repeatTime );
+                            LogUtil.e("my","更新 type != 2 repeatTime:" + repeatTime );
 
                         } else {
                             //距离05秒多长，就刷一次
@@ -367,14 +368,14 @@ public class FreePlanFragment2 extends Fragment {
                             if(repeatTimeForType2 <= 0){
                                 repeatTimeForType2 = 1;
                             }
-                            if(repeatTimeForType2 > 30){
-                                repeatTimeForType2 = 30;
+                            if(repeatTimeForType2 > 10){
+                                repeatTimeForType2 = 7;
                             }
                             repeatTime = repeatTimeForType2;
-                            LogUtil.e("my","repeatTime1:" + repeatTime1 + " repeatTime2: " + repeatTime2);
+                            LogUtil.e("my","更新 type == 2repeatTime1:" + repeatTime1 + " repeatTime2: " + repeatTime2);
                         }
-                        if(repeatTime > 30){
-                            repeatTime = 30;
+                        if(repeatTime > 20){
+                            repeatTime = 10;
                         }
                         if(isStart && runnable != null){
                             handler.removeCallbacks(runnable);
