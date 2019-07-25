@@ -228,7 +228,14 @@ public class FreePlanFragment2 extends Fragment {
             @Override
             public void onErrorResponse(LogError logError) {
                 LogUtil.e("my","URL_SCHEME_CONFIG logError");
-
+                if(getActivity() != null && !getActivity().isDestroyed() && !getActivity().isFinishing()){
+                    int repeatTime = 10;
+                    if(isStart && runnable != null){
+                        handler.removeCallbacks(runnable);
+                    }
+                    handler.postDelayed(runnable,repeatTime * 1000);
+                    isStart = true;
+                }
             }
 
             @Override
