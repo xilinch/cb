@@ -364,8 +364,8 @@ public class FreePlanFragment2 extends Fragment {
 
                         } else {
                             //距离05秒多长，就刷一次
-                            int repeatTime1 = (65 - seconds) % 60 ;
-                            int repeatTime2 = (73 - seconds) % 60;
+                            int repeatTime1 = (67 - seconds) % 60 ;
+                            int repeatTime2 = (74 - seconds) % 60;
                             int repeatTimeForType2;
                             if(repeatTime1 > repeatTime2){
                                 repeatTimeForType2 = repeatTime2;
