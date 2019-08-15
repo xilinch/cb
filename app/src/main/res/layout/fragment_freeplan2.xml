@@ -104,6 +104,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="10"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -115,6 +116,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="9"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -126,6 +128,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="8"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -137,6 +140,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="7"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -148,6 +152,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="6"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -159,6 +164,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="5"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -170,6 +176,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="4"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -181,6 +188,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="3"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -192,6 +200,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="2"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
 
@@ -203,6 +212,7 @@
                 android:background="@drawable/dd_shape_circle_stroke_red"
                 android:gravity="center"
                 android:text="1"
+                android:visibility="invisible"
                 android:textColor="@color/red"
                 android:textSize="12sp" />
         </LinearLayout>

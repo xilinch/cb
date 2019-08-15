@@ -75,6 +75,9 @@ public class Constant {
     //方案详情  1表示重庆的  2表示腾讯的
     public static final String URL_SCHEME_CONFIG = "http://api.iekims.com/public/scheme/recommends";
 
+    //http://api.iekims.com/public/luckyrecord/last?type=9 开奖结果
+    public static final String URL_SCHEME_RESULT_CONFIG = "http://api.iekims.com/public/luckyrecord/last";
+
     //功能列表
     public static final String URL_FUNTION_LIST = "http://api.iekims.com/public/function/list?pageNum=1&pageSize=30";
 
